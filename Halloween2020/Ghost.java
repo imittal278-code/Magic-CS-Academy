@@ -4,20 +4,31 @@ import java.lang.*;
 public class Ghost {
     ArrayList<Integer> shapes;
     int strlen;
-    int spiralIndex;
     int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
         alive = true;
         strlen = len;
         totaltypeshapes = totshapes;
+        shapes = new ArrayList<Integer>();
         for(int i=0;i<strlen;i++){
             shapes.add((int) (totshapes*Math.random()));
         }
     }
-    public Ghost (){
+    public Ghost (int totshapes){
+        shapes = new ArrayList<Integer>();
+        alive = true;
         strlen = 1;
-        shapes.add(spiralIndex);
+        totaltypeshapes = totshapes;
+        shapes.add(totshapes-1);
+    }
+
+    public void hurt(){
+        System.out.println(shapes + "hurt");
+    }
+
+    public void remove(){
+        System.out.println("removed");
     }
 
     public int shapeAt(int index){
@@ -34,4 +45,8 @@ public class Ghost {
     }
 
     public boolean isAlive(){ return shapes.size()>0; }
+
+        public String toString() {
+            return shapes.toString();
+        }
 }
