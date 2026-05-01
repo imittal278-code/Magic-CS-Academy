@@ -24,6 +24,10 @@ public class Ghostturn {
 
     }
 
+    public void add(){
+        ghostspresent.add(new Ghost(strlen, totshapes));
+    }
+
     public String toString(){
         String s = "";
         for(int i=0;i<ghostspresent.size();i++){
