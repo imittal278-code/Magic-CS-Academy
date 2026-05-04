@@ -10,19 +10,22 @@ public class GameEngine {
         long startTime = System.currentTimeMillis();
         long duration = 8000;
         long endTime = startTime + duration;
-        //System.currentTimeMillis()-startTime is how much time is remaining
-        while(turn.isAlive() && System.currentTimeMillis() < endTime){
-            if (System.in.available() > 0) {
-            if (s.hasNextInt() && System.currentTimeMillis() < endTime) {
-                int num = s.nextInt();
-                turn.shapeDrawn(num);
+        // System.currentTimeMillis()-startTime is how much time is remaining
+        while (turn.isAlive() && System.currentTimeMillis() < endTime) {
+            try {
+                if (System.in.available() > 0) {
+                    if (s.hasNextInt() && System.currentTimeMillis() < endTime) {
+                        int num = s.nextInt();
+                        turn.shapeDrawn(num);
+                    }
+                }
+            } catch (IOException e) {
+
             }
         }
-        }   
-        if(turn.isAlive()){
+        if (turn.isAlive()) {
             System.out.println("you lost a life");
-        }
-        else{
+        } else {
             System.out.println("you won the game!");
         }
 
