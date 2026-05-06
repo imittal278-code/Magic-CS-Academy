@@ -18,24 +18,18 @@ public class Main implements ApplicationListener {
     private SpriteBatch spriteBatch;
     FitViewport viewport;
     private Texture image;
+    private Texture ghost;
     private Texture backgroundTexture;
-    private Texture bucketTexture;
-    private Texture dropTexture;
-    private Sound dropSound;
-    private Music music;
-    private Sprite bucketSprite;
+    private Sprite ghost1;
 
     @Override
     public void create() {
-        backgroundTexture = new Texture("background.png");
-        bucketTexture = new Texture("bucket.png");
-        dropTexture = new Texture("drop.png");
-        dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.mp3"));
-        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        backgroundTexture = new Texture("cs classroom.jpg");
+        ghost = new Texture("Ghost.png");
         spriteBatch = new SpriteBatch();
-        viewport = new FitViewport(8, 5);
-        bucketSprite = new Sprite(bucketTexture);
-        bucketSprite.setSize(1,1);
+        viewport = new FitViewport(6, 3);
+        ghost1 = new Sprite(ghost);
+        
     }
 
     @Override
@@ -50,14 +44,14 @@ public class Main implements ApplicationListener {
         viewport.apply();
         spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
         spriteBatch.begin();
-
-
+        
+        ghost1.draw(spriteBatch);
         float worldWidth = viewport.getWorldWidth();
 
         //the height of the viewport
         float worldHeight = viewport.getWorldHeight();
-        spriteBatch.draw(backgroundTexture, 0, 0,worldWidth,worldWidth);
-        bucketSprite.draw(spriteBatch);
+        spriteBatch.draw(backgroundTexture, 0, 0,worldWidth,worldHeight);
+        
         
         
         
@@ -70,12 +64,7 @@ public class Main implements ApplicationListener {
     }
 
     private void input() {
-        float speed = 1f;
-        float delta = Gdx.graphics.getDeltaTime();
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            bucketSprite.translateX(speed*delta);
-        }
+        
     }
 
     @Override
