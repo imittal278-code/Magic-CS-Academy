@@ -1,8 +1,10 @@
+package io.github.tanishkolhe.csa_project;
+
 import java.util.*;
 import java.lang.*;
 
 public class Ghost {
-    Queue<Integer> shapes;
+    ArrayList<Integer> shapes;
     int strlen;
     int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
@@ -10,13 +12,13 @@ public class Ghost {
         alive = true;
         strlen = len;
         totaltypeshapes = totshapes;
-        shapes = new LinkedList<Integer>();
+        shapes = new ArrayList<Integer>();
         for(int i=0;i<strlen;i++){
             shapes.add((int) (totshapes*Math.random()));
         }
     }
     public Ghost (int totshapes){
-        shapes = new Queue<Integer>();
+        shapes = new ArrayList<Integer>();
         alive = true;
         strlen = 1;
         totaltypeshapes = totshapes;
