@@ -20,11 +20,15 @@ public class Main extends Game {
     public SpriteBatch batch;
     public Stage stage;
     public FitViewport myViewport;
+    Music music;
 
 
 
     public void create(){
         batch = new SpriteBatch();
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.setLooping(true);
+        music.play();
         myViewport = new FitViewport(6, 3);
         stage = new Stage(myViewport);
         setScreen(new homeScreen(this));
