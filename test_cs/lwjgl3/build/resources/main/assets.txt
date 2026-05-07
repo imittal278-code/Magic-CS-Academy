@@ -1,3 +1,4 @@
+Ghost.png
 background.png
 bucket.png
 cs classroom.jpg
