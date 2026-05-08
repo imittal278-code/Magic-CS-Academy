@@ -29,7 +29,7 @@ public class Main extends Game {
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         music.setLooping(true);
         music.play();
-        myViewport = new FitViewport(6, 3);
+        myViewport = new FitViewport(600, 300);
         stage = new Stage(myViewport);
         setScreen(new homeScreen(this));
         
