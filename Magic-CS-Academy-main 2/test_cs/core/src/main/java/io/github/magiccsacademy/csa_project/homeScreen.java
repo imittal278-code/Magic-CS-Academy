@@ -26,7 +26,7 @@ public class homeScreen implements Screen{
     private Sprite ghost2;
     private Texture cat;
     private Sprite cat2;
-    private float ghostSpeed = 0.5f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
+    private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
     private Ghostturn turn;
