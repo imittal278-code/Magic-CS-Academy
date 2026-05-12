@@ -31,7 +31,7 @@ public class Main extends Game {
         music.play();
         myViewport = new FitViewport(6, 3);
         stage = new Stage(myViewport);
-        setScreen(new homeScreen(this));
+        setScreen(new GameScreen(this));
         
         
     }

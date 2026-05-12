@@ -17,7 +17,7 @@ import com.badlogic.gdx.Input;
 import java.util.*;
 
 public class homeScreen implements Screen{
-    private final Main game;
+    private final Main game; // no ghost or something should be present here, like it 
 
     private float catx = 0.0f, caty = 1.0f;
     private ArrayList<Float> ghostx, ghosty;
