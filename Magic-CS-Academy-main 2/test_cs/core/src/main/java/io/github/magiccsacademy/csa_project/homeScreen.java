@@ -55,7 +55,7 @@ public class homeScreen implements Screen{
         //button = new TextButton("Click Me!", skin);
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
-        verticalLine = new Texture("verticalLines.png");
+        verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
         
         map = new HashMap<Integer,Texture>();
@@ -121,15 +121,15 @@ public class homeScreen implements Screen{
                 ghost2.draw(game.batch);
                 int shapesLeft = turn.ghostspresent.get(i).shapes.size();
                 if(shapesLeft%2==0){
-                    float intitialpos = ghostx.get(i)-(float)(shapesLeft/2)*0.15f;
+                    float intitialpos = ghostx.get(i)-(float)(shapesLeft/2)*0.15f+0.3f;
                     for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(turn.ghostspresent.get(i).shapes.get(k)),intitialpos+0.15f*k,ghosty.get(i)+1.25f,0.15f,0.15f);
+                        game.batch.draw(map.get(turn.ghostspresent.get(i).shapes.get(k)),intitialpos+0.15f*k,ghosty.get(i)+0.75f,0.1f,0.1f);
                     }
                 }
                 else{
-                    float intitialpos = ghostx.get(i)-((float)shapesLeft/2)*0.15f;
+                    float intitialpos = ghostx.get(i)-((float)shapesLeft/2)*0.15f+0.3f;
                     for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(turn.ghostspresent.get(i).shapes.get(k)),intitialpos+0.15f*k,ghosty.get(i)+1.25f,0.15f,0.15f);
+                        game.batch.draw(map.get(turn.ghostspresent.get(i).shapes.get(k)),intitialpos+0.15f*k,ghosty.get(i)+0.75f,0.1f,0.1f);
                     }
                 }
                 
