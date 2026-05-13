@@ -116,22 +116,9 @@ public class homeScreen implements Screen{
                     ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
                     ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
                 }
-                ghost2.setPosition(ghostx.get(i),ghosty.get(i));
-                ghost2.setSize(1f,1.11f);
-                ghost2.draw(game.batch);
-                int shapesLeft = turn.ghostspresent.get(i).shapes.size();
-                if(shapesLeft%2==0){
-                    float intitialpos = ghostx.get(i)-(float)(shapesLeft/2)*0.15f+0.3f;
-                    for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(turn.ghostspresent.get(i).shapes.get(k)),intitialpos+0.15f*k,ghosty.get(i)+0.75f,0.1f,0.1f);
-                    }
-                }
-                else{
-                    float intitialpos = ghostx.get(i)-((float)shapesLeft/2)*0.15f+0.3f;
-                    for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(turn.ghostspresent.get(i).shapes.get(k)),intitialpos+0.15f*k,ghosty.get(i)+0.75f,0.1f,0.1f);
-                    }
-                }
+
+                //helper method written below
+                drawGhost(g,ghostx.get(i),ghosty.get(i));
                 
                 
             }
@@ -141,6 +128,28 @@ public class homeScreen implements Screen{
 
         game.batch.end();
     }
+
+    //helper method that draws a ghost
+    private void drawGhost(Ghost g,float x,float y){
+        ghost2.setPosition(x,y);
+        ghost2.setSize(1f,1.11f);
+        ghost2.draw(game.batch);
+        int shapesLeft = g.shapes.size();
+        if(shapesLeft%2==0){
+            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
+            for(int k = 0;k<shapesLeft;k++){
+                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+            }
+        }
+        else{
+            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
+            for(int k = 0;k<shapesLeft;k++){
+                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+            }
+        }
+    }
+
+
 
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);
