@@ -28,6 +28,11 @@ public class homeScreen implements Screen{
     private Sprite cat2;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
+    private Texture verticalLine;
+    private Texture horizontalLine;
+    private Texture upsideDownV;
+    private Texture normalV;
+    private HashMap<Integer,Texture> map;
     TextButton button;
     private Ghostturn turn;
     
@@ -48,6 +53,17 @@ public class homeScreen implements Screen{
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
+        normalV = new Texture("normalV.png");
+        upsideDownV = new Texture("upsideDownV.png");
+        verticalLine = new Texture("verticalLine.png");
+        horizontalLine = new Texture("horizontalLine.png");
+        
+        map = new HashMap<Integer,Texture>();
+        map.put(0,horizontalLine);
+        map.put(1,verticalLine);
+        map.put(2,normalV);
+        map.put(3,upsideDownV);
+
         background = new Texture("csclassroom.jpg");
         ghost = new Texture("Ghost.png");
         ghost2 = new Sprite(ghost);
@@ -100,10 +116,11 @@ public class homeScreen implements Screen{
                     ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
                     ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
                 }
-                ghost2.setPosition(ghostx.get(i),ghosty.get(i));
-                ghost2.setSize(1f,1.11f);
-                font.draw(game.batch, turn.ghostspresent.get(i).shapes.toString(), ghostx.get(i) + 0.15f, ghosty.get(i) + 1.25f);
-                ghost2.draw(game.batch);
+
+                //helper method written below
+                drawGhost(g,ghostx.get(i),ghosty.get(i));
+                
+                
             }
         }
 
@@ -111,6 +128,28 @@ public class homeScreen implements Screen{
 
         game.batch.end();
     }
+
+    //helper method that draws a ghost
+    private void drawGhost(Ghost g,float x,float y){
+        ghost2.setPosition(x,y);
+        ghost2.setSize(1f,1.11f);
+        ghost2.draw(game.batch);
+        int shapesLeft = g.shapes.size();
+        if(shapesLeft%2==0){
+            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
+            for(int k = 0;k<shapesLeft;k++){
+                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+            }
+        }
+        else{
+            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
+            for(int k = 0;k<shapesLeft;k++){
+                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+            }
+        }
+    }
+
+
 
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);
