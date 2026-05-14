@@ -46,6 +46,11 @@ private HashMap<Integer,Texture> map;
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
 
+    private Texture verticalLine;
+    private Texture horizontalLine;
+    private Texture upsideDownV;
+    private Texture normalV;
+    private HashMap<Integer,Texture> map;
 
 
     
@@ -63,9 +68,16 @@ private HashMap<Integer,Texture> map;
     public void show(){
         //button = new TextButton("Click Me!", skin);
         recognizer = new Recognizer();
+        upsideDownV = new Texture("upsideDownV.png");
+        horizontalLine = new Texture("horizontalLine.png");
+
+        map = new HashMap<Integer,Texture>();
+        map.put(0,horizontalLine);
+        map.put(1,verticalLine);
+        map.put(2,normalV);
+        map.put(3,upsideDownV);
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
-        background = new Texture("csclassroom.jpg");
         ghost = new Texture("Ghost.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
@@ -94,7 +106,25 @@ map.put(2,normalV);
 map.put(3,upsideDownV);
 
     }
-
+    //helper method that draws a ghost
+    private void drawGhost(Ghost g,float x,float y){
+        ghost2.setPosition(x,y);
+        ghost2.setSize(1f,1.11f);
+        ghost2.draw(game.batch);
+        int shapesLeft = g.shapes.size();
+        if(shapesLeft%2==0){
+            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
+            for(int k = 0;k<shapesLeft;k++){
+                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+            }
+        }
+        else{
+            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
+            for(int k = 0;k<shapesLeft;k++){
+                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+            }
+        }
+    }
 
 
      @Override
@@ -111,13 +141,13 @@ map.put(3,upsideDownV);
             if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0+i))turn.shapeDrawn(i);
         }
 
-        cat2.setPosition(catx, caty);
-        cat2.setSize(1f, 1.11f);
+
 
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
-
+        cat2.setPosition(catx, caty);
+        cat2.setSize(1f, 1.11f);
         for(int i=0;i<turn.ghostspresent.size();i++){
             Ghost g=turn.ghostspresent.get(i);
             if(g.isAlive()){
@@ -129,14 +159,11 @@ map.put(3,upsideDownV);
                     ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
                     ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
                 }
-                                drawGhost(g, ghostx.get(i), ghosty.get(i));
-              /*   ghost2.setPosition(ghostx.get(i),ghosty.get(i));
-                ghost2.setSize(1f,1.11f);
-                ghost2.draw(game.batch);*/
+                drawGhost(g,ghostx.get(i),ghosty.get(i));
             }
 
 
-            
+
 
         }
 
