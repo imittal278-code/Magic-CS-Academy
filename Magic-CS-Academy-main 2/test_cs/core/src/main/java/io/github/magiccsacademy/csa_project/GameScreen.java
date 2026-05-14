@@ -23,6 +23,11 @@ import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
     private final Main game;
+    private Texture verticalLine;
+private Texture horizontalLine;
+private Texture upsideDownV;
+private Texture normalV;
+private HashMap<Integer,Texture> map;
 
     private float catx = 0.0f, caty = 1.0f;
     private ArrayList<Float> ghostx, ghosty;
@@ -36,8 +41,10 @@ public class GameScreen extends InputAdapter implements Screen{
     TextButton button;
     private Ghostturn turn;
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
+    private Vector<Point> pts = new Vector<Point>();
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
+    private Recognizer recognizer;
 
 
 
@@ -55,6 +62,7 @@ public class GameScreen extends InputAdapter implements Screen{
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
+        recognizer = new Recognizer();
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         background = new Texture("csclassroom.jpg");
@@ -73,6 +81,18 @@ public class GameScreen extends InputAdapter implements Screen{
             ghosty.add(((float)i)*0.5f);
             ghostx.add(1.0f+i);
         }
+        normalV = new Texture("normalV.png");
+upsideDownV = new Texture("upsideDownV.png");
+verticalLine = new Texture("verticalLine.png");
+horizontalLine = new Texture("horizontalLine.png");
+
+
+map = new HashMap<Integer,Texture>();
+map.put(0,horizontalLine);
+map.put(1,verticalLine);
+map.put(2,normalV);
+map.put(3,upsideDownV);
+
     }
 
 
@@ -109,10 +129,10 @@ public class GameScreen extends InputAdapter implements Screen{
                     ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
                     ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
                 }
-                ghost2.setPosition(ghostx.get(i),ghosty.get(i));
+                                drawGhost(g, ghostx.get(i), ghosty.get(i));
+              /*   ghost2.setPosition(ghostx.get(i),ghosty.get(i));
                 ghost2.setSize(1f,1.11f);
-                font.draw(game.batch, turn.ghostspresent.get(i).shapes.toString(), ghostx.get(i) + 0.15f, ghosty.get(i) + 1.25f);
-                ghost2.draw(game.batch);
+                ghost2.draw(game.batch);*/
             }
 
 
@@ -147,10 +167,12 @@ public class GameScreen extends InputAdapter implements Screen{
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button){ //Called when the screen was touched or a mouse button was pressed.
         points.clear();
+        pts.clear();
         Vector3 temp = new Vector3(screenX, screenY, 0);
         game.myViewport.unproject(temp);
 
         points.add(new Vector2(temp.x, temp.y));
+        pts.add(new Point(temp.x, temp.y));
         isDrawing = true;
         
         return true;
@@ -162,6 +184,7 @@ public class GameScreen extends InputAdapter implements Screen{
         game.myViewport.unproject(temp);
         if(isDrawing){
             points.add(new Vector2(temp.x,temp.y));
+            pts.add(new Point(temp.x, temp.y));
 
         }
         return true;
@@ -171,10 +194,36 @@ public class GameScreen extends InputAdapter implements Screen{
     public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
         isDrawing = false;
         if(points.size()>10){
-            //recognize gesture
+            
+            Result r = recognizer.Recognize(pts);
             System.out.println("SKIBIDI");
+
+            System.out.println(r.Name+ " " + r.Score + " " + r.Index);
+
         }
         return true;
     }
 
+    
+    private void drawGhost(Ghost g,float x,float y){
+   ghost2.setPosition(x,y);
+   ghost2.setSize(1f,1.11f);
+   ghost2.draw(game.batch);
+   int shapesLeft = g.shapes.size();
+   if(shapesLeft%2==0){
+       float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
+       for(int k = 0;k<shapesLeft;k++){
+           game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+       }
+   }
+   else{
+       float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
+       for(int k = 0;k<shapesLeft;k++){
+           game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+       }
+   }
 }
+
+}
+
+
