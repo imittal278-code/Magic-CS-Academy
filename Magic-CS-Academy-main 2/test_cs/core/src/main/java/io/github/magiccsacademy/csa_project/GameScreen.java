@@ -46,11 +46,6 @@ private HashMap<Integer,Texture> map;
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
 
-    private Texture verticalLine;
-    private Texture horizontalLine;
-    private Texture upsideDownV;
-    private Texture normalV;
-    private HashMap<Integer,Texture> map;
 
 
     
@@ -71,11 +66,6 @@ private HashMap<Integer,Texture> map;
         upsideDownV = new Texture("upsideDownV.png");
         horizontalLine = new Texture("horizontalLine.png");
 
-        map = new HashMap<Integer,Texture>();
-        map.put(0,horizontalLine);
-        map.put(1,verticalLine);
-        map.put(2,normalV);
-        map.put(3,upsideDownV);
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("Ghost.png");
@@ -89,6 +79,7 @@ private HashMap<Integer,Texture> map;
         turn = new Ghostturn(4, 3, 1, true);
         ghostx = new ArrayList<Float> ();
         ghosty = new ArrayList<Float>();
+        background = new Texture("background.png");
         for(int i=0;i<turn.ghostspresent.size();i++){
             ghosty.add(((float)i)*0.5f);
             ghostx.add(1.0f+i);
@@ -231,25 +222,8 @@ map.put(3,upsideDownV);
         return true;
     }
 
+
     
-    private void drawGhost(Ghost g,float x,float y){
-   ghost2.setPosition(x,y);
-   ghost2.setSize(1f,1.11f);
-   ghost2.draw(game.batch);
-   int shapesLeft = g.shapes.size();
-   if(shapesLeft%2==0){
-       float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
-       for(int k = 0;k<shapesLeft;k++){
-           game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
-       }
-   }
-   else{
-       float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
-       for(int k = 0;k<shapesLeft;k++){
-           game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
-       }
-   }
-}
 
 }
 
