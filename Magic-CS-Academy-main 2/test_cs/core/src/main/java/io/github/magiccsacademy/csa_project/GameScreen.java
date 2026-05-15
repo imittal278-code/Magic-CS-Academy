@@ -214,9 +214,28 @@ map.put(3,upsideDownV);
         if(points.size()>10){
             
             Result r = recognizer.Recognize(pts);
-            System.out.println("SKIBIDI");
+            System.out.println(r.Name + " " + r.Score);
+            switch(r.Name){
+                case "caret CW": // v
+                    turn.shapeDrawn(2);
+                    break;
+                case "caret CCW": // upside down v
+                    turn.shapeDrawn(3);
+                    break;
+                case "circle CW":
+                case "circle CCW": // circles
 
-            System.out.println(r.Name+ " " + r.Score + " " + r.Index);
+                    break;
+                case "line left":
+                case "line right": //horizontal line 
+                    turn.shapeDrawn(0);
+                    break;
+                case "lineup":
+                case "linedown": // vertical line ]
+                    turn.shapeDrawn(1);
+                    break;
+            }
+
 
         }
         return true;

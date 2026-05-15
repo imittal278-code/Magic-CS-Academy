@@ -146,11 +146,16 @@ public class Utils
 	{
 		Rectangle B = BoundingBox(points);
 		Vector newpoints = new Vector(points.size());
+
+		double maxSide = Math.max(B.Width, B.Height);
+		if(maxSide == 0) maxSide = 1;
+		double scale = size/maxSide;
+
 		for (int i = 0; i < points.size(); i++)
 		{
 			Point p = (Point)points.elementAt(i);
-			double qx = p.X * (size / B.Width);
-			double qy = p.Y * (size / B.Height);
+			double qx = p.X *scale;
+			double qy = p.Y * scale;
 			newpoints.addElement(new Point(qx, qy));
 		}
 		
