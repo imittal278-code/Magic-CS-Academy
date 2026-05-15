@@ -6,7 +6,7 @@ import java.lang.*;
 public class Ghost {
     ArrayList<Integer> shapes;
     int strlen;
-    int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
+    public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
         alive = true;

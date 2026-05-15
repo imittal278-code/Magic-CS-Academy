@@ -1,5 +1,7 @@
 Ghost.png
+Hover.png
 Momo2023.png
+Title.png
 background.png
 bucket.png
 cs classroom.jpg
@@ -9,6 +11,7 @@ drop.png
 horizontalLine.png
 libgdx.png
 music.mp3
+nonHover.png
 normalV.png
 ui/font-list.fnt
 ui/font-subtitle.fnt

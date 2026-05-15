@@ -3,6 +3,7 @@ package io.github.magiccsacademy.csa_project;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,6 +23,11 @@ public class homeScreen implements Screen{
     private float catx = 0.0f, caty = 1.0f;
     private ArrayList<Float> ghostx, ghosty;
     private Texture background;
+    private Texture Hover;
+    private Texture nonHover;
+    private Sprite non;
+    private Sprite hov;
+    private Texture title;
     private Texture ghost;
     private Sprite ghost2;
     private Texture cat;
@@ -35,8 +41,10 @@ public class homeScreen implements Screen{
     private HashMap<Integer,Texture> map;
     TextButton button;
     private Ghostturn turn;
-    
-
+    private Ghost ghostright;
+    private Ghost ghostleft;
+    private float timesum;
+    private float lasttime;
 
 
     
@@ -53,33 +61,30 @@ public class homeScreen implements Screen{
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
+        Hover = new Texture("Hover.png");
+        nonHover = new Texture("nonHover.png");
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
-        
+        timesum=0f;
         map = new HashMap<Integer,Texture>();
         map.put(0,horizontalLine);
         map.put(1,verticalLine);
         map.put(2,normalV);
         map.put(3,upsideDownV);
-
+        lasttime=0f;
         background = new Texture("csclassroom.jpg");
         ghost = new Texture("Ghost.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
-        font = new BitmapFont();
-        font.getData().setScale(0.02f);
-        font.setUseIntegerPositions(false);
-        font.setColor(Color.YELLOW);
-        turn = new Ghostturn(4, 3, 1, true);
-        ghostx = new ArrayList<Float> ();
-        ghosty = new ArrayList<Float>();
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            ghosty.add(((float)i)*0.5f);
-            ghostx.add(1.0f+i);
-        }
+        ghostleft = new Ghost(4,4);
+        ghostright = new Ghost(4,4);
+        title = new Texture("Title.png");
+        non = new Sprite(nonHover);
+        hov = new Sprite(Hover);
+
     }
 
 
@@ -91,40 +96,62 @@ public class homeScreen implements Screen{
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
 
-        game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+
         
         game.batch.begin();
-        for(int i=0;i<10;i++){
-            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0+i))turn.shapeDrawn(i);
-        }
 
-        cat2.setPosition(catx, caty);
-        cat2.setSize(1f, 1.11f);
 
+        cat2.setPosition(4f, 0.75f);
+        cat2.setSize(0.75f, 0.8325f);
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
+        game.batch.draw(title,1f,2f,4f,2/3f);
+        drawGhost(ghostleft,0.1f,0.75f);
+        drawGhost(ghostright,1f,0.75f);
+        timesum+=delta;
 
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            Ghost g=turn.ghostspresent.get(i);
-            if(g.isAlive()){
-                float dx = catx - ghostx.get(i);
-                float dy = caty - ghosty.get(i);
 
-                float distance = (float) Math.sqrt(dx*dx+dy*dy);
-                if(distance>0.01f){
-                    ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
-                    ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
-                }
 
-                //helper method written below
-                drawGhost(g,ghostx.get(i),ghosty.get(i));
-                
-                
+
+        if(ghostleft.shapes.size()==0){
+            timesum = 0f;
+            lasttime = 0f;
+            ghostleft = new Ghost(4,4);
+            ghostright = new Ghost(4,4);
+        }
+        else{
+            if(timesum-lasttime>=0.5f){
+                timesum = lasttime;
+                ghostleft.removeLast();
+                ghostright.removeLast();
             }
         }
 
+
+
+
         cat2.draw(game.batch);
+
+
+
+         non.setSize(1.5f,0.6f);
+         hov.setSize(1.5f,0.6f);
+         non.setPosition(2.2f,0.8f);
+         hov.setPosition(2.2f,0.8f);
+         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+         game.myViewport.getCamera().unproject(mousePos);
+
+         if (hov.getBoundingRectangle().contains(mousePos.x, mousePos.y)) {
+             hov.draw(game.batch);
+             if(Gdx.input.justTouched()){
+                 this.dispose();
+                 game.setScreen(new GameScreen(game));
+             }
+         }
+         else{
+             non.draw(game.batch);
+         }
 
         game.batch.end();
     }
@@ -160,6 +187,16 @@ public class homeScreen implements Screen{
     
     @Override
     public void dispose() {
-        
+        background.dispose();
+        Hover.dispose();
+        nonHover.dispose();
+        title.dispose();
+        ghost.dispose();
+        cat.dispose();
+
+        verticalLine.dispose();
+        horizontalLine.dispose();
+        upsideDownV.dispose();
+        normalV.dispose();
     }
 }
