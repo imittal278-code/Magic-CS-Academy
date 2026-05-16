@@ -19,22 +19,13 @@ import java.util.*;
 public class Cat {
     float catx, caty;
     int lives;
-    Texture cat;
-    Sprite cat2;
     boolean alive;
 
-    public Cat() {
-        catx = 2.5f;
-        caty = 0.9765f;
-        lives = 3;
+    public Cat(float catx, float caty) {
+        this.catx = catx;
+        this.caty = caty;
+        lives = 5;
         alive = true;
-        cat = new Texture("Momo2023.png");
-        cat2 = new Sprite(cat);
-        cat2.setSize(1f, 1.047f);
-    }
-    void draw(SpriteBatch batch) {
-        cat2.setPosition(catx, caty);
-        cat2.draw(batch);
     }
     void loseLife() {
         lives--;

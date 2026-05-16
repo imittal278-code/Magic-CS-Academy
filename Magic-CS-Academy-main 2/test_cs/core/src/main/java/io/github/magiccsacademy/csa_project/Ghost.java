@@ -31,6 +31,7 @@ public class Ghost {
 
     public void remove(){
         System.out.println("removed");
+        alive = false;
     }
 
     public int shapeAt(int index){
@@ -46,7 +47,7 @@ public class Ghost {
         shapes.removeLast();
     }
 
-    public boolean isAlive(){ return shapes.size()>0; }
+    public boolean isAlive(){ return alive && shapes.size()>0; }
 
         public String toString() {
             return shapes.toString();

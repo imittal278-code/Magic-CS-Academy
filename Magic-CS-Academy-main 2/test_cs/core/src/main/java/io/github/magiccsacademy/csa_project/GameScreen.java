@@ -18,6 +18,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 
 import java.util.*;
 
@@ -28,8 +32,8 @@ private Texture horizontalLine;
 private Texture upsideDownV;
 private Texture normalV;
 private HashMap<Integer,Texture> map;
-
-    private float catx = 0.0f, caty = 1.0f;
+    private Cat c;
+   // private float catx = 2.5f, caty = 1.5f;
     private ArrayList<Float> ghostx, ghosty;
     private Texture background;
     private Texture ghost;
@@ -45,10 +49,10 @@ private HashMap<Integer,Texture> map;
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
+    Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
 
 
 
-    
 
 
 
@@ -62,6 +66,7 @@ private HashMap<Integer,Texture> map;
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
+        c = new Cat(2.5f, 1.5f);
         recognizer = new Recognizer();
         upsideDownV = new Texture("upsideDownV.png");
         horizontalLine = new Texture("horizontalLine.png");
@@ -137,18 +142,25 @@ map.put(3,upsideDownV);
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
-        cat2.setPosition(catx, caty);
-        cat2.setSize(1f, 1.11f);
+        cat2.setPosition(c.getX(), c.getY());
+        cat2.setSize(0.8f, 0.8f);
         for(int i=0;i<turn.ghostspresent.size();i++){
             Ghost g=turn.ghostspresent.get(i);
             if(g.isAlive()){
-                float dx = catx - ghostx.get(i);
-                float dy = caty - ghosty.get(i);
+                float dx = c.getX() - ghostx.get(i);
+                float dy = c.getY() - ghosty.get(i);
 
                 float distance = (float) Math.sqrt(dx*dx+dy*dy);
-                if(distance>0.01f){
+                if(distance>0.70f){
                     ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
                     ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
+                   // if(i==0)System.out.println(distance);
+                }
+                else{
+                    c.loseLife();
+                    music.play();
+                    g.remove(); // should be an animation thing
+
                 }
                 drawGhost(g,ghostx.get(i),ghosty.get(i));
             }
