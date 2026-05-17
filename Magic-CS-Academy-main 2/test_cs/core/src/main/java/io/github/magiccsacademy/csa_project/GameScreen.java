@@ -40,6 +40,8 @@ private HashMap<Integer,Texture> map;
     private Sprite ghost2;
     private Texture cat;
     private Sprite cat2;
+    private Texture heart;
+    private Texture heartOutline;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
@@ -70,7 +72,8 @@ private HashMap<Integer,Texture> map;
         recognizer = new Recognizer();
         upsideDownV = new Texture("upsideDownV.png");
         horizontalLine = new Texture("horizontalLine.png");
-
+        heart = new Texture("heart.png");
+        heartOutline = new Texture("heart_outline.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("Ghost.png");
@@ -169,7 +172,7 @@ map.put(3,upsideDownV);
 
 
         }
-
+        drawHearts();
         cat2.draw(game.batch);
 
         game.batch.end();
@@ -181,6 +184,25 @@ map.put(3,upsideDownV);
         }
         shapeRenderer.end();
     }
+
+
+    private void drawHearts(){
+        int count = c.getLives();
+        float adder = 0.2f;
+        for(int i = 0;i<5;i++){
+            if(count>0){
+                game.batch.draw(heart,0f+adder,2.5f,0.3f,0.3f);
+            }
+            else{
+                game.batch.draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
+            }
+            adder+=0.3f;
+            count--;
+        }
+    }
+
+
+
 
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);

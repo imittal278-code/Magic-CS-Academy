@@ -9,6 +9,8 @@ csclassroom.jpg
 drop.mp3
 drop.png
 ghostdeath.mp3
+heart.png
+heart_outline.png
 horizontalLine.png
 libgdx.png
 music.mp3
