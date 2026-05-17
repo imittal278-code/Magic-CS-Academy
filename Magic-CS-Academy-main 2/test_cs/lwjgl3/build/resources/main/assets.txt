@@ -9,6 +9,7 @@ cs classroom.jpg
 csclassroom.jpg
 drop.mp3
 drop.png
+ghost2.png
 ghostdeath.mp3
 heart.png
 heart_outline.png

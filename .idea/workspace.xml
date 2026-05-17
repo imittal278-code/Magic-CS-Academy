@@ -16,15 +16,10 @@
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/assets/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/build/reports/problems/problems-report.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/GameScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/GameScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghostturn.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghostturn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/homeScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/homeScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/GameScreen.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/GameScreen.class.uniqueId0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/homeScreen.class.uniqueId1" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/homeScreen.class.uniqueId1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Ghostturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Ghostturn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/homeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/homeScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -234,7 +229,9 @@
       <workItem from="1778806396824" duration="13000" />
       <workItem from="1778904764095" duration="1512000" />
       <workItem from="1778989344551" duration="128000" />
-      <workItem from="1779027510956" duration="1760000" />
+      <workItem from="1779027510956" duration="2206000" />
+      <workItem from="1779032269005" duration="648000" />
+      <workItem from="1779054920262" duration="2127000" />
     </task>
     <servers />
   </component>

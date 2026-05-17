@@ -69,14 +69,14 @@ public class GameScreen extends InputAdapter implements Screen{
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
-        c = new Cat(2.5f, 1.5f);
+        c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
 
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
-        ghost = new Texture("Ghost.png");
+        ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
@@ -84,14 +84,22 @@ public class GameScreen extends InputAdapter implements Screen{
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.YELLOW);
-        turn = new Ghostturn(4, 3, 1, true);
+        turn = new Ghostturn(4, 6, 1, true);
         ghostx = new ArrayList<Float> ();
         ghosty = new ArrayList<Float>();
         background = new Texture("background.png");
-        for(int i=0;i<turn.ghostspresent.size();i++){
+        ghostx.add(0f);
+        ghosty.add(0f);
+        ghostx.add(6f);
+        ghosty.add(0f);
+        ghostx.add(0f);
+        ghosty.add(3f);
+        ghostx.add(6f);
+        ghosty.add(3f);
+        /*for(int i=0;i<turn.ghostspresent.size();i++){
             ghosty.add(((float)i)*0.5f);
             ghostx.add(1.0f+i);
-        }
+        }*/
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
@@ -110,19 +118,19 @@ public class GameScreen extends InputAdapter implements Screen{
     //helper method that draws a ghost
     private void drawGhost(Ghost g,float x,float y){
         ghost2.setPosition(x,y);
-        ghost2.setSize(1f,1.11f);
+        ghost2.setSize(0.6f,0.666f);
         ghost2.draw(game.batch);
         int shapesLeft = g.shapes.size();
         if(shapesLeft%2==0){
-            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
+            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.33f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
             }
         }
         else{
-            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
+            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.32f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
             }
         }
     }
@@ -148,7 +156,7 @@ public class GameScreen extends InputAdapter implements Screen{
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
         cat2.setPosition(c.getX(), c.getY());
-        cat2.setSize(0.8f, 0.8f);
+        cat2.setSize(0.6f, 0.6f);
         for(int i=0;i<turn.ghostspresent.size();i++){
             Ghost g=turn.ghostspresent.get(i);
             if(g.isAlive()){
