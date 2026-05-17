@@ -8,7 +8,7 @@ public class Ghostturn {
     int strlen;
     int difficulty;
     int numAlive;
-    int totshapes = 4;
+    int totshapes = 5;
     ArrayList<Ghost> ghostspresent;
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
         numGhosts = nGhosts;

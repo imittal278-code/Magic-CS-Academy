@@ -38,6 +38,7 @@ public class homeScreen implements Screen{
     private Texture horizontalLine;
     private Texture upsideDownV;
     private Texture normalV;
+    private Texture circle;
     private HashMap<Integer,Texture> map;
     TextButton button;
     private Ghostturn turn;
@@ -67,20 +68,22 @@ public class homeScreen implements Screen{
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
+        circle = new Texture("circle.png");
         timesum=0f;
         map = new HashMap<Integer,Texture>();
         map.put(0,horizontalLine);
         map.put(1,verticalLine);
         map.put(2,normalV);
         map.put(3,upsideDownV);
+        map.put(4,circle);
         lasttime=0f;
         background = new Texture("csclassroom.jpg");
         ghost = new Texture("Ghost.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
-        ghostleft = new Ghost(4,4);
-        ghostright = new Ghost(4,4);
+        ghostleft = new Ghost(4,5);
+        ghostright = new Ghost(4,5);
         title = new Texture("Title.png");
         non = new Sprite(nonHover);
         hov = new Sprite(Hover);
@@ -117,8 +120,8 @@ public class homeScreen implements Screen{
         if(ghostleft.shapes.size()==0){
             timesum = 0f;
             lasttime = 0f;
-            ghostleft = new Ghost(4,4);
-            ghostright = new Ghost(4,4);
+            ghostleft = new Ghost(4,5);
+            ghostright = new Ghost(4,5);
         }
         else{
             if(timesum-lasttime>=0.5f){
@@ -165,13 +168,13 @@ public class homeScreen implements Screen{
         if(shapesLeft%2==0){
             float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
         else{
             float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
     }

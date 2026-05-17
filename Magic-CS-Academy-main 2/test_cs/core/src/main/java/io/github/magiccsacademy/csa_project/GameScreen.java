@@ -28,10 +28,11 @@ import java.util.*;
 public class GameScreen extends InputAdapter implements Screen{
     private final Main game;
     private Texture verticalLine;
-private Texture horizontalLine;
-private Texture upsideDownV;
-private Texture normalV;
-private HashMap<Integer,Texture> map;
+    private Texture horizontalLine;
+    private Texture upsideDownV;
+    private Texture normalV;
+    private Texture circle;
+    private HashMap<Integer,Texture> map;
     private Cat c;
    // private float catx = 2.5f, caty = 1.5f;
     private ArrayList<Float> ghostx, ghosty;
@@ -70,8 +71,7 @@ private HashMap<Integer,Texture> map;
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.5f, 1.5f);
         recognizer = new Recognizer();
-        upsideDownV = new Texture("upsideDownV.png");
-        horizontalLine = new Texture("horizontalLine.png");
+
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
         Gdx.input.setInputProcessor(this);
@@ -93,16 +93,18 @@ private HashMap<Integer,Texture> map;
             ghostx.add(1.0f+i);
         }
         normalV = new Texture("normalV.png");
-upsideDownV = new Texture("upsideDownV.png");
-verticalLine = new Texture("verticalLine.png");
-horizontalLine = new Texture("horizontalLine.png");
+        upsideDownV = new Texture("upsideDownV.png");
+        verticalLine = new Texture("verticalLine.png");
+        horizontalLine = new Texture("horizontalLine.png");
+        circle = new Texture("circle.png");
 
 
-map = new HashMap<Integer,Texture>();
-map.put(0,horizontalLine);
-map.put(1,verticalLine);
-map.put(2,normalV);
-map.put(3,upsideDownV);
+        map = new HashMap<Integer,Texture>();
+        map.put(0,horizontalLine);
+        map.put(1,verticalLine);
+        map.put(2,normalV);
+        map.put(3,upsideDownV);
+        map.put(4,circle);
 
     }
     //helper method that draws a ghost
@@ -114,13 +116,13 @@ map.put(3,upsideDownV);
         if(shapesLeft%2==0){
             float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
         else{
             float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
     }
@@ -258,7 +260,7 @@ map.put(3,upsideDownV);
                     break;
                 case "circle CW":
                 case "circle CCW": // circles
-
+                    turn.shapeDrawn(4);
                     break;
                 case "line left":
                 case "line right": //horizontal line 
