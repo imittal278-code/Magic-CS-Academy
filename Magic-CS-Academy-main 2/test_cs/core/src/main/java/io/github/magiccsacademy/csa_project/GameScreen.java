@@ -27,12 +27,15 @@ import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
     private final Main game;
+
+    //shape declarations
     private Texture verticalLine;
     private Texture horizontalLine;
     private Texture upsideDownV;
     private Texture normalV;
     private Texture circle;
     private HashMap<Integer,Texture> map;
+
     private Cat c;
    // private float catx = 2.5f, caty = 1.5f;
     private ArrayList<Float> ghostx, ghosty;
@@ -85,20 +88,18 @@ public class GameScreen extends InputAdapter implements Screen{
         font.setUseIntegerPositions(false);
         font.setColor(Color.YELLOW);
         turn = new Ghostturn(4, 6, 1, true);
-        ghostx = new ArrayList<Float> ();
-        ghosty = new ArrayList<Float>();
         background = new Texture("background.png");
-        ghostx.add(0f);
-        ghosty.add(0f);
-        ghostx.add(6f);
-        ghosty.add(0f);
-        ghostx.add(0f);
-        ghosty.add(3f);
-        ghostx.add(6f);
-        ghosty.add(3f);
+        turn.ghostx.add(0f);
+        turn.ghosty.add(0f);
+        turn.ghostx.add(6f);
+        turn.ghosty.add(0f);
+        turn.ghostx.add(0f);
+        turn.ghosty.add(3f);
+        turn.ghostx.add(6f);
+        turn.ghosty.add(3f);
         /*for(int i=0;i<turn.ghostspresent.size();i++){
-            ghosty.add(((float)i)*0.5f);
-            ghostx.add(1.0f+i);
+            turn.ghosty.add(((float)i)*0.5f);
+            turn.ghostx.add(1.0f+i);
         }*/
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
@@ -146,44 +147,28 @@ public class GameScreen extends InputAdapter implements Screen{
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         
         game.batch.begin();
+
+        /*
         for(int i=0;i<10;i++){
             if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0+i))turn.shapeDrawn(i);
         }
+        */
 
-
-
+        //draw the background first
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
+
+        //set cat's position and size and draw it
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            Ghost g=turn.ghostspresent.get(i);
-            if(g.isAlive()){
-                float dx = c.getX() - ghostx.get(i);
-                float dy = c.getY() - ghosty.get(i);
-
-                float distance = (float) Math.sqrt(dx*dx+dy*dy);
-                if(distance>0.70f){
-                    ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
-                    ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
-                   // if(i==0)System.out.println(distance);
-                }
-                else{
-                    c.loseLife();
-                    music.play();
-                    g.remove(); // should be an animation thing
-
-                }
-                drawGhost(g,ghostx.get(i),ghosty.get(i));
-            }
-
-
-
-
-        }
-        drawHearts();
         cat2.draw(game.batch);
+
+
+        renderGhosts(turn,delta);
+
+        drawHearts(c);
+
 
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
@@ -195,8 +180,46 @@ public class GameScreen extends InputAdapter implements Screen{
         shapeRenderer.end();
     }
 
+    /*
+        renders the ghosts onto the screen with their appropriate speeds
+        Also deals with the death of the ghosts.
+    */
+    private void renderGhosts(Ghostturn turn,float delta){
+        for(int i=0;i<turn.ghostspresent.size();i++){
+            Ghost g=turn.ghostspresent.get(i);
+            if(g.isAlive()){
+                float dx = c.getX() - turn.ghostx.get(i);
+                float dy = c.getY() - turn.ghosty.get(i);
 
-    private void drawHearts(){
+                float distance = (float) Math.sqrt(dx*dx+dy*dy);
+
+                //checking if ghost is too close to cat (dead)
+                if(distance>0.70f){
+                    //ghost is still alive
+                    turn.ghostx.set(i,turn.ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
+                    turn.ghosty.set(i,turn.ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
+                    // if(i==0)System.out.println(distance);
+                }
+                else{
+                    //ghost is dead
+                    c.loseLife();
+                    music.play();
+                    g.remove(); // should be an animation thing
+
+                }
+
+                drawGhost(g,turn.ghostx.get(i),turn.ghosty.get(i));
+            }
+        }
+    }
+
+
+
+
+
+
+
+    private void drawHearts(Cat c){
         int count = c.getLives();
         float adder = 0.2f;
         for(int i = 0;i<5;i++){
