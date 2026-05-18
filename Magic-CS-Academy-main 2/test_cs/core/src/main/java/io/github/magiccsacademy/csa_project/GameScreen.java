@@ -115,23 +115,33 @@ public class GameScreen extends InputAdapter implements Screen{
         level1.startLevel();
     }
     //helper method that draws a ghost
-    private void drawGhost(Ghost g,float x,float y){
-        ghost2.setPosition(x,y);
-        ghost2.setSize(0.6f,0.666f);
-        ghost2.draw(game.batch);
-        int shapesLeft = g.shapes.size();
-        if(shapesLeft%2==0){
-            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.33f;
-            for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+    private void drawGhosts(Levels level){
+
+        int numGhosts = level.getCurrentTurn().numGhosts;
+        for(int i = 0; i< numGhosts;i++){
+            if(level.getCurrentTurn().ghostspresent.get(numGhosts-i-1).isAlive()) {
+                Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+                float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
+                float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
+                ghost2.setPosition(x,y);
+                ghost2.setSize(0.6f,0.666f);
+                ghost2.draw(game.batch);
+                int shapesLeft = g.shapes.size();
+                if(shapesLeft%2==0){
+                    float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.33f;
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    }
+                }
+                else{
+                    float intitialpos = x-((float)shapesLeft/2)*0.15f+0.32f;
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    }
+                }
             }
         }
-        else{
-            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.32f;
-            for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
-            }
-        }
+
     }
 
 
@@ -164,13 +174,9 @@ public class GameScreen extends InputAdapter implements Screen{
          level1.update(delta,c);
 
 
-         int numGhosts = level1.getCurrentTurn().numGhosts;
-         for(int i = 0; i< numGhosts;i++){
-             if(level1.getCurrentTurn().ghostspresent.get(numGhosts-i-1).isAlive()) {
-                 drawGhost(level1.getCurrentTurn().ghostspresent.get(numGhosts - i - 1), level1.getCurrentTurn().ghostx.get(numGhosts - i - 1), level1.getCurrentTurn().ghosty.get(numGhosts - i - 1));
-             }
-         }
-            drawHearts(c);
+         drawGhosts(level1);
+
+         drawHearts(c);
 
 
 

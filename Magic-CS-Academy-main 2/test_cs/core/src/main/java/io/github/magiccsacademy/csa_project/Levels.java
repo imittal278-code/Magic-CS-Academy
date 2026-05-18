@@ -115,7 +115,7 @@ public class Levels {
         }
     }
     public boolean currentTurnFinished() {
-        return currentTurnIndex >= turns.size();
+        return currentTurnIndex >= turns.size()||completed==true;
     }
     public boolean isCompleted() {
         return completed;
