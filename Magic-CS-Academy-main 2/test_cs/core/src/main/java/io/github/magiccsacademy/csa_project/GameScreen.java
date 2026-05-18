@@ -49,14 +49,15 @@ public class GameScreen extends InputAdapter implements Screen{
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
-    private Ghostturn turn;
+
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
     private Vector<Point> pts = new Vector<Point>();
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
-    Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
 
+
+    private Levels level1;
 
 
 
@@ -87,16 +88,9 @@ public class GameScreen extends InputAdapter implements Screen{
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.YELLOW);
-        turn = new Ghostturn(4, 6, 1, true);
+
         background = new Texture("background.png");
-        turn.ghostx.add(0f);
-        turn.ghosty.add(0f);
-        turn.ghostx.add(6f);
-        turn.ghosty.add(0f);
-        turn.ghostx.add(0f);
-        turn.ghosty.add(3f);
-        turn.ghostx.add(6f);
-        turn.ghosty.add(3f);
+        
         /*for(int i=0;i<turn.ghostspresent.size();i++){
             turn.ghosty.add(((float)i)*0.5f);
             turn.ghostx.add(1.0f+i);
@@ -114,7 +108,11 @@ public class GameScreen extends InputAdapter implements Screen{
         map.put(2,normalV);
         map.put(3,upsideDownV);
         map.put(4,circle);
+        level1 = new Levels(game,1,0);
+        level1.addTurn(new Ghostturn(4, 6, 0,true));
 
+        background = level1.getBackground();
+        level1.startLevel();
     }
     //helper method that draws a ghost
     private void drawGhost(Ghost g,float x,float y){
@@ -163,13 +161,23 @@ public class GameScreen extends InputAdapter implements Screen{
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
+         level1.update(delta,c);
 
 
-        renderGhosts(turn,delta);
+         int numGhosts = level1.getCurrentTurn().numGhosts;
+         for(int i = 0; i< numGhosts;i++){
+             if(level1.getCurrentTurn().ghostspresent.get(numGhosts-i-1).isAlive()) {
+                 drawGhost(level1.getCurrentTurn().ghostspresent.get(numGhosts - i - 1), level1.getCurrentTurn().ghostx.get(numGhosts - i - 1), level1.getCurrentTurn().ghosty.get(numGhosts - i - 1));
+             }
+         }
+            drawHearts(c);
 
-        drawHearts(c);
 
 
+
+
+
+        
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -179,42 +187,6 @@ public class GameScreen extends InputAdapter implements Screen{
         }
         shapeRenderer.end();
     }
-
-    /*
-        renders the ghosts onto the screen with their appropriate speeds
-        Also deals with the death of the ghosts.
-    */
-    private void renderGhosts(Ghostturn turn,float delta){
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            Ghost g=turn.ghostspresent.get(i);
-            if(g.isAlive()){
-                float dx = c.getX() - turn.ghostx.get(i);
-                float dy = c.getY() - turn.ghosty.get(i);
-
-                float distance = (float) Math.sqrt(dx*dx+dy*dy);
-
-                //checking if ghost is too close to cat (dead)
-                if(distance>0.70f){
-                    //ghost is still alive
-                    turn.ghostx.set(i,turn.ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
-                    turn.ghosty.set(i,turn.ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
-                    // if(i==0)System.out.println(distance);
-                }
-                else{
-                    //ghost is dead
-                    c.loseLife();
-                    music.play();
-                    g.remove(); // should be an animation thing
-
-                }
-
-                drawGhost(g,turn.ghostx.get(i),turn.ghosty.get(i));
-            }
-        }
-    }
-
-
-
 
 
 
@@ -284,22 +256,22 @@ public class GameScreen extends InputAdapter implements Screen{
             System.out.println(r.Name + " " + r.Score);
             switch(r.Name){
                 case "caret CW": // v
-                    turn.shapeDrawn(2);
+                    level1.shapeDrawn(2);
                     break;
                 case "caret CCW": // upside down v
-                    turn.shapeDrawn(3);
+                    level1.shapeDrawn(3);
                     break;
                 case "circle CW":
                 case "circle CCW": // circles
-                    turn.shapeDrawn(4);
+                    level1.shapeDrawn(4);
                     break;
                 case "line left":
                 case "line right": //horizontal line 
-                    turn.shapeDrawn(0);
+                    level1.shapeDrawn(0);
                     break;
                 case "lineup":
                 case "linedown": // vertical line ]
-                    turn.shapeDrawn(1);
+                    level1.shapeDrawn(1);
                     break;
             }
 
