@@ -152,8 +152,13 @@ public class Levels {
                     turn.ghosty.add(3f);
                 }
                 else if (turnInd==1) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
+                    turn.ghostx.add(1f);
+                    turn.ghosty.add(1f);
+                    turn.ghostx.add(5f);
+                    turn.ghosty.add(1f);
+                    turn.ghostx.add(1f);
+                    turn.ghosty.add(2f);
+
                 }
                 else if (turnInd==2) {
                     //turn.ghostx.add(5.0f+(i*0.5f));

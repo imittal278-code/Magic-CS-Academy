@@ -109,8 +109,8 @@ public class GameScreen extends InputAdapter implements Screen{
         map.put(3,upsideDownV);
         map.put(4,circle);
         level1 = new Levels(game,1,0);
-        level1.addTurn(new Ghostturn(4, 6, 0,true));
-
+        level1.addTurn(new Ghostturn(4, 6, 0,false));
+        level1.addTurn(new Ghostturn(3,3,0,false));
         background = level1.getBackground();
         level1.startLevel();
     }
