@@ -2,10 +2,10 @@ Ghost.png
 Hover.png
 Momo2023.png
 Title.png
+WinText.png
 background.png
 bucket.png
 circle.png
-cs classroom.jpg
 csclassroom.jpg
 drop.mp3
 drop.png
@@ -15,6 +15,7 @@ heart.png
 heart_outline.png
 horizontalLine.png
 libgdx.png
+loseText.png
 music.mp3
 nonHover.png
 normalV.png
