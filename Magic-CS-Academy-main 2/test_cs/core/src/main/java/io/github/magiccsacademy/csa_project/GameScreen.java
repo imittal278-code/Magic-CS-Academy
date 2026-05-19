@@ -18,28 +18,38 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
     private final Main game;
-    private Texture verticalLine;
-private Texture horizontalLine;
-private Texture upsideDownV;
-private Texture normalV;
-private HashMap<Integer,Texture> map;
 
-    private float catx = 0.0f, caty = 1.0f;
+    //shape declarations
+    private Texture verticalLine;
+    private Texture horizontalLine;
+    private Texture upsideDownV;
+    private Texture normalV;
+    private Texture circle;
+    private HashMap<Integer,Texture> map;
+
+    private Cat c;
+   // private float catx = 2.5f, caty = 1.5f;
     private ArrayList<Float> ghostx, ghosty;
     private Texture background;
     private Texture ghost;
     private Sprite ghost2;
     private Texture cat;
     private Sprite cat2;
+    private Texture heart;
+    private Texture heartOutline;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
-    private Ghostturn turn;
+
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
     private Vector<Point> pts = new Vector<Point>();
     private boolean isDrawing = true; 
@@ -47,8 +57,9 @@ private HashMap<Integer,Texture> map;
     private Recognizer recognizer;
 
 
+    private Levels level1;
 
-    
+
 
 
 
@@ -62,13 +73,14 @@ private HashMap<Integer,Texture> map;
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
+        c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
-        upsideDownV = new Texture("upsideDownV.png");
-        horizontalLine = new Texture("horizontalLine.png");
 
+        heart = new Texture("heart.png");
+        heartOutline = new Texture("heart_outline.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
-        ghost = new Texture("Ghost.png");
+        ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
@@ -76,45 +88,60 @@ private HashMap<Integer,Texture> map;
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.YELLOW);
-        turn = new Ghostturn(4, 3, 1, true);
-        ghostx = new ArrayList<Float> ();
-        ghosty = new ArrayList<Float>();
+
         background = new Texture("background.png");
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            ghosty.add(((float)i)*0.5f);
-            ghostx.add(1.0f+i);
-        }
+        
+        /*for(int i=0;i<turn.ghostspresent.size();i++){
+            turn.ghosty.add(((float)i)*0.5f);
+            turn.ghostx.add(1.0f+i);
+        }*/
         normalV = new Texture("normalV.png");
-upsideDownV = new Texture("upsideDownV.png");
-verticalLine = new Texture("verticalLine.png");
-horizontalLine = new Texture("horizontalLine.png");
+        upsideDownV = new Texture("upsideDownV.png");
+        verticalLine = new Texture("verticalLine.png");
+        horizontalLine = new Texture("horizontalLine.png");
+        circle = new Texture("circle.png");
 
 
-map = new HashMap<Integer,Texture>();
-map.put(0,horizontalLine);
-map.put(1,verticalLine);
-map.put(2,normalV);
-map.put(3,upsideDownV);
-
+        map = new HashMap<Integer,Texture>();
+        map.put(0,horizontalLine);
+        map.put(1,verticalLine);
+        map.put(2,normalV);
+        map.put(3,upsideDownV);
+        map.put(4,circle);
+        level1 = new Levels(game,1,0);
+        level1.addTurn(new Ghostturn(4, 6, 0,false));
+        level1.addTurn(new Ghostturn(3,3,0,false));
+        background = level1.getBackground();
+        level1.startLevel();
     }
     //helper method that draws a ghost
-    private void drawGhost(Ghost g,float x,float y){
-        ghost2.setPosition(x,y);
-        ghost2.setSize(1f,1.11f);
-        ghost2.draw(game.batch);
-        int shapesLeft = g.shapes.size();
-        if(shapesLeft%2==0){
-            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
-            for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+    private void drawGhosts(Levels level){
+
+        int numGhosts = level.getCurrentTurn().numGhosts;
+        for(int i = 0; i< numGhosts;i++){
+            if(level.getCurrentTurn().ghostspresent.get(numGhosts-i-1).isAlive()) {
+                Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+                float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
+                float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
+                ghost2.setPosition(x,y);
+                ghost2.setSize(0.6f,0.666f);
+                ghost2.draw(game.batch);
+                int shapesLeft = g.shapes.size();
+                if(shapesLeft%2==0){
+                    float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.33f;
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    }
+                }
+                else{
+                    float intitialpos = x-((float)shapesLeft/2)*0.15f+0.32f;
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    }
+                }
             }
         }
-        else{
-            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
-            for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
-            }
-        }
+
     }
 
 
@@ -128,38 +155,35 @@ map.put(3,upsideDownV);
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         
         game.batch.begin();
+
+        /*
         for(int i=0;i<10;i++){
             if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0+i))turn.shapeDrawn(i);
         }
+        */
 
-
-
+        //draw the background first
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
-        cat2.setPosition(catx, caty);
-        cat2.setSize(1f, 1.11f);
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            Ghost g=turn.ghostspresent.get(i);
-            if(g.isAlive()){
-                float dx = catx - ghostx.get(i);
-                float dy = caty - ghosty.get(i);
 
-                float distance = (float) Math.sqrt(dx*dx+dy*dy);
-                if(distance>0.01f){
-                    ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
-                    ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
-                }
-                drawGhost(g,ghostx.get(i),ghosty.get(i));
-            }
-
-
-
-
-        }
-
+        //set cat's position and size and draw it
+        cat2.setPosition(c.getX(), c.getY());
+        cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
+         level1.update(delta,c);
 
+
+         drawGhosts(level1);
+
+         drawHearts(c);
+
+
+
+
+
+
+        
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -169,6 +193,27 @@ map.put(3,upsideDownV);
         }
         shapeRenderer.end();
     }
+
+
+
+
+    private void drawHearts(Cat c){
+        int count = c.getLives();
+        float adder = 0.2f;
+        for(int i = 0;i<5;i++){
+            if(count>0){
+                game.batch.draw(heart,0f+adder,2.5f,0.3f,0.3f);
+            }
+            else{
+                game.batch.draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
+            }
+            adder+=0.3f;
+            count--;
+        }
+    }
+
+
+
 
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);
@@ -214,9 +259,28 @@ map.put(3,upsideDownV);
         if(points.size()>10){
             
             Result r = recognizer.Recognize(pts);
-            System.out.println("SKIBIDI");
+            System.out.println(r.Name + " " + r.Score);
+            switch(r.Name){
+                case "caret CW": // v
+                    level1.shapeDrawn(2);
+                    break;
+                case "caret CCW": // upside down v
+                    level1.shapeDrawn(3);
+                    break;
+                case "circle CW":
+                case "circle CCW": // circles
+                    level1.shapeDrawn(4);
+                    break;
+                case "line left":
+                case "line right": //horizontal line 
+                    level1.shapeDrawn(0);
+                    break;
+                case "lineup":
+                case "linedown": // vertical line ]
+                    level1.shapeDrawn(1);
+                    break;
+            }
 
-            System.out.println(r.Name+ " " + r.Score + " " + r.Index);
 
         }
         return true;

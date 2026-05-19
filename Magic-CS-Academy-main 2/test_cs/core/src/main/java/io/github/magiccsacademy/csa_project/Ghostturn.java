@@ -8,13 +8,18 @@ public class Ghostturn {
     int strlen;
     int difficulty;
     int numAlive;
-    int totshapes = 4;
+    int totshapes = 5;
     ArrayList<Ghost> ghostspresent;
+    public ArrayList<Float> ghostx;
+    public ArrayList<Float> ghosty;
+
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
         numGhosts = nGhosts;
         strlen = len;
         numAlive = numGhosts;
         difficulty = diff;
+        ghostx = new ArrayList<Float>(nGhosts);
+        ghosty = new ArrayList<Float>(nGhosts);
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
             ghostspresent.add(new Ghost(strlen, totshapes));

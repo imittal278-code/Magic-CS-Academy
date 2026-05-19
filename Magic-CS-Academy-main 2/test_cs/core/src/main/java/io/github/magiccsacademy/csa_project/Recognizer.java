@@ -37,11 +37,11 @@ public class Recognizer
 	//
 	// Recognizer class constants
 	//
-	int NumTemplates = 16;
+	int NumTemplates = 8;
 	public static int NumPoints = 64;
 	public static double SquareSize = 250.0;
 	double HalfDiagonal = 0.5 * Math.sqrt(250.0 * 250.0 + 250.0 * 250.0);
-	double AngleRange = 20.0;
+	double AngleRange = 5.0;
 	double AnglePrecision = 2.0;
 	public static double Phi = 0.5 * (-1.0 + Math.sqrt(5.0)); // Golden Ratio
 	
@@ -97,15 +97,12 @@ public class Recognizer
 	{
 		Templates.addElement(loadTemplate("circle CCW", TemplateData.circlePointsCCW));
 		Templates.addElement(loadTemplate("circle CW", TemplateData.circlePointsCW));
-		Templates.addElement(loadTemplate("rectangle CCW", TemplateData.rectanglePointsCCW));
-		Templates.addElement(loadTemplate("rectangle CW", TemplateData.rectanglePointsCW));
 		Templates.addElement(loadTemplate("caret CCW", TemplateData.caretPointsCCW));
 		Templates.addElement(loadTemplate("caret CW", TemplateData.caretPointsCW));
 		Templates.addElement(loadTemplate("line left", TemplateData.lineToLeftPoints));
 		Templates.addElement(loadTemplate("line right", TemplateData.lineToRightPoints));
 		Templates.addElement(loadTemplate("linedown", TemplateData.lineToDownPoints));
 		Templates.addElement(loadTemplate("lineup", TemplateData.lineToUpPoints));
-		Templates.addElement(loadTemplate("question", TemplateData.questionPoints));
 	}
 	
 	void loadTemplatesCircles()
@@ -141,7 +138,7 @@ public class Recognizer
 	public Result Recognize(Vector points)
 	{
 		points = Utils.Resample(points, NumPoints);		
-		points = Utils.RotateToZero(points, centroid, boundingBox);
+		//points = Utils.RotateToZero(points, centroid, boundingBox);
 		points = Utils.ScaleToSquare(points, SquareSize);
 		points = Utils.TranslateToOrigin(points);
 	

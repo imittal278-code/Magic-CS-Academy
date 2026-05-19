@@ -1,14 +1,22 @@
 Ghost.png
+Hover.png
 Momo2023.png
+Title.png
 background.png
 bucket.png
+circle.png
 cs classroom.jpg
 csclassroom.jpg
 drop.mp3
 drop.png
+ghost2.png
+ghostdeath.mp3
+heart.png
+heart_outline.png
 horizontalLine.png
 libgdx.png
 music.mp3
+nonHover.png
 normalV.png
 ui/font-list.fnt
 ui/font-subtitle.fnt

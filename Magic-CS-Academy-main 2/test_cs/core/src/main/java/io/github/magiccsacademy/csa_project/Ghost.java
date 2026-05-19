@@ -6,7 +6,7 @@ import java.lang.*;
 public class Ghost {
     ArrayList<Integer> shapes;
     int strlen;
-    int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
+    public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
         alive = true;
@@ -31,6 +31,7 @@ public class Ghost {
 
     public void remove(){
         System.out.println("removed");
+        alive = false;
     }
 
     public int shapeAt(int index){
@@ -46,7 +47,7 @@ public class Ghost {
         shapes.removeLast();
     }
 
-    public boolean isAlive(){ return shapes.size()>0; }
+    public boolean isAlive(){ return alive && shapes.size()>0; }
 
         public String toString() {
             return shapes.toString();

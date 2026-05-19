@@ -69,11 +69,11 @@ public class TemplateData
 	public static int circlePointsCW[] = new int[circlePointsCCW.length];
 	public static int caretPointsCCW[] = new int[caretPointsCW.length];
 
-	public static int lineToRightPoints[] = {0,0,10,0,20,0,30,0};
+	public static int lineToRightPoints[] = {0,0,10,1,20,0,30,0};
 	public static int lineToLeftPoints[] = new int[lineToRightPoints.length];
 
-	public static int lineToUpPoints[] = {0,0,0,10,0,20,0,30};
-	public static int lineToDownPoints[] = {0,30, 0,20, 0,10, 0,0};
+	public static int lineToUpPoints[] = {0,0,0,10,1,20,0,30};
+	public static int lineToDownPoints[] = {0,30, 1,20, 0,10, 0,0};
 
 	
 	static void copyReversed(int dst[], int src[])
