@@ -17,8 +17,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import java.util.*;
 
-public class Levels {
-    private final Main game;
+public class Level {
     private int levelNumber;
     private int difficulty;
     private int currentTurnIndex;
@@ -29,13 +28,12 @@ public class Levels {
     Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
 
 
-    public Levels(Main game, int levelNumber, int difficulty) {
-        this.game = game;
+    public Level(int levelNumber, int difficulty) {
         this.levelNumber = levelNumber;
         this.difficulty = difficulty;
         this.currentTurnIndex = 0;
         this.completed = false;
-        this.ghostSpeed = 0.2f+(difficulty*0.05f);
+        this.ghostSpeed = 0.2f+(difficulty*0.05f); //FIX THIS !!!!!!!!!
         this.turns = new ArrayList<>();
 
         // SET NUM BACkGROUNDS AND BACKGROUND IMAGE FOR EACH LEEVL
@@ -82,7 +80,7 @@ public class Levels {
                 float dx = c.getX()-currentGhostX.get(i);
                 float dy = c.getY()-currentGhostY.get(i);
                 float distance = (float)Math.sqrt(dx*dx+dy*dy);
-                if (distance>0.70f) {
+                if (distance>0.30f) {
                     float moveX = (dx/distance)*ghostSpeed*delta;
                     float moveY = (dy/distance)*ghostSpeed*delta;
                     currentGhostX.set(i, currentGhostX.get(i)+moveX);
@@ -98,6 +96,12 @@ public class Levels {
             }
         }
         if (!curr.isAlive()) {
+            try{
+            Thread.sleep(1000);
+            }
+            catch(InterruptedException e){
+
+            }
             nextTurn();
             if (currentTurnFinished()) {
                 completed = true;
@@ -140,7 +144,16 @@ public class Levels {
     public void ghostPos(int turnInd) {
         Ghostturn turn = turns.get(turnInd);
         for (int i=0; i<turn.ghostspresent.size(); i++) {
-            if (levelNumber==1) {
+            turn.ghostx.add(0f + i);
+            turn.ghosty.add(0f);
+
+
+
+
+
+
+
+            /*if (levelNumber==1) {
                 if (turnInd==0) {
                     turn.ghostx.add(0f);
                     turn.ghosty.add(0f);
@@ -192,7 +205,7 @@ public class Levels {
                     //turn.ghostx.add(5.0f+(i*0.5f));
                     turn.ghosty.add(5.0f);
                 }
-            }
+            }*/
         }
     }
 }

@@ -8,7 +8,7 @@ public class Ghostturn {
     int strlen;
     int difficulty;
     int numAlive;
-    int totshapes = 5;
+    int totshapes = 4;
     ArrayList<Ghost> ghostspresent;
     public ArrayList<Float> ghostx;
     public ArrayList<Float> ghosty;
@@ -29,6 +29,17 @@ public class Ghostturn {
         }
         System.out.println(this);
 
+    }
+
+    public Ghostturn (Ghost g){
+        numGhosts = 1;
+        strlen = g.strlen;
+        difficulty = 1;
+        numAlive = 1;
+        ghostspresent = new ArrayList<Ghost>();
+        ghostspresent.add(g);
+        ghostx = new ArrayList<Float>(numGhosts);
+        ghosty = new ArrayList<Float>(numGhosts);
     }
 
     public void add(){

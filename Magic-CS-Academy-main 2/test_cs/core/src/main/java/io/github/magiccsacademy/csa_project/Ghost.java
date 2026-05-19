@@ -5,7 +5,7 @@ import java.lang.*;
 
 public class Ghost {
     ArrayList<Integer> shapes;
-    int strlen;
+    public int strlen;
     public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
@@ -23,6 +23,21 @@ public class Ghost {
         strlen = 1;
         totaltypeshapes = totshapes;
         shapes.add(totshapes-1);
+    }
+
+    public Ghost (String s){
+        shapes = strtointarray(s.split(""));
+        totaltypeshapes = 4;
+        strlen = shapes.size();
+        alive = true; 
+    }
+
+    private ArrayList<Integer> strtointarray(String[] a){
+        ArrayList<Integer> ans = new ArrayList<Integer> ();
+        for(String s : a){
+            ans.add(Integer.parseInt(s));
+        }
+        return ans;
     }
 
     public void hurt(){

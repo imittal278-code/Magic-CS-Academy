@@ -57,7 +57,7 @@ public class GameScreen extends InputAdapter implements Screen{
     private Recognizer recognizer;
 
 
-    private Levels level1;
+    private Level level1;
 
 
 
@@ -108,14 +108,13 @@ public class GameScreen extends InputAdapter implements Screen{
         map.put(2,normalV);
         map.put(3,upsideDownV);
         map.put(4,circle);
-        level1 = new Levels(game,1,0);
-        level1.addTurn(new Ghostturn(4, 6, 0,false));
-        level1.addTurn(new Ghostturn(3,3,0,false));
+        GameThing g = new GameThing();
+        level1 = g.l3;
         background = level1.getBackground();
         level1.startLevel();
     }
     //helper method that draws a ghost
-    private void drawGhosts(Levels level){
+    private void drawGhosts(Level level){
 
         int numGhosts = level.getCurrentTurn().numGhosts;
         for(int i = 0; i< numGhosts;i++){
