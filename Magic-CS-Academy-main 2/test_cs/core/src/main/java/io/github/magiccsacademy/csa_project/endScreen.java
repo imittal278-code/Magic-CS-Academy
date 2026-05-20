@@ -79,10 +79,10 @@ public class endScreen implements Screen{
         }
 
 
-        non.setSize(2.7f,1.5f);
-        hov.setSize(2.7f,1.5f);
-        non.setPosition(1.6f,0f);
-        hov.setPosition(1.6f,0f);
+        non.setSize(2.44f,1f);
+        hov.setSize(2.44f,1f);
+        non.setPosition(1.7f,0.3f);
+        hov.setPosition(1.7f,0.3f);
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         game.myViewport.getCamera().unproject(mousePos);
 
