@@ -102,20 +102,15 @@ public class Levels {
             if (currentTurnFinished()) {
                 completed = true;
                 System.out.println("Level " + levelNumber + " Completed");
+                currentTurnIndex = 0;
             }
         }
     }
     public void nextTurn() {
-
-        if (currentTurnIndex>=turns.size()-1){
-            completed = true;
-        }
-        else{
-            currentTurnIndex++;
-        }
+        currentTurnIndex++;
     }
     public boolean currentTurnFinished() {
-        return currentTurnIndex >= turns.size()||completed==true;
+        return currentTurnIndex >= turns.size();
     }
     public boolean isCompleted() {
         return completed;

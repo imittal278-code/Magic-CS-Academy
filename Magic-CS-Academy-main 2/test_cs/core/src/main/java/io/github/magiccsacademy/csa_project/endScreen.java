@@ -26,16 +26,19 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.*;
 
 public class endScreen implements Screen{
-    private Main game;
-    private Cat cat;
+    private final Main game;
     private boolean win;
     private Texture background;
     private Texture winText;
     private Texture loseText;
+    private Texture Hover;
+    private Texture nonHover;
+    private Sprite non;
+    private Sprite hov;
 
-    public endScreen(Main game, Cat c){
+    public endScreen(Main game, boolean win){
         this.game = game;
-        this.cat = c;
+        this.win = win;
     }
 
 
@@ -44,10 +47,13 @@ public class endScreen implements Screen{
 
     @Override
     public void show(){
-        win = cat.isAlive();
         background = new Texture("csclassroom.jpg");
         winText = new Texture("WinText.png");
         loseText = new Texture("loseText.png");
+        Hover = new Texture("Hover2.png");
+        nonHover = new Texture("nonHover2.png");
+        non = new Sprite(nonHover);
+        hov = new Sprite(Hover);
     }
 
     @Override
@@ -73,7 +79,23 @@ public class endScreen implements Screen{
         }
 
 
+        non.setSize(2.7f,1.5f);
+        hov.setSize(2.7f,1.5f);
+        non.setPosition(1.6f,0f);
+        hov.setPosition(1.6f,0f);
+        Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+        game.myViewport.getCamera().unproject(mousePos);
 
+        if (hov.getBoundingRectangle().contains(mousePos.x, mousePos.y)) {
+            hov.draw(game.batch);
+            if(Gdx.input.justTouched()){
+                this.dispose();
+                game.setScreen(new GameScreen(game));
+            }
+        }
+        else{
+            non.draw(game.batch);
+        }
 
 
 

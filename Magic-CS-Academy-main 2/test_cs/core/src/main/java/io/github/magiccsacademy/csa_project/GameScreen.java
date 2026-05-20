@@ -35,6 +35,7 @@ public class GameScreen extends InputAdapter implements Screen{
     private Texture normalV;
     private Texture circle;
     private HashMap<Integer,Texture> map;
+    private GameEngine controller;
 
     private Cat c;
    // private float catx = 2.5f, caty = 1.5f;
@@ -72,6 +73,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
     @Override
     public void show(){
+        controller = new GameEngine(1);
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
@@ -108,14 +110,27 @@ public class GameScreen extends InputAdapter implements Screen{
         map.put(2,normalV);
         map.put(3,upsideDownV);
         map.put(4,circle);
+
         level1 = new Levels(game,1,0);
         level1.addTurn(new Ghostturn(4, 6, 0,false));
         level1.addTurn(new Ghostturn(3,3,0,false));
-        background = level1.getBackground();
-        level1.startLevel();
+        controller.addLevel(level1);
+
+        for(Levels l : controller.levels){
+            //initiates positions for all ghosts in all levels
+            l.startLevel();
+
+        }
+
+
     }
     //helper method that draws a ghost
     private void drawGhosts(Levels level){
+        if(level.isCompleted()){
+            return;
+        }
+
+
 
         int numGhosts = level.getCurrentTurn().numGhosts;
         for(int i = 0; i< numGhosts;i++){
@@ -148,6 +163,11 @@ public class GameScreen extends InputAdapter implements Screen{
      @Override
     public void render(float delta) {
 
+
+
+        //set background based on current Level
+        background = controller.getCurrentLevel().getBackground();
+
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
@@ -171,10 +191,10 @@ public class GameScreen extends InputAdapter implements Screen{
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
-         level1.update(delta,c);
+        controller.getCurrentLevel().update(delta,c);
 
 
-         drawGhosts(level1);
+         drawGhosts(controller.getCurrentLevel());
 
          drawHearts(c);
 
@@ -192,6 +212,22 @@ public class GameScreen extends InputAdapter implements Screen{
             shapeRenderer.rectLine(points.get(i),points.get(i+1),0.1f);
         }
         shapeRenderer.end();
+
+        //You lost
+        if(!c.isAlive()){
+            this.dispose();
+            game.setScreen(new endScreen(game,false));
+        }
+        if(controller.getCurrentLevel().isCompleted()){
+            if(controller.doneWithLevels()){
+                this.dispose();
+                game.setScreen(new endScreen(game,true));
+            }
+            else{
+                controller.nextLevel();
+            }
+        }
+
     }
 
 
@@ -255,6 +291,9 @@ public class GameScreen extends InputAdapter implements Screen{
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
+        if(controller.getCurrentLevel().isCompleted()){
+            return false;
+        }
         isDrawing = false;
         if(points.size()>10){
             
@@ -262,22 +301,22 @@ public class GameScreen extends InputAdapter implements Screen{
             System.out.println(r.Name + " " + r.Score);
             switch(r.Name){
                 case "caret CW": // v
-                    level1.shapeDrawn(2);
+                    controller.getCurrentLevel().shapeDrawn(2);
                     break;
                 case "caret CCW": // upside down v
-                    level1.shapeDrawn(3);
+                    controller.getCurrentLevel().shapeDrawn(3);
                     break;
                 case "circle CW":
                 case "circle CCW": // circles
-                    level1.shapeDrawn(4);
+                    controller.getCurrentLevel().shapeDrawn(4);
                     break;
                 case "line left":
                 case "line right": //horizontal line 
-                    level1.shapeDrawn(0);
+                    controller.getCurrentLevel().shapeDrawn(0);
                     break;
                 case "lineup":
                 case "linedown": // vertical line ]
-                    level1.shapeDrawn(1);
+                    controller.getCurrentLevel().shapeDrawn(1);
                     break;
             }
 

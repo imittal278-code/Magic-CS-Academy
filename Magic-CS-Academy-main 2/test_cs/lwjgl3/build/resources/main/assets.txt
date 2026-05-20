@@ -1,5 +1,6 @@
 Ghost.png
 Hover.png
+Hover2.png
 Momo2023.png
 Title.png
 WinText.png
@@ -18,6 +19,7 @@ libgdx.png
 loseText.png
 music.mp3
 nonHover.png
+nonHover2.png
 normalV.png
 ui/font-list.fnt
 ui/font-subtitle.fnt
