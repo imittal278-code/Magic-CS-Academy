@@ -61,7 +61,7 @@ public class GameScreen extends InputAdapter implements Screen{
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
-
+    private Color colorDrawing;
 
     private Level level1;
 
@@ -78,6 +78,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
     @Override
     public void show(){
+        colorDrawing = Color.WHITE;
         controller = new GameEngine(numLevels);
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
@@ -243,7 +244,7 @@ public class GameScreen extends InputAdapter implements Screen{
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.setColor(colorDrawing);
         for(int i=0;i<points.size()-1;i++){
             shapeRenderer.rectLine(points.get(i),points.get(i+1),0.1f);
         }
@@ -330,7 +331,7 @@ public class GameScreen extends InputAdapter implements Screen{
         points.add(new Vector2(temp.x, temp.y));
         pts.add(new Point(temp.x, temp.y));
         isDrawing = true;
-        
+        colorDrawing = Color.WHITE;
         return true;
     }
 
@@ -343,7 +344,35 @@ public class GameScreen extends InputAdapter implements Screen{
             pts.add(new Point(temp.x, temp.y));
 
         }
+        if(points.size()>10){
+            
+            Result r = recognizer.Recognize(pts);
+            System.out.println(r.Name + " " + r.Score);
+            switch(r.Name){
+                case "caret CW": // v
+                    colorDrawing = Color.YELLOW;
+                    break;
+                case "caret CCW": // upside down v
+                    colorDrawing = Color.GREEN;
+                    break;
+                case "circle CW":
+                case "circle CCW": // circles
+                    colorDrawing = Color.CYAN;
+                    break;
+                case "line left":
+                case "line right": //horizontal line 
+                    colorDrawing = Color.RED;
+                    break;
+                case "lineup":
+                case "linedown": // vertical line 
+                    colorDrawing = Color.BLUE;
+                    break;
+            }
+
+
+        }
         return true;
+        
     }
 
     @Override
