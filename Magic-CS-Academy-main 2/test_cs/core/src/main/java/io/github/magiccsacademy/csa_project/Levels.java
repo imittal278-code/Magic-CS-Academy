@@ -89,11 +89,15 @@ public class Levels {
                     currentGhostY.set(i, currentGhostY.get(i)+moveY);
                 }
                 else{
-                    c.loseLife();
+                    if(c.hasShield){
+                        c.shieldOff();
+                    }
+                    else{
+                        c.loseLife();
+                    }
                     music.play();
                     ghost.remove();
                     curr.numAlive--;
-                    System.out.println("Ghost reached the cat! Life lost.");
                 }
             }
         }
