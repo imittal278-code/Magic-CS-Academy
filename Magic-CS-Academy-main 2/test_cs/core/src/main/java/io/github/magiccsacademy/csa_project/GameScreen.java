@@ -27,11 +27,20 @@ import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
     private final Main game;
+
+    //shape declarations
     private Texture verticalLine;
-private Texture horizontalLine;
-private Texture upsideDownV;
-private Texture normalV;
-private HashMap<Integer,Texture> map;
+    private Texture horizontalLine;
+    private Texture upsideDownV;
+    private ArrayList<Texture> transitionBackground;
+    private Texture normalV;
+    private Texture circle;
+    private HashMap<Integer,Texture> map;
+    private GameEngine controller;
+    private int lastLevel;
+    private int nextLevelNum;
+    private boolean showTransition;
+    private float transitionTime;
     private Cat c;
    // private float catx = 2.5f, caty = 1.5f;
     private ArrayList<Float> ghostx, ghosty;
@@ -40,17 +49,20 @@ private HashMap<Integer,Texture> map;
     private Sprite ghost2;
     private Texture cat;
     private Sprite cat2;
+    private Texture heart;
+    private Texture heartOutline;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
-    private Ghostturn turn;
+
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
     private Vector<Point> pts = new Vector<Point>();
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
-    Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
 
+
+    private Levels level1;
 
 
 
@@ -65,15 +77,16 @@ private HashMap<Integer,Texture> map;
 
     @Override
     public void show(){
+        controller = new GameEngine(1);
         //button = new TextButton("Click Me!", skin);
-        c = new Cat(2.5f, 1.5f);
+        c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
-        upsideDownV = new Texture("upsideDownV.png");
-        horizontalLine = new Texture("horizontalLine.png");
-
+        lastLevel = 0;
+        heart = new Texture("heart.png");
+        heartOutline = new Texture("heart_outline.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
-        ghost = new Texture("Ghost.png");
+        ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
@@ -81,50 +94,128 @@ private HashMap<Integer,Texture> map;
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.YELLOW);
-        turn = new Ghostturn(4, 3, 1, true);
-        ghostx = new ArrayList<Float> ();
-        ghosty = new ArrayList<Float>();
+
         background = new Texture("background.png");
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            ghosty.add(((float)i)*0.5f);
-            ghostx.add(1.0f+i);
-        }
+        
+        /*for(int i=0;i<turn.ghostspresent.size();i++){
+            turn.ghosty.add(((float)i)*0.5f);
+            turn.ghostx.add(1.0f+i);
+        }*/
         normalV = new Texture("normalV.png");
-upsideDownV = new Texture("upsideDownV.png");
-verticalLine = new Texture("verticalLine.png");
-horizontalLine = new Texture("horizontalLine.png");
+        upsideDownV = new Texture("upsideDownV.png");
+        verticalLine = new Texture("verticalLine.png");
+        horizontalLine = new Texture("horizontalLine.png");
+        circle = new Texture("circle.png");
 
 
-map = new HashMap<Integer,Texture>();
-map.put(0,horizontalLine);
-map.put(1,verticalLine);
-map.put(2,normalV);
-map.put(3,upsideDownV);
+        map = new HashMap<Integer,Texture>();
+        map.put(0,horizontalLine);
+        map.put(1,verticalLine);
+        map.put(2,normalV);
+        map.put(3,upsideDownV);
+        map.put(4,circle);
 
+        level1 = new Levels(game,1,0);
+        level1.addTurn(new Ghostturn(4, 6, 0,false));
+        level1.addTurn(new Ghostturn(3,3,0,false));
+        controller.addLevel(level1);
+
+        for(Levels l : controller.levels){
+            //initiates positions for all ghosts in all levels
+            l.startLevel();
+
+        }
+        showTransition = true;
+        transitionTime = 1f;
+        nextLevelNum = 1;
+        transitionBackground = new ArrayList<Texture>(5);
+        transitionBackground.add(new Texture("level1.png"));
     }
     //helper method that draws a ghost
-    private void drawGhost(Ghost g,float x,float y){
-        ghost2.setPosition(x,y);
-        ghost2.setSize(1f,1.11f);
-        ghost2.draw(game.batch);
-        int shapesLeft = g.shapes.size();
-        if(shapesLeft%2==0){
-            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
-            for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+    private void drawGhosts(Levels level){
+        if(level.isCompleted()){
+            return;
+        }
+
+
+
+        int numGhosts = level.getCurrentTurn().numGhosts;
+        for(int i = 0; i< numGhosts;i++){
+            if(level.getCurrentTurn().ghostspresent.get(numGhosts-i-1).isAlive()) {
+                Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+                float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
+                float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
+                ghost2.setPosition(x,y);
+                ghost2.setSize(0.6f,0.666f);
+                ghost2.draw(game.batch);
+                int shapesLeft = g.shapes.size();
+                if(shapesLeft%2==0){
+                    float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.33f;
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    }
+                }
+                else{
+                    float intitialpos = x-((float)shapesLeft/2)*0.15f+0.32f;
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    }
+                }
             }
         }
-        else{
-            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
-            for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(k)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
-            }
-        }
+
     }
 
 
      @Override
     public void render(float delta) {
+
+        //keep this code at the top
+         if(showTransition){
+             transitionTime-=delta;
+
+             ScreenUtils.clear(0,0,1,1);
+             game.myViewport.apply();
+             game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
+
+             game.batch.begin();
+
+
+             game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+             game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
+             game.batch.setColor(1f, 1f, 1f, 1f);
+             game.batch.draw(transitionBackground.get(nextLevelNum-1),0f,1f,6f,1f);
+
+
+
+
+
+             game.batch.end();
+
+            if(transitionTime<=0){
+                showTransition = false;
+                controller.nextLevel();
+            }
+            return;
+
+         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //set background based on current Level
+        background = controller.getCurrentLevel().getBackground();
 
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
@@ -133,45 +224,35 @@ map.put(3,upsideDownV);
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         
         game.batch.begin();
+
+        /*
         for(int i=0;i<10;i++){
             if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0+i))turn.shapeDrawn(i);
         }
+        */
 
-
-
+        //draw the background first
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
+
+        //set cat's position and size and draw it
         cat2.setPosition(c.getX(), c.getY());
-        cat2.setSize(0.8f, 0.8f);
-        for(int i=0;i<turn.ghostspresent.size();i++){
-            Ghost g=turn.ghostspresent.get(i);
-            if(g.isAlive()){
-                float dx = c.getX() - ghostx.get(i);
-                float dy = c.getY() - ghosty.get(i);
-
-                float distance = (float) Math.sqrt(dx*dx+dy*dy);
-                if(distance>0.70f){
-                    ghostx.set(i,ghostx.get(i)+(dx/distance)*ghostSpeed*delta); // delta is amt o/ time since last frame
-                    ghosty.set(i,ghosty.get(i)+(dy/distance)*ghostSpeed*delta);
-                   // if(i==0)System.out.println(distance);
-                }
-                else{
-                    c.loseLife();
-                    music.play();
-                    g.remove(); // should be an animation thing
-
-                }
-                drawGhost(g,ghostx.get(i),ghosty.get(i));
-            }
-
-
-
-
-        }
-
+        cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
+        controller.getCurrentLevel().update(delta,c);
 
+
+         drawGhosts(controller.getCurrentLevel());
+
+         drawHearts(c);
+
+
+
+
+
+
+        
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -180,7 +261,45 @@ map.put(3,upsideDownV);
             shapeRenderer.rectLine(points.get(i),points.get(i+1),0.1f);
         }
         shapeRenderer.end();
+
+        //You lost
+        if(!c.isAlive()){
+            this.dispose();
+            game.setScreen(new endScreen(game,false));
+        }
+        if(controller.getCurrentLevel().isCompleted()){
+            if(controller.doneWithLevels()&&c.isAlive()){
+                this.dispose();
+                game.setScreen(new endScreen(game,true));
+            }
+            else if(!showTransition){
+                showTransition = true;
+                transitionTime = 1f;
+            }
+        }
+
     }
+
+
+
+
+    private void drawHearts(Cat c){
+        int count = c.getLives();
+        float adder = 0.2f;
+        for(int i = 0;i<5;i++){
+            if(count>0){
+                game.batch.draw(heart,0f+adder,2.5f,0.3f,0.3f);
+            }
+            else{
+                game.batch.draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
+            }
+            adder+=0.3f;
+            count--;
+        }
+    }
+
+
+
 
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);
@@ -191,7 +310,29 @@ map.put(3,upsideDownV);
     
     @Override
     public void dispose() {
-        
+
+        verticalLine.dispose();
+        horizontalLine.dispose();
+        upsideDownV.dispose();
+        normalV.dispose();
+        circle.dispose();
+
+        ghost.dispose();
+        cat.dispose();
+
+        heart.dispose();
+        heartOutline.dispose();
+
+        background.dispose();
+
+
+        for(Texture t : transitionBackground){
+            t.dispose();
+        }
+
+
+        shapeRenderer.dispose();
+        font.dispose();
     }
 
     @Override
@@ -222,6 +363,9 @@ map.put(3,upsideDownV);
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
+        if(controller.getCurrentLevel().isCompleted()){
+            return false;
+        }
         isDrawing = false;
         if(points.size()>10){
             
@@ -229,22 +373,22 @@ map.put(3,upsideDownV);
             System.out.println(r.Name + " " + r.Score);
             switch(r.Name){
                 case "caret CW": // v
-                    turn.shapeDrawn(2);
+                    controller.getCurrentLevel().shapeDrawn(2);
                     break;
                 case "caret CCW": // upside down v
-                    turn.shapeDrawn(3);
+                    controller.getCurrentLevel().shapeDrawn(3);
                     break;
                 case "circle CW":
                 case "circle CCW": // circles
-
+                    controller.getCurrentLevel().shapeDrawn(4);
                     break;
                 case "line left":
                 case "line right": //horizontal line 
-                    turn.shapeDrawn(0);
+                    controller.getCurrentLevel().shapeDrawn(0);
                     break;
                 case "lineup":
                 case "linedown": // vertical line ]
-                    turn.shapeDrawn(1);
+                    controller.getCurrentLevel().shapeDrawn(1);
                     break;
             }
 
