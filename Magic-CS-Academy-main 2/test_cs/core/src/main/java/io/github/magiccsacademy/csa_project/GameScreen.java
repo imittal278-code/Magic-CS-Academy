@@ -25,7 +25,7 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
-    private final int numLevels=2;
+    private final int numLevels=1;
     private final Main game;
 
     //shape declarations

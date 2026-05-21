@@ -24,9 +24,6 @@ public class Ghostturn {
         for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
             ghostspresent.add(new Ghost(strlen, totshapes));
         }
-        if(spiral){
-            ghostspresent.add(new Ghost(totshapes));
-        }
         System.out.println(this);
 
     }
