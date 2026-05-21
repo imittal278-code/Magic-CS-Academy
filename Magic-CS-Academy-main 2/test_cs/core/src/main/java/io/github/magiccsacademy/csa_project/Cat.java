@@ -20,6 +20,7 @@ public class Cat {
     float catx, caty;
     int lives;
     boolean alive;
+    boolean hasShield;
     private int score;
 
     public Cat(float catx, float caty) {
@@ -27,6 +28,7 @@ public class Cat {
         this.caty = caty;
         lives = 5;
         alive = true;
+        hasShield = false; 
         score = 0;
     }
     void loseLife() {
@@ -49,6 +51,12 @@ public class Cat {
     }
     float getX() {
         return catx;
+    }
+    void shieldOn(){
+        hasShield = true;
+    }
+    void shieldOff(){
+        hasShield = false; 
     }
     float getY() {
         return caty;
