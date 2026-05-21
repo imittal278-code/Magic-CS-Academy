@@ -79,7 +79,7 @@ public class Ghostturn {
                         numAlive--;
                         ghostspresent.get(i).remove();
                         c.shieldOn();
-                        
+                       // System.out.println("")
                         //Make ghost move toward the cat. 
                     }
                 }

@@ -273,7 +273,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
     }
     private void drawShield(){
-        game.batch.draw(shield, c.getX(), c.getY());
+        game.batch.draw(shield, c.getX(), c.getY(),0.7f,0.7f);
     }
     private void drawHearts(Cat c){
         int count = c.getLives();
