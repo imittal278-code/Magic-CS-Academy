@@ -41,7 +41,7 @@ public class Level {
             background = new Texture("background.png");
         }
         else if (levelNumber==2) {
-            //background = new Texture("level2.png");
+            background = new Texture("background.png");
         }
         else if (levelNumber==3) {
             //background = new Texture("level3.png");
@@ -61,9 +61,9 @@ public class Level {
     public Ghostturn getCurrentTurn() {
         return turns.get(currentTurnIndex);
     }
-    public void shapeDrawn(int shapeIndex) {
+    public void shapeDrawn(int shapeIndex, Cat c) {
         Ghostturn curr = turns.get(currentTurnIndex);
-        curr.shapeDrawn(shapeIndex);
+        curr.shapeDrawn(shapeIndex, c);
         if (!curr.isAlive()) {
             nextTurn();
             if (currentTurnFinished()) completed = true;
@@ -87,11 +87,15 @@ public class Level {
                     currentGhostY.set(i, currentGhostY.get(i)+moveY);
                 }
                 else{
-                    c.loseLife();
+                    if(c.hasShield){
+                        c.shieldOff();
+                    }
+                    else{
+                        c.loseLife();
+                    }
                     music.play();
                     ghost.remove();
                     curr.numAlive--;
-                    System.out.println("Ghost reached the cat! Life lost.");
                 }
             }
         }
@@ -106,20 +110,15 @@ public class Level {
             if (currentTurnFinished()) {
                 completed = true;
                 System.out.println("Level " + levelNumber + " Completed");
+                currentTurnIndex = 0;
             }
         }
     }
     public void nextTurn() {
-
-        if (currentTurnIndex>=turns.size()-1){
-            completed = true;
-        }
-        else{
-            currentTurnIndex++;
-        }
+        currentTurnIndex++;
     }
     public boolean currentTurnFinished() {
-        return currentTurnIndex >= turns.size()||completed==true;
+        return currentTurnIndex >= turns.size();
     }
     public boolean isCompleted() {
         return completed;
@@ -172,11 +171,6 @@ public class Level {
                     turn.ghostx.add(1f);
                     turn.ghosty.add(2f);
 
-                }
-                else if (turnInd==2) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
-                }
             }
             else if (levelNumber==2) {
                 if (turnInd==0) {
@@ -207,5 +201,6 @@ public class Level {
                 }
             }*/
         }
+
     }
 }

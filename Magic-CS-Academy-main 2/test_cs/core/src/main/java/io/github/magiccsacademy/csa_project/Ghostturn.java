@@ -56,18 +56,36 @@ public class Ghostturn {
         return s;
     }
 
-    public void shapeDrawn(int shapeIndex){
+    public void shapeDrawn(int shapeIndex, Cat c){
+        
         for(int i=0;i<ghostspresent.size();i++){
             if(ghostspresent.get(i).lastShapeEquals(shapeIndex)){
-                ghostspresent.get(i).removeLast();
-                if(!ghostspresent.get(i).isAlive()){
-                    ghostspresent.get(i).remove();
-                    numAlive--;
+                if(shapeIndex <=3){
+                    ghostspresent.get(i).removeLast();
+                    int increment = 10;
+                    if(difficulty==2) increment = 20;
+                    else if(difficulty==3) increment = 100;
+                    c.addScore(increment);
+                    if(!ghostspresent.get(i).isAlive()){
+                        ghostspresent.get(i).remove();
+                        numAlive--;
+                    }
+                    else{
+                    ghostspresent.get(i).hurt();
+                    }
+                    System.out.println(this);
                 }
                 else{
-                ghostspresent.get(i).hurt();
+                    if(shapeIndex == 4){
+                        //Shield
+                        ghostspresent.get(i).removeLast();
+                        numAlive--;
+                        ghostspresent.get(i).remove();
+                        c.shieldOn();
+                        
+                        //Make ghost move toward the cat. 
+                    }
                 }
-                System.out.println(this);
             }
         }
     }
