@@ -25,7 +25,7 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
-    private final int numLevels=2;
+    private final int numLevels=1;
     private final Main game;
 
     //shape declarations
@@ -129,6 +129,9 @@ public class GameScreen extends InputAdapter implements Screen{
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
         transitionBackground.add(new Texture("level2.png"));
+        transitionBackground.add(new Texture("level3.png"));
+        transitionBackground.add(new Texture("level4.png"));
+        transitionBackground.add(new Texture("level5.png"));
         controller.getCurrentLevel().startLevel();
     }
 
