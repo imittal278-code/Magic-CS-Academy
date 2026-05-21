@@ -8,7 +8,7 @@ public class Ghostturn {
     int strlen;
     int difficulty;
     int numAlive;
-    int totshapes = 5;
+    int totshapes = 4;
     ArrayList<Ghost> ghostspresent;
     public ArrayList<Float> ghostx;
     public ArrayList<Float> ghosty;
@@ -45,10 +45,14 @@ public class Ghostturn {
         return s;
     }
 
-    public void shapeDrawn(int shapeIndex){
+    public void shapeDrawn(int shapeIndex, Cat c){
         for(int i=0;i<ghostspresent.size();i++){
             if(ghostspresent.get(i).lastShapeEquals(shapeIndex)){
                 ghostspresent.get(i).removeLast();
+                int increment = 10;
+                if(difficulty==2) increment = 20;
+                else if(difficulty==3) increment = 100;
+                c.addScore(increment);
                 if(!ghostspresent.get(i).isAlive()){
                     ghostspresent.get(i).remove();
                     numAlive--;

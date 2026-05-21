@@ -15,22 +15,16 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
-
-
-
-
-
     private final int numLevels=2;
     private final Main game;
 
@@ -61,20 +55,13 @@ public class GameScreen extends InputAdapter implements Screen{
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
-
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
     private Vector<Point> pts = new Vector<Point>();
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
-
-
     private Levels level1;
     private Levels level2;
-
-
-
-
 
     public GameScreen(Main game){
         this.game = game;
@@ -115,7 +102,6 @@ public class GameScreen extends InputAdapter implements Screen{
         horizontalLine = new Texture("horizontalLine.png");
         circle = new Texture("circle.png");
 
-
         map = new HashMap<Integer,Texture>();
         map.put(0,horizontalLine);
         map.put(1,verticalLine);
@@ -131,11 +117,8 @@ public class GameScreen extends InputAdapter implements Screen{
         level2.addTurn(new Ghostturn(4,6,0,false));
         level2.addTurn(new Ghostturn(3,3,0,false));
 
-
-
         controller.addLevel(level1);
         controller.addLevel(level2);
-
 
         showTransition = true;
         transitionTime = 2f;
@@ -151,8 +134,6 @@ public class GameScreen extends InputAdapter implements Screen{
         if(level.isCompleted()){
             return;
         }
-
-
 
         int numGhosts = level.getCurrentTurn().numGhosts;
         for(int i = 0; i< numGhosts;i++){
@@ -207,31 +188,10 @@ public class GameScreen extends InputAdapter implements Screen{
 
              game.batch.end();
 
-            if(transitionTime<=0){
-                showTransition = false;
-
-
-
-
-
-            }
+            if(transitionTime<=0)showTransition = false;
             return;
-
          }
          start = false;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //set background based on current Level
         background = controller.getCurrentLevel().getBackground();
@@ -266,12 +226,12 @@ public class GameScreen extends InputAdapter implements Screen{
 
          drawHearts(c);
 
+         String scoreText = ""+c.getScore();
+         GlyphLayout scoreLayout = new GlyphLayout(font, scoreText);
+         float scoreX = game.myViewport.getWorldWidth() - scoreLayout.width - 0.2f;
+         float scoreY = game.myViewport.getWorldHeight() - 0.2f;
+         font.draw(game.batch, scoreLayout, scoreX, scoreY);
 
-
-
-
-
-        
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -305,9 +265,6 @@ public class GameScreen extends InputAdapter implements Screen{
 
     }
 
-
-
-
     private void drawHearts(Cat c){
         int count = c.getLives();
         float adder = 0.2f;
@@ -322,10 +279,6 @@ public class GameScreen extends InputAdapter implements Screen{
             count--;
         }
     }
-
-
-
-
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);
     }
@@ -347,10 +300,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
         heart.dispose();
         heartOutline.dispose();
-
         background.dispose();
-
-
         for(Texture t : transitionBackground){
             t.dispose();
         }
@@ -398,22 +348,22 @@ public class GameScreen extends InputAdapter implements Screen{
             System.out.println(r.Name + " " + r.Score);
             switch(r.Name){
                 case "caret CW": // v
-                    controller.getCurrentLevel().shapeDrawn(2);
+                    controller.getCurrentLevel().shapeDrawn(2, c);
                     break;
                 case "caret CCW": // upside down v
-                    controller.getCurrentLevel().shapeDrawn(3);
+                    controller.getCurrentLevel().shapeDrawn(3, c);
                     break;
                 case "circle CW":
                 case "circle CCW": // circles
-                    controller.getCurrentLevel().shapeDrawn(4);
+                    controller.getCurrentLevel().shapeDrawn(4, c);
                     break;
                 case "line left":
                 case "line right": //horizontal line 
-                    controller.getCurrentLevel().shapeDrawn(0);
+                    controller.getCurrentLevel().shapeDrawn(0, c);
                     break;
                 case "lineup":
                 case "linedown": // vertical line ]
-                    controller.getCurrentLevel().shapeDrawn(1);
+                    controller.getCurrentLevel().shapeDrawn(1, c);
                     break;
             }
 

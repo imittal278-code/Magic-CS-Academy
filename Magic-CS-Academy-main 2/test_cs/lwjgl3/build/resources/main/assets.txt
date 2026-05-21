@@ -2,6 +2,7 @@ Ghost.png
 Hover.png
 Hover2.png
 Momo2023.png
+Sheild.png
 Title.png
 WinText.png
 background.png
@@ -10,6 +11,7 @@ circle.png
 csclassroom.jpg
 drop.mp3
 drop.png
+endscreenimage.png
 ghost2.png
 ghostdeath.mp3
 heart.png

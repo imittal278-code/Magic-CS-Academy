@@ -63,9 +63,9 @@ public class Levels {
     public Ghostturn getCurrentTurn() {
         return turns.get(currentTurnIndex);
     }
-    public void shapeDrawn(int shapeIndex) {
+    public void shapeDrawn(int shapeIndex, Cat c) {
         Ghostturn curr = turns.get(currentTurnIndex);
-        curr.shapeDrawn(shapeIndex);
+        curr.shapeDrawn(shapeIndex, c);
         if (!curr.isAlive()) {
             nextTurn();
             if (currentTurnFinished()) completed = true;

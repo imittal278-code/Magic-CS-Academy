@@ -20,12 +20,14 @@ public class Cat {
     float catx, caty;
     int lives;
     boolean alive;
+    private int score;
 
     public Cat(float catx, float caty) {
         this.catx = catx;
         this.caty = caty;
         lives = 5;
         alive = true;
+        score = 0;
     }
     void loseLife() {
         lives--;
@@ -35,6 +37,12 @@ public class Cat {
     }
     void gainLife() {
         lives++;
+    }
+    void addScore(int amount) {
+        score+=amount;
+    }
+    int getScore() {
+        return score;
     }
     boolean isAlive() {
         return alive;
