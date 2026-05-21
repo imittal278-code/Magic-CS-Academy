@@ -126,7 +126,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
         }
         showTransition = true;
-        transitionTime = 1f;
+        transitionTime = 2f;
         nextLevelNum = 1;
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
@@ -184,7 +184,7 @@ public class GameScreen extends InputAdapter implements Screen{
              game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
              game.batch.setColor(1f, 1f, 1f, 1f);
-             game.batch.draw(transitionBackground.get(nextLevelNum-1),0f,1f,6f,1f);
+             game.batch.draw(transitionBackground.get(nextLevelNum-1),-6f*transitionTime+6f,1f,6f,1f);
 
 
 
@@ -274,7 +274,7 @@ public class GameScreen extends InputAdapter implements Screen{
             }
             else if(!showTransition){
                 showTransition = true;
-                transitionTime = 1f;
+                transitionTime = 2f;
             }
         }
 
