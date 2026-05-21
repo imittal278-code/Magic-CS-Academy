@@ -5,7 +5,7 @@ import java.lang.*;
 
 public class Ghostturn {
     int numGhosts;
-    int strlen;
+   // int strlen;
     int difficulty;
     int numAlive;
     int totshapes = 4;
@@ -15,22 +15,51 @@ public class Ghostturn {
 
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
         numGhosts = nGhosts;
-        strlen = len;
+    //    strlen = len;
         numAlive = numGhosts;
         difficulty = diff;
         ghostx = new ArrayList<Float>(nGhosts);
         ghosty = new ArrayList<Float>(nGhosts);
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
-            ghostspresent.add(new Ghost(strlen, totshapes));
+            ghostspresent.add(new Ghost(len, totshapes));
         }
         System.out.println(this);
 
     }
+    public Ghostturn(int diff, int[] counts){
+        //counts.length = nGhosts
+        numGhosts = counts.length;
+        //strlen = 0;
+        numAlive = numGhosts;
+        difficulty = diff;
+        ghostx = new ArrayList<Float>(numGhosts);
+        ghosty = new ArrayList<Float>(numGhosts);
+        ghostspresent = new ArrayList<Ghost>();
+        for(int i=0;i<numGhosts;i++){
+            ghostspresent.add(new Ghost(counts[i], totshapes));
+        }
+        System.out.println(this);
 
+    }
+    public Ghostturn(int nGhosts, int len, int diff, boolean spiral, boolean circle){
+        numGhosts = nGhosts+1;
+        //strlen = len;
+        numAlive = numGhosts;
+        difficulty = diff;
+        ghostx = new ArrayList<Float>(nGhosts);
+        ghosty = new ArrayList<Float>(nGhosts);
+        ghostspresent = new ArrayList<Ghost>();
+        for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
+            ghostspresent.add(new Ghost(len, totshapes));
+        }
+        ghostspresent.add(new Ghost("4"));
+        System.out.println(this);
+
+    }
     public Ghostturn (Ghost g){
         numGhosts = 1;
-        strlen = g.strlen;
+        //strlen = g.strlen;
         difficulty = 1;
         numAlive = 1;
         ghostspresent = new ArrayList<Ghost>();
@@ -39,9 +68,9 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(numGhosts);
     }
 
-    public void add(){
+ /*   public void add(){
         ghostspresent.add(new Ghost(strlen, totshapes));
-    }
+    }*/
 
     public String toString(){
         String s = "";
@@ -79,7 +108,7 @@ public class Ghostturn {
                         numAlive--;
                         ghostspresent.get(i).remove();
                         c.shieldOn();
-                        
+                       // System.out.println("")
                         //Make ghost move toward the cat. 
                     }
                 }

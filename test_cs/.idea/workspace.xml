@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="83e51c25-0b12-4975-a36b-fb8f6090623b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/GameThing.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/GameThing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghostturn.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghostturn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Levels.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/GameThing.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/GameThing.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/GameThing.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/GameThing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Ghostturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Ghostturn.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3E30cOqvm4qxXELxWyAkmlEAcLG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/imittal278/Desktop/Magic-CS-Academy/test_cs"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83e51c25-0b12-4975-a36b-fb8f6090623b" name="Changes" comment="" />
+      <created>1779392024646</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779392024646</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
