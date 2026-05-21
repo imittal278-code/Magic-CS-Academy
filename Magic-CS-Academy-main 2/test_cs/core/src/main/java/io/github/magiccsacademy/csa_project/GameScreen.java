@@ -50,6 +50,7 @@ public class GameScreen extends InputAdapter implements Screen{
     private Texture cat;
     private Sprite cat2;
     private Texture heart;
+    private Texture shield;
     private Texture heartOutline;
     private boolean start = true;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
@@ -79,6 +80,7 @@ public class GameScreen extends InputAdapter implements Screen{
         lastLevel = 0;
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
+        shield = new Texture("Sheild.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
@@ -220,10 +222,12 @@ public class GameScreen extends InputAdapter implements Screen{
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
         controller.getCurrentLevel().update(delta,c);
-
+        if(c.hasShield){
+            drawShield();
+        }
 
          drawGhosts(controller.getCurrentLevel());
-
+            
          drawHearts(c);
 
          String scoreText = ""+c.getScore();
@@ -264,7 +268,9 @@ public class GameScreen extends InputAdapter implements Screen{
         }
 
     }
-
+    private void drawShield(){
+        game.batch.draw(shield, c.getX(), c.getY());
+    }
     private void drawHearts(Cat c){
         int count = c.getLives();
         float adder = 0.2f;
