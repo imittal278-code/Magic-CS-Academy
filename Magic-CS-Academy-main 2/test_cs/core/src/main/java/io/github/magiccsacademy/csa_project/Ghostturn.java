@@ -27,16 +27,17 @@ public class Ghostturn {
         System.out.println(this);
 
     }
-    public Ghostturn(int nGhosts, int len, int diff){
-        numGhosts = nGhosts;
+    public Ghostturn(int diff, int[] counts){
+        //counts.length = nGhosts
+        numGhosts = counts.length;
         //strlen = 0;
         numAlive = numGhosts;
         difficulty = diff;
-        ghostx = new ArrayList<Float>(nGhosts);
-        ghosty = new ArrayList<Float>(nGhosts);
+        ghostx = new ArrayList<Float>(numGhosts);
+        ghosty = new ArrayList<Float>(numGhosts);
         ghostspresent = new ArrayList<Ghost>();
-        for(int i=0;i<nGhosts;i++){
-            ghostspresent.add(new Ghost(len, totshapes));
+        for(int i=0;i<numGhosts;i++){
+            ghostspresent.add(new Ghost(counts[i], totshapes));
         }
         System.out.println(this);
 
