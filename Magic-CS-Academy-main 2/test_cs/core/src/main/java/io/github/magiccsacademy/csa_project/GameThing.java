@@ -1,7 +1,11 @@
 package io.github.magiccsacademy.csa_project;
 
 public class GameThing {
+
+
+    public Level l1 = new Level(1,1);
     public Level l3 = new Level(1,1);
+
     public GameThing(){
         l3.addTurn(new Ghostturn(3,2,1,false));
         l3.addTurn(new Ghostturn(3,2,1,false));

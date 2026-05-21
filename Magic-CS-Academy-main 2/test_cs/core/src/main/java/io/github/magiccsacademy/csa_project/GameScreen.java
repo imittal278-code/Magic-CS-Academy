@@ -130,6 +130,9 @@ public class GameScreen extends InputAdapter implements Screen{
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
         transitionBackground.add(new Texture("level2.png"));
+        transitionBackground.add(new Texture("level3.png"));
+        transitionBackground.add(new Texture("level4.png"));
+        transitionBackground.add(new Texture("level5.png"));
         controller.getCurrentLevel().startLevel();
     }
 

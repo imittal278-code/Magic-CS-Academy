@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a84c48a7-fa2f-4cf7-8353-d5bd952dfc45" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/9.4.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/build/reports/problems/problems-report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Cat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/GameScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/GameScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghostturn.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Ghostturn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Levels.class" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/classes/java/main/io/github/magiccsacademy/csa_project/Levels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/libs/core-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/GameScreen.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/GameScreen.class.uniqueId0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/endScreen.class.uniqueId2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/compileTransaction/stash-dir/homeScreen.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Ghostturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Ghostturn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Levels.java" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/core/src/main/java/io/github/magiccsacademy/csa_project/Levels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Magic-CS-Academy-main 2/test_cs/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
-    </list>
+    <list default="true" id="a84c48a7-fa2f-4cf7-8353-d5bd952dfc45" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -265,6 +239,7 @@
       <workItem from="1779232726786" duration="25000" />
       <workItem from="1779326540057" duration="5075000" />
       <workItem from="1779344807335" duration="11000" />
+      <workItem from="1779391142702" duration="310000" />
     </task>
     <servers />
   </component>
