@@ -254,7 +254,7 @@ public class GameScreen extends InputAdapter implements Screen{
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(colorDrawing);
         for(int i=0;i<points.size()-1;i++){
-            shapeRenderer.rectLine(points.get(i),points.get(i+1),0.1f);
+            shapeRenderer.rectLine(points.get(i),points.get(i+1),0.05f);
         }
         shapeRenderer.end();
 
