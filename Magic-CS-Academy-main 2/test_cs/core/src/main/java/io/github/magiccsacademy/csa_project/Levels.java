@@ -43,7 +43,7 @@ public class Levels {
             background = new Texture("background.png");
         }
         else if (levelNumber==2) {
-            //background = new Texture("level2.png");
+            background = new Texture("background.png");
         }
         else if (levelNumber==3) {
             //background = new Texture("level3.png");
@@ -134,60 +134,71 @@ public class Levels {
 
     public void ghostPos(int turnInd) {
         Ghostturn turn = turns.get(turnInd);
-        for (int i=0; i<turn.ghostspresent.size(); i++) {
-            if (levelNumber==1) {
-                if (turnInd==0) {
-                    turn.ghostx.add(0f);
-                    turn.ghosty.add(0f);
-                    turn.ghostx.add(6f);
-                    turn.ghosty.add(0f);
-                    turn.ghostx.add(0f);
-                    turn.ghosty.add(3f);
-                    turn.ghostx.add(6f);
-                    turn.ghosty.add(3f);
-                }
-                else if (turnInd==1) {
-                    turn.ghostx.add(1f);
-                    turn.ghosty.add(1f);
-                    turn.ghostx.add(5f);
-                    turn.ghosty.add(1f);
-                    turn.ghostx.add(1f);
-                    turn.ghosty.add(2f);
+        turn.ghostx.clear();
+        turn.ghosty.clear();
+        if (levelNumber==1) {
+            if (turnInd==0) {
+                turn.ghostx.add(0f);
+                turn.ghosty.add(0f);
+                turn.ghostx.add(6f);
+                turn.ghosty.add(0f);
+                turn.ghostx.add(0f);
+                turn.ghosty.add(3f);
+                turn.ghostx.add(6f);
+                turn.ghosty.add(3f);
+            }
+            else if (turnInd==1) {
+                turn.ghostx.add(1f);
+                turn.ghosty.add(1f);
+                turn.ghostx.add(5f);
+                turn.ghosty.add(1f);
+                turn.ghostx.add(1f);
+                turn.ghosty.add(2f);
 
-                }
-                else if (turnInd==2) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
-                }
             }
-            else if (levelNumber==2) {
-                if (turnInd==0) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    //turn.ghosty.add(5.0f);
-                }
-                else if (turnInd==1) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
-                }
-                else if (turnInd==2) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
-                }
-            }
-            else if (levelNumber==3) {
-                if (turnInd==0) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    //turn.ghosty.add(5.0f);
-                }
-                else if (turnInd==1) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
-                }
-                else if (turnInd==2) {
-                    //turn.ghostx.add(5.0f+(i*0.5f));
-                    turn.ghosty.add(5.0f);
-                }
+            else if (turnInd==2) {
+                //turn.ghostx.add(5.0f+(i*0.5f));
+                turn.ghosty.add(5.0f);
             }
         }
+        else if (levelNumber==2) {
+            if (turnInd==0) {
+                turn.ghostx.add(0f);
+                turn.ghosty.add(0f);
+                turn.ghostx.add(6f);
+                turn.ghosty.add(0f);
+                turn.ghostx.add(0f);
+                turn.ghosty.add(3f);
+                turn.ghostx.add(6f);
+                turn.ghosty.add(3f);
+            }
+            else if (turnInd==1) {
+                turn.ghostx.add(1f);
+                turn.ghosty.add(1f);
+                turn.ghostx.add(5f);
+                turn.ghosty.add(1f);
+                turn.ghostx.add(1f);
+                turn.ghosty.add(2f);
+            }
+            else if (turnInd==2) {
+                //turn.ghostx.add(5.0f+(i*0.5f));
+                turn.ghosty.add(5.0f);
+            }
+        }
+        else if (levelNumber==3) {
+            if (turnInd==0) {
+                //turn.ghostx.add(5.0f+(i*0.5f));
+                //turn.ghosty.add(5.0f);
+            }
+            else if (turnInd==1) {
+                //turn.ghostx.add(5.0f+(i*0.5f));
+                turn.ghosty.add(5.0f);
+            }
+            else if (turnInd==2) {
+                //turn.ghostx.add(5.0f+(i*0.5f));
+                turn.ghosty.add(5.0f);
+            }
+        }
+
     }
 }

@@ -45,6 +45,7 @@ public class GameEngine {
             }
             else{
                 curLevel++;
+                levels.get(curLevel).startLevel();
             }
         }
 
