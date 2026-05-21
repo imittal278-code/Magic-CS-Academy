@@ -121,7 +121,6 @@ public class GameScreen extends InputAdapter implements Screen{
         level1.startLevel();
 
         controller.addLevel(level1);
-        controller.addLevel(level2);
 
         showTransition = true;
         transitionTime = 2f;

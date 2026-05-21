@@ -6,7 +6,7 @@ import java.io.*;
 
 public class GameEngine {
 
-        public ArrayList<Levels> levels;
+        public ArrayList<Level> levels;
         private final int numLevels;
         private int curLevel;
         private boolean completed;
@@ -15,18 +15,18 @@ public class GameEngine {
             this.numLevels = numLevels;
             this.curLevel = 0;
             completed = false;
-            levels = new ArrayList<Levels>(numLevels);
+            levels = new ArrayList<Level>(numLevels);
             //note that curLevel is zero indexed when stored in this class
 
         }
 
 
-        public void addLevel(Levels level){
+        public void addLevel(Level level){
             levels.add(level);
         }
 
 
-        public Levels getCurrentLevel(){
+        public Level getCurrentLevel(){
             return levels.get(curLevel);
         }
 
