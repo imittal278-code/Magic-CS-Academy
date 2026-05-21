@@ -15,6 +15,11 @@ ghostdeath.mp3
 heart.png
 heart_outline.png
 horizontalLine.png
+level1.png
+level2.png
+level3.png
+level4.png
+level5.png
 libgdx.png
 loseText.png
 music.mp3

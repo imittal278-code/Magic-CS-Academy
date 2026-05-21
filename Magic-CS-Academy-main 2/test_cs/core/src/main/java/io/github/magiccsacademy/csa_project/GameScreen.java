@@ -32,11 +32,15 @@ public class GameScreen extends InputAdapter implements Screen{
     private Texture verticalLine;
     private Texture horizontalLine;
     private Texture upsideDownV;
+    private ArrayList<Texture> transitionBackground;
     private Texture normalV;
     private Texture circle;
     private HashMap<Integer,Texture> map;
     private GameEngine controller;
-
+    private int lastLevel;
+    private int nextLevelNum;
+    private boolean showTransition;
+    private float transitionTime;
     private Cat c;
    // private float catx = 2.5f, caty = 1.5f;
     private ArrayList<Float> ghostx, ghosty;
@@ -77,7 +81,7 @@ public class GameScreen extends InputAdapter implements Screen{
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
-
+        lastLevel = 0;
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
         Gdx.input.setInputProcessor(this);
@@ -121,8 +125,11 @@ public class GameScreen extends InputAdapter implements Screen{
             l.startLevel();
 
         }
-
-
+        showTransition = true;
+        transitionTime = 1f;
+        nextLevelNum = 1;
+        transitionBackground = new ArrayList<Texture>(5);
+        transitionBackground.add(new Texture("level1.png"));
     }
     //helper method that draws a ghost
     private void drawGhosts(Levels level){
@@ -162,6 +169,48 @@ public class GameScreen extends InputAdapter implements Screen{
 
      @Override
     public void render(float delta) {
+
+        //keep this code at the top
+         if(showTransition){
+             transitionTime-=delta;
+
+             ScreenUtils.clear(0,0,1,1);
+             game.myViewport.apply();
+             game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
+
+             game.batch.begin();
+
+
+             game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+             game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
+             game.batch.setColor(1f, 1f, 1f, 1f);
+             game.batch.draw(transitionBackground.get(nextLevelNum-1),0f,1f,6f,1f);
+
+
+
+
+
+             game.batch.end();
+
+            if(transitionTime<=0){
+                showTransition = false;
+                controller.nextLevel();
+            }
+            return;
+
+         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -219,12 +268,13 @@ public class GameScreen extends InputAdapter implements Screen{
             game.setScreen(new endScreen(game,false));
         }
         if(controller.getCurrentLevel().isCompleted()){
-            if(controller.doneWithLevels()){
+            if(controller.doneWithLevels()&&c.isAlive()){
                 this.dispose();
                 game.setScreen(new endScreen(game,true));
             }
-            else{
-                controller.nextLevel();
+            else if(!showTransition){
+                showTransition = true;
+                transitionTime = 1f;
             }
         }
 
@@ -260,7 +310,29 @@ public class GameScreen extends InputAdapter implements Screen{
     
     @Override
     public void dispose() {
-        
+
+        verticalLine.dispose();
+        horizontalLine.dispose();
+        upsideDownV.dispose();
+        normalV.dispose();
+        circle.dispose();
+
+        ghost.dispose();
+        cat.dispose();
+
+        heart.dispose();
+        heartOutline.dispose();
+
+        background.dispose();
+
+
+        for(Texture t : transitionBackground){
+            t.dispose();
+        }
+
+
+        shapeRenderer.dispose();
+        font.dispose();
     }
 
     @Override
