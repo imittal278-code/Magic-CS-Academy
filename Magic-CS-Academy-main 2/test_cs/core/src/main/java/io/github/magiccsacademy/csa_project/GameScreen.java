@@ -26,6 +26,12 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
+
+
+
+
+
+    private final int numLevels=2;
     private final Main game;
 
     //shape declarations
@@ -79,7 +85,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
     @Override
     public void show(){
-        controller = new GameEngine(2);
+        controller = new GameEngine(numLevels);
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
