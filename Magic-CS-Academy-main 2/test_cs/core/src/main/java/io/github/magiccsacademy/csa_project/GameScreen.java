@@ -26,6 +26,12 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
+
+
+
+
+
+    private final int numLevels=2;
     private final Main game;
 
     //shape declarations
@@ -38,8 +44,8 @@ public class GameScreen extends InputAdapter implements Screen{
     private HashMap<Integer,Texture> map;
     private GameEngine controller;
     private int lastLevel;
-    private int nextLevelNum;
     private boolean showTransition;
+    private boolean firstLevel;
     private float transitionTime;
     private Cat c;
    // private float catx = 2.5f, caty = 1.5f;
@@ -51,6 +57,7 @@ public class GameScreen extends InputAdapter implements Screen{
     private Sprite cat2;
     private Texture heart;
     private Texture heartOutline;
+    private boolean start = true;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
@@ -63,6 +70,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
 
     private Levels level1;
+    private Levels level2;
 
 
 
@@ -77,7 +85,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
     @Override
     public void show(){
-        controller = new GameEngine(1);
+        controller = new GameEngine(numLevels);
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
@@ -118,18 +126,25 @@ public class GameScreen extends InputAdapter implements Screen{
         level1 = new Levels(game,1,0);
         level1.addTurn(new Ghostturn(4, 6, 0,false));
         level1.addTurn(new Ghostturn(3,3,0,false));
+
+        level2 = new Levels(game,2,0);
+        level2.addTurn(new Ghostturn(4,6,0,false));
+        level2.addTurn(new Ghostturn(3,3,0,false));
+
+
+
         controller.addLevel(level1);
+        controller.addLevel(level2);
 
-        for(Levels l : controller.levels){
-            //initiates positions for all ghosts in all levels
-            l.startLevel();
 
-        }
         showTransition = true;
-        transitionTime = 1f;
-        nextLevelNum = 1;
+        transitionTime = 2f;
+        firstLevel = true;
+
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
+        transitionBackground.add(new Texture("level2.png"));
+        controller.getCurrentLevel().startLevel();
     }
     //helper method that draws a ghost
     private void drawGhosts(Levels level){
@@ -184,7 +199,7 @@ public class GameScreen extends InputAdapter implements Screen{
              game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
              game.batch.setColor(1f, 1f, 1f, 1f);
-             game.batch.draw(transitionBackground.get(nextLevelNum-1),0f,1f,6f,1f);
+             game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,1f,6f,1f);
 
 
 
@@ -194,12 +209,16 @@ public class GameScreen extends InputAdapter implements Screen{
 
             if(transitionTime<=0){
                 showTransition = false;
-                controller.nextLevel();
+
+
+
+
+
             }
             return;
 
          }
-
+         start = false;
 
 
 
@@ -273,8 +292,14 @@ public class GameScreen extends InputAdapter implements Screen{
                 game.setScreen(new endScreen(game,true));
             }
             else if(!showTransition){
+                firstLevel = false;
                 showTransition = true;
-                transitionTime = 1f;
+                transitionTime = 2f;
+                controller.nextLevel();
+                if(controller.doneWithLevels()&&c.isAlive()){
+                    this.dispose();
+                    game.setScreen(new endScreen(game,true));
+                }
             }
         }
 
