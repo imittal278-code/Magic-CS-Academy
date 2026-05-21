@@ -17,8 +17,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import java.util.*;
 
-public class Levels {
-    private final Main game;
+public class Level {
     private int levelNumber;
     private int difficulty;
     private int currentTurnIndex;
@@ -29,13 +28,12 @@ public class Levels {
     Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
 
 
-    public Levels(Main game, int levelNumber, int difficulty) {
-        this.game = game;
+    public Level(int levelNumber, int difficulty) {
         this.levelNumber = levelNumber;
         this.difficulty = difficulty;
         this.currentTurnIndex = 0;
         this.completed = false;
-        this.ghostSpeed = 0.2f+(difficulty*0.05f);
+        this.ghostSpeed = 0.2f+(difficulty*0.05f); //FIX THIS !!!!!!!!!
         this.turns = new ArrayList<>();
 
         // SET NUM BACkGROUNDS AND BACKGROUND IMAGE FOR EACH LEEVL
@@ -82,22 +80,32 @@ public class Levels {
                 float dx = c.getX()-currentGhostX.get(i);
                 float dy = c.getY()-currentGhostY.get(i);
                 float distance = (float)Math.sqrt(dx*dx+dy*dy);
-                if (distance>0.70f) {
+                if (distance>0.30f) {
                     float moveX = (dx/distance)*ghostSpeed*delta;
                     float moveY = (dy/distance)*ghostSpeed*delta;
                     currentGhostX.set(i, currentGhostX.get(i)+moveX);
                     currentGhostY.set(i, currentGhostY.get(i)+moveY);
                 }
                 else{
-                    c.loseLife();
+                    if(c.hasShield){
+                        c.shieldOff();
+                    }
+                    else{
+                        c.loseLife();
+                    }
                     music.play();
                     ghost.remove();
                     curr.numAlive--;
-                    System.out.println("Ghost reached the cat! Life lost.");
                 }
             }
         }
         if (!curr.isAlive()) {
+            try{
+            Thread.sleep(1000);
+            }
+            catch(InterruptedException e){
+
+            }
             nextTurn();
             if (currentTurnFinished()) {
                 completed = true;
@@ -134,70 +142,64 @@ public class Levels {
 
     public void ghostPos(int turnInd) {
         Ghostturn turn = turns.get(turnInd);
-        turn.ghostx.clear();
-        turn.ghosty.clear();
-        if (levelNumber==1) {
-            if (turnInd==0) {
-                turn.ghostx.add(0f);
-                turn.ghosty.add(0f);
-                turn.ghostx.add(6f);
-                turn.ghosty.add(0f);
-                turn.ghostx.add(0f);
-                turn.ghosty.add(3f);
-                turn.ghostx.add(6f);
-                turn.ghosty.add(3f);
-            }
-            else if (turnInd==1) {
-                turn.ghostx.add(1f);
-                turn.ghosty.add(1f);
-                turn.ghostx.add(5f);
-                turn.ghosty.add(1f);
-                turn.ghostx.add(1f);
-                turn.ghosty.add(2f);
+        for (int i=0; i<turn.ghostspresent.size(); i++) {
+            turn.ghostx.add(0f + i);
+            turn.ghosty.add(0f);
+
+
+
+
+
+
+
+            /*if (levelNumber==1) {
+                if (turnInd==0) {
+                    turn.ghostx.add(0f);
+                    turn.ghosty.add(0f);
+                    turn.ghostx.add(6f);
+                    turn.ghosty.add(0f);
+                    turn.ghostx.add(0f);
+                    turn.ghosty.add(3f);
+                    turn.ghostx.add(6f);
+                    turn.ghosty.add(3f);
+                }
+                else if (turnInd==1) {
+                    turn.ghostx.add(1f);
+                    turn.ghosty.add(1f);
+                    turn.ghostx.add(5f);
+                    turn.ghosty.add(1f);
+                    turn.ghostx.add(1f);
+                    turn.ghosty.add(2f);
 
             }
-            else if (turnInd==2) {
-                //turn.ghostx.add(5.0f+(i*0.5f));
-                turn.ghosty.add(5.0f);
+            else if (levelNumber==2) {
+                if (turnInd==0) {
+                    //turn.ghostx.add(5.0f+(i*0.5f));
+                    //turn.ghosty.add(5.0f);
+                }
+                else if (turnInd==1) {
+                    //turn.ghostx.add(5.0f+(i*0.5f));
+                    turn.ghosty.add(5.0f);
+                }
+                else if (turnInd==2) {
+                    //turn.ghostx.add(5.0f+(i*0.5f));
+                    turn.ghosty.add(5.0f);
+                }
             }
-        }
-        else if (levelNumber==2) {
-            if (turnInd==0) {
-                turn.ghostx.add(0f);
-                turn.ghosty.add(0f);
-                turn.ghostx.add(6f);
-                turn.ghosty.add(0f);
-                turn.ghostx.add(0f);
-                turn.ghosty.add(3f);
-                turn.ghostx.add(6f);
-                turn.ghosty.add(3f);
-            }
-            else if (turnInd==1) {
-                turn.ghostx.add(1f);
-                turn.ghosty.add(1f);
-                turn.ghostx.add(5f);
-                turn.ghosty.add(1f);
-                turn.ghostx.add(1f);
-                turn.ghosty.add(2f);
-            }
-            else if (turnInd==2) {
-                //turn.ghostx.add(5.0f+(i*0.5f));
-                turn.ghosty.add(5.0f);
-            }
-        }
-        else if (levelNumber==3) {
-            if (turnInd==0) {
-                //turn.ghostx.add(5.0f+(i*0.5f));
-                //turn.ghosty.add(5.0f);
-            }
-            else if (turnInd==1) {
-                //turn.ghostx.add(5.0f+(i*0.5f));
-                turn.ghosty.add(5.0f);
-            }
-            else if (turnInd==2) {
-                //turn.ghostx.add(5.0f+(i*0.5f));
-                turn.ghosty.add(5.0f);
-            }
+            else if (levelNumber==3) {
+                if (turnInd==0) {
+                    //turn.ghostx.add(5.0f+(i*0.5f));
+                    //turn.ghosty.add(5.0f);
+                }
+                else if (turnInd==1) {
+                    //turn.ghostx.add(5.0f+(i*0.5f));
+                    turn.ghosty.add(5.0f);
+                }
+                else if (turnInd==2) {
+                    //turn.ghostx.add(5.0f+(i*0.5f));
+                    turn.ghosty.add(5.0f);
+                }
+            }*/
         }
 
     }

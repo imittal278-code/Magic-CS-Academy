@@ -50,6 +50,7 @@ public class GameScreen extends InputAdapter implements Screen{
     private Texture cat;
     private Sprite cat2;
     private Texture heart;
+    private Texture shield;
     private Texture heartOutline;
     private boolean start = true;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
@@ -60,8 +61,17 @@ public class GameScreen extends InputAdapter implements Screen{
     private boolean isDrawing = true; 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
-    private Levels level1;
-    private Levels level2;
+    private Color colorDrawing;
+
+    private Level level1;
+    private Level level2;
+    private Level level3;
+    private Level level4;
+    private Level level5;
+
+
+
+
 
     public GameScreen(Main game){
         this.game = game;
@@ -72,6 +82,7 @@ public class GameScreen extends InputAdapter implements Screen{
 
     @Override
     public void show(){
+        colorDrawing = Color.WHITE;
         controller = new GameEngine(numLevels);
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
@@ -79,6 +90,7 @@ public class GameScreen extends InputAdapter implements Screen{
         lastLevel = 0;
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
+        shield = new Texture("Sheild.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
@@ -108,17 +120,20 @@ public class GameScreen extends InputAdapter implements Screen{
         map.put(2,normalV);
         map.put(3,upsideDownV);
         map.put(4,circle);
+        GameThing g = new GameThing();
 
-        level1 = new Levels(game,1,0);
-        level1.addTurn(new Ghostturn(4, 6, 0,false));
-        level1.addTurn(new Ghostturn(3,3,0,false));
+        level1 = g.l1;
+        level2 = g.l2;
+        level3 = g.l3;
+        level4 = g.l4;
 
-        level2 = new Levels(game,2,0);
-        level2.addTurn(new Ghostturn(4,6,0,false));
-        level2.addTurn(new Ghostturn(3,3,0,false));
+        background = level1.getBackground();
+        
 
         controller.addLevel(level1);
         controller.addLevel(level2);
+        controller.addLevel(level3);
+        controller.addLevel(level4);
 
         showTransition = true;
         transitionTime = 2f;
@@ -127,14 +142,18 @@ public class GameScreen extends InputAdapter implements Screen{
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
         transitionBackground.add(new Texture("level2.png"));
+        transitionBackground.add(new Texture("level3.png"));
+        transitionBackground.add(new Texture("level4.png"));
+        transitionBackground.add(new Texture("level5.png"));
         controller.getCurrentLevel().startLevel();
     }
+
+
     //helper method that draws a ghost
-    private void drawGhosts(Levels level){
-        if(level.isCompleted()){
+    private void drawGhosts(Level level){
+            if(level.isCompleted()){
             return;
         }
-
         int numGhosts = level.getCurrentTurn().numGhosts;
         for(int i = 0; i< numGhosts;i++){
             if(level.getCurrentTurn().ghostspresent.get(numGhosts-i-1).isAlive()) {
@@ -220,10 +239,12 @@ public class GameScreen extends InputAdapter implements Screen{
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
         controller.getCurrentLevel().update(delta,c);
-
+        if(c.hasShield){
+            drawShield();
+        }
 
          drawGhosts(controller.getCurrentLevel());
-
+            
          drawHearts(c);
 
          String scoreText = ""+c.getScore();
@@ -235,9 +256,9 @@ public class GameScreen extends InputAdapter implements Screen{
         game.batch.end();
         shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.setColor(colorDrawing);
         for(int i=0;i<points.size()-1;i++){
-            shapeRenderer.rectLine(points.get(i),points.get(i+1),0.1f);
+            shapeRenderer.rectLine(points.get(i),points.get(i+1),0.05f);
         }
         shapeRenderer.end();
 
@@ -264,7 +285,9 @@ public class GameScreen extends InputAdapter implements Screen{
         }
 
     }
-
+    private void drawShield(){
+        game.batch.draw(shield, c.getX(), c.getY(),0.7f,0.7f);
+    }
     private void drawHearts(Cat c){
         int count = c.getLives();
         float adder = 0.2f;
@@ -320,7 +343,7 @@ public class GameScreen extends InputAdapter implements Screen{
         points.add(new Vector2(temp.x, temp.y));
         pts.add(new Point(temp.x, temp.y));
         isDrawing = true;
-        
+        colorDrawing = Color.WHITE;
         return true;
     }
 
@@ -333,7 +356,35 @@ public class GameScreen extends InputAdapter implements Screen{
             pts.add(new Point(temp.x, temp.y));
 
         }
+        if(points.size()>10){
+            
+            Result r = recognizer.Recognize(pts);
+            System.out.println(r.Name + " " + r.Score);
+            switch(r.Name){
+                case "caret CW": // v
+                    colorDrawing = Color.YELLOW;
+                    break;
+                case "caret CCW": // upside down v
+                    colorDrawing = Color.GREEN;
+                    break;
+                case "circle CW":
+                case "circle CCW": // circles
+                    colorDrawing = Color.CYAN;
+                    break;
+                case "line left":
+                case "line right": //horizontal line 
+                    colorDrawing = Color.RED;
+                    break;
+                case "lineup":
+                case "linedown": // vertical line 
+                    colorDrawing = Color.BLUE;
+                    break;
+            }
+
+
+        }
         return true;
+        
     }
 
     @Override

@@ -5,24 +5,39 @@ import java.lang.*;
 
 public class Ghost {
     ArrayList<Integer> shapes;
-    int strlen;
-    public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
+    public int strlen;
+   // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
         alive = true;
         strlen = len;
-        totaltypeshapes = totshapes;
+       // totaltypeshapes = totshapes;
         shapes = new ArrayList<Integer>();
         for(int i=0;i<strlen;i++){
-            shapes.add((int) (totshapes*Math.random()));
+            shapes.add((int) (4*Math.random()));
         }
     }
-    public Ghost (int totshapes){
+ /*    public Ghost (int totshapes){
         shapes = new ArrayList<Integer>();
         alive = true;
         strlen = 1;
         totaltypeshapes = totshapes;
         shapes.add(totshapes-1);
+    }*/
+
+    public Ghost (String s){
+        shapes = strtointarray(s.split(""));
+     //   totaltypeshapes = 4;
+        strlen = shapes.size();
+        alive = true; 
+    }
+
+    private ArrayList<Integer> strtointarray(String[] a){
+        ArrayList<Integer> ans = new ArrayList<Integer> ();
+        for(String s : a){
+            ans.add(Integer.parseInt(s));
+        }
+        return ans;
     }
 
     public void hurt(){
