@@ -46,6 +46,9 @@ public class Cat {
     int getScore() {
         return score;
     }
+    boolean hasShield(){
+        return hasShield;
+    }
     boolean isAlive() {
         return alive;
     }
