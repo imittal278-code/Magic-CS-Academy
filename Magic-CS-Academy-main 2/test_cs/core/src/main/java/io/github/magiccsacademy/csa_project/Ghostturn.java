@@ -13,20 +13,6 @@ public class Ghostturn {
     public ArrayList<Float> ghostx;
     public ArrayList<Float> ghosty;
 
-    public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
-        numGhosts = nGhosts;
-    //    strlen = len;
-        numAlive = numGhosts;
-        difficulty = diff;
-        ghostx = new ArrayList<Float>(nGhosts);
-        ghosty = new ArrayList<Float>(nGhosts);
-        ghostspresent = new ArrayList<Ghost>();
-        for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
-            ghostspresent.add(new Ghost(len, totshapes));
-        }
-        System.out.println(this);
-
-    }
     public Ghostturn(int diff, int[] counts){
         //counts.length = nGhosts
         numGhosts = counts.length;
@@ -42,8 +28,28 @@ public class Ghostturn {
         System.out.println(this);
 
     }
-    public Ghostturn(int nGhosts, int len, int diff, boolean spiral, boolean circle){
-        numGhosts = nGhosts+1;
+
+    public Ghostturn(int diff, int[] counts,boolean[] fulks){
+        //counts.length = nGhosts
+        numGhosts = counts.length;
+        //strlen = 0;
+        numAlive = numGhosts;
+        difficulty = diff;
+        ghostx = new ArrayList<Float>(numGhosts);
+        ghosty = new ArrayList<Float>(numGhosts);
+        ghostspresent = new ArrayList<Ghost>();
+        for(int i=0;i<numGhosts;i++){
+            ghostspresent.add(new Ghost(counts[i], totshapes));
+            if(fulks[i]){
+                ghostspresent.get(i).isFulk=true;
+            }
+        }
+        System.out.println(this);
+
+    }
+
+    public Ghostturn(int nGhosts, int len, int diff, boolean spiral, boolean circle, boolean allFulk){
+        numGhosts = nGhosts;
         //strlen = len;
         numAlive = numGhosts;
         difficulty = diff;
@@ -52,9 +58,16 @@ public class Ghostturn {
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
             ghostspresent.add(new Ghost(len, totshapes));
+            if(allFulk){
+                ghostspresent.get(i).isFulk=true;
+            }
         }
-        ghostspresent.add(new Ghost("4"));
-        System.out.println(this);
+        if(circle){
+            ghostspresent.add(new Ghost("4"));
+            System.out.println(this);
+            numGhosts++;
+        }
+
 
     }
     public Ghostturn (Ghost g){

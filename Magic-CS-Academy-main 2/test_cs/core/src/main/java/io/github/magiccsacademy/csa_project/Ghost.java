@@ -6,9 +6,11 @@ import java.lang.*;
 public class Ghost {
     ArrayList<Integer> shapes;
     public int strlen;
+    public boolean isFulk;
    // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
+        isFulk = false;
         alive = true;
         strlen = len;
        // totaltypeshapes = totshapes;
@@ -26,10 +28,19 @@ public class Ghost {
     }*/
 
     public Ghost (String s){
+        isFulk = false;
         shapes = strtointarray(s.split(""));
      //   totaltypeshapes = 4;
         strlen = shapes.size();
         alive = true; 
+    }
+
+    public Ghost (String s, boolean fulk){
+        isFulk = fulk;
+        shapes = strtointarray(s.split(""));
+        //   totaltypeshapes = 4;
+        strlen = shapes.size();
+        alive = true;
     }
 
     private ArrayList<Integer> strtointarray(String[] a){
