@@ -1,3 +1,4 @@
+Fulk.png
 Ghost.png
 Hover.png
 Hover2.png
@@ -17,6 +18,7 @@ ghost2.png
 ghostdeath.mp3
 heart.png
 heart_outline.png
+homeIcon.png
 horizontalLine.png
 level1.png
 level2.png
@@ -24,11 +26,13 @@ level3.png
 level4.png
 level5.png
 libgdx.png
+loseBackground.png
 loseText.png
 music.mp3
 nonHover.png
 nonHover2.png
 normalV.png
+replayIcon.png
 ui/font-list.fnt
 ui/font-subtitle.fnt
 ui/font-window.fnt
@@ -38,3 +42,4 @@ ui/uiskin.json
 ui/uiskin.png
 upsideDownV.png
 verticalLine.png
+winBackground.png

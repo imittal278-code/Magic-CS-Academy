@@ -100,12 +100,12 @@ public class Level {
             }
         }
         if (!curr.isAlive()) {
-            try{
+            /*try{
             Thread.sleep(1000);
             }
             catch(InterruptedException e){
 
-            }
+            }*/
             nextTurn();
             if (currentTurnFinished()) {
                 completed = true;
@@ -142,6 +142,17 @@ public class Level {
 
     public void ghostPos(int turnInd) {
         Ghostturn turn = turns.get(turnInd);
+        if(levelNumber==2){
+            float adder = -1f;
+            for (int i=0; i<turn.ghostspresent.size(); i++) {
+                if(i%3==0){
+                    adder+=0.5f;
+                }
+                turn.ghostx.add(6f+adder);
+                turn.ghosty.add(0f+(i%4));
+            }
+            return;
+        }
         for (int i=0; i<turn.ghostspresent.size(); i++) {
             turn.ghostx.add(0f + i);
             turn.ghosty.add(0f);

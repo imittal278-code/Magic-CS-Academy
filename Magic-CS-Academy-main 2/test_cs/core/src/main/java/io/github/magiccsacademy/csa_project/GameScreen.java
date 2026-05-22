@@ -44,6 +44,8 @@ public class GameScreen extends InputAdapter implements Screen {
     private Texture background;
     private Texture ghost;
     private Sprite ghost2;
+    private Texture fulkPic;
+    private Sprite fulk;
     private Texture cat;
     private Sprite cat2;
     private Texture heart;
@@ -86,6 +88,8 @@ public class GameScreen extends InputAdapter implements Screen {
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
+        fulkPic = new Texture("Fulk.png");
+        fulk = new Sprite(fulkPic);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
@@ -144,12 +148,21 @@ public class GameScreen extends InputAdapter implements Screen {
         int numGhosts = level.getCurrentTurn().numGhosts;
         for (int i = 0; i < numGhosts; i++) {
             if (level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1).isAlive()) {
+
                 Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
                 float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
                 float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
-                ghost2.setPosition(x, y);
-                ghost2.setSize(0.6f, 0.666f);
-                ghost2.draw(game.batch);
+                if(g.isFulk){
+                    fulk.setPosition(x, y);
+                    fulk.setSize(0.6f, 0.6f);
+                    fulk.draw(game.batch);
+                }
+                else{
+                    ghost2.setPosition(x, y);
+                    ghost2.setSize(0.6f, 0.666f);
+                    ghost2.draw(game.batch);
+                }
+
                 int shapesLeft = g.shapes.size();
                 float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                 for(int k = 0;k<shapesLeft;k++){
@@ -216,12 +229,12 @@ public class GameScreen extends InputAdapter implements Screen {
         //You lost
         if (!c.isAlive()) {
             this.dispose();
-            game.setScreen(new endScreen(game, false));
+            game.setScreen(new endScreen(game, c));
         }
         if (controller.getCurrentLevel().isCompleted()) {
             if (controller.doneWithLevels() && c.isAlive()) {
                 this.dispose();
-                game.setScreen(new endScreen(game,true));
+                game.setScreen(new endScreen(game,c));
             }
             else if(!showTransition){
                 showTransition = true;
@@ -229,7 +242,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 controller.nextLevel();
                 if (controller.doneWithLevels() && c.isAlive()) {
                     this.dispose();
-                    game.setScreen(new endScreen(game, true));
+                    game.setScreen(new endScreen(game, c));
                 }
             }
         }
@@ -257,7 +270,7 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
         game.batch.begin();
-        font.draw(game.batch, "Score: " + c.getScore(), 500, 360);
+        font.draw(game.batch, "" + c.getScore(), 600, 360);
         game.batch.end();
     }
 
