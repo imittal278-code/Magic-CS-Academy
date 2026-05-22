@@ -41,7 +41,7 @@ public class Recognizer
 	public static int NumPoints = 64;
 	public static double SquareSize = 250.0;
 	double HalfDiagonal = 0.5 * Math.sqrt(250.0 * 250.0 + 250.0 * 250.0);
-	double AngleRange = 0.0;
+	double AngleRange = Math.toDegrees(15.0);
 	double AnglePrecision = 2.0;
 	public static double Phi = 0.5 * (-1.0 + Math.sqrt(5.0)); // Golden Ratio
 	
