@@ -47,17 +47,10 @@ public class homeScreen implements Screen{
     private float timesum;
     private float lasttime;
 
-
-    
-
-
-
     public homeScreen(Main game){
         this.game = game;
         
     }
-
-
 
     @Override
     public void show(){
@@ -87,10 +80,7 @@ public class homeScreen implements Screen{
         title = new Texture("Title.png");
         non = new Sprite(nonHover);
         hov = new Sprite(Hover);
-
     }
-
-
 
      @Override
     public void render(float delta) {
@@ -98,12 +88,7 @@ public class homeScreen implements Screen{
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-
-
-        
         game.batch.begin();
-
-
         cat2.setPosition(4f, 0.75f);
         cat2.setSize(0.75f, 0.8325f);
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
@@ -113,9 +98,6 @@ public class homeScreen implements Screen{
         drawGhost(ghostleft,0.1f,0.75f);
         drawGhost(ghostright,1f,0.75f);
         timesum+=delta;
-
-
-
 
         if(ghostleft.shapes.size()==0){
             timesum = 0f;
@@ -131,13 +113,7 @@ public class homeScreen implements Screen{
             }
         }
 
-
-
-
         cat2.draw(game.batch);
-
-
-
          non.setSize(1.5f,0.6f);
          hov.setSize(1.5f,0.6f);
          non.setPosition(2.2f,0.8f);
