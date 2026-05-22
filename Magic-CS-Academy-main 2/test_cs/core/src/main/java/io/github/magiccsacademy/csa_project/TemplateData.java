@@ -69,11 +69,11 @@ public class TemplateData
 	public static int circlePointsCW[] = new int[circlePointsCCW.length];
 	public static int caretPointsCCW[] = new int[caretPointsCW.length];
 
-	public static int lineToRightPoints[] = {0,0,10,1,20,0,30,0};
+	public static int lineToRightPoints[] = {0,0,10,0,20,0,30,0,40,0,50,0,60,0,70,0,80,0,90,0,100,0};
 	public static int lineToLeftPoints[] = new int[lineToRightPoints.length];
 
-	public static int lineToUpPoints[] = {0,0,0,10,1,20,0,30};
-	public static int lineToDownPoints[] = {0,30, 1,20, 0,10, 0,0};
+	public static int lineToUpPoints[] = {0,0,0,10,0,20,0,30,0,40,0,50,0,60,0,70,0,80,0,90,0,100};
+	public static int lineToDownPoints[] = new int[lineToUpPoints.length];
 
 	
 	static void copyReversed(int dst[], int src[])
@@ -96,6 +96,7 @@ public class TemplateData
 		copyReversed(rectanglePointsCW, rectanglePointsCCW);
 		copyReversed(caretPointsCCW, caretPointsCW);
 		copyReversed(lineToLeftPoints, lineToRightPoints);
+		copyReversed(lineToDownPoints, lineToUpPoints);
 	}
 
 }

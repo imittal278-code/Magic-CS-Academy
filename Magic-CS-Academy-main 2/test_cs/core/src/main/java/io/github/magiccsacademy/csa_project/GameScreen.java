@@ -25,7 +25,7 @@ import com.badlogic.gdx.audio.Sound;
 import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen{
-    private final int numLevels=2;
+    private final int numLevels=4;
     private final Main game;
 
     //shape declarations
@@ -37,13 +37,9 @@ public class GameScreen extends InputAdapter implements Screen{
     private Texture circle;
     private HashMap<Integer,Texture> map;
     private GameEngine controller;
-    private int lastLevel;
     private boolean showTransition;
-    private boolean firstLevel;
     private float transitionTime;
     private Cat c;
-   // private float catx = 2.5f, caty = 1.5f;
-    private ArrayList<Float> ghostx, ghosty;
     private Texture background;
     private Texture ghost;
     private Sprite ghost2;
@@ -52,8 +48,6 @@ public class GameScreen extends InputAdapter implements Screen{
     private Texture heart;
     private Texture shield;
     private Texture heartOutline;
-    private boolean start = true;
-    private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     TextButton button;
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
@@ -87,7 +81,6 @@ public class GameScreen extends InputAdapter implements Screen{
         //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
-        lastLevel = 0;
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
         shield = new Texture("Sheild.png");
@@ -101,19 +94,12 @@ public class GameScreen extends InputAdapter implements Screen{
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.YELLOW);
-
         background = new Texture("background.png");
-        
-        /*for(int i=0;i<turn.ghostspresent.size();i++){
-            turn.ghosty.add(((float)i)*0.5f);
-            turn.ghostx.add(1.0f+i);
-        }*/
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
         circle = new Texture("circle.png");
-
         map = new HashMap<Integer,Texture>();
         map.put(0,horizontalLine);
         map.put(1,verticalLine);
@@ -121,24 +107,17 @@ public class GameScreen extends InputAdapter implements Screen{
         map.put(3,upsideDownV);
         map.put(4,circle);
         GameThing g = new GameThing();
-
         level1 = g.l1;
         level2 = g.l2;
         level3 = g.l3;
         level4 = g.l4;
-
         background = level1.getBackground();
-        
-
         controller.addLevel(level1);
         controller.addLevel(level2);
         controller.addLevel(level3);
         controller.addLevel(level4);
-
         showTransition = true;
         transitionTime = 2f;
-        firstLevel = true;
-
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
         transitionBackground.add(new Texture("level2.png"));
@@ -164,17 +143,9 @@ public class GameScreen extends InputAdapter implements Screen{
                 ghost2.setSize(0.6f,0.666f);
                 ghost2.draw(game.batch);
                 int shapesLeft = g.shapes.size();
-                if(shapesLeft%2==0){
-                    float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.33f;
-                    for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
-                    }
-                }
-                else{
-                    float intitialpos = x-((float)shapesLeft/2)*0.15f+0.32f;
-                    for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
-                    }
+                float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
+                for(int k = 0;k<shapesLeft;k++){
+                    game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
                 }
             }
         }
@@ -184,50 +155,29 @@ public class GameScreen extends InputAdapter implements Screen{
 
      @Override
     public void render(float delta) {
-
         //keep this code at the top
          if(showTransition){
              transitionTime-=delta;
-
              ScreenUtils.clear(0,0,1,1);
              game.myViewport.apply();
              game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-
              game.batch.begin();
-
-
              game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
              game.batch.setColor(1f, 1f, 1f, 1f);
              game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,1f,6f,1f);
-
-
-
-
-
              game.batch.end();
-
             if(transitionTime<=0)showTransition = false;
             return;
          }
-         start = false;
 
         //set background based on current Level
         background = controller.getCurrentLevel().getBackground();
-
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
-        
         game.batch.begin();
-
-        /*
-        for(int i=0;i<10;i++){
-            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0+i))turn.shapeDrawn(i);
-        }
-        */
 
         //draw the background first
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
@@ -242,9 +192,7 @@ public class GameScreen extends InputAdapter implements Screen{
         if(c.hasShield){
             drawShield();
         }
-
          drawGhosts(controller.getCurrentLevel());
-            
          drawHearts(c);
 
          String scoreText = ""+c.getScore();
@@ -273,7 +221,6 @@ public class GameScreen extends InputAdapter implements Screen{
                 game.setScreen(new endScreen(game,true));
             }
             else if(!showTransition){
-                firstLevel = false;
                 showTransition = true;
                 transitionTime = 2f;
                 controller.nextLevel();
@@ -292,12 +239,8 @@ public class GameScreen extends InputAdapter implements Screen{
         int count = c.getLives();
         float adder = 0.2f;
         for(int i = 0;i<5;i++){
-            if(count>0){
-                game.batch.draw(heart,0f+adder,2.5f,0.3f,0.3f);
-            }
-            else{
-                game.batch.draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
-            }
+            if(count>0)game.batch.draw(heart,0f+adder,2.5f,0.3f,0.3f);
+            else game.batch.draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
             adder+=0.3f;
             count--;
         }
@@ -311,24 +254,19 @@ public class GameScreen extends InputAdapter implements Screen{
     
     @Override
     public void dispose() {
-
         verticalLine.dispose();
         horizontalLine.dispose();
         upsideDownV.dispose();
         normalV.dispose();
         circle.dispose();
-
         ghost.dispose();
         cat.dispose();
-
         heart.dispose();
         heartOutline.dispose();
         background.dispose();
         for(Texture t : transitionBackground){
             t.dispose();
         }
-
-
         shapeRenderer.dispose();
         font.dispose();
     }
@@ -339,12 +277,30 @@ public class GameScreen extends InputAdapter implements Screen{
         pts.clear();
         Vector3 temp = new Vector3(screenX, screenY, 0);
         game.myViewport.unproject(temp);
-
         points.add(new Vector2(temp.x, temp.y));
         pts.add(new Point(temp.x, temp.y));
         isDrawing = true;
         colorDrawing = Color.WHITE;
         return true;
+    }
+
+    private int getShapeIndex(String name){
+        switch (name) {
+            case "line left":
+            case "line right":
+                return 0;
+            case "lineup":
+            case "linedown":
+                return 1;
+            case "caret CW":
+                return 2;
+            case "caret CCW":
+                return 3;
+            case "circle CW":
+            case "circle CCW":
+                return 4;
+        }
+        return -1;
     }
 
     @Override
@@ -357,75 +313,40 @@ public class GameScreen extends InputAdapter implements Screen{
 
         }
         if(points.size()>10){
-            
             Result r = recognizer.Recognize(pts);
             System.out.println(r.Name + " " + r.Score);
-            switch(r.Name){
-                case "caret CW": // v
+            switch(getShapeIndex(r.Name)){
+                case 2: // v
                     colorDrawing = Color.YELLOW;
                     break;
-                case "caret CCW": // upside down v
+                case 3: // upside down v
                     colorDrawing = Color.GREEN;
                     break;
-                case "circle CW":
-                case "circle CCW": // circles
+                case 4: // circles
                     colorDrawing = Color.CYAN;
                     break;
-                case "line left":
-                case "line right": //horizontal line 
+                case 0: // horizontal line  
                     colorDrawing = Color.RED;
                     break;
-                case "lineup":
-                case "linedown": // vertical line 
+                case 1: // vertical line 
                     colorDrawing = Color.BLUE;
                     break;
             }
-
-
         }
         return true;
-        
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
-        if(controller.getCurrentLevel().isCompleted()){
-            return false;
-        }
+        if(controller.getCurrentLevel().isCompleted()) return false;
         isDrawing = false;
         if(points.size()>10){
-            
             Result r = recognizer.Recognize(pts);
             System.out.println(r.Name + " " + r.Score);
-            switch(r.Name){
-                case "caret CW": // v
-                    controller.getCurrentLevel().shapeDrawn(2, c);
-                    break;
-                case "caret CCW": // upside down v
-                    controller.getCurrentLevel().shapeDrawn(3, c);
-                    break;
-                case "circle CW":
-                case "circle CCW": // circles
-                    controller.getCurrentLevel().shapeDrawn(4, c);
-                    break;
-                case "line left":
-                case "line right": //horizontal line 
-                    controller.getCurrentLevel().shapeDrawn(0, c);
-                    break;
-                case "lineup":
-                case "linedown": // vertical line ]
-                    controller.getCurrentLevel().shapeDrawn(1, c);
-                    break;
-            }
-
-
+            controller.getCurrentLevel().shapeDrawn(getShapeIndex(r.Name), c);
         }
         return true;
     }
-
-
-    
-
 }
 
 
