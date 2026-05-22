@@ -13,6 +13,8 @@ public class Ghostturn {
     public ArrayList<Float> ghostx;
     public ArrayList<Float> ghosty;
 
+
+
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
         numGhosts = nGhosts;
     //    strlen = len;
@@ -66,6 +68,10 @@ public class Ghostturn {
         ghostspresent.add(g);
         ghostx = new ArrayList<Float>(numGhosts);
         ghosty = new ArrayList<Float>(numGhosts);
+    }
+
+    private determineSpeed(){
+        if()
     }
 
  /*   public void add(){

@@ -103,6 +103,7 @@ public class Recognizer
 		Templates.addElement(loadTemplate("line right", TemplateData.lineToRightPoints));
 		Templates.addElement(loadTemplate("linedown", TemplateData.lineToDownPoints));
 		Templates.addElement(loadTemplate("lineup", TemplateData.lineToUpPoints));
+
 	}
 	
 	void loadTemplatesCircles()
