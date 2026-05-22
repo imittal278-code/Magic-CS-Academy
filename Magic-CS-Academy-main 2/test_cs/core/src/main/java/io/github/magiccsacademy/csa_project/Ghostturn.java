@@ -98,7 +98,7 @@ public class Ghostturn {
     }
 
     private determineSpeed(){
-        if()
+        //if()
     }
 
  /*   public void add(){
