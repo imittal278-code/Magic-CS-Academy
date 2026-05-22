@@ -5,6 +5,7 @@ Momo2023.png
 Sheild.png
 Title.png
 WinText.png
+arial.ttf
 background.png
 bucket.png
 circle.png
