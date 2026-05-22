@@ -26,7 +26,7 @@ import java.util.*;
 
 public class GameScreen extends InputAdapter implements Screen {
     private BitmapFont font;
-    private final int numLevels = 2;
+    private final int numLevels = 1;
     private final Main game;
     private Viewport uiViewport;
 
@@ -264,12 +264,12 @@ public class GameScreen extends InputAdapter implements Screen {
         //You lost
         if (!c.isAlive()) {
             this.dispose();
-            game.setScreen(new endScreen(game, false));
+            game.setScreen(new endScreen(game, c));
         }
         if (controller.getCurrentLevel().isCompleted()) {
             if (controller.doneWithLevels() && c.isAlive()) {
                 this.dispose();
-                game.setScreen(new endScreen(game, true));
+                game.setScreen(new endScreen(game, c));
             } else if (!showTransition) {
                 firstLevel = false;
                 showTransition = true;
@@ -277,7 +277,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 controller.nextLevel();
                 if (controller.doneWithLevels() && c.isAlive()) {
                     this.dispose();
-                    game.setScreen(new endScreen(game, true));
+                    game.setScreen(new endScreen(game, c));
                 }
             }
         }
@@ -308,7 +308,7 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
         game.batch.begin();
-        font.draw(game.batch, "Score: " + c.getScore(), 500, 360);
+        font.draw(game.batch, "" + c.getScore(), 600, 360);
         game.batch.end();
     }
 
