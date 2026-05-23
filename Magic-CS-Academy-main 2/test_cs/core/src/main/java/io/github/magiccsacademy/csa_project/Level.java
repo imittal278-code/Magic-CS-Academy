@@ -18,19 +18,45 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import java.util.*;
 
+
+/**
+ * Represents a singular Level in the game, managing the ghostTurns in the level
+ *
+ */
 public class Level {
+
+    /**the number of this level (from 1-5)*/
     private int levelNumber;
+
+    /** the difficulty of the level (which determines speed)*/
     private int difficulty;
+
+    /** the current turn number that the level is on*/
     private int currentTurnIndex;
+
+    /** whether the level is completed or not*/
     private boolean completed;
+
+    /** the speeds of the ghosts in this level (determined by difficulty)*/
     private float ghostSpeed;
+
+    /** the background for this level */
     private Texture background;
+
+    /** an array of the ghostTurns in this level*/
     private ArrayList<Ghostturn> turns;
+
+    /** the Main class, which contains some fields like sound and music that are important */
     private Main game;
 
 
-
-
+    /**
+     * Constructs a level using the parameters given and sets the background field based on the level number
+     *
+     * @param levelNumber the level number
+     * @param difficulty  the difficulty of the level
+     * @param game the Main class
+     */
     public Level(int levelNumber, int difficulty, Main game) {
         this.levelNumber = levelNumber;
         this.difficulty = difficulty;
@@ -65,6 +91,9 @@ public class Level {
         }
     }
 
+
+
+    /** initializes the spawning positions of all the ghosts in all the turns of this Level*/
     public void startLevel() {
         currentTurnIndex = 0;
         completed = false;
@@ -72,12 +101,26 @@ public class Level {
             ghostPos(i);
         }
     }
+
+    /**
+     * Adds a GhostTurn to the level
+     *
+     * @param turn the ghostturn to add
+     */
     public void addTurn(Ghostturn turn) {
         turns.add(turn);
     }
     public Ghostturn getCurrentTurn() {
         return turns.get(currentTurnIndex);
     }
+
+    /**
+     * Calls the ghostTurn shapeDrawn based on the index of the shape and plays the shapes' respective noise.
+     * Also increments turn if the current turn is completed, and sets completed to true if the level is completed.
+     *
+     * @param shapeIndex the index of the shape to be removed from the ghosts
+     * @param c the cat class value (used for lives)
+     */
     public void shapeDrawn(int shapeIndex, Cat c) {
         if(shapeIndex==0){
             game.sound1.play(1.0f);
@@ -102,6 +145,17 @@ public class Level {
             if (currentTurnFinished()) completed = true;
         }
     }
+
+
+    /**
+     * First checks if the turn is completed, and returns if so.
+     * Then it changes the position of ghostx and ghosty for each ghost based on the speed (determined by delta time and difficulty) and location.
+     * Checks whether the ghost is alive based on if it is too close to the cat and removes the ghost if it is not alive.
+     * Also checks if the current turn is completed or if the level is completed and takes the appropriate actions based on that
+     *
+     * @param delta the change in time between the last frame and this frame
+     * @param c the cat object (that manages lives)
+     */
     public void update(float delta, Cat c) {
         if (currentTurnIndex>=turns.size() || currentTurnFinished()) return;
         Ghostturn curr = turns.get(currentTurnIndex);
@@ -147,32 +201,71 @@ public class Level {
             }
         }
     }
+
+    /**
+     * changes the current turn index to the next one
+     */
     public void nextTurn() {
         currentTurnIndex++;
     }
+
+    /**
+     * checks if the current turn is done
+     */
     public boolean currentTurnFinished() {
         return currentTurnIndex >= turns.size();
     }
+
+    /**
+     * checks if the level is completed
+     */
     public boolean isCompleted() {
         return completed;
     }
-    
+
+    /**
+     * checks if you lost
+     */
     public boolean isGameOver(Cat c) {
         return !c.isAlive();
     }
+
+    /**
+     * Retrieves the current level number
+     *
+     * @return the current level number
+     */
     public int getLevelNumber() {
         return levelNumber;
     }
+
+    /**
+     * Retrieves the difficulty
+     *
+     * @return the difficulty of the level
+     */
     public int getDifficulty() {
         return difficulty;
     }
-    
+
+    /**
+     * Retrieves the background
+     *
+     * @return the level's background
+     */
     public Texture getBackground() {
         return background;
     }
 
     // **** NEED TO DETERMINE POSITIOSN OF TEH GHOSTS IN EACH TURN AND WAVE *****
 
+
+
+    /**
+     * Initializes spawning positions for the specified ghostTurn
+     *
+     * @param turnInd the ghostTurn# you are intializing the positions of
+     */
     public void ghostPos(int turnInd) {
         Ghostturn turn = turns.get(turnInd);
         if(levelNumber==2){
