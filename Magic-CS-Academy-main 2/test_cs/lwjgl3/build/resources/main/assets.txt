@@ -27,9 +27,9 @@ loseBackground.png
 music.mp3
 nonHover.png
 normalV.png
+ocean.jpg
 pause.png
 play.png
-ocean.jpg
 replayIcon.png
 ui/font-list.fnt
 ui/font-subtitle.fnt

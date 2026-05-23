@@ -306,8 +306,8 @@ public class GameScreen extends InputAdapter implements Screen {
         font.setColor(Color.WHITE);
         font.getData().setScale(1.2f);
         GlyphLayout layout = new GlyphLayout(font, "Paused\nResume");
-        float x =(800-layout.width)/2;
-        float y =(400+layout.height)/2;
+        float x =(1600-layout.width)/2;
+        float y =(800+layout.height)/2;
         font.draw(game.batch, layout, x, y);
         font.getData().setScale(0.02f);
         game.batch.end();
