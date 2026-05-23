@@ -12,7 +12,7 @@ public class Ghostturn {
     ArrayList<Ghost> ghostspresent;
     public ArrayList<Float> ghostx;
     public ArrayList<Float> ghosty;
-
+    private boolean fish;
 
 
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
@@ -27,7 +27,7 @@ public class Ghostturn {
             ghostspresent.add(new Ghost(len, totshapes));
         }
         System.out.println(this);
-
+        fish = false;
     }
     public Ghostturn(int diff, int[] counts){
         //counts.length = nGhosts
@@ -42,7 +42,7 @@ public class Ghostturn {
             ghostspresent.add(new Ghost(counts[i], totshapes));
         }
         System.out.println(this);
-
+        fish = false;
     }
 
     public Ghostturn(int diff, int[] counts,boolean[] fulks){
@@ -61,22 +61,25 @@ public class Ghostturn {
             }
         }
         System.out.println(this);
-
+        fish = false;
     }
 
-    public Ghostturn(int nGhosts, int len, int diff, boolean spiral, boolean circle, boolean allFulk){
+    public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean allFulk){
         numGhosts = nGhosts;
         numAlive = numGhosts;
         //strlen = len;
-
+        fish = allFish;
         difficulty = diff;
         ghostx = new ArrayList<Float>(nGhosts);
         ghosty = new ArrayList<Float>(nGhosts);
         ghostspresent = new ArrayList<Ghost>();
-        for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
+        for(int i=0;i<nGhosts;i++){
             ghostspresent.add(new Ghost(len, totshapes));
             if(allFulk){
                 ghostspresent.get(i).isFulk=true;
+            }
+            else if(allFish){
+                ghostspresent.get(i).isFish = true;
             }
         }
         if(circle){
@@ -124,7 +127,9 @@ public class Ghostturn {
 
                 float xpos = ghostx.get(i)-((float)(ghostspresent.get(i).shapes.size())/2)*0.15f+((ghostspresent.get(i).shapes.size())%2==0?0.33f:0.32f);
                 float ypos = 0.6f+ghosty.get(i);
-
+                if(fish){
+                    ypos = 0.3f+ghosty.get(i);
+                }
                 if(xpos<0f||xpos>6f||ypos<0f||ypos>3f){
                     return;
                 }

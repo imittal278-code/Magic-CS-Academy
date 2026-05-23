@@ -47,6 +47,8 @@ public class GameScreen extends InputAdapter implements Screen {
     private Sprite ghost2;
     private Texture fulkPic;
     private Sprite fulk;
+    private Sprite fish;
+    private Texture fishpic;
     private Texture cat;
     private Sprite cat2;
     private Texture heart;
@@ -93,6 +95,8 @@ public class GameScreen extends InputAdapter implements Screen {
         ghost2 = new Sprite(ghost);
         fulkPic = new Texture("Fulk.png");
         fulk = new Sprite(fulkPic);
+        fishpic = new Texture("fish.png");
+        fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
@@ -111,7 +115,7 @@ public class GameScreen extends InputAdapter implements Screen {
         map.put(2,normalV);
         map.put(3,upsideDownV);
         map.put(4,circle);
-        GameThing g = new GameThing();
+        GameThing g = new GameThing(game);
         level1 = g.l1;
         level2 = g.l2;
         level3 = g.l3;
@@ -159,8 +163,19 @@ public class GameScreen extends InputAdapter implements Screen {
                 float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
                 if(g.isFulk){
                     fulk.setPosition(x, y);
-                    fulk.setSize(0.6f, 0.6f);
+                    fulk.setSize(0.58f, 0.58f);
                     fulk.draw(game.batch);
+                }
+                else if(g.isFish){
+                    fish.setPosition(x, y);
+                    fish.setSize(0.7f, 0.25f);
+                    fish.draw(game.batch);
+                    int shapesLeft = g.shapes.size();
+                    float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
+                    }
+                    continue;
                 }
                 else{
                     ghost2.setPosition(x, y);
@@ -189,9 +204,9 @@ public class GameScreen extends InputAdapter implements Screen {
              game.myViewport.apply();
              game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
              game.batch.begin();
-             game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
-             game.batch.setColor(1f, 1f, 1f, 1f);
+
              game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,1f,6f,1f);
              game.batch.end();
             if(transitionTime<=0)showTransition = false;
@@ -206,13 +221,12 @@ public class GameScreen extends InputAdapter implements Screen {
         //Gdx.app.log("VIEWPORT", "worldW=" + game.myViewport.getWorldWidth() + ", worldH=" + game.myViewport.getWorldHeight()); //REMOVE
         //Gdx.app.log("", "piSCREENxelsW=" + Gdx.graphics.getWidth() + ", pixelsH=" + Gdx.graphics.getHeight()); //REMOVE
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-        game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+
         game.batch.begin();
 
         //draw the background first
-        game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
-        game.batch.setColor(1f, 1f, 1f, 1f);
+        drawScore();
 
         //set cat's position and size and draw it
         cat2 = new Sprite(cat);
@@ -267,7 +281,7 @@ public class GameScreen extends InputAdapter implements Screen {
             }
         }
 
-        drawScore();
+
     }
 
     private void drawShield() {
@@ -289,9 +303,10 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
-        game.batch.begin();
+
         font.draw(game.batch, "" + c.getScore(), 1200, 720);
-        game.batch.end();
+        game.myViewport.apply();
+        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
     }
 
     private void drawPlayPause(){

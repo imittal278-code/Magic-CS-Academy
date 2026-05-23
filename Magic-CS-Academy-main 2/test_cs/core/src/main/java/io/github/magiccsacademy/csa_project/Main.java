@@ -20,13 +20,25 @@ public class Main extends Game {
     public SpriteBatch batch;
     public Stage stage;
     public FitViewport myViewport;
-    Music music;
-
+    public Music music;
+    public Music ghostdeath;
+    public Sound sound1;
+    public Sound sound2;
+    public Sound sound3;
+    public Sound sound4;
+    public Sound sound5;
 
 
     public void create(){
         batch = new SpriteBatch();
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        sound1 =  Gdx.audio.newSound(Gdx.files.internal("sound1.mp3"));
+        sound2 =  Gdx.audio.newSound(Gdx.files.internal("sound2.mp3"));
+        sound3 =  Gdx.audio.newSound(Gdx.files.internal("sound3.mp3"));
+        sound4 =  Gdx.audio.newSound(Gdx.files.internal("sound4.mp3"));
+        sound5 =  Gdx.audio.newSound(Gdx.files.internal("sound5.mp3"));
+        ghostdeath = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
+        music.setVolume(0.1f);
         music.setLooping(true);
         music.play();
         myViewport = new FitViewport(6, 3);
