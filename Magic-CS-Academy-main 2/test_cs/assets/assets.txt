@@ -6,7 +6,6 @@ Sheild.png
 Title.png
 arial.ttf
 background.png
-bucket.png
 circle.png
 csclassroom.jpg
 drop.mp3

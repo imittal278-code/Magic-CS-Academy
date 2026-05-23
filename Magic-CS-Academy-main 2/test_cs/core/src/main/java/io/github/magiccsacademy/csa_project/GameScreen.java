@@ -177,6 +177,7 @@ public class GameScreen extends InputAdapter implements Screen {
     @Override
     public void render(float delta) {
         //keep this code at the top
+        background = controller.getCurrentLevel().getBackground();
          if(showTransition){
              transitionTime-=delta;
              ScreenUtils.clear(0,0,1,1);
@@ -193,7 +194,7 @@ public class GameScreen extends InputAdapter implements Screen {
          }
 
         //set background based on current Level
-        background = controller.getCurrentLevel().getBackground();
+
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
