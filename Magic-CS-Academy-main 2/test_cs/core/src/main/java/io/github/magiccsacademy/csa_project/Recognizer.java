@@ -95,14 +95,14 @@ public class Recognizer
 	
 	void loadTemplatesSimple()
 	{
-		Templates.addElement(loadTemplate("circle CCW", TemplateData.circlePointsCCW));
-		Templates.addElement(loadTemplate("circle CW", TemplateData.circlePointsCW));
-		Templates.addElement(loadTemplate("caret CCW", TemplateData.caretPointsCCW));
-		Templates.addElement(loadTemplate("caret CW", TemplateData.caretPointsCW));
-		Templates.addElement(loadTemplate("line left", TemplateData.lineToLeftPoints));
-		Templates.addElement(loadTemplate("line right", TemplateData.lineToRightPoints));
-		Templates.addElement(loadTemplate("linedown", TemplateData.lineToDownPoints));
-		Templates.addElement(loadTemplate("lineup", TemplateData.lineToUpPoints));
+		Templates.addElement(loadTemplate("circle", TemplateData.circlePointsCCW));
+		Templates.addElement(loadTemplate("circle", TemplateData.circlePointsCW));
+		Templates.addElement(loadTemplate("upsideDownV", TemplateData.caretPointsCCW));
+		Templates.addElement(loadTemplate("normalV", TemplateData.caretPointsCW));
+		Templates.addElement(loadTemplate("horizontalLine", TemplateData.lineToLeftPoints));
+		Templates.addElement(loadTemplate("horizontalLine", TemplateData.lineToRightPoints));
+		Templates.addElement(loadTemplate("verticalLine", TemplateData.lineToDownPoints));
+		Templates.addElement(loadTemplate("verticalLine", TemplateData.lineToUpPoints));
 
 	}
 	

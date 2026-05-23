@@ -283,7 +283,7 @@ public class Level {
      */
     public void ghostPos(int turnInd) {
         Ghostturn turn = turns.get(turnInd);
-        if(levelNumber==2){//FIX THIS !!!!!!!!!
+        if(levelNumber==2){
             float adder = -1f;
             if(turn.ghostspresent.size()==1){
                 turn.ghostx.add(6f);
@@ -293,7 +293,7 @@ public class Level {
             for (int i=0; i<turn.ghostspresent.size(); i++) {
                 if(i%3==0)adder+=0.5f;
                 turn.ghostx.add(6f+adder);
-                turn.ghosty.add(0f+(i%4));
+                turn.ghosty.add(0f+(i%4)+adder);
             }
             return;
         }
@@ -301,8 +301,8 @@ public class Level {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));//degrees
             float anglerange = 2*angle/(turn.ghostspresent.size());
             for (int i=0; i<turn.ghostspresent.size(); i++) {
-                //choose a random float in range -angle+i*anglerange to -angle+(i+1)*anglerange
-                float ghostAngle = (float)(Math.random()*(anglerange)+(-angle+(i*anglerange)));//Make 0.5 Math.random
+                //choose a random float in range -angle+(i+1/4)*anglerange to -angle+(i+3/4)*anglerange
+                float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+((i+0.25)*anglerange)));
                 System.out.print(ghostAngle+" " );
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f);
                 turn.ghostx.add((float) ghostPos.X);

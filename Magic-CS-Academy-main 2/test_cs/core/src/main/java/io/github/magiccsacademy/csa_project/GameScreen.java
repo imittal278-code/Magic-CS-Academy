@@ -22,8 +22,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import java.util.*;
+import org.javatuples.Pair;
 
 public class GameScreen extends InputAdapter implements Screen {
     private final int numLevels = 4;
@@ -37,7 +39,8 @@ public class GameScreen extends InputAdapter implements Screen {
     private ArrayList<Texture> transitionBackground;
     private Texture normalV;
     private Texture circle;
-    private HashMap<Integer, Texture> map;
+    private HashMap<Integer, Texture> map1;
+    private HashMap<String, Pair<Integer, Color>> map2;
     private GameEngine controller;
     private boolean showTransition;
     private float transitionTime;
@@ -109,12 +112,18 @@ public class GameScreen extends InputAdapter implements Screen {
         verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
         circle = new Texture("circle.png");
-        map = new HashMap<Integer,Texture>();
-        map.put(0,horizontalLine);
-        map.put(1,verticalLine);
-        map.put(2,normalV);
-        map.put(3,upsideDownV);
-        map.put(4,circle);
+        map1 = new HashMap<Integer,Texture>();
+        map2 = new HashMap<String, Pair<Integer, Color>>();
+        map1.put(0,horizontalLine);
+        map1.put(1,verticalLine);
+        map1.put(2,normalV);
+        map1.put(3,upsideDownV);
+        map1.put(4,circle);
+        map2.put("horizontalLine", new Pair<Integer, Color>(0,Color.RED));
+        map2.put("verticalLine", new Pair<Integer, Color>(1,Color.BLUE));
+        map2.put("normalV", new Pair<Integer, Color>(2,Color.YELLOW));
+        map2.put("upsideDownV", new Pair<Integer, Color>(3,Color.GREEN));
+        map2.put("circle", new Pair<Integer, Color>(4,Color.CYAN));
         GameThing g = new GameThing(game);
         level1 = g.l1;
         level2 = g.l2;
@@ -173,7 +182,7 @@ public class GameScreen extends InputAdapter implements Screen {
                     int shapesLeft = g.shapes.size();
                     float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                     for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
+                        game.batch.draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
                     }
                     continue;
                 }
@@ -186,7 +195,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 int shapesLeft = g.shapes.size();
                 float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                 for(int k = 0;k<shapesLeft;k++){
-                    game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    game.batch.draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
                 }
             }
         }
@@ -399,24 +408,6 @@ public class GameScreen extends InputAdapter implements Screen {
         return true;
     }
 
-    private int getShapeIndex(String name){
-        switch (name) {
-            case "line left":
-            case "line right":
-                return 0;
-            case "lineup":
-            case "linedown":
-                return 1;
-            case "caret CW":
-                return 2;
-            case "caret CCW":
-                return 3;
-            case "circle CW":
-            case "circle CCW":
-                return 4;
-        }
-        return -1;
-    }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {//Called when a finger or the mouse was dragged.
@@ -429,23 +420,7 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         if(points.size()>10){
             Result r = recognizer.Recognize(pts);
-            switch(getShapeIndex(r.Name)){
-                case 2: // v
-                    colorDrawing = Color.YELLOW;
-                    break;
-                case 3: // upside down v
-                    colorDrawing = Color.GREEN;
-                    break;
-                case 4: // circles
-                    colorDrawing = Color.CYAN;
-                    break;
-                case 0: // horizontal line  
-                    colorDrawing = Color.RED;
-                    break;
-                case 1: // vertical line 
-                    colorDrawing = Color.BLUE;
-                    break;
-            }
+            colorDrawing = map2.get(r.Name).getValue1();
         }
         return true;
     }
@@ -456,7 +431,7 @@ public class GameScreen extends InputAdapter implements Screen {
         isDrawing = false;
         if(points.size()>10){
             Result r = recognizer.Recognize(pts);
-            controller.getCurrentLevel().shapeDrawn(getShapeIndex(r.Name), c);
+            controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
         }
         return true;
     }
