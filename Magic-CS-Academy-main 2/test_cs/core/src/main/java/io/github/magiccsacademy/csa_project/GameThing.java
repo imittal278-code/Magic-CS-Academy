@@ -5,7 +5,7 @@ public class GameThing {
     public Level l3 = new Level(3, 1);
     public Level l4 = new Level(4, 1);
     public Level l1 = new Level(1,1);
-    public Level l2 = new Level(2,1);
+    public Level l2 = new Level(2,2);
 
     public GameThing() {
 
