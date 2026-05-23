@@ -74,7 +74,6 @@ public class GameScreen extends InputAdapter implements Screen {
     private Level level4;
     private Level level5;
 
-
     public GameScreen(Main game) {
         this.game = game;
 
@@ -265,6 +264,10 @@ public class GameScreen extends InputAdapter implements Screen {
         for (int i = 0; i < points.size() - 1; i++) {
             shapeRenderer.rectLine(points.get(i), points.get(i + 1), 0.05f);
         }
+        if (isDrawing && points.size()>0) {
+            shapeRenderer.setColor(Color.WHITE);
+            shapeRenderer.circle(points.get(points.size()-1).x, points.get(points.size()-1).y, 0.04f, 24);
+        }
         shapeRenderer.end();
 
         if (paused)drawPauseOverlay();
@@ -418,6 +421,7 @@ public class GameScreen extends InputAdapter implements Screen {
         isDrawing = true;
         colorDrawing = Color.WHITE;
         return true;
+
     }
 
 
@@ -466,8 +470,6 @@ public class GameScreen extends InputAdapter implements Screen {
             }
         }
 
-
         return true;
     }
 }
-
