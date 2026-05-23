@@ -337,13 +337,22 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
         game.batch.begin();
-        font.setColor(Color.WHITE);
+        font.getData().setScale(0.8f);
+        GlyphLayout pausedLayout = new GlyphLayout(font, "Paused");
+        float pausedX=(1600-pausedLayout.width)/2;
+        float pausedY=470;
+        font.setColor(Color.ORANGE);
+        font.draw(game.batch, "Paused", pausedX, pausedY);
+
         font.getData().setScale(1.2f);
-        GlyphLayout layout = new GlyphLayout(font, "Paused\nResume");
-        float x =(1600-layout.width)/2;
-        float y =(800+layout.height)/2;
-        font.draw(game.batch, "Paused\nResume", x, y);
-        font.getData().setScale(0.02f);
+        GlyphLayout resumeLayout = new GlyphLayout(font, "Resume");
+        float resumeX=(1600-resumeLayout.width)/2;
+        float resumeY=400;
+        font.setColor(Color.WHITE);
+        font.draw(game.batch, "Resume", resumeX, resumeY);
+
+        font.setColor(Color.ORANGE);
+        font.getData().setScale(1f);
         game.batch.end();
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
@@ -461,5 +470,4 @@ public class GameScreen extends InputAdapter implements Screen {
         return true;
     }
 }
-
 
