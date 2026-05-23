@@ -425,6 +425,16 @@ public class GameScreen extends InputAdapter implements Screen {
             Result r = recognizer.Recognize(pts);
             colorDrawing = map2.get(r.Name).getValue1();
         }
+        else if(points.size()>1){
+            if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
+                //horizontal
+                colorDrawing = Color.RED;
+            }
+            else{
+                //vertical
+                colorDrawing = Color.BLUE;
+            }
+        }
         return true;
     }
 
@@ -436,6 +446,18 @@ public class GameScreen extends InputAdapter implements Screen {
             Result r = recognizer.Recognize(pts);
             controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
         }
+        else if(points.size()>1){
+            if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
+                //horizontal
+                controller.getCurrentLevel().shapeDrawn(0, c);
+            }
+            else{
+                //vertical
+                controller.getCurrentLevel().shapeDrawn(1, c);
+            }
+        }
+
+
         return true;
     }
 }
