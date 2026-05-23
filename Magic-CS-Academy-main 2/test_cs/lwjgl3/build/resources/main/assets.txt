@@ -7,10 +7,13 @@ Title.png
 arial.ttf
 background.png
 circle.png
+circuitBackground.jpg
 csclassroom.jpg
+desertBackground.jpg
 drop.mp3
 drop.png
 endscreenimage.png
+forest.jpg
 ghost2.png
 ghostdeath.mp3
 heart.png

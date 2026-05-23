@@ -44,13 +44,13 @@ public class Level {
             background = new Texture("ocean.jpg");
         }
         else if (levelNumber==3) {
-            background = new Texture("background.png");
+            background = new Texture("desertBackground.jpg");
         }
         else if (levelNumber==4) {
-            background = new Texture("background.png");
+            background = new Texture("forest.jpg");
         }
         else if (levelNumber==5) {
-            background = new Texture("background.png");
+            background = new Texture("circuitBackground.jpg");
         }
     }
 
