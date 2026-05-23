@@ -115,7 +115,7 @@ public class GameScreen extends InputAdapter implements Screen {
         map.put(2,normalV);
         map.put(3,upsideDownV);
         map.put(4,circle);
-        GameThing g = new GameThing();
+        GameThing g = new GameThing(game);
         level1 = g.l1;
         level2 = g.l2;
         level3 = g.l3;

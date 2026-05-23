@@ -2,13 +2,16 @@ package io.github.magiccsacademy.csa_project;
 
 public class GameThing {
 
-    public Level l3 = new Level(3, 1);
-    public Level l4 = new Level(4, 1);
-    public Level l1 = new Level(1,1);
-    public Level l2 = new Level(2,2);
+    public Level l3;
+    public Level l4;
+    public Level l1;
+    public Level l2;
 
-    public GameThing() {
-
+    public GameThing(Main game) {
+        l3 = new Level(3, 1,game);
+        l4 = new Level(4, 1,game);
+        l1 = new Level(1,1,game);
+        l2 = new Level(2,2,game);
         l3.addTurn(new Ghostturn(3, 2, 1, false,false,false));
         l3.addTurn(new Ghostturn(3, 2, 1, false,false,false));
         l3.addTurn(new Ghostturn(2, 6, 1, false,false,false));

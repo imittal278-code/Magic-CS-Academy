@@ -26,27 +26,20 @@ public class Level {
     private float ghostSpeed;
     private Texture background;
     private ArrayList<Ghostturn> turns;
-    private Sound sound1 =  Gdx.audio.newSound(Gdx.files.internal("sound1.mp3"));
-    private Sound sound2 =  Gdx.audio.newSound(Gdx.files.internal("sound2.mp3"));
-    private Sound sound3 =  Gdx.audio.newSound(Gdx.files.internal("sound3.mp3"));
-    private Sound sound4 =  Gdx.audio.newSound(Gdx.files.internal("sound4.mp3"));
-    private Sound sound5 =  Gdx.audio.newSound(Gdx.files.internal("sound5.mp3"));
-    Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
+    private Main game;
 
 
-    public Level(int levelNumber, int difficulty) {
+
+
+    public Level(int levelNumber, int difficulty, Main game) {
         this.levelNumber = levelNumber;
         this.difficulty = difficulty;
         this.currentTurnIndex = 0;
         this.completed = false;
         this.ghostSpeed = 0.2f+(difficulty*0.05f); //FIX THIS !!!!!!!!!
         this.turns = new ArrayList<>();
+        this.game = game;
 
-        sound1 =  Gdx.audio.newSound(Gdx.files.internal("sound1.mp3"));
-        sound2 =  Gdx.audio.newSound(Gdx.files.internal("sound2.mp3"));
-        sound3 =  Gdx.audio.newSound(Gdx.files.internal("sound3.mp3"));
-        sound4 =  Gdx.audio.newSound(Gdx.files.internal("sound4.mp3"));
-        sound5 =  Gdx.audio.newSound(Gdx.files.internal("sound5.mp3"));
 
 
 
@@ -87,19 +80,19 @@ public class Level {
     }
     public void shapeDrawn(int shapeIndex, Cat c) {
         if(shapeIndex==0){
-            sound1.play(1.0f);
+            game.sound1.play(1.0f);
         }
         else if(shapeIndex==1){
-            sound2.play(1.0f);
+            game.sound2.play(1.0f);
         }
         else if(shapeIndex==2){
-            sound3.play(1.0f);
+            game.sound3.play(1.0f);
         }
         else if(shapeIndex==3){
-            sound5.play(1.0f);
+            game.sound5.play(1.0f);
         }
         else if(shapeIndex==4){
-            sound4.play(1.0f);
+            game.sound4.play(1.0f);
         }
 
         Ghostturn curr = turns.get(currentTurnIndex);
@@ -133,7 +126,7 @@ public class Level {
                     else{
                         c.loseLife();
                     }
-                    music.play();
+                    game.ghostdeath.play();
                     ghost.remove();
                     curr.numAlive--;
                 }
