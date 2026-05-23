@@ -27,6 +27,7 @@ loseBackground.png
 music.mp3
 nonHover.png
 normalV.png
+ocean.jpg
 pause.png
 play.png
 replayIcon.png

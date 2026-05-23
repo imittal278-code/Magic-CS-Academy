@@ -189,9 +189,9 @@ public class GameScreen extends InputAdapter implements Screen {
              game.myViewport.apply();
              game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
              game.batch.begin();
-             game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
-             game.batch.setColor(1f, 1f, 1f, 1f);
+
              game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,1f,6f,1f);
              game.batch.end();
             if(transitionTime<=0)showTransition = false;
@@ -203,13 +203,12 @@ public class GameScreen extends InputAdapter implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-        game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
+
         game.batch.begin();
 
         //draw the background first
-        game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
-        game.batch.setColor(1f, 1f, 1f, 1f);
+
 
         //set cat's position and size and draw it
         cat2 = new Sprite(cat);
