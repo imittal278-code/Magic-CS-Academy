@@ -282,6 +282,7 @@ public class GameScreen extends InputAdapter implements Screen {
             else if(!showTransition){
                 showTransition = true;
                 transitionTime = 2f;
+                c.shieldOff();
                 controller.nextLevel();
                 if (controller.doneWithLevels() && c.isAlive()) {
                     this.dispose();
