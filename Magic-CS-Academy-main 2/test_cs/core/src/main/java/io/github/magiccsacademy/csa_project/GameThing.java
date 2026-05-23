@@ -11,7 +11,7 @@ public class GameThing {
         l3 = new Level(3, 1,game);
         l4 = new Level(4, 1,game);
         l1 = new Level(1,1,game);
-        l2 = new Level(2,2,game);
+        l2 = new Level(2,8,game);
         l3.addTurn(new Ghostturn(3, 2, 1, false,false,false));
         l3.addTurn(new Ghostturn(3, 2, 1, false,false,false));
         l3.addTurn(new Ghostturn(2, 6, 1, false,false,false));
