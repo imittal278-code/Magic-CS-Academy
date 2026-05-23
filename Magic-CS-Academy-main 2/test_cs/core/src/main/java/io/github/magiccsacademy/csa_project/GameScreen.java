@@ -223,7 +223,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
         //draw the background first
         game.batch.draw(background, 0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
-
+        drawScore();
 
         //set cat's position and size and draw it
         cat2 = new Sprite(cat);
@@ -273,7 +273,7 @@ public class GameScreen extends InputAdapter implements Screen {
             }
         }
 
-        drawScore();
+
     }
 
     private void drawShield() {
@@ -295,9 +295,10 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
-        game.batch.begin();
+
         font.draw(game.batch, "" + c.getScore(), 1200, 720);
-        game.batch.end();
+        game.myViewport.apply();
+        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
     }
 
     private void drawPlayPause(){
