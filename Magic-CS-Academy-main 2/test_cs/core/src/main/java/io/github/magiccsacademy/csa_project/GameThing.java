@@ -2,7 +2,7 @@ package io.github.magiccsacademy.csa_project;
 
 public class GameThing {
 
-    public Level l3 = new Level(1, 1);
+    public Level l3 = new Level(3, 1);
     public Level l4 = new Level(4, 1);
     public Level l1 = new Level(1,1);
     public Level l2 = new Level(2,1);
@@ -21,11 +21,11 @@ public class GameThing {
         l3.addTurn(new Ghostturn(1, 1, 1, false,false,false));
         l3.addTurn(new Ghostturn(1, 1, 1, false,false,false));
         l3.addTurn(new Ghostturn(new Ghost("0000000000",true)));
-        l4.addTurn(new Ghostturn(6, 3, 1, false,false,false));
-        l4.addTurn(new Ghostturn(1, 5, 1, false,false,false));
+
 
         // ONE TURN USING NEW CONSTRUCTOR NEEDS TO BE WRITTEN
-
+        l4.addTurn(new Ghostturn(6, 3, 1, false,false,false));
+        l4.addTurn(new Ghostturn(1, 5, 1, false,false,false));
         l4.addTurn(new Ghostturn(20, 1, 1, false,false,false));// lightning
         l4.addTurn(new Ghostturn(new Ghost("121212"))); // Lightbulb
         l4.addTurn(new Ghostturn(new Ghost("13131313")));// anglerfish boss

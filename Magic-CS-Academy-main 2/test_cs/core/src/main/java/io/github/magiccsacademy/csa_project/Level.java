@@ -44,7 +44,13 @@ public class Level {
             background = new Texture("background.png");
         }
         else if (levelNumber==3) {
-            //background = new Texture("level3.png");
+            background = new Texture("background.png");
+        }
+        else if (levelNumber==4) {
+            background = new Texture("background.png");
+        }
+        else if (levelNumber==5) {
+            background = new Texture("background.png");
         }
     }
 
@@ -153,9 +159,13 @@ public class Level {
             }
             return;
         }
+        float adder = -1f;
         for (int i=0; i<turn.ghostspresent.size(); i++) {
-            turn.ghostx.add(0f + i);
-            turn.ghosty.add(0f);
+            if(i%6==0){
+                adder++;
+            }
+            turn.ghostx.add(0f + i%6);
+            turn.ghosty.add(0f-adder);
         }
     }
 }

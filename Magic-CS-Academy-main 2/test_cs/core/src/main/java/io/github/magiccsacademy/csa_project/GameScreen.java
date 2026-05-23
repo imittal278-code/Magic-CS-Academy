@@ -206,6 +206,7 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setColor(1f, 1f, 1f, 1f);
 
         //set cat's position and size and draw it
+        cat2 = new Sprite(cat);
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
