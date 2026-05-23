@@ -67,7 +67,7 @@ public class Ghostturn {
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral, boolean circle, boolean allFulk){
         numGhosts = nGhosts;
         //strlen = len;
-        numAlive = numGhosts;
+
         difficulty = diff;
         ghostx = new ArrayList<Float>(nGhosts);
         ghosty = new ArrayList<Float>(nGhosts);
@@ -82,6 +82,7 @@ public class Ghostturn {
             ghostspresent.add(new Ghost("4"));
             System.out.println(this);
             numGhosts++;
+            numAlive = numGhosts;
         }
 
 
@@ -97,9 +98,9 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(numGhosts);
     }
 
-    private determineSpeed(){
-        if()
-    }
+    /*private determineSpeed(){
+        //if()
+    }*/
 
  /*   public void add(){
         ghostspresent.add(new Ghost(strlen, totshapes));
@@ -119,6 +120,15 @@ public class Ghostturn {
         
         for(int i=0;i<ghostspresent.size();i++){
             if(ghostspresent.get(i).lastShapeEquals(shapeIndex)){
+
+
+                float xpos = ghostx.get(i)-((float)(ghostspresent.get(i).shapes.size())/2)*0.15f+((ghostspresent.get(i).shapes.size())%2==0?0.33f:0.32f);
+                float ypos = 0.6f+ghosty.get(i);
+
+                if(xpos<0f||xpos>6f||ypos<0f||ypos>3f){
+                    return;
+                }
+
                 if(shapeIndex <=3){
                     ghostspresent.get(i).removeLast();
                     int increment = 10;
