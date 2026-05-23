@@ -105,7 +105,7 @@ public class GameScreen extends InputAdapter implements Screen {
         font = new BitmapFont();
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
-        font.setColor(Color.YELLOW);
+        font.setColor(Color.ORANGE);
         background = new Texture("background.png");
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
@@ -147,14 +147,14 @@ public class GameScreen extends InputAdapter implements Screen {
         playTexture = new Texture("play.png");
 
         //font setup stuff dont worry about the red errors, they dont matter
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("comicsansmf.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 80;
         parameter.minFilter = Texture.TextureFilter.Linear;
         parameter.magFilter = Texture.TextureFilter.Linear;
         font = generator.generateFont(parameter);
         generator.dispose();
-        font.setColor(Color.YELLOW);
+        font.setColor(Color.ORANGE);
     }
 
 
@@ -312,8 +312,9 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
-
-        font.draw(game.batch, "" + c.getScore(), 1200, 720);
+        font.setColor(Color.ORANGE);
+        font.getData().setScale(1f);
+        font.draw(game.batch, "" + c.getScore(), 1400, 750);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
     }
@@ -347,7 +348,8 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
         game.batch.begin();
         Texture icon=playTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth() - 0.7f, 0.1f, 0.6f, 0.6f);
+        game.batch.draw(icon, game.myViewport.getWorldWidth() -
+                0.7f, 0.1f, 0.6f, 0.6f);
         game.batch.end();
     }
 
