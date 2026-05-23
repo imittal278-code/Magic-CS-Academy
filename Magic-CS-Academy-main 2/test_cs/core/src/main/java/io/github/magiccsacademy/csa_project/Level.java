@@ -150,12 +150,14 @@ public class Level {
         Ghostturn turn = turns.get(turnInd);
         if(levelNumber==2){
             float adder = -1f;
+            float yadder=0f;
             for (int i=0; i<turn.ghostspresent.size(); i++) {
                 if(i%3==0){
                     adder+=0.5f;
+                    adder+=0.5f;
                 }
                 turn.ghostx.add(6f+adder);
-                turn.ghosty.add(0f+(i%4));
+                turn.ghosty.add(0f+(i%4)+(yadder%1f));
             }
             return;
         }

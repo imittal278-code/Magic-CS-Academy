@@ -66,6 +66,7 @@ public class Ghostturn {
 
     public Ghostturn(int nGhosts, int len, int diff, boolean spiral, boolean circle, boolean allFulk){
         numGhosts = nGhosts;
+        numAlive = numGhosts;
         //strlen = len;
 
         difficulty = diff;
