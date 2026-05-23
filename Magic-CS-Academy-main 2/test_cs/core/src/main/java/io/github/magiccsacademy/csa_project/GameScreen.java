@@ -47,6 +47,8 @@ public class GameScreen extends InputAdapter implements Screen {
     private Sprite ghost2;
     private Texture fulkPic;
     private Sprite fulk;
+    private Sprite fish;
+    private Texture fishpic;
     private Texture cat;
     private Sprite cat2;
     private Texture heart;
@@ -93,6 +95,8 @@ public class GameScreen extends InputAdapter implements Screen {
         ghost2 = new Sprite(ghost);
         fulkPic = new Texture("Fulk.png");
         fulk = new Sprite(fulkPic);
+        fishpic = new Texture("fish.png");
+        fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
@@ -159,8 +163,19 @@ public class GameScreen extends InputAdapter implements Screen {
                 float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
                 if(g.isFulk){
                     fulk.setPosition(x, y);
-                    fulk.setSize(0.6f, 0.6f);
+                    fulk.setSize(0.58f, 0.58f);
                     fulk.draw(game.batch);
+                }
+                else if(g.isFish){
+                    fish.setPosition(x, y);
+                    fish.setSize(0.7f, 0.25f);
+                    fish.draw(game.batch);
+                    int shapesLeft = g.shapes.size();
+                    float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
+                    for(int k = 0;k<shapesLeft;k++){
+                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
+                    }
+                    continue;
                 }
                 else{
                     ghost2.setPosition(x, y);

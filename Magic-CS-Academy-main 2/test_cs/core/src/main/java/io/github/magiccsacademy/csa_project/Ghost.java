@@ -7,10 +7,12 @@ public class Ghost {
     ArrayList<Integer> shapes;
     public int strlen;
     public boolean isFulk;
+    public boolean isFish;
    // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
         isFulk = false;
+        isFish = false;
         alive = true;
         strlen = len;
        // totaltypeshapes = totshapes;
@@ -29,6 +31,7 @@ public class Ghost {
 
     public Ghost (String s){
         isFulk = false;
+        isFish = false;
         shapes = strtointarray(s.split(""));
      //   totaltypeshapes = 4;
         strlen = shapes.size();
@@ -37,6 +40,7 @@ public class Ghost {
 
     public Ghost (String s, boolean fulk){
         isFulk = fulk;
+        isFish = false;
         shapes = strtointarray(s.split(""));
         //   totaltypeshapes = 4;
         strlen = shapes.size();

@@ -13,6 +13,7 @@ desertBackground.jpg
 drop.mp3
 drop.png
 endscreenimage.png
+fish.png
 forest.jpg
 ghost2.png
 ghostdeath.mp3
