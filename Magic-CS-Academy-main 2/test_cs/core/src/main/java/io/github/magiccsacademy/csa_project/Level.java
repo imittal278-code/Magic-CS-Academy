@@ -2,6 +2,7 @@ package io.github.magiccsacademy.csa_project;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -25,6 +26,11 @@ public class Level {
     private float ghostSpeed;
     private Texture background;
     private ArrayList<Ghostturn> turns;
+    private Sound sound1 =  Gdx.audio.newSound(Gdx.files.internal("sound1.mp3"));
+    private Sound sound2 =  Gdx.audio.newSound(Gdx.files.internal("sound2.mp3"));
+    private Sound sound3 =  Gdx.audio.newSound(Gdx.files.internal("sound3.mp3"));
+    private Sound sound4 =  Gdx.audio.newSound(Gdx.files.internal("sound4.mp3"));
+    private Sound sound5 =  Gdx.audio.newSound(Gdx.files.internal("sound5.mp3"));
     Music music = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
 
 
@@ -35,6 +41,18 @@ public class Level {
         this.completed = false;
         this.ghostSpeed = 0.2f+(difficulty*0.05f); //FIX THIS !!!!!!!!!
         this.turns = new ArrayList<>();
+
+        sound1 =  Gdx.audio.newSound(Gdx.files.internal("sound1.mp3"));
+        sound2 =  Gdx.audio.newSound(Gdx.files.internal("sound2.mp3"));
+        sound3 =  Gdx.audio.newSound(Gdx.files.internal("sound3.mp3"));
+        sound4 =  Gdx.audio.newSound(Gdx.files.internal("sound4.mp3"));
+        sound5 =  Gdx.audio.newSound(Gdx.files.internal("sound5.mp3"));
+
+
+
+
+
+
 
         // SET NUM BACkGROUNDS AND BACKGROUND IMAGE FOR EACH LEEVL
         if (levelNumber==1) {
@@ -68,6 +86,22 @@ public class Level {
         return turns.get(currentTurnIndex);
     }
     public void shapeDrawn(int shapeIndex, Cat c) {
+        if(shapeIndex==0){
+            sound1.play(1.0f);
+        }
+        else if(shapeIndex==1){
+            sound2.play(1.0f);
+        }
+        else if(shapeIndex==2){
+            sound3.play(1.0f);
+        }
+        else if(shapeIndex==3){
+            sound5.play(1.0f);
+        }
+        else if(shapeIndex==4){
+            sound4.play(1.0f);
+        }
+
         Ghostturn curr = turns.get(currentTurnIndex);
         curr.shapeDrawn(shapeIndex, c);
         if (!curr.isAlive()) {

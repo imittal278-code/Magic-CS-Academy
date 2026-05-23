@@ -35,6 +35,11 @@ ocean.jpg
 pause.png
 play.png
 replayIcon.png
+sound1.mp3
+sound2.mp3
+sound3.mp3
+sound4.mp3
+sound5.mp3
 ui/font-list.fnt
 ui/font-subtitle.fnt
 ui/font-window.fnt

@@ -27,6 +27,7 @@ public class Main extends Game {
     public void create(){
         batch = new SpriteBatch();
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.setVolume(0.1f);
         music.setLooping(true);
         music.play();
         myViewport = new FitViewport(6, 3);
