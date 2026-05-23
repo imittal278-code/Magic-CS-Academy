@@ -94,7 +94,7 @@ public class homeScreen implements Screen{
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
         game.batch.setColor(1f, 1f, 1f, 1f);
-        game.batch.draw(title,1f,2f,4f,2/3f);
+        game.batch.draw(title,1f,2f,4.29f,1/2f);
         drawGhost(ghostleft,0.1f,0.75f);
         drawGhost(ghostright,1f,0.75f);
         timesum+=delta;

@@ -41,7 +41,7 @@ public class Level {
             background = new Texture("background.png");
         }
         else if (levelNumber==2) {
-            background = new Texture("background.png");
+            background = new Texture("ocean.jpg");
         }
         else if (levelNumber==3) {
             background = new Texture("background.png");

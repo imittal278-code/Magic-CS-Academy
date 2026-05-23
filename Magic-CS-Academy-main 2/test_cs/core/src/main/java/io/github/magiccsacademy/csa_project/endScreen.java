@@ -42,14 +42,14 @@ public class endScreen implements Screen{
     private Viewport uiViewport;
 
     public endScreen(Main game, Cat c){
-        uiViewport = new FitViewport(600, 300);
+        uiViewport = new FitViewport(1200,600);
 
         this.game = game;
         this.win = c.isAlive();
         this.score = String.valueOf(c.getScore());
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 48;
+        parameter.size = 96;
         parameter.minFilter = Texture.TextureFilter.Linear;
         parameter.magFilter = Texture.TextureFilter.Linear;
         font = generator.generateFont(parameter);
@@ -144,9 +144,9 @@ public class endScreen implements Screen{
         String text = ""+score;
         layout.setText(font, text);
 
-        float targetX = 440;
+        float targetX = 880;
         game.batch.begin();
-        font.draw(game.batch, layout, targetX - (layout.width / 2), 200);
+        font.draw(game.batch, layout, targetX - (layout.width / 2), 400);
         game.batch.end();
     }
 

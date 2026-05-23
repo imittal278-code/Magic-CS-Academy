@@ -78,7 +78,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
-        uiViewport = new FitViewport(800, 400);
+        uiViewport = new FitViewport(1600, 800);
         colorDrawing = Color.WHITE;
         paused = false;
         controller = new GameEngine(numLevels);
@@ -136,7 +136,7 @@ public class GameScreen extends InputAdapter implements Screen {
         //font setup stuff dont worry about the red errors, they dont matter
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 30;
+        parameter.size = 80;
         parameter.minFilter = Texture.TextureFilter.Linear;
         parameter.magFilter = Texture.TextureFilter.Linear;
         font = generator.generateFont(parameter);
@@ -182,6 +182,7 @@ public class GameScreen extends InputAdapter implements Screen {
     @Override
     public void render(float delta) {
         //keep this code at the top
+        background = controller.getCurrentLevel().getBackground();
          if(showTransition){
              transitionTime-=delta;
              ScreenUtils.clear(0,0,1,1);
@@ -198,7 +199,7 @@ public class GameScreen extends InputAdapter implements Screen {
          }
 
         //set background based on current Level
-        background = controller.getCurrentLevel().getBackground();
+
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
@@ -281,7 +282,7 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
         game.batch.begin();
-        font.draw(game.batch, "" + c.getScore(), 700, 360);
+        font.draw(game.batch, "" + c.getScore(), 1200, 720);
         game.batch.end();
     }
 

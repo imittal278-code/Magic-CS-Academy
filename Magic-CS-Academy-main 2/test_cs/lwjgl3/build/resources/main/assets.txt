@@ -29,6 +29,7 @@ nonHover.png
 normalV.png
 pause.png
 play.png
+ocean.jpg
 replayIcon.png
 ui/font-list.fnt
 ui/font-subtitle.fnt
