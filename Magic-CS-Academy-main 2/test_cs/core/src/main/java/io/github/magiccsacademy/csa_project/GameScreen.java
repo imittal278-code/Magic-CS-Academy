@@ -1,6 +1,7 @@
 package io.github.magiccsacademy.csa_project;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -59,7 +60,9 @@ public class GameScreen extends InputAdapter implements Screen {
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
     private Color colorDrawing;
-
+    private boolean paused;
+    private Texture pauseTexture;
+    private Texture playTexture;
     private Level level1;
     private Level level2;
     private Level level3;
@@ -77,8 +80,8 @@ public class GameScreen extends InputAdapter implements Screen {
     public void show() {
         uiViewport = new FitViewport(800, 400);
         colorDrawing = Color.WHITE;
+        paused = false;
         controller = new GameEngine(numLevels);
-        //button = new TextButton("Click Me!", skin);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
         heart = new Texture("heart.png");
@@ -127,6 +130,8 @@ public class GameScreen extends InputAdapter implements Screen {
         transitionBackground.add(new Texture("level4.png"));
         transitionBackground.add(new Texture("level5.png"));
         controller.getCurrentLevel().startLevel();
+        pauseTexture = new Texture("pause.png");
+        playTexture = new Texture("play.png");
 
         //font setup stuff dont worry about the red errors, they dont matter
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
@@ -210,12 +215,15 @@ public class GameScreen extends InputAdapter implements Screen {
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
-        controller.getCurrentLevel().update(delta, c);
+        if (!paused) {
+            controller.getCurrentLevel().update(delta, c);
+        }
         if (c.hasShield) {
             drawShield();
         }
          drawGhosts(controller.getCurrentLevel());
          drawHearts(c);
+         drawPlayPause();
 
 
         game.batch.end();
@@ -226,6 +234,8 @@ public class GameScreen extends InputAdapter implements Screen {
             shapeRenderer.rectLine(points.get(i), points.get(i + 1), 0.05f);
         }
         shapeRenderer.end();
+
+        if (paused)drawPauseOverlay();
 
         //You lost
         if (!c.isAlive()) {
@@ -271,7 +281,40 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
         game.batch.begin();
-        font.draw(game.batch, "" + c.getScore(), 600, 360);
+        font.draw(game.batch, "" + c.getScore(), 700, 360);
+        game.batch.end();
+    }
+
+    private void drawPlayPause(){
+        Texture icon = (paused)?playTexture:pauseTexture;
+        game.batch.draw(icon, game.myViewport.getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
+    }
+
+    private void drawPauseOverlay(){
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(0f, 0f, 0f, 0.3f);
+        shapeRenderer.rect(0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
+        shapeRenderer.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
+        uiViewport.apply();
+        game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
+        game.batch.begin();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(1.2f);
+        GlyphLayout layout = new GlyphLayout(font, "Paused\nResume");
+        float x =(800-layout.width)/2;
+        float y =(400+layout.height)/2;
+        font.draw(game.batch, layout, x, y);
+        font.getData().setScale(0.02f);
+        game.batch.end();
+        game.myViewport.apply();
+        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
+        game.batch.begin();
+        Texture icon=playTexture;
+        game.batch.draw(icon, game.myViewport.getWorldWidth() - 0.7f, 0.1f, 0.6f, 0.6f);
         game.batch.end();
     }
 
@@ -302,6 +345,8 @@ public class GameScreen extends InputAdapter implements Screen {
         circle.dispose();
         ghost.dispose();
         cat.dispose();
+        pauseTexture.dispose();
+        playTexture.dispose();
         heart.dispose();
         heartOutline.dispose();
         background.dispose();
@@ -318,6 +363,11 @@ public class GameScreen extends InputAdapter implements Screen {
         pts.clear();
         Vector3 temp = new Vector3(screenX, screenY, 0);
         game.myViewport.unproject(temp);
+        if (temp.x >= game.myViewport.getWorldWidth()-0.7f && temp.x <= game.myViewport.getWorldWidth() -0.1f && temp.y >= 0.1f && temp.y <=  0.7f) {
+            paused = !paused;
+            return true;
+        }
+        if (paused) return true;
         points.add(new Vector2(temp.x, temp.y));
         pts.add(new Point(temp.x, temp.y));
         isDrawing = true;

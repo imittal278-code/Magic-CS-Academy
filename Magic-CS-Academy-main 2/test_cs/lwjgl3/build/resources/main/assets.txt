@@ -6,7 +6,6 @@ Sheild.png
 Title.png
 arial.ttf
 background.png
-bucket.png
 circle.png
 csclassroom.jpg
 drop.mp3
@@ -28,6 +27,8 @@ loseBackground.png
 music.mp3
 nonHover.png
 normalV.png
+pause.png
+play.png
 replayIcon.png
 ui/font-list.fnt
 ui/font-subtitle.fnt
