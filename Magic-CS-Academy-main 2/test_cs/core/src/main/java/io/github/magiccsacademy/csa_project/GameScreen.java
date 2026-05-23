@@ -202,6 +202,9 @@ public class GameScreen extends InputAdapter implements Screen {
 
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
+        
+        //Gdx.app.log("VIEWPORT", "worldW=" + game.myViewport.getWorldWidth() + ", worldH=" + game.myViewport.getWorldHeight()); //REMOVE
+        //Gdx.app.log("", "piSCREENxelsW=" + Gdx.graphics.getWidth() + ", pixelsH=" + Gdx.graphics.getHeight()); //REMOVE
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
         game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
         game.batch.begin();
@@ -213,6 +216,11 @@ public class GameScreen extends InputAdapter implements Screen {
 
         //set cat's position and size and draw it
         cat2 = new Sprite(cat);
+        if(controller.getCurrentLevel() == level1) c.setPosition(2.6f,1.5f);
+        else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
+        else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
+        else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
+        //else c.setPosition();
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
@@ -308,7 +316,7 @@ public class GameScreen extends InputAdapter implements Screen {
         GlyphLayout layout = new GlyphLayout(font, "Paused\nResume");
         float x =(1600-layout.width)/2;
         float y =(800+layout.height)/2;
-        font.draw(game.batch, layout, x, y);
+        font.draw(game.batch, "Paused\nResume", x, y);
         font.getData().setScale(0.02f);
         game.batch.end();
         game.myViewport.apply();
@@ -406,7 +414,6 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         if(points.size()>10){
             Result r = recognizer.Recognize(pts);
-            System.out.println(r.Name + " " + r.Score);
             switch(getShapeIndex(r.Name)){
                 case 2: // v
                     colorDrawing = Color.YELLOW;
@@ -434,7 +441,6 @@ public class GameScreen extends InputAdapter implements Screen {
         isDrawing = false;
         if(points.size()>10){
             Result r = recognizer.Recognize(pts);
-            System.out.println(r.Name + " " + r.Score);
             controller.getCurrentLevel().shapeDrawn(getShapeIndex(r.Name), c);
         }
         return true;

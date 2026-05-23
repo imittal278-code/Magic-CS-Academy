@@ -131,7 +131,6 @@ public class Recognizer
 			v.addElement(p);
 		}
 		
-	//	System.out.println(v.size() + " " + array.length);
 	
 		return v;
 	}

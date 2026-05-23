@@ -51,12 +51,11 @@ public class Ghost {
         return ans;
     }
 
-    public void hurt(){
-        System.out.println(shapes + "hurt");
-    }
 
+    public void hurt(){
+
+    }
     public void remove(){
-        System.out.println("removed");
         alive = false;
     }
 

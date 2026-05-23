@@ -81,7 +81,6 @@ public class Ghostturn {
         }
         if(circle){
             ghostspresent.add(new Ghost("4"));
-            System.out.println(this);
             numGhosts++;
             numAlive = numGhosts;
         }
@@ -141,9 +140,8 @@ public class Ghostturn {
                         numAlive--;
                     }
                     else{
-                    ghostspresent.get(i).hurt();
+                        ghostspresent.get(i).hurt();
                     }
-                    System.out.println(this);
                 }
                 else{
                     if(shapeIndex == 4){
@@ -152,8 +150,8 @@ public class Ghostturn {
                         numAlive--;
                         ghostspresent.get(i).remove();
                         c.shieldOn();
-                       // System.out.println("")
-                        //Make ghost move toward the cat. 
+                      
+                        //Make ghost move toward the cat.  *TODO*
                     }
                 }
             }
