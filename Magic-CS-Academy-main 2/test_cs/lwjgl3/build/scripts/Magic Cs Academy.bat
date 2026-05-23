@@ -74,7 +74,7 @@ set CLASSPATH=%APP_HOME%\lib\Magic Cs Academy-1.0.0.jar
 
 
 @rem Execute Magic Cs Academy
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %MAGIC_CS_ACADEMY_OPTS%  -classpath "%CLASSPATH%" io.github.tanishkolhe.csa_project.lwjgl3.Lwjgl3Launcher %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %MAGIC_CS_ACADEMY_OPTS%  -classpath "%CLASSPATH%" io.github.magiccsacademy.csa_project.lwjgl3.Lwjgl3Launcher %*
 
 :end
 @rem End local scope for the variables with windows NT shell

@@ -91,7 +91,7 @@ public class GameScreen extends InputAdapter implements Screen {
         recognizer = new Recognizer();
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
-        shield = new Texture("Sheild.png");
+        shield = new Texture("Shield.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
@@ -295,7 +295,7 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     private void drawShield() {
-        game.batch.draw(shield, c.getX(), c.getY(), 0.7f, 0.7f);
+        game.batch.draw(shield, c.getX()-0.3f, c.getY()-0.3f, 1.2f, 1.2f);
     }
 
     private void drawHearts(Cat c) {

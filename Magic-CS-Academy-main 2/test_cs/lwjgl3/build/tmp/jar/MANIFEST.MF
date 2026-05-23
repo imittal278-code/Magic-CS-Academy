@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: io.github.tanishkolhe.csa_project.lwjgl3.Lwjgl3Launcher
+Main-Class: io.github.magiccsacademy.csa_project.lwjgl3.Lwjgl3Launcher
 Enable-Native-Access: ALL-UNNAMED
 Multi-Release: true
 
