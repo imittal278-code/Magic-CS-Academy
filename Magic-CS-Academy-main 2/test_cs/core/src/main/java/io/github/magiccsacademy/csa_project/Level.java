@@ -196,7 +196,6 @@ public class Level {
             nextTurn();
             if (currentTurnFinished()) {
                 completed = true;
-                System.out.println("Level " + levelNumber + " Completed");
                 currentTurnIndex = 0;
             }
         }
@@ -258,19 +257,20 @@ public class Level {
     }
 
     // **** NEED TO DETERMINE POSITIOSN OF TEH GHOSTS IN EACH TURN AND WAVE *****
-    private Point intersectRay(float angle, float width, float height){
+    private Point intersectRay(float angle, float width, float height, double wave){
         double atan = Math.atan(width/height);
+        wave = wave/2;
         if(angle > atan){
             //intersect with right edge
-            return new Point(width, (float)(height/2.0f - (width/2.0f)/Math.tan(angle)));
+            return new Point(width+wave*width, (float)(height/2.0f - (width/2.0f)/Math.tan(angle)));
         }
         else if (angle < -atan){
             //intersect with left edge
-            return new Point(0f, (float)(height/2.0f + (width/2.0f)/Math.tan(angle)));
+            return new Point(-wave*width, (float)(height/2.0f + (width/2.0f)/Math.tan(angle)));
         }
         else{
             //intersect with bottom edge
-            return new Point((float)(width/2.0f + (height/2.0f)*Math.tan(angle)), 0f);
+            return new Point((float)(width/2.0f + (height/2.0f)*Math.tan(angle)), -wave*height);
         }
     }
 
@@ -299,18 +299,15 @@ public class Level {
         }
         else if(levelNumber != 5){
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));//degrees
-            float anglerange = 2*angle/(turn.ghostspresent.size());
+            float anglerange = 2*angle/(Math.min(8,turn.ghostspresent.size()));
             for (int i=0; i<turn.ghostspresent.size(); i++) {
                 //choose a random float in range -angle+(i+1/4)*anglerange to -angle+(i+3/4)*anglerange
-                float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+((i+0.25)*anglerange)));
-                System.out.print(ghostAngle+" " );
-                Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f);
+                float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%8)+0.25)*anglerange)));
+                Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, i/8);
                 turn.ghostx.add((float) ghostPos.X);
                 turn.ghosty.add((float) ghostPos.Y);
-                System.out.print(ghostAngle+" "+ghostPos.X+" "+ghostPos.Y+" ,");
 
             }
-            System.out.println("");
         }
         else{
 
