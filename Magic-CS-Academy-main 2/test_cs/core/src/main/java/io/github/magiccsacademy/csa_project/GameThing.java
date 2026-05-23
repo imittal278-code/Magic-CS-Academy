@@ -6,6 +6,7 @@ public class GameThing {
     public Level l4;
     public Level l1;
     public Level l2;
+    public Level l5;
 
     public GameThing(Main game) {
         l3 = new Level(3, 1,game);
@@ -29,6 +30,8 @@ public class GameThing {
         // ONE TURN USING NEW CONSTRUCTOR NEEDS TO BE WRITTEN
         l4.addTurn(new Ghostturn(6, 3, 1, false,false,false));
         l4.addTurn(new Ghostturn(1, 5, 1, false,false,false));
+        int[] arr2 = {1,1,1,2,2,2,3,3,3,4};
+        l4.addTurn(new Ghostturn(1, arr2));
         l4.addTurn(new Ghostturn(20, 1, 1, false,false,false));// lightning
         l4.addTurn(new Ghostturn(new Ghost("121212"))); // Lightbulb
         l4.addTurn(new Ghostturn(new Ghost("13131313")));// anglerfish boss
@@ -62,6 +65,18 @@ public class GameThing {
         l2.addTurn(new Ghostturn(4,3,1,true,false,false));
         l2.addTurn(new Ghostturn(1,5,1,true,false,false));//add lightning if we get there
 
+        l5.addTurn(new Ghostturn(8,2,1,false,false,false));
+        l5.addTurn(new Ghostturn(new Ghost("101303101")));//floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(12, 1, 1, false, false, false));
+        l5.addTurn(new Ghostturn(new Ghost("221303122"))); //floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(7, 4, 1, false));
+        l5.addTurn(new Ghostturn(new Ghost("3012301203"))); //floor boss, also need lighting (last shape)
+
+        //NEW VOLCANO BACKGROUND (LEVEL CHANGE MAYBE???)
+
+        int[] arr = {2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5};
+        l5.addTurn(new Ghostturn(1, arr));//lightning is here too, most likely want to implement time thing
+        l5.addTurn(new Ghostturn(new Ghost("0102301023010")));// volcano boss, also need lightning (last shape)
 
         
 
