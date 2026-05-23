@@ -22,8 +22,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import java.util.*;
+import org.javatuples.Pair;
 
 public class GameScreen extends InputAdapter implements Screen {
     private final int numLevels = 4;
@@ -37,7 +39,8 @@ public class GameScreen extends InputAdapter implements Screen {
     private ArrayList<Texture> transitionBackground;
     private Texture normalV;
     private Texture circle;
-    private HashMap<Integer, Texture> map;
+    private HashMap<Integer, Texture> map1;
+    private HashMap<String, Pair<Integer, Color>> map2;
     private GameEngine controller;
     private boolean showTransition;
     private float transitionTime;
@@ -71,7 +74,6 @@ public class GameScreen extends InputAdapter implements Screen {
     private Level level4;
     private Level level5;
 
-
     public GameScreen(Main game) {
         this.game = game;
 
@@ -88,7 +90,7 @@ public class GameScreen extends InputAdapter implements Screen {
         recognizer = new Recognizer();
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
-        shield = new Texture("Sheild.png");
+        shield = new Texture("Shield.png");
         Gdx.input.setInputProcessor(this);
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
@@ -102,19 +104,25 @@ public class GameScreen extends InputAdapter implements Screen {
         font = new BitmapFont();
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
-        font.setColor(Color.YELLOW);
+        font.setColor(Color.ORANGE);
         background = new Texture("background.png");
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
         circle = new Texture("circle.png");
-        map = new HashMap<Integer,Texture>();
-        map.put(0,horizontalLine);
-        map.put(1,verticalLine);
-        map.put(2,normalV);
-        map.put(3,upsideDownV);
-        map.put(4,circle);
+        map1 = new HashMap<Integer,Texture>();
+        map2 = new HashMap<String, Pair<Integer, Color>>();
+        map1.put(0,horizontalLine);
+        map1.put(1,verticalLine);
+        map1.put(2,normalV);
+        map1.put(3,upsideDownV);
+        map1.put(4,circle);
+        map2.put("horizontalLine", new Pair<Integer, Color>(0,Color.RED));
+        map2.put("verticalLine", new Pair<Integer, Color>(1,Color.BLUE));
+        map2.put("normalV", new Pair<Integer, Color>(2,Color.YELLOW));
+        map2.put("upsideDownV", new Pair<Integer, Color>(3,Color.GREEN));
+        map2.put("circle", new Pair<Integer, Color>(4,Color.CYAN));
         GameThing g = new GameThing(game);
         level1 = g.l1;
         level2 = g.l2;
@@ -138,14 +146,14 @@ public class GameScreen extends InputAdapter implements Screen {
         playTexture = new Texture("play.png");
 
         //font setup stuff dont worry about the red errors, they dont matter
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("comicsansmf.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 80;
         parameter.minFilter = Texture.TextureFilter.Linear;
         parameter.magFilter = Texture.TextureFilter.Linear;
         font = generator.generateFont(parameter);
         generator.dispose();
-        font.setColor(Color.YELLOW);
+        font.setColor(Color.ORANGE);
     }
 
 
@@ -173,7 +181,7 @@ public class GameScreen extends InputAdapter implements Screen {
                     int shapesLeft = g.shapes.size();
                     float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                     for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
+                        game.batch.draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
                     }
                     continue;
                 }
@@ -186,7 +194,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 int shapesLeft = g.shapes.size();
                 float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                 for(int k = 0;k<shapesLeft;k++){
-                    game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    game.batch.draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
                 }
             }
         }
@@ -217,6 +225,9 @@ public class GameScreen extends InputAdapter implements Screen {
 
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
+        
+        //Gdx.app.log("VIEWPORT", "worldW=" + game.myViewport.getWorldWidth() + ", worldH=" + game.myViewport.getWorldHeight()); //REMOVE
+        //Gdx.app.log("", "piSCREENxelsW=" + Gdx.graphics.getWidth() + ", pixelsH=" + Gdx.graphics.getHeight()); //REMOVE
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
 
         game.batch.begin();
@@ -227,6 +238,11 @@ public class GameScreen extends InputAdapter implements Screen {
 
         //set cat's position and size and draw it
         cat2 = new Sprite(cat);
+        if(controller.getCurrentLevel() == level1) c.setPosition(2.6f,1.5f);
+        else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
+        else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
+        else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
+        //else c.setPosition();
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
@@ -248,6 +264,10 @@ public class GameScreen extends InputAdapter implements Screen {
         for (int i = 0; i < points.size() - 1; i++) {
             shapeRenderer.rectLine(points.get(i), points.get(i + 1), 0.05f);
         }
+        if (isDrawing && points.size()>0) {
+            shapeRenderer.setColor(Color.WHITE);
+            shapeRenderer.circle(points.get(points.size()-1).x, points.get(points.size()-1).y, 0.04f, 24);
+        }
         shapeRenderer.end();
 
         if (paused)drawPauseOverlay();
@@ -265,6 +285,7 @@ public class GameScreen extends InputAdapter implements Screen {
             else if(!showTransition){
                 showTransition = true;
                 transitionTime = 2f;
+                c.shieldOff();
                 controller.nextLevel();
                 if (controller.doneWithLevels() && c.isAlive()) {
                     this.dispose();
@@ -277,7 +298,7 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     private void drawShield() {
-        game.batch.draw(shield, c.getX(), c.getY(), 0.7f, 0.7f);
+        game.batch.draw(shield, c.getX()-0.3f, c.getY()-0.3f, 1.2f, 1.2f);
     }
 
     private void drawHearts(Cat c) {
@@ -295,8 +316,9 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
 
-
-        font.draw(game.batch, "" + c.getScore(), 1200, 720);
+        font.setColor(Color.ORANGE);
+        font.getData().setScale(1f);
+        font.draw(game.batch, "" + c.getScore(), 1400, 750);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
     }
@@ -318,19 +340,29 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
         game.batch.begin();
-        font.setColor(Color.WHITE);
+        font.getData().setScale(0.8f);
+        GlyphLayout pausedLayout = new GlyphLayout(font, "Paused");
+        float pausedX=(1600-pausedLayout.width)/2;
+        float pausedY=470;
+        font.setColor(Color.ORANGE);
+        font.draw(game.batch, "Paused", pausedX, pausedY);
+
         font.getData().setScale(1.2f);
-        GlyphLayout layout = new GlyphLayout(font, "Paused\nResume");
-        float x =(1600-layout.width)/2;
-        float y =(800+layout.height)/2;
-        font.draw(game.batch, layout, x, y);
-        font.getData().setScale(0.02f);
+        GlyphLayout resumeLayout = new GlyphLayout(font, "Resume");
+        float resumeX=(1600-resumeLayout.width)/2;
+        float resumeY=400;
+        font.setColor(Color.WHITE);
+        font.draw(game.batch, "Resume", resumeX, resumeY);
+
+        font.setColor(Color.ORANGE);
+        font.getData().setScale(1f);
         game.batch.end();
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
         game.batch.begin();
         Texture icon=playTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth() - 0.7f, 0.1f, 0.6f, 0.6f);
+        game.batch.draw(icon, game.myViewport.getWorldWidth() -
+                0.7f, 0.1f, 0.6f, 0.6f);
         game.batch.end();
     }
 
@@ -389,26 +421,9 @@ public class GameScreen extends InputAdapter implements Screen {
         isDrawing = true;
         colorDrawing = Color.WHITE;
         return true;
+
     }
 
-    private int getShapeIndex(String name){
-        switch (name) {
-            case "line left":
-            case "line right":
-                return 0;
-            case "lineup":
-            case "linedown":
-                return 1;
-            case "caret CW":
-                return 2;
-            case "caret CCW":
-                return 3;
-            case "circle CW":
-            case "circle CCW":
-                return 4;
-        }
-        return -1;
-    }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {//Called when a finger or the mouse was dragged.
@@ -421,23 +436,16 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         if(points.size()>10){
             Result r = recognizer.Recognize(pts);
-            System.out.println(r.Name + " " + r.Score);
-            switch(getShapeIndex(r.Name)){
-                case 2: // v
-                    colorDrawing = Color.YELLOW;
-                    break;
-                case 3: // upside down v
-                    colorDrawing = Color.GREEN;
-                    break;
-                case 4: // circles
-                    colorDrawing = Color.CYAN;
-                    break;
-                case 0: // horizontal line  
-                    colorDrawing = Color.RED;
-                    break;
-                case 1: // vertical line 
-                    colorDrawing = Color.BLUE;
-                    break;
+            colorDrawing = map2.get(r.Name).getValue1();
+        }
+        else if(points.size()>1){
+            if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
+                //horizontal
+                colorDrawing = Color.RED;
+            }
+            else{
+                //vertical
+                colorDrawing = Color.BLUE;
             }
         }
         return true;
@@ -449,11 +457,19 @@ public class GameScreen extends InputAdapter implements Screen {
         isDrawing = false;
         if(points.size()>10){
             Result r = recognizer.Recognize(pts);
-            System.out.println(r.Name + " " + r.Score);
-            controller.getCurrentLevel().shapeDrawn(getShapeIndex(r.Name), c);
+            controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
         }
+        else if(points.size()>1){
+            if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
+                //horizontal
+                controller.getCurrentLevel().shapeDrawn(0, c);
+            }
+            else{
+                //vertical
+                controller.getCurrentLevel().shapeDrawn(1, c);
+            }
+        }
+
         return true;
     }
 }
-
-

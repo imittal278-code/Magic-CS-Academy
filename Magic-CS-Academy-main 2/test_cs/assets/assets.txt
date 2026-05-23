@@ -2,12 +2,13 @@ Fulk.png
 Ghost.png
 Hover.png
 Momo2023.png
-Sheild.png
+Shield.png
 Title.png
 arial.ttf
 background.png
 circle.png
 circuitBackground.jpg
+comicsansmf.ttf
 csclassroom.jpg
 desertBackground.jpg
 drop.mp3

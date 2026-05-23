@@ -28,7 +28,7 @@ public class Cat {
         this.caty = caty;
         lives = 5;
         alive = true;
-        hasShield = false; 
+        hasShield = false;
         score = 0;
     }
     void loseLife() {
