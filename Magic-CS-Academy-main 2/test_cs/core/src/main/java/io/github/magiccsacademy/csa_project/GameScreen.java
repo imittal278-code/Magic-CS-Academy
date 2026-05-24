@@ -28,7 +28,7 @@ import java.util.*;
 import org.javatuples.Pair;
 
 public class GameScreen extends InputAdapter implements Screen {
-    private final int numLevels = 4;
+    private final int numLevels = 5;
     private final Main game;
     private Viewport uiViewport;
 
@@ -128,11 +128,13 @@ public class GameScreen extends InputAdapter implements Screen {
         level2 = g.l2;
         level3 = g.l3;
         level4 = g.l4;
+        level5 = g.l5;
         background = level1.getBackground();
         controller.addLevel(level1);
         controller.addLevel(level2);
         controller.addLevel(level3);
         controller.addLevel(level4);
+        controller.addLevel(level5);
         showTransition = true;
         transitionTime = 2f;
         transitionBackground = new ArrayList<Texture>(5);

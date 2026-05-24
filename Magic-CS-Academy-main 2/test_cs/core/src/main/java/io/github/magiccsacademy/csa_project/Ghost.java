@@ -73,7 +73,9 @@ public class Ghost {
     }
 
     public void removeLast(){
-        shapes.removeLast();
+        if (!shapes.isEmpty()) {
+            shapes.remove(shapes.size() - 1);
+        }
     }
 
     public boolean isAlive(){ return alive && shapes.size()>0; }

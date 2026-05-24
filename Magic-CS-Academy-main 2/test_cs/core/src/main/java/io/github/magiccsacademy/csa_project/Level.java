@@ -282,7 +282,10 @@ public class Level {
      * @param turnInd the ghostTurn# you are intializing the positions of
      */
     public void ghostPos(int turnInd) {
+
         Ghostturn turn = turns.get(turnInd);
+        turn.ghostx.clear();
+        turn.ghosty.clear();
         if(levelNumber==2){
             float adder = -1f;
             if(turn.ghostspresent.size()==1){

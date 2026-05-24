@@ -131,7 +131,7 @@ public class Ghostturn {
                     ypos = 0.3f+ghosty.get(i);
                 }
                 if(xpos<0f||xpos>6f||ypos<0f||ypos>3f){
-                    return;
+                    continue;
                 }
 
                 if(shapeIndex <=3){
