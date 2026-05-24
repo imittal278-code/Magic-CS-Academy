@@ -32,10 +32,6 @@ public class homeScreen implements Screen{
     private Texture playTexture;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
-    private Texture verticalLine;
-    private Texture horizontalLine;
-    private Texture upsideDownV;
-    private Texture normalV;
     private Texture circle;
     private HashMap<Integer,Texture> map;
     TextButton button;
@@ -54,21 +50,16 @@ public class homeScreen implements Screen{
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
-
-        normalV = new Texture("normalV.png");
-        upsideDownV = new Texture("upsideDownV.png");
-        verticalLine = new Texture("verticalLine.png");
-        horizontalLine = new Texture("horizontalLine.png");
         circle = new Texture("circle.png");
         timesum=0f;
         map = new HashMap<Integer,Texture>();
-        map.put(0,horizontalLine);
-        map.put(1,verticalLine);
-        map.put(2,normalV);
-        map.put(3,upsideDownV);
+        map.put(0,game.horizontalLine);
+        map.put(1,game.verticalLine);
+        map.put(2,game.normalV);
+        map.put(3,game.upsideDownV);
         map.put(4,circle);
         lasttime=0f;
-        background = new Texture("csclassroom.jpg");
+        background = game.csclass;
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
@@ -169,10 +160,5 @@ public class homeScreen implements Screen{
         title.dispose();
         ghost.dispose();
         cat.dispose();
-
-        verticalLine.dispose();
-        horizontalLine.dispose();
-        upsideDownV.dispose();
-        normalV.dispose();
     }
 }

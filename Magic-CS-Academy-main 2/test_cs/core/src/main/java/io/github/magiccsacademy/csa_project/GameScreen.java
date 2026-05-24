@@ -33,12 +33,9 @@ public class GameScreen extends InputAdapter implements Screen {
     private Viewport uiViewport;
 
     //shape declarations
-    private Texture verticalLine;
-    private Texture horizontalLine;
-    private Texture upsideDownV;
-    private ArrayList<Texture> transitionBackground;
-    private Texture normalV;
-    private Texture circle;
+
+
+
     private HashMap<Integer, Texture> map1;
     private HashMap<String, Pair<Integer, Color>> map2;
     private GameEngine controller;
@@ -105,19 +102,15 @@ public class GameScreen extends InputAdapter implements Screen {
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.ORANGE);
-        background = new Texture("background.png");
-        normalV = new Texture("normalV.png");
-        upsideDownV = new Texture("upsideDownV.png");
-        verticalLine = new Texture("verticalLine.png");
-        horizontalLine = new Texture("horizontalLine.png");
-        circle = new Texture("circle.png");
+        background = game.background;
+
         map1 = new HashMap<Integer,Texture>();
         map2 = new HashMap<String, Pair<Integer, Color>>();
-        map1.put(0,horizontalLine);
-        map1.put(1,verticalLine);
-        map1.put(2,normalV);
-        map1.put(3,upsideDownV);
-        map1.put(4,circle);
+        map1.put(0,game.horizontalLine);
+        map1.put(1,game.verticalLine);
+        map1.put(2,game.normalV);
+        map1.put(3,game.upsideDownV);
+        map1.put(4,game.circle);
         map2.put("horizontalLine", new Pair<Integer, Color>(0,Color.RED));
         map2.put("verticalLine", new Pair<Integer, Color>(1,Color.BLUE));
         map2.put("normalV", new Pair<Integer, Color>(2,Color.YELLOW));
@@ -137,12 +130,7 @@ public class GameScreen extends InputAdapter implements Screen {
         controller.addLevel(level5);
         showTransition = true;
         transitionTime = 2f;
-        transitionBackground = new ArrayList<Texture>(5);
-        transitionBackground.add(new Texture("level1.png"));
-        transitionBackground.add(new Texture("level2.png"));
-        transitionBackground.add(new Texture("level3.png"));
-        transitionBackground.add(new Texture("level4.png"));
-        transitionBackground.add(new Texture("level5.png"));
+
         controller.getCurrentLevel().startLevel();
         pauseTexture = new Texture("pause.png");
         playTexture = new Texture("play.png");
@@ -217,7 +205,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
 
-             game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,0f,6f,3.37f);
+             game.batch.draw(game.transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,0f,6f,3.37f);
              game.batch.end();
             if(transitionTime<=0)showTransition = false;
             return;
@@ -393,11 +381,6 @@ public class GameScreen extends InputAdapter implements Screen {
 
     @Override
     public void dispose() {
-        verticalLine.dispose();
-        horizontalLine.dispose();
-        upsideDownV.dispose();
-        normalV.dispose();
-        circle.dispose();
         ghost.dispose();
         cat.dispose();
         pauseTexture.dispose();
@@ -405,9 +388,6 @@ public class GameScreen extends InputAdapter implements Screen {
         heart.dispose();
         heartOutline.dispose();
         background.dispose();
-        for (Texture t : transitionBackground) {
-            t.dispose();
-        }
         shapeRenderer.dispose();
         font.dispose();
     }

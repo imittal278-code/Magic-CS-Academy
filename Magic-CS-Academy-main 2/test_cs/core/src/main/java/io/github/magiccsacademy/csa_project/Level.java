@@ -75,19 +75,19 @@ public class Level {
 
         // SET NUM BACkGROUNDS AND BACKGROUND IMAGE FOR EACH LEEVL
         if (levelNumber==1) {
-            background = new Texture("background.png");
+            background = game.background;
         }
         else if (levelNumber==2) {
-            background = new Texture("ocean.jpg");
+            background = game.ocean;
         }
         else if (levelNumber==3) {
-            background = new Texture("desertBackground.jpg");
+            background = game.desert;
         }
         else if (levelNumber==4) {
-            background = new Texture("forest.jpg");
+            background = game.forest;
         }
         else if (levelNumber==5) {
-            background = new Texture("circuitBackground.jpg");
+            background = game.circuit;
         }
     }
 
