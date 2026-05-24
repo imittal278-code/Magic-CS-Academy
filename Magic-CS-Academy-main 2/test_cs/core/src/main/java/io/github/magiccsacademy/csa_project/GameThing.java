@@ -65,7 +65,7 @@ public class GameThing {
         l5.addTurn(new Ghostturn(new Ghost("101303101")));//floor boss, also need lighting (last shape)
         l5.addTurn(new Ghostturn(12, 1, 1, false, false, false));
         l5.addTurn(new Ghostturn(new Ghost("221303122"))); //floor boss, also need lighting (last shape)
-        l5.addTurn(new Ghostturn(7, 4, 1, false));
+        l5.addTurn(new Ghostturn(7, 4, 1));
         l5.addTurn(new Ghostturn(new Ghost("3012301203"))); //floor boss, also need lighting (last shape)
 
         //NEW VOLCANO BACKGROUND (LEVEL CHANGE MAYBE???)
