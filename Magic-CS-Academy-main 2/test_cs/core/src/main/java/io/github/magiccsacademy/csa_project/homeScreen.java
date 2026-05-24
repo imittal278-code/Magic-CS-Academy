@@ -156,9 +156,6 @@ public class homeScreen implements Screen{
     
     @Override
     public void dispose() {
-        background.dispose();
-        title.dispose();
-        ghost.dispose();
-        cat.dispose();
+
     }
 }

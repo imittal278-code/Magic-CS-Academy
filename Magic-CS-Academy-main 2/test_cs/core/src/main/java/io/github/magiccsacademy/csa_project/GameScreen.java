@@ -381,15 +381,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
     @Override
     public void dispose() {
-        ghost.dispose();
-        cat.dispose();
-        pauseTexture.dispose();
-        playTexture.dispose();
-        heart.dispose();
-        heartOutline.dispose();
-        background.dispose();
-        shapeRenderer.dispose();
-        font.dispose();
+
     }
 
     @Override
