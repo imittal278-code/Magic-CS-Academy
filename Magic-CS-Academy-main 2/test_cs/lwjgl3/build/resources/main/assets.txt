@@ -1,6 +1,5 @@
 Fulk.png
 Ghost.png
-Hover.png
 Momo2023.png
 Sheild.png
 ShieldSprite.png
@@ -14,7 +13,6 @@ csclassroom.jpg
 desertBackground.jpg
 drop.mp3
 drop.png
-endscreenimage.png
 fish.png
 forest.jpg
 ghost2.png
@@ -31,7 +29,6 @@ level5.png
 libgdx.png
 loseBackground.png
 music.mp3
-nonHover.png
 normalV.png
 ocean.jpg
 pause.png
