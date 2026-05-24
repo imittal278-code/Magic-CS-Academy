@@ -116,7 +116,7 @@ public class GameScreen extends InputAdapter implements Screen {
         map2.put("normalV", new Pair<Integer, Color>(2,Color.YELLOW));
         map2.put("upsideDownV", new Pair<Integer, Color>(3,Color.GREEN));
         map2.put("circle", new Pair<Integer, Color>(4,Color.CYAN));
-        GameThing g = new GameThing(game);
+        LevelSetup g = new LevelSetup(game);
         level1 = g.l1;
         level2 = g.l2;
         level3 = g.l3;

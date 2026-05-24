@@ -18,61 +18,125 @@ import com.badlogic.gdx.Input;
 import java.util.*;
 
 public class homeScreen implements Screen{
-    private final Main game; // no ghost or something should be present here, like it 
 
-    private float catx = 0.0f, caty = 1.0f;
-    private ArrayList<Float> ghostx, ghosty;
+    /**
+     * The shared game class (used for shifting screens or accessing some assets)
+     */
+    private final Main game; // no ghost or something should be present here, like it
+
+    /**
+     * The background of the home screen
+     */
     private Texture background;
+
+    /**
+     * The texture that is initialized with game name
+     */
     private Texture title;
+
+    /**
+     * The ghost image texture
+     */
     private Texture ghost;
+
+    /**
+     *  The sprite for the ghost
+     */
     private Sprite ghost2;
+
+    /**
+     * The texture for tha cat image
+     */
     private Texture cat;
+
+    /**
+     * The sprite for the cat
+     */
     private Sprite cat2;
+
+    /**
+     * The sprite for the play texture
+     */
     private Sprite play;
+
+    /**
+     * The texture for the play image
+     */
     private Texture playTexture;
-    private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
-    private BitmapFont font;
-    private Texture circle;
+
+    /**
+     * The map used to connect a number to its respective shape
+     */
     private HashMap<Integer,Texture> map;
-    TextButton button;
-    private Ghostturn turn;
+
+    /**
+     * The ghost object used for the right ghost on the home screen
+     */
     private Ghost ghostright;
+
+    /**
+     * The ghost object used for the left ghost on the home screen
+     */
     private Ghost ghostleft;
+
+    /**
+     * The amount of time that has passed used for the ghosts' shapes
+     */
     private float timesum;
+
+    /**
+     * The last time the ghosts' shapes was reset
+     */
     private float lasttime;
+
+    /**
+     * The sum of time used for the oscillating size of the play button
+     */
     private float timesum2;
 
+
+    /**
+     * Constructs the homeScreen, initializing the constant fields
+     * @param game
+     */
     public homeScreen(Main game){
         this.game = game;
-        
-    }
-
-    @Override
-    public void show(){
-        //button = new TextButton("Click Me!", skin);
-        circle = new Texture("circle.png");
-        timesum=0f;
         map = new HashMap<Integer,Texture>();
         map.put(0,game.horizontalLine);
         map.put(1,game.verticalLine);
         map.put(2,game.normalV);
         map.put(3,game.upsideDownV);
-        map.put(4,circle);
-        lasttime=0f;
+        map.put(4,game.circle);
         background = game.csclass;
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
-        ghostleft = new Ghost(4,5);
-        ghostright = new Ghost(4,5);
         title = new Texture("Title.png");
         playTexture = new Texture("play.png");
         play = new Sprite(playTexture);
-        timesum2 = 0f;
     }
 
-     @Override
+    /**
+     * Initializes the non-static fields
+     */
+    @Override
+    public void show(){
+
+
+        timesum = 0f;
+        lasttime = 0f;
+        timesum2 = 0f;
+        ghostleft = new Ghost(4, 5);
+        ghostright = new Ghost(4, 5);
+    }
+
+
+    /**
+     * renders (or draws) the screen, and uses delta to control movements
+     * @param delta The time in seconds since the last render.
+     */
+    @Override
     public void render(float delta) {
         timesum2+=delta;
         ScreenUtils.clear(0, 0, 0, 1);
@@ -125,7 +189,12 @@ public class homeScreen implements Screen{
          game.batch.end();
     }
 
-    //helper method that draws a ghost
+    /**
+     * Draws a ghost with the given parameters on the screen
+     * @param g the ghost object to be drawn
+     * @param x the x position of the ghost
+     * @param y the y position of the ghost
+     */
     private void drawGhost(Ghost g,float x,float y){
         ghost2.setPosition(x,y);
         ghost2.setSize(0.8f,0.8f);
@@ -146,14 +215,39 @@ public class homeScreen implements Screen{
     }
 
 
-
+    /**
+     * Resizes the screen using the parameters
+     * @param width the width of the screen to resize to
+     * @param height the height of the screen to resize to
+     */
     @Override public void resize(int width, int height) {
         game.stage.getViewport().update(width, height,true);
     }
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
-    
+
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
+    @Override
+    public void pause() {}
+
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
+    @Override
+    public void resume() {
+    }
+
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
+    @Override
+    public void hide() {
+
+    }
+
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
     @Override
     public void dispose() {
 

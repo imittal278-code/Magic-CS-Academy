@@ -1,14 +1,42 @@
 package io.github.magiccsacademy.csa_project;
 
-public class GameThing {
 
+/**
+ * Sets up the levels with all their ghostTurns
+ */
+public class LevelSetup {
+
+    /**
+     * Level 3 object
+     */
     public Level l3;
+
+    /**
+     * Level 4 object
+     */
     public Level l4;
+
+    /**
+     * Level 1 object
+     */
     public Level l1;
+
+    /**
+     * Level 2 object
+     */
     public Level l2;
+
+    /**
+     * Level 5 object
+     */
     public Level l5;
 
-    public GameThing(Main game) {
+
+    /**
+     * Initializes the 5 level fields, and adds their ghostTurns to them
+     * @param game The shared game class (used for accessing some assets)
+     */
+    public LevelSetup(Main game) {
         l3 = new Level(3, 1,game);
         l4 = new Level(4, 1,game);
         l1 = new Level(1,1,game);
