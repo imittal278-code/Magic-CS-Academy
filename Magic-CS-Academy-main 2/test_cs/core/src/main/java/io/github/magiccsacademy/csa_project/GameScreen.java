@@ -217,7 +217,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
 
-             game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,1f,6f,1f);
+             game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,0f,6f,3.37f);
              game.batch.end();
             if(transitionTime<=0)showTransition = false;
             return;
