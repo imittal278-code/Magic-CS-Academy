@@ -217,7 +217,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
              game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
 
-             game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,1f,6f,1f);
+             game.batch.draw(transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,0f,6f,3.37f);
              game.batch.end();
             if(transitionTime<=0)showTransition = false;
             return;
@@ -327,7 +327,13 @@ public class GameScreen extends InputAdapter implements Screen {
 
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
+        if(paused){
+            game.batch.draw(icon, game.myViewport.getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
+        }
+        else{
+
+            game.batch.draw(icon, game.myViewport.getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
+        }
     }
 
     private void drawPauseOverlay(){
@@ -363,8 +369,7 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
         game.batch.begin();
         Texture icon=playTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth() -
-                0.7f, 0.1f, 0.6f, 0.6f);
+        game.batch.draw(icon, game.myViewport.getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
         game.batch.end();
     }
 

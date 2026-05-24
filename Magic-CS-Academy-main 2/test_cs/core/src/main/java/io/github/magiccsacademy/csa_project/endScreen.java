@@ -47,7 +47,7 @@ public class endScreen implements Screen{
         this.game = game;
         this.win = c.isAlive();
         this.score = String.valueOf(c.getScore());
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("comicsansmf.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 96;
         parameter.minFilter = Texture.TextureFilter.Linear;

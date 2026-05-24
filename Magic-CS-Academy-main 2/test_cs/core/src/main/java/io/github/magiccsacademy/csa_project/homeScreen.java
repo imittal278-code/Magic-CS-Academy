@@ -23,15 +23,13 @@ public class homeScreen implements Screen{
     private float catx = 0.0f, caty = 1.0f;
     private ArrayList<Float> ghostx, ghosty;
     private Texture background;
-    private Texture Hover;
-    private Texture nonHover;
-    private Sprite non;
-    private Sprite hov;
     private Texture title;
     private Texture ghost;
     private Sprite ghost2;
     private Texture cat;
     private Sprite cat2;
+    private Sprite play;
+    private Texture playTexture;
     private float ghostSpeed = 0.2f; // the ghostSpeed should (1) not be constant b/c well have slower bosses, (2) should be time dependent instead.
     private BitmapFont font;
     private Texture verticalLine;
@@ -46,6 +44,7 @@ public class homeScreen implements Screen{
     private Ghost ghostleft;
     private float timesum;
     private float lasttime;
+    private float timesum2;
 
     public homeScreen(Main game){
         this.game = game;
@@ -55,8 +54,7 @@ public class homeScreen implements Screen{
     @Override
     public void show(){
         //button = new TextButton("Click Me!", skin);
-        Hover = new Texture("Hover.png");
-        nonHover = new Texture("nonHover.png");
+
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
@@ -71,20 +69,21 @@ public class homeScreen implements Screen{
         map.put(4,circle);
         lasttime=0f;
         background = new Texture("csclassroom.jpg");
-        ghost = new Texture("Ghost.png");
+        ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
         cat2 = new Sprite(cat);
         ghostleft = new Ghost(4,5);
         ghostright = new Ghost(4,5);
         title = new Texture("Title.png");
-        non = new Sprite(nonHover);
-        hov = new Sprite(Hover);
+        playTexture = new Texture("play.png");
+        play = new Sprite(playTexture);
+        timesum2 = 0f;
     }
 
      @Override
     public void render(float delta) {
-
+        timesum2+=delta;
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
@@ -114,41 +113,41 @@ public class homeScreen implements Screen{
         }
 
         cat2.draw(game.batch);
-         non.setSize(1.5f,0.6f);
-         hov.setSize(1.5f,0.6f);
-         non.setPosition(2.2f,0.8f);
-         hov.setPosition(2.2f,0.8f);
          Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
          game.myViewport.getCamera().unproject(mousePos);
-
-         if (hov.getBoundingRectangle().contains(mousePos.x, mousePos.y)) {
-             hov.draw(game.batch);
-             if(Gdx.input.justTouched()){
+         float scale = 1f + 0.1f * (float)Math.sin(timesum2 * 3f);
+         float width = 0.8f * scale;
+         float height = 0.976f * scale;
+         float x = game.myViewport.getWorldWidth() / 2f - width / 2f+0.1f;
+         float y = game.myViewport.getWorldHeight() / 2f - height / 2f-0.4f;
+         play.setSize(width,height);
+         play.setPosition(x,y);
+         play.draw(game.batch);
+         if (Gdx.input.justTouched()) {
+             Vector3 touchPoint = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+             game.myViewport.getCamera().unproject(touchPoint);
+             if (play.getBoundingRectangle().contains(touchPoint.x, touchPoint.y)) {
                  this.dispose();
                  game.setScreen(new GameScreen(game));
              }
          }
-         else{
-             non.draw(game.batch);
-         }
-
-        game.batch.end();
+         game.batch.end();
     }
 
     //helper method that draws a ghost
     private void drawGhost(Ghost g,float x,float y){
         ghost2.setPosition(x,y);
-        ghost2.setSize(1f,1.11f);
+        ghost2.setSize(0.8f,0.8f);
         ghost2.draw(game.batch);
         int shapesLeft = g.shapes.size();
         if(shapesLeft%2==0){
-            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.3f;
+            float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.45f;
             for(int k = 0;k<shapesLeft;k++){
                 game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
         else{
-            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.3f;
+            float intitialpos = x-((float)shapesLeft/2)*0.15f+0.45f;
             for(int k = 0;k<shapesLeft;k++){
                 game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
@@ -167,8 +166,6 @@ public class homeScreen implements Screen{
     @Override
     public void dispose() {
         background.dispose();
-        Hover.dispose();
-        nonHover.dispose();
         title.dispose();
         ghost.dispose();
         cat.dispose();
