@@ -327,7 +327,13 @@ public class GameScreen extends InputAdapter implements Screen {
 
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
+        if(paused){
+            game.batch.draw(icon, game.myViewport.getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
+        }
+        else{
+
+            game.batch.draw(icon, game.myViewport.getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
+        }
     }
 
     private void drawPauseOverlay(){
@@ -363,8 +369,7 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
         game.batch.begin();
         Texture icon=playTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth() -
-                0.7f, 0.1f, 0.6f, 0.6f);
+        game.batch.draw(icon, game.myViewport.getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
         game.batch.end();
     }
 

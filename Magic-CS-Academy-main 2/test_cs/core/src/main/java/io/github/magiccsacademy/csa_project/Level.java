@@ -210,6 +210,7 @@ public class Level {
 
     /**
      * checks if the current turn is done
+     * @return a boolean that checks if the current turn is done
      */
     public boolean currentTurnFinished() {
         return currentTurnIndex >= turns.size();
@@ -217,6 +218,7 @@ public class Level {
 
     /**
      * checks if the level is completed
+     * @return a boolean that checks if the level is completed
      */
     public boolean isCompleted() {
         return completed;
@@ -224,6 +226,7 @@ public class Level {
 
     /**
      * checks if you lost
+     * @return a boolean that checks if you are not alive
      */
     public boolean isGameOver(Cat c) {
         return !c.isAlive();
@@ -279,7 +282,7 @@ public class Level {
     /**
      * Initializes spawning positions for the specified ghostTurn
      *
-     * @param turnInd the ghostTurn# you are intializing the positions of
+     * @param turnInd the ghostTurn# you are initializing the positions of
      */
     public void ghostPos(int turnInd) {
 
