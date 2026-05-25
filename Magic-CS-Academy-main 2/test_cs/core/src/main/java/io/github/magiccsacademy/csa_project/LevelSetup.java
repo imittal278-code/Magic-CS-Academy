@@ -1,14 +1,42 @@
 package io.github.magiccsacademy.csa_project;
 
-public class GameThing {
 
+/**
+ * Sets up the levels with all their ghostTurns
+ */
+public class LevelSetup {
+
+    /**
+     * Level 3 object
+     */
     public Level l3;
+
+    /**
+     * Level 4 object
+     */
     public Level l4;
+
+    /**
+     * Level 1 object
+     */
     public Level l1;
+
+    /**
+     * Level 2 object
+     */
     public Level l2;
+
+    /**
+     * Level 5 object
+     */
     public Level l5;
 
-    public GameThing(Main game) {
+
+    /**
+     * Initializes the 5 level fields, and adds their ghostTurns to them
+     * @param game The shared game class (used for accessing some assets)
+     */
+    public LevelSetup(Main game) {
         l3 = new Level(3, 1,game);
         l4 = new Level(4, 1,game);
         l1 = new Level(1,1,game);
@@ -65,7 +93,7 @@ public class GameThing {
         l5.addTurn(new Ghostturn(new Ghost("101303101")));//floor boss, also need lighting (last shape)
         l5.addTurn(new Ghostturn(12, 1, 1, false, false, false));
         l5.addTurn(new Ghostturn(new Ghost("221303122"))); //floor boss, also need lighting (last shape)
-        l5.addTurn(new Ghostturn(7, 4, 1, false));
+        l5.addTurn(new Ghostturn(7, 4, 1));
         l5.addTurn(new Ghostturn(new Ghost("3012301203"))); //floor boss, also need lighting (last shape)
 
         //NEW VOLCANO BACKGROUND (LEVEL CHANGE MAYBE???)

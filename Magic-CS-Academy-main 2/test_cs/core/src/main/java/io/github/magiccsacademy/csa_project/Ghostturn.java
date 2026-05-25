@@ -3,24 +3,50 @@ package io.github.magiccsacademy.csa_project;
 import java.util.*;
 import java.lang.*;
 
+
+/**
+ * Represents a wave of ghosts during a level
+ */
 public class Ghostturn {
-    int numGhosts;
-   // int strlen;
-    int difficulty;
-    int numAlive;
-    int totshapes = 4;
+
+    /**The number of ghosts in this wave*/
+    public int numGhosts;
+
+    /**The difficulty of this wave (determines score additions)*/
+    private int difficulty;
+
+    /**The number of ghosts that haven't been killed in this wave*/
+    public int numAlive;
+
+    /**Constant value of the number of possible shapes*/
+    private final int totshapes = 4;
+
+    /** Array of the ghosts in this wave*/
+    public ArrayList<Ghost> ghostspresent;
+
     int circles = 0;
     int horizontalLines = 0;
     int verticalLines = 0;
     int upsideDownVs = 0;
     int normalVs = 0;
-    ArrayList<Ghost> ghostspresent;
+
+    /** Array of the x positions of the ghosts in this wave*/
     public ArrayList<Float> ghostx;
+
+    /** Array of the y positions of the ghosts in this wave*/
     public ArrayList<Float> ghosty;
+
+    /** Boolean that states whether the characters in this wave are fish*/
     private boolean fish;
 
-
-    public Ghostturn(int nGhosts, int len, int diff, boolean spiral){
+    /**
+     * Constructs a ghostTurn object
+     *
+     * @param nGhosts the number of ghosts in this wave
+     * @param len the number of shapes for each ghost
+     * @param diff the difficulty of this wave
+     */
+    public Ghostturn(int nGhosts, int len, int diff){
         numGhosts = nGhosts;
     //    strlen = len;
         numAlive = numGhosts;
@@ -28,11 +54,18 @@ public class Ghostturn {
         ghostx = new ArrayList<Float>(nGhosts);
         ghosty = new ArrayList<Float>(nGhosts);
         ghostspresent = new ArrayList<Ghost>();
-        for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
+        for(int i=0;i<nGhosts;i++){
             ghostspresent.add(new Ghost(len, totshapes));
         }
         fish = false;
     }
+
+    /**
+     * Constructs a ghostTurn object
+     *
+     * @param diff the difficulty of the wave
+     * @param counts An array of the number of shapes in each ghost of the wave
+     */
     public Ghostturn(int diff, int[] counts){
         //counts.length = nGhosts
         numGhosts = counts.length;
@@ -48,6 +81,13 @@ public class Ghostturn {
         fish = false;
     }
 
+    /**
+     * constructs a ghostTurn object
+     *
+     * @param diff the difficulty of this wave of ghosts
+     * @param counts An array of the numberof shapes in each ghost of the wave
+     * @param fulks An array of booleans that represents the ghosts in the wave that are Mr. Fulk
+     */
     public Ghostturn(int diff, int[] counts,boolean[] fulks){
         //counts.length = nGhosts
         numGhosts = counts.length;
@@ -66,6 +106,17 @@ public class Ghostturn {
         fish = false;
     }
 
+
+    /**
+     * constructs a ghostTurn object
+     *
+     * @param nGhosts the number of ghosts in this wave
+     * @param len the number of shapes for each ghost
+     * @param diff the difficulty of this wave
+     * @param allFish whether this wave has only fish
+     * @param circle whether this wave has a shield
+     * @param allFulk whether this wave has only Mr. Fulks
+     */
     public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean allFulk){
         numGhosts = nGhosts;
         numAlive = numGhosts;
@@ -92,6 +143,12 @@ public class Ghostturn {
 
 
     }
+
+    /**
+     * constructs a ghostTurn object with one ghost
+     *
+     * @param g the single ghost in this wave
+     */
     public Ghostturn (Ghost g){
         numGhosts = 1;
         //strlen = g.strlen;
@@ -136,6 +193,12 @@ public class Ghostturn {
         ghostspresent.add(new Ghost(strlen, totshapes));
     }*/
 
+
+    /**
+     * The representation of this turn as a string
+     *
+     * @return a representation of the turn as a string
+     */
     public String toString(){
         String s = "";
         for(int i=0;i<ghostspresent.size();i++){
@@ -146,6 +209,16 @@ public class Ghostturn {
         return s;
     }
 
+
+    /**
+     * Removes the shape corresponding to shapeIndex from the end of the ghosts
+     * Increments the scores if needed
+     * Adds a shield to the cat if needed
+     * Removes ghosts if needed
+     *
+     * @param shapeIndex the Index of the shape drawn
+     * @param c the Cat object in the game (contains lives)
+     */
     public void shapeDrawn(int shapeIndex, Cat c){
         
         for(int i=0;i<ghostspresent.size();i++){
@@ -219,6 +292,11 @@ public class Ghostturn {
         }
     }
 
+    /**
+     * checks if the ghostTurn is alive
+     *
+     * @return whether the ghostTurn is completed
+     */
     public boolean isAlive(){return numAlive>0;}
     public int getCircles(){return circles;}
     public int getHorizontalLines(){return horizontalLines;}

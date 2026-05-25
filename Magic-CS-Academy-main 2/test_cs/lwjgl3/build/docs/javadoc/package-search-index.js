@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"io.github.magiccsacademy.csa_project.lwjgl3"}];updateSearchResults();
