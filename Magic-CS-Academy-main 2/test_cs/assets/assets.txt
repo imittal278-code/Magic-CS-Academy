@@ -1,7 +1,7 @@
 Fulk.png
 Ghost.png
 Momo2023.png
-Sheild.png
+Shield.png
 ShieldSprite.png
 Title.png
 arial.ttf

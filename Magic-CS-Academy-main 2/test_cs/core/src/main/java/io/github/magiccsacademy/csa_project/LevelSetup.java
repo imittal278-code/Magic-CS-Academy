@@ -71,7 +71,6 @@ public class LevelSetup {
 
 
 
-        l1.addTurn(new Ghostturn(1,1,1,false,true,false)); //REMOVE THISSS
         l1.addTurn(new Ghostturn(3,1,1,false,false,false));
         l1.addTurn(new Ghostturn(2,2,1,false,false,false));
         l1.addTurn(new Ghostturn(3,2,1,false,false,false));//SPIRAL make it true when spiral works
