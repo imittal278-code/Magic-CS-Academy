@@ -339,7 +339,7 @@ public class Level {
             }
             return;
         }
-        else if(levelNumber != 5){
+        else {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));//degrees
             float anglerange = 2*angle/(Math.min(8,turn.ghostspresent.size()));
             for (int i=0; i<turn.ghostspresent.size(); i++) {
@@ -350,10 +350,6 @@ public class Level {
                 turn.ghosty.add((float) ghostPos.Y);
 
             }
-        }
-        else{
-
-            //TANISH CODE THIS LATER!!!!
         }
     }
 
