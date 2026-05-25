@@ -49,6 +49,12 @@ public class Level {
     /** the Main class, which contains some fields like sound and music that are important */
     private Main game;
 
+    private boolean circles;
+    private boolean horizontalLines;
+    private boolean verticalLines;
+    private boolean normalVs;
+    private boolean upsideDownVs;
+
 
     /**
      * Constructs a level using the parameters given and sets the background field based on the level number
@@ -89,6 +95,12 @@ public class Level {
         else if (levelNumber==5) {
             background = new Texture("circuitBackground.jpg");
         }
+
+        circles = false;
+        horizontalLines = false;
+        verticalLines = false;
+        normalVs = false;
+        upsideDownVs = false;
     }
 
 
@@ -97,6 +109,7 @@ public class Level {
     public void startLevel() {
         currentTurnIndex = 0;
         completed = false;
+        updateCounts();
         for (int i=0; i<turns.size(); i++) {
             ghostPos(i);
         }
@@ -110,6 +123,26 @@ public class Level {
     public void addTurn(Ghostturn turn) {
         turns.add(turn);
     }
+
+    private void updateCounts() {
+
+        if (turns.isEmpty() || currentTurnIndex >= turns.size()) {
+            circles=false;
+            horizontalLines = false;
+            verticalLines = false;
+            normalVs = false;
+            upsideDownVs = false;
+            return;
+        }
+        Ghostturn current = turns.get(currentTurnIndex);
+        current.updateCounts();
+        circles = current.getCircles()>0;
+        horizontalLines = current.getHorizontalLines()>0;
+        verticalLines = current.getVerticalLines()>0;
+        normalVs = current.getNormalVs()>0;
+        upsideDownVs = current.getUpsideDownVs()>0;
+    }
+
     public Ghostturn getCurrentTurn() {
         return turns.get(currentTurnIndex);
     }
@@ -140,6 +173,7 @@ public class Level {
 
         Ghostturn curr = turns.get(currentTurnIndex);
         curr.shapeDrawn(shapeIndex, c);
+        updateCounts();
         if (!curr.isAlive()) {
             nextTurn();
             if (currentTurnFinished()) completed = true;
@@ -206,6 +240,8 @@ public class Level {
      */
     public void nextTurn() {
         currentTurnIndex++;
+        updateCounts();
+
     }
 
     /**
@@ -320,4 +356,10 @@ public class Level {
             //TANISH CODE THIS LATER!!!!
         }
     }
+
+    public boolean getCircles(){return circles;}
+    public boolean getHorizontalLines(){return horizontalLines;}
+    public boolean getVerticalLines(){return verticalLines;}
+    public boolean getNormalVs(){return normalVs;}
+    public boolean getUpsideDownVs(){return upsideDownVs;}
 }

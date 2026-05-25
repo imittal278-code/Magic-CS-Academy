@@ -9,6 +9,11 @@ public class Ghostturn {
     int difficulty;
     int numAlive;
     int totshapes = 4;
+    int circles = 0;
+    int horizontalLines = 0;
+    int verticalLines = 0;
+    int upsideDownVs = 0;
+    int normalVs = 0;
     ArrayList<Ghost> ghostspresent;
     public ArrayList<Float> ghostx;
     public ArrayList<Float> ghosty;
@@ -26,7 +31,6 @@ public class Ghostturn {
         for(int i=0;i<((spiral)?nGhosts-1:nGhosts);i++){
             ghostspresent.add(new Ghost(len, totshapes));
         }
-        System.out.println(this);
         fish = false;
     }
     public Ghostturn(int diff, int[] counts){
@@ -41,7 +45,6 @@ public class Ghostturn {
         for(int i=0;i<numGhosts;i++){
             ghostspresent.add(new Ghost(counts[i], totshapes));
         }
-        System.out.println(this);
         fish = false;
     }
 
@@ -60,7 +63,6 @@ public class Ghostturn {
                 ghostspresent.get(i).isFulk=true;
             }
         }
-        System.out.println(this);
         fish = false;
     }
 
@@ -101,6 +103,31 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(numGhosts);
     }
 
+
+    public void updateCounts(){
+        circles = 0;
+        horizontalLines = 0;
+        verticalLines = 0;
+        upsideDownVs = 0;
+        normalVs = 0;
+        for(int i=0;i<ghostspresent.size();i++){
+           if(ghostspresent.get(i).lastShapeEquals(0)){
+               horizontalLines++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(1)){
+                verticalLines++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(2)){
+               normalVs++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(3)){
+               upsideDownVs++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(4)){
+               circles++;
+           }
+        }
+    }
     /*private determineSpeed(){
         //if()
     }*/
@@ -133,7 +160,21 @@ public class Ghostturn {
                 if(xpos<0f||xpos>6f||ypos<0f||ypos>3f){
                     continue;
                 }
-
+                if(ghostspresent.get(i).lastShapeEquals(0)){
+               horizontalLines--;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(1)){
+                verticalLines--;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(2)){
+               normalVs--;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(3)){
+               upsideDownVs--;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(4)){
+               circles--;
+           }
                 if(shapeIndex <=3){
                     ghostspresent.get(i).removeLast();
                     int increment = 10;
@@ -146,6 +187,21 @@ public class Ghostturn {
                     }
                     else{
                         ghostspresent.get(i).hurt();
+                        if(ghostspresent.get(i).lastShapeEquals(0)){
+               horizontalLines++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(1)){
+                verticalLines++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(2)){
+               normalVs++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(3)){
+               upsideDownVs++;
+           }
+           else if(ghostspresent.get(i).lastShapeEquals(4)){
+               circles++;
+           }
                     }
                 }
                 else{
@@ -164,5 +220,10 @@ public class Ghostturn {
     }
 
     public boolean isAlive(){return numAlive>0;}
+    public int getCircles(){return circles;}
+    public int getHorizontalLines(){return horizontalLines;}
+    public int getVerticalLines(){return verticalLines;}
+    public int getNormalVs(){return normalVs;}
+    public int getUpsideDownVs(){return upsideDownVs;}
 
 }

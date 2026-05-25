@@ -60,6 +60,21 @@ public class Recognizer
 		this(GESTURES_SIMPLE);
 	}
 
+	public Recognizer(boolean circle, boolean upsideDownV, boolean normalV, boolean horizontalLine, boolean verticalLine)
+	{
+		if (circle) loadTemplatesCircles();
+		if (upsideDownV) Templates.addElement(loadTemplate("upsideDownV", TemplateData.caretPointsCCW));
+		if (normalV) Templates.addElement(loadTemplate("normalV", TemplateData.caretPointsCW));
+		if (horizontalLine){
+			Templates.addElement(loadTemplate("horizontalLine", TemplateData.lineToLeftPoints));
+			Templates.addElement(loadTemplate("horizontalLine", TemplateData.lineToRightPoints));
+		}
+		if (verticalLine){
+			Templates.addElement(loadTemplate("verticalLine", TemplateData.lineToDownPoints));
+			Templates.addElement(loadTemplate("verticalLine", TemplateData.lineToUpPoints));
+		}
+	}
+
 	public Recognizer(int gestureSet)
 	{
 		switch(gestureSet)
@@ -108,8 +123,8 @@ public class Recognizer
 	
 	void loadTemplatesCircles()
 	{
-		Templates.addElement(loadTemplate("circle CCW", TemplateData.circlePointsCCW));
-		Templates.addElement(loadTemplate("circle CW", TemplateData.circlePointsCW));
+		Templates.addElement(loadTemplate("circle", TemplateData.circlePointsCCW));
+		Templates.addElement(loadTemplate("circle", TemplateData.circlePointsCW));
 	}
 
 	void loadTemplatesPhoto()
@@ -137,6 +152,7 @@ public class Recognizer
 	
 	public Result Recognize(Vector points)
 	{
+		if(Templates.size() == 0) return new Result("No templates loaded", 0, -1, 0);
 		points = Utils.Resample(points, NumPoints);		
 		//points = Utils.RotateToZero(points, centroid, boundingBox);
 		points = Utils.ScaleToSquare(points, SquareSize);

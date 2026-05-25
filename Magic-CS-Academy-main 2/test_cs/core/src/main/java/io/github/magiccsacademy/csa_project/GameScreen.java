@@ -203,6 +203,20 @@ public class GameScreen extends InputAdapter implements Screen {
 
     }
 
+    private Recognizer createCurrentRecognizer() {
+        Level current = controller.getCurrentLevel();
+        boolean circle = current.getCircles();
+        boolean upsideDownV = current.getUpsideDownVs();
+        boolean normalV = current.getNormalVs();
+        boolean horizontalLine = current.getHorizontalLines();
+        boolean verticalLine = current.getVerticalLines();
+
+        if (!circle && !upsideDownV && !normalV && !horizontalLine && !verticalLine) {
+            return new Recognizer();
+        }
+        return new Recognizer(circle, upsideDownV, normalV, horizontalLine, verticalLine);
+    }
+
 
     @Override
     public void render(float delta) {
@@ -442,17 +456,45 @@ public class GameScreen extends InputAdapter implements Screen {
 
         }
         if(points.size()>10){
+            recognizer = createCurrentRecognizer();
             Result r = recognizer.Recognize(pts);
-            colorDrawing = map2.get(r.Name).getValue1();
+            if (r != null && map2.containsKey(r.Name)&&r.Score>0.77) {
+                if(r.Score>0.90 && (r.Name.equals("horizontalLine")||r.Name.equals("verticalLine"))){
+                    if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
+                        //horizontal
+                        if(controller.getCurrentLevel().getHorizontalLines()) {
+                            colorDrawing = Color.RED;
+                        }
+                        else colorDrawing = Color.WHITE;
+                    }
+                    else{
+                        //vertical
+                        if(controller.getCurrentLevel().getVerticalLines()) {
+                            colorDrawing = Color.BLUE;
+                        }
+                        else colorDrawing = Color.WHITE;
+                    }
+                }
+                else colorDrawing = map2.get(r.Name).getValue1();
+            }
+            else if(r != null && map2.containsKey(r.Name)&&r.Name.equals("circle")&&r.Score>0.70){
+                colorDrawing = Color.CYAN;
+            }
+            else colorDrawing = Color.WHITE;
+
         }
         else if(points.size()>1){
             if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
                 //horizontal
-                colorDrawing = Color.RED;
+                if(controller.getCurrentLevel().getHorizontalLines()) {
+                    colorDrawing = Color.RED;
+                }
             }
             else{
                 //vertical
-                colorDrawing = Color.BLUE;
+                if(controller.getCurrentLevel().getVerticalLines()) {
+                    colorDrawing = Color.BLUE;
+                }
             }
         }
         return true;
@@ -463,17 +505,44 @@ public class GameScreen extends InputAdapter implements Screen {
         if(controller.getCurrentLevel().isCompleted()) return false;
         isDrawing = false;
         if(points.size()>10){
+            recognizer = createCurrentRecognizer();
             Result r = recognizer.Recognize(pts);
-            controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
+            if (r != null && map2.containsKey(r.Name)&&r.Score>0.77) {
+                if(r.Score>0.90 && (r.Name.equals("horizontalLine")||r.Name.equals("verticalLine"))){
+                    if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
+                        //horizontal
+                        if(controller.getCurrentLevel().getHorizontalLines()) {
+                            controller.getCurrentLevel().shapeDrawn(0, c);
+                        }
+
+                    }
+                    else{
+                        //vertical
+                        if(controller.getCurrentLevel().getVerticalLines()) {
+                            controller.getCurrentLevel().shapeDrawn(1, c);
+                        }
+
+                    }
+                }
+                else controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
+            }
+            else if(r != null && map2.containsKey(r.Name)&&r.Name.equals("circle")&&r.Score>0.70) {
+                 controller.getCurrentLevel().shapeDrawn(4, c);
+            }
+
         }
         else if(points.size()>1){
             if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
                 //horizontal
-                controller.getCurrentLevel().shapeDrawn(0, c);
+                if(controller.getCurrentLevel().getHorizontalLines()) {
+                    controller.getCurrentLevel().shapeDrawn(0, c);
+                }
             }
             else{
                 //vertical
-                controller.getCurrentLevel().shapeDrawn(1, c);
+                if(controller.getCurrentLevel().getVerticalLines()) {
+                    controller.getCurrentLevel().shapeDrawn(1, c);
+                }
             }
         }
 
