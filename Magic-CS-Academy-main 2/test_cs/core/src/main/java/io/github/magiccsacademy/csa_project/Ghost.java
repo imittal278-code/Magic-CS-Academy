@@ -12,6 +12,10 @@ public class Ghost {
     public float stateTimer = 0;
     public boolean isPausing = false;
     public float horizontalDirection = 1.0f;
+    public boolean isDying = false;
+    public float deathTimer = 0f;
+    public final float DEATH_DURATION = 0.4f;
+    public float deathX, deathY;
    // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
@@ -114,5 +118,12 @@ public class Ghost {
                 stateTimer = 0;
             }
         }
+    }
+    public void deathAnimation(float x, float y) {
+        this.alive = false;
+        this.isDying = true;
+        this.deathTimer = 0f;
+        this.deathX = x;
+        this.deathY = y;
     }
 }

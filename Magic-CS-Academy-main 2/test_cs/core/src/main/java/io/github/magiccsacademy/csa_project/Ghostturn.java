@@ -256,6 +256,9 @@ public class Ghostturn {
                     else if(difficulty==3) increment = 100;
                     c.addScore(increment);
                     if(!ghostspresent.get(i).isAlive()){
+                        float deathX = ghostx.get(i);
+                        float deathY = ghosty.get(i);
+                        ghostspresent.get(i).deathAnimation(deathX, deathY);
                         ghostspresent.get(i).remove();
                         numAlive--;
                     }

@@ -198,6 +198,26 @@ public class GameScreen extends InputAdapter implements Screen {
 
     private final float ANIMATION_DURATION = 1.0f;
 
+    /**
+     * The first death frame for ghost
+     */
+    private Texture ghostDeathFrame1;
+
+    /**
+     * The second death frame for ghost
+     */
+    private Texture ghostDeathFrame2;
+
+    /**
+     * The first death frame for fish
+     */
+    private Texture fishDeathFrame1;
+
+    /**
+     * The second death frame for fish
+     */
+    private Texture fishDeathFrame2;
+
 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
@@ -244,6 +264,10 @@ public class GameScreen extends InputAdapter implements Screen {
         catNormalV = new Texture("v_cat.png");
         catUpsideDownV = new Texture("caret_cat.png");
         //catCircle = new Texture("Momo_Circle.png");
+        ghostDeathFrame1 = new Texture("ghost_death1.png");
+        ghostDeathFrame2 = new Texture("ghost_death2.png");
+        fishDeathFrame1 = new Texture("fish_death1.png");
+        fishDeathFrame2 = new Texture("fish_death2.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
         font.getData().setScale(0.02f);
@@ -299,11 +323,34 @@ public class GameScreen extends InputAdapter implements Screen {
         if (level.isCompleted()) {
             return;
         }
+        float delta = Gdx.graphics.getDeltaTime();
         int numGhosts = level.getCurrentTurn().numGhosts;
         for (int i = 0; i < numGhosts; i++) {
-            if (level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1).isAlive()) {
+            Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+            if (g.isDying) {
+                g.deathTimer += delta;
+                if (g.deathTimer >= g.DEATH_DURATION) {
+                    g.isDying = false;
+                    continue;
+                }
+                Texture deathFrame;
+                if (g.isFulk) continue;
+                else if (g.isFish) {
+                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? fishDeathFrame2 : fishDeathFrame1;
+                    float deathScale = 0.7f;
+                    float xCent = g.deathX - 0.02f;
+                    float yCent = g.deathY - 0.10f;
+                    game.batch.draw(deathFrame, xCent, yCent,deathScale,deathScale);
+                }
+                else {
+                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? ghostDeathFrame2 : ghostDeathFrame1;
+                    game.batch.draw(deathFrame, g.deathX, g.deathY, 0.6f, 0.666f);
+                }
+                continue;
+            }
+            if (g.isAlive()) {
 
-                Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+                
                 float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
                 float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
                 if(g.isFulk){
