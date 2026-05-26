@@ -264,11 +264,11 @@ public class GameScreen extends InputAdapter implements Screen {
         map2.put("upsideDownV", new Pair<Integer, Color>(3,Color.GREEN));
         map2.put("circle", new Pair<Integer, Color>(4,Color.CYAN));
         LevelSetup g = new LevelSetup(game);
-        level1 = g.getLevel1;
-        level2 = g.getLevel2;
-        level3 = g.getLevel3;
-        level4 = g.getLevel4;
-        level5 = g.getLevel5;
+        level1 = g.getLevel1();
+        level2 = g.getLevel2();
+        level3 = g.getLevel3();
+        level4 = g.getLevel4();
+        level5 = g.getLevel5();
         background = level1.getBackground();
         controller.addLevel(level1);
         controller.addLevel(level2);
@@ -419,17 +419,17 @@ public class GameScreen extends InputAdapter implements Screen {
                 break;
             case NORMAL_V:
                 activeCatTexture = catNormalV;
-                finalWidth = 0.9f;
-                finalHeight = 0.6f;
-                catX -= 0.12f;
-                catY -= 0.12f;
+                finalWidth = 1.2f;
+                finalHeight = 0.80f;
+                catX -= 0.30f;
+                catY -= 0.115f;
                 break;
             case UPSIDE_DOWN_V:
                 activeCatTexture = catUpsideDownV;
-                finalWidth = 0.9f;
-                finalHeight = 0.6f;
-                catX -= 0.12f;
-                catY -= 0.12f;
+                finalWidth = 0.70f;
+                finalHeight = 0.96f;
+                catX -= 0.035f;
+                catY -= 0.15f;
                 break;
             case CIRCLE:        activeCatTexture = catCircle; break;
             case NORMAL:        
