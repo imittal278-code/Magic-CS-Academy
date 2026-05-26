@@ -46,6 +46,9 @@ public class Cat {
      */
     private int score;
 
+    public enum State { NORMAL, HORIZONTAL, VERTICAL, NORMAL_V, UPSIDE_DOWN_V, CIRCLE }
+    private State currentState = State.NORMAL;
+
     /**
      * Constructs a cat object and initializes its fields
      *
@@ -157,6 +160,24 @@ public class Cat {
     void setPosition(float x, float y) {
         catx = x;
         caty = y;
+    }
+
+    /**
+     * Sets the cat's current texture
+     * 
+     * @param state the new state of the cat's texture
+     */
+    public void setState(State state) {
+        this.currentState = state;
+    }
+
+    /**
+     * Returns cat's current texture state
+     * 
+     * @return the cat's current texture state
+     */
+    public State getState() {
+        return this.currentState;
     }
 
 }

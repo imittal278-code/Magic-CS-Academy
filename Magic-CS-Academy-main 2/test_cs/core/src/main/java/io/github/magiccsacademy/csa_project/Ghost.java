@@ -8,11 +8,16 @@ public class Ghost {
     public int strlen;
     public boolean isFulk;
     public boolean isFish;
+    public boolean isShield;
+    public float stateTimer = 0;
+    public boolean isPausing = false;
+    public float horizontalDirection = 1.0f;
    // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
         isFulk = false;
         isFish = false;
+        isShield = false;
         alive = true;
         strlen = len;
        // totaltypeshapes = totshapes;
@@ -32,6 +37,7 @@ public class Ghost {
     public Ghost (String s){
         isFulk = false;
         isFish = false;
+        isShield = false;
         shapes = strtointarray(s.split(""));
      //   totaltypeshapes = 4;
         strlen = shapes.size();
@@ -41,6 +47,7 @@ public class Ghost {
     public Ghost (String s, boolean fulk){
         isFulk = fulk;
         isFish = false;
+        isShield = false;
         shapes = strtointarray(s.split(""));
         //   totaltypeshapes = 4;
         strlen = shapes.size();
@@ -83,4 +90,17 @@ public class Ghost {
         public String toString() {
             return shapes.toString();
         }
+
+    public void shieldPause (float delta) {
+        stateTimer += delta;
+        if (isPausing && stateTimer >= 1.5f) {
+            isPausing = false;
+            stateTimer = 0;
+        } else {
+            if (stateTimer >= 2.0f) {
+                isPausing = true;
+                stateTimer = 0;
+            }
+        }
+    }
 }

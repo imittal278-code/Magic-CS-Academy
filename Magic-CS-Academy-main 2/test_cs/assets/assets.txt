@@ -6,6 +6,7 @@ ShieldSprite.png
 Title.png
 arial.ttf
 background.png
+caret_cat.png
 circle.png
 circuitBackground.jpg
 comicsansmf.ttf
@@ -20,6 +21,7 @@ ghostdeath.mp3
 heart.png
 heart_outline.png
 homeIcon.png
+horiz_cat.png
 horizontalLine.png
 level1.png
 level2.png
@@ -47,5 +49,7 @@ ui/uiskin.atlas
 ui/uiskin.json
 ui/uiskin.png
 upsideDownV.png
+v_cat.png
+vert_cat.png
 verticalLine.png
 winBackground.png

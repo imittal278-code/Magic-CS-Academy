@@ -198,6 +198,21 @@ public class Level {
         for (int i=0; i<curr.ghostspresent.size(); i++) {
             Ghost ghost = curr.ghostspresent.get(i);
             if (ghost.isAlive()) {
+                if (ghost.isShield) {
+                    ghost.shieldPause(delta);
+                    currentGhostY.set(i, 0.4f); 
+                    if (!ghost.isPausing) {
+                        float currentX = currentGhostX.get(i);
+                        float nextX = currentX + (ghost.horizontalDirection * 0.3f * delta);
+                        currentGhostX.set(i, nextX);
+                    }
+                    if (currentGhostX.get(i) > 6.0f || currentGhostX.get(i) < -1.0f) {
+                        ghost.remove();
+                        curr.numAlive--;
+                        updateCounts();
+                    }
+                    continue;
+                }
                 float dx = c.getX()-currentGhostX.get(i);
                 float dy = c.getY()-currentGhostY.get(i);
                 float distance = (float)Math.sqrt(dx*dx+dy*dy);
@@ -328,14 +343,26 @@ public class Level {
         if(levelNumber==2){
             float adder = -1f;
             if(turn.ghostspresent.size()==1){
+                if (turn.ghostspresent.get(0).isShield) {
+                    turn.ghostx.add(-0.5f);
+                    turn.ghosty.add(0.2f);
+                    turn.ghostspresent.get(0).horizontalDirection = 1.0f;
+                } else {
                 turn.ghostx.add(6f);
                 turn.ghosty.add(1.5f);
+                }
                 return;
             }
             for (int i=0; i<turn.ghostspresent.size(); i++) {
+                if (turn.ghostspresent.get(i).isShield) {
+                    turn.ghostx.add(-0.5f);
+                    turn.ghosty.add(0.2f);
+                    turn.ghostspresent.get(i).horizontalDirection = 1.0f;
+                } else {
                 if(i%3==0)adder+=0.5f;
                 turn.ghostx.add(6f+adder);
                 turn.ghosty.add(0f+(i%4)+adder);
+                }
             }
             return;
         }
@@ -343,11 +370,17 @@ public class Level {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));//degrees
             float anglerange = 2*angle/(Math.min(8,turn.ghostspresent.size()));
             for (int i=0; i<turn.ghostspresent.size(); i++) {
+                if (turn.ghostspresent.get(i).isShield) {
+                    turn.ghostx.add(-0.5f);
+                    turn.ghosty.add(0.2f);
+                    turn.ghostspresent.get(i).horizontalDirection = 1.0f;
+                } else {
                 //choose a random float in range -angle+(i+1/4)*anglerange to -angle+(i+3/4)*anglerange
                 float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%8)+0.25)*anglerange)));
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, i/8);
                 turn.ghostx.add((float) ghostPos.X);
                 turn.ghosty.add((float) ghostPos.Y);
+                }
 
             }
         }

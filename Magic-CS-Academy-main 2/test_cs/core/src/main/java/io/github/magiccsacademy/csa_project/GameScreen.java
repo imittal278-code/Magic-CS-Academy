@@ -113,6 +113,15 @@ public class GameScreen extends InputAdapter implements Screen {
     private Texture fishpic;
 
     /**
+     * The texture for the shield ghost image
+     */
+    private Texture shieldGhostPic;
+    /**
+     * The sprite for the shield ghost texture
+     */
+    private Sprite shieldGhostSprite;
+
+    /**
      * The texture for the cat image
      */
     private Texture cat;
@@ -157,6 +166,38 @@ public class GameScreen extends InputAdapter implements Screen {
      */
     private boolean isDrawing = true;
 
+    /**
+     * The texture for cat drawing horiziontal line
+     */
+    private Texture catHorizontal;
+
+    /**
+     * The texture for cat drawing vertical line
+     */
+    private Texture catVertical;
+
+    /**
+     * The texture for cat drawing normal V
+     */
+    private Texture catNormalV;
+
+    /**
+     * The texture for cat drawing upside down V
+     */
+    private Texture catUpsideDownV;
+
+    /**
+     * The texture for cat drawing circle
+     */
+    private Texture catCircle;
+
+    /**
+     * The timer for how long cat changes
+     */
+    private float animationTimer = 0f;
+
+    private final float ANIMATION_DURATION = 1.0f;
+
 
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
@@ -191,11 +232,18 @@ public class GameScreen extends InputAdapter implements Screen {
         shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
+        shieldGhostPic = new Texture("ShieldSprite.png");
+        shieldGhostSprite = new Sprite(shieldGhostPic);
         fulkPic = new Texture("Fulk.png");
         fulk = new Sprite(fulkPic);
         fishpic = new Texture("fish.png");
         fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
+        catHorizontal = new Texture("horiz_cat.png");
+        catVertical = new Texture("vert_cat.png");
+        catNormalV = new Texture("v_cat.png");
+        catUpsideDownV = new Texture("caret_cat.png");
+        //catCircle = new Texture("Momo_Circle.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
         font.getData().setScale(0.02f);
@@ -274,6 +322,11 @@ public class GameScreen extends InputAdapter implements Screen {
                     }
                     continue;
                 }
+                else if (g.isShield) {
+                    shieldGhostSprite.setPosition(x, y);
+                    shieldGhostSprite.setSize(0.46f, 0.5106f);
+                    shieldGhostSprite.draw(game.batch);
+                }
                 else{
                     ghost2.setPosition(x, y);
                     ghost2.setSize(0.6f, 0.666f);
@@ -340,14 +393,56 @@ public class GameScreen extends InputAdapter implements Screen {
         drawScore();
 
         //set cat's position and size and draw it
-        cat2 = new Sprite(cat);
+        if (!paused && animationTimer > 0) {
+            animationTimer -= delta;
+            if (animationTimer <= 0) c.setState(Cat.State.NORMAL);
+        }
+        Texture activeCatTexture = cat; 
+        float catX = c.getX();
+        float catY = c.getY();
+        float finalWidth = 0.6f;
+        float finalHeight = 0.6f;
+        switch(c.getState()) {
+            case HORIZONTAL:
+                activeCatTexture = catHorizontal;
+                finalWidth = 1.35f;
+                finalHeight = 0.90f; 
+                catX -= 0.375f;
+                catY -= 0.165f;
+                break;
+            case VERTICAL:
+                activeCatTexture = catVertical;
+                finalWidth = 0.6f;
+                finalHeight = 0.9f;
+                catX += 0.0f;
+                catY += -0.15f;
+                break;
+            case NORMAL_V:
+                activeCatTexture = catNormalV;
+                finalWidth = 0.9f;
+                finalHeight = 0.6f;
+                catX -= 0.12f;
+                catY -= 0.12f;
+                break;
+            case UPSIDE_DOWN_V:
+                activeCatTexture = catUpsideDownV;
+                finalWidth = 0.9f;
+                finalHeight = 0.6f;
+                catX -= 0.12f;
+                catY -= 0.12f;
+                break;
+            case CIRCLE:        activeCatTexture = catCircle; break;
+            case NORMAL:        
+            default:            activeCatTexture = cat; break;
+        }
+        cat2 = new Sprite(activeCatTexture);
         if(controller.getCurrentLevel() == level1) c.setPosition(2.6f,1.5f);
         else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
         else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
         else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
         //else c.setPosition();
-        cat2.setPosition(c.getX(), c.getY());
-        cat2.setSize(0.6f, 0.6f);
+        cat2.setPosition(catX, catY);
+        cat2.setSize(finalWidth, finalHeight);
         cat2.draw(game.batch);
         if (!paused) {
             controller.getCurrentLevel().update(delta, c);
@@ -584,6 +679,8 @@ public class GameScreen extends InputAdapter implements Screen {
                         //horizontal
                         if(controller.getCurrentLevel().getHorizontalLines()) {
                             controller.getCurrentLevel().shapeDrawn(0, c);
+                            c.setState(Cat.State.HORIZONTAL);
+                            animationTimer = ANIMATION_DURATION;
                         }
 
                     }
@@ -591,14 +688,24 @@ public class GameScreen extends InputAdapter implements Screen {
                         //vertical
                         if(controller.getCurrentLevel().getVerticalLines()) {
                             controller.getCurrentLevel().shapeDrawn(1, c);
+                            c.setState(Cat.State.VERTICAL);
+                            animationTimer = ANIMATION_DURATION;
                         }
 
                     }
                 }
-                else controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
+                else {
+                    controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
+                    int shapeCode = map2.get(r.Name).getValue0();
+                    if(shapeCode == 2) c.setState(Cat.State.NORMAL_V);
+                    if(shapeCode == 3) c.setState(Cat.State.UPSIDE_DOWN_V);
+                    animationTimer = ANIMATION_DURATION;
+                }
             }
             else if(r != null && map2.containsKey(r.Name)&&r.Name.equals("circle")&&r.Score>0.70) {
                  controller.getCurrentLevel().shapeDrawn(4, c);
+                 //c.setState(Cat.State.CIRCLE);
+                 //animationTimer = ANIMATION_DURATION;
             }
 
         }
@@ -607,12 +714,16 @@ public class GameScreen extends InputAdapter implements Screen {
                 //horizontal
                 if(controller.getCurrentLevel().getHorizontalLines()) {
                     controller.getCurrentLevel().shapeDrawn(0, c);
+                    c.setState(Cat.State.HORIZONTAL);
+                    animationTimer = ANIMATION_DURATION;
                 }
             }
             else{
                 //vertical
                 if(controller.getCurrentLevel().getVerticalLines()) {
                     controller.getCurrentLevel().shapeDrawn(1, c);
+                    c.setState(Cat.State.VERTICAL);
+                    animationTimer = ANIMATION_DURATION;
                 }
             }
         }

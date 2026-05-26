@@ -40,6 +40,7 @@ public class Main extends Game {
     public Texture verticalLine;
     public Texture horizontalLine;
     public Texture circle;
+    public Texture shieldGhost;
     public ArrayList<Texture> transitionBackground;
 
 
@@ -56,6 +57,7 @@ public class Main extends Game {
         verticalLine = new Texture("verticalLine.png");
         horizontalLine = new Texture("horizontalLine.png");
         circle = new Texture("circle.png");
+        shieldGhost = new Texture("ShieldSprite.png");
         background = new Texture("background.png");
         ocean= new Texture("ocean.jpg");
         desert = new Texture("desertBackground.jpg");

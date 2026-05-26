@@ -137,6 +137,7 @@ public class Ghostturn {
         }
         if(circle){
             ghostspresent.add(new Ghost("4"));
+            ghostspresent.get(ghostspresent.size()-1).isShield = true;
             numGhosts++;
             numAlive = numGhosts;
         }
