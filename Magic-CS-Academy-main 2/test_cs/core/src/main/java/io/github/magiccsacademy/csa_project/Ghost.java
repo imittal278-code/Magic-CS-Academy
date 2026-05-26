@@ -88,9 +88,7 @@ public class Ghost {
         }
     }
 
-    public int getStrLen(){
-        return strlen;
-    }
+    
     
     public boolean isAlive(){ return alive && shapes.size()>0; }
 
