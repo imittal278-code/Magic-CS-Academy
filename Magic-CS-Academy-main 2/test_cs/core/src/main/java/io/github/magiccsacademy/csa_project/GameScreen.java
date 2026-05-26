@@ -216,11 +216,11 @@ public class GameScreen extends InputAdapter implements Screen {
         map2.put("upsideDownV", new Pair<Integer, Color>(3,Color.GREEN));
         map2.put("circle", new Pair<Integer, Color>(4,Color.CYAN));
         LevelSetup g = new LevelSetup(game);
-        level1 = g.l1;
-        level2 = g.l2;
-        level3 = g.l3;
-        level4 = g.l4;
-        level5 = g.l5;
+        level1 = g.getLevel1;
+        level2 = g.getLevel2;
+        level3 = g.getLevel3;
+        level4 = g.getLevel4;
+        level5 = g.getLevel5;
         background = level1.getBackground();
         controller.addLevel(level1);
         controller.addLevel(level2);
