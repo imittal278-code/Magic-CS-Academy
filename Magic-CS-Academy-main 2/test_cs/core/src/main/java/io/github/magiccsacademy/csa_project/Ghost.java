@@ -67,11 +67,6 @@ public class Ghost {
     }
 
 
-    public void hurt(){
-
-    }
-
-
     public void makeFulk(){
         isFulk = true;
     }
