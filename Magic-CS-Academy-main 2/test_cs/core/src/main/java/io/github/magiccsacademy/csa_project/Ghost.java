@@ -6,8 +6,8 @@ import java.lang.*;
 public class Ghost {
     ArrayList<Integer> shapes;
     public int strlen;
-    public boolean isFulk;
-    public boolean isFish;
+    private boolean isFulk;
+    private boolean isFish;
    // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
     boolean alive;
     public Ghost(int len, int totshapes){
@@ -59,6 +59,16 @@ public class Ghost {
     public void hurt(){
 
     }
+
+
+    public void makeFulk(){
+        isFulk = true;
+    }
+
+    public void makeFish(){
+        isFish = true;
+    }
+    
     public void remove(){
         alive = false;
     }
