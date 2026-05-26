@@ -100,7 +100,7 @@ public class Ghostturn {
         for(int i=0;i<numGhosts;i++){
             ghostspresent.add(new Ghost(counts[i], totshapes));
             if(fulks[i]){
-                ghostspresent.get(i).isFulk=true;
+                ghostspresent.get(i).makeFulk();
             }
         }
         fish = false;
@@ -115,9 +115,9 @@ public class Ghostturn {
      * @param diff the difficulty of this wave
      * @param allFish whether this wave has only fish
      * @param circle whether this wave has a shield
-     * @param allFulk whether this wave has only Mr. Fulks
+     * @param all whether this wave has only Mr. s
      */
-    public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean allFulk){
+    public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean all){
         numGhosts = nGhosts;
         numAlive = numGhosts;
         //strlen = len;
@@ -128,11 +128,11 @@ public class Ghostturn {
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<nGhosts;i++){
             ghostspresent.add(new Ghost(len, totshapes));
-            if(allFulk){
-                ghostspresent.get(i).isFulk=true;
+            if(all){
+                ghostspresent.get(i).makeFulk();
             }
             else if(allFish){
-                ghostspresent.get(i).isFish = true;
+                ghostspresent.get(i).makeFish();
             }
         }
         if(circle){
