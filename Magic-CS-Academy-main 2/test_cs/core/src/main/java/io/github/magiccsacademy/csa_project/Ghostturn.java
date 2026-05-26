@@ -39,6 +39,9 @@ public class Ghostturn {
     /** Boolean that states whether the characters in this wave are fish*/
     private boolean fish;
 
+    /**Speed modifier for the ghosts */
+    public float speedModifier = 1.0f;
+
     /**
      * Constructs a ghostTurn object
      *
@@ -58,6 +61,7 @@ public class Ghostturn {
             ghostspresent.add(new Ghost(len, totshapes));
         }
         fish = false;
+        this.speedModifier();
     }
 
     /**
@@ -79,6 +83,7 @@ public class Ghostturn {
             ghostspresent.add(new Ghost(counts[i], totshapes));
         }
         fish = false;
+        this.speedModifier();
     }
 
     /**
@@ -104,6 +109,7 @@ public class Ghostturn {
             }
         }
         fish = false;
+        this.speedModifier();
     }
 
 
@@ -142,7 +148,7 @@ public class Ghostturn {
             numAlive = numGhosts;
         }
 
-
+        this.speedModifier();
     }
 
     /**
@@ -159,6 +165,7 @@ public class Ghostturn {
         ghostspresent.add(g);
         ghostx = new ArrayList<Float>(numGhosts);
         ghosty = new ArrayList<Float>(numGhosts);
+        this.speedModifier();
     }
 
 
@@ -263,7 +270,7 @@ public class Ghostturn {
                         numAlive--;
                     }
                     else{
-                        ghostspresent.get(i).hurt();
+                        // ghostspresent.get(i).hurt();       HURT METHOD MAYBE??
                         if(ghostspresent.get(i).lastShapeEquals(0)){
                horizontalLines++;
            }
@@ -293,6 +300,24 @@ public class Ghostturn {
                     }
                 }
             }
+        }
+    }
+
+    public void speedModifier() {
+        int len = 0;
+        for (Ghost g : ghostspresent) {
+            if (!g.isShield) len += g.strlen;
+        }
+        float avgLength = ghostspresent.isEmpty() ? 1 : (float)len/ghostspresent.size();
+        int count = numGhosts;
+        if (count<= 2 && avgLength <= 2) {
+            speedModifier = 1.4f;
+        } else if (count <= 4 && avgLength<= 3) {
+            speedModifier = 1.2f;
+        } else if (count > 6 || avgLength >= 5) {
+            speedModifier = 0.7f;
+        } else {
+            speedModifier = 1.0f;
         }
     }
 

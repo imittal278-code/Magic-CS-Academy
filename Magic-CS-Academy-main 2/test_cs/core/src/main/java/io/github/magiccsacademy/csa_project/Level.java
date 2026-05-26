@@ -217,8 +217,9 @@ public class Level {
                 float dy = c.getY()-currentGhostY.get(i);
                 float distance = (float)Math.sqrt(dx*dx+dy*dy);
                 if (distance>0.30f) {
-                    float moveX = (dx/distance)*ghostSpeed*delta;
-                    float moveY = (dy/distance)*ghostSpeed*delta;
+                    float updateSpeed = ghostSpeed*curr.speedModifier;
+                    float moveX = (dx/distance)*updateSpeed*delta;
+                    float moveY = (dy/distance)*updateSpeed*delta;
                     currentGhostX.set(i, currentGhostX.get(i)+moveX);
                     currentGhostY.set(i, currentGhostY.get(i)+moveY);
                 }
