@@ -9,27 +9,27 @@ public class LevelSetup {
     /**
      * Level 3 object
      */
-    public Level l3;
+    private Level l3;
 
     /**
      * Level 4 object
      */
-    public Level l4;
+    private Level l4;
 
     /**
      * Level 1 object
      */
-    public Level l1;
+    private Level l1;
 
     /**
      * Level 2 object
      */
-    public Level l2;
+    private Level l2;
 
     /**
      * Level 5 object
      */
-    public Level l5;
+    private Level l5;
 
 
     /**
@@ -103,6 +103,47 @@ public class LevelSetup {
 
         
 
+    }
+
+
+    /**
+    *  Returns the level 1 object
+    *  @return the level 1 object
+    */
+    public Level getLevel1(){
+        return l1;
+    }
+
+    /**
+    *  Returns the level 2 object
+    *  @return the level 2 object
+    */
+    public Level getLevel2(){
+        return l2;
+    }
+
+    /**
+    *  Returns the level 3 object
+    *  @return the level 3 object
+    */
+    public Level getLevel3(){
+        return l3;
+    }
+
+    /**
+    *  Returns the level 4 object
+    *  @return the level 4 object
+    */
+    public Level getLevel4(){
+        return l4;
+    }
+
+    /**
+    *  Returns the level 5 object
+    *  @return the level 5 object
+    */
+    public Level getLevel5(){
+        return l5;
     }
 
 }
