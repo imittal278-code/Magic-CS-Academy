@@ -16,13 +16,42 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import java.util.*;
 
+/**
+ * Manges location of the cat on the screen, its lives, score, and whether it has its shiel0d
+ */
 public class Cat {
+
+    /**
+     * The x and y positions of the cat
+     */
     float catx, caty;
+
+    /**
+     * The number of lives the player has
+     */
     int lives;
+
+    /**
+     * whether the player is alive
+     */
     boolean alive;
+
+    /**
+     * whether the cat has its shield
+     */
     boolean hasShield;
+
+    /**
+     * The score the player currently has
+     */
     private int score;
 
+    /**
+     * Constructs a cat object and initializes its fields
+     *
+     * @param catx the x position of the cat
+     * @param caty the y position of the cat
+     */
     public Cat(float catx, float caty) {
         this.catx = catx;
         this.caty = caty;
@@ -31,42 +60,100 @@ public class Cat {
         hasShield = false;
         score = 0;
     }
-    void loseLife() {
+
+    /**
+     * Decrements the cats lives by 1
+     */
+    public void loseLife() {
         lives--;
         if (lives<=0) {
             alive = false;
         }
     }
-    void gainLife() {
-        lives++;
-    }
+
+    /**
+     * Increments the players score by the parameter
+     *
+     * @param amount the amount to increase the score by
+     */
     void addScore(int amount) {
         score+=amount;
     }
+
+    /**
+     * Returns the players current score
+     *
+     * @return the players score
+     */
     int getScore() {
         return score;
     }
+
+    /**
+     * Returns whether the car has its shield
+     *
+     * @return whether the cat has its shield
+     */
     boolean hasShield(){
         return hasShield;
     }
-    boolean isAlive() {
+
+    /**
+     * Returns whether the player still has hearts
+     *
+     * @return whether the cat is alive
+     */
+    public boolean isAlive() {
         return alive;
     }
-    float getX() {
+
+    /**
+     * Returns the x position of the cat
+     *
+     * @return the x position of the cat
+     */
+    public float getX() {
         return catx;
     }
-    void shieldOn(){
+
+    /**
+     * Turns the cat's shield on
+     */
+    public void shieldOn(){
         hasShield = true;
     }
+
+    /**
+     * Turns the cat's shield off
+     */
     void shieldOff(){
         hasShield = false; 
     }
-    float getY() {
+
+    /**
+     * Returns the y position of the car
+     *
+     * @return the y position of the cat
+     */
+    public float getY() {
         return caty;
     }
-    int getLives() {
+
+    /**
+     * Returns the number of lives the player has remaining
+     *
+     * @return the number of live the player has remaining
+     */
+    public int getLives() {
         return lives;
     }
+
+    /**
+     * Sets the cat's position to the given values
+     *
+     * @param x the x position of the cat
+     * @param y the y position of the cat
+     */
     void setPosition(float x, float y) {
         catx = x;
         caty = y;

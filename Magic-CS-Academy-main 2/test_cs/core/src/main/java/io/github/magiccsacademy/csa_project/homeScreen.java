@@ -17,6 +17,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import java.util.*;
 
+/**
+ * Displays the screen that a player sees first with the big center play button
+ */
 public class homeScreen implements Screen{
 
     /**

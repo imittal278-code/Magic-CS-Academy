@@ -27,20 +27,66 @@ import com.badlogic.gdx.audio.Sound;
 
 import java.util.*;
 
+/**
+ * The screen that a player sees after they either win or lose the game
+ */
 public class endScreen implements Screen{
+
+    /**
+     * The shared Main class used for assets and switching screens
+     */
     private final Main game;
+
+    /**
+     * Whether the player has won
+     */
     private boolean win;
+
+    /**
+     * The score th player ended with
+     */
     private String score;
+
+    /**
+     * The Texture for the background image
+     */
     private Texture background;
+
+    /**
+     * The Texture for the home Image
+     */
     private Texture homeIcon;
+
+    /**
+     * The texture for the replay image
+     */
     private Texture replayIcon;
-    private Texture Hover;
-    private Texture nonHover;
+
+    /**
+     * The sprite for the home texture
+     */
     private Sprite home;
+
+    /**
+     * the sprite for the replay texture
+     */
     private Sprite replay;
+
+    /**
+     * the font that writes text
+     */
     private BitmapFont font;
+
+    /**
+     * The viewport for writing text
+     */
     private Viewport uiViewport;
 
+    /**
+     * Constructs the endScreen, initializing non-static fields and setting up the font
+     * @param game the shared Main class
+     * @param c the Cat from GameScreen
+     */
     public endScreen(Main game, Cat c){
         uiViewport = new FitViewport(1200,600);
 
@@ -58,9 +104,9 @@ public class endScreen implements Screen{
     }
 
 
-
-
-
+    /**
+     * Sets up the Textures and Sprites in the screen
+     */
     @Override
     public void show(){
         if(win){
@@ -76,6 +122,11 @@ public class endScreen implements Screen{
         replay = new Sprite(replayIcon);
     }
 
+
+    /**
+     * Draws the image onto the screen, using delta to control animations
+     * @param delta The time in seconds since the last render.
+     */
     @Override
     public void render(float delta){
         ScreenUtils.clear(0, 0, 0, 1);
@@ -137,6 +188,10 @@ public class endScreen implements Screen{
         drawScore();
     }
 
+
+    /**
+     * Draws the score on the screen
+     */
     private void drawScore(){
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
@@ -151,21 +206,38 @@ public class endScreen implements Screen{
     }
 
 
+    /**
+     * Resizes the screen to the new size
+     * @param x the new width
+     * @param y the new height
+     */
     @Override
     public void resize(int x, int y){
         game.stage.getViewport().update(x, y, true);
         uiViewport.update(x, y, true);
     }
 
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
     @Override
     public void pause(){}
 
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
     @Override
     public void resume(){}
 
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
     @Override
     public void hide(){}
 
+    /**
+     * Inherited method from the Screen interface that is not in use
+     */
     @Override
     public void dispose(){
 

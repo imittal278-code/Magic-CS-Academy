@@ -27,38 +27,137 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import java.util.*;
 import org.javatuples.Pair;
 
+/**
+ * The class that manages the graphics on the screen during the game
+ */
 public class GameScreen extends InputAdapter implements Screen {
+
+    /**
+     * The constant number of levels in the game
+     */
     private final int numLevels = 5;
+
+    /**
+     * The Main class, used for transitioning screens and accessing some assets
+     */
     private final Main game;
+
+    /**
+     * The uiViewport, used for the location of text
+     */
     private Viewport uiViewport;
 
-    //shape declarations
-
-
-
+    /**
+     * The map used to translate the shape number into an actual texture/image
+     */
     private HashMap<Integer, Texture> map1;
+
+    /**
+     * The map used to convert the name of the shape to its respective number or color
+     */
     private HashMap<String, Pair<Integer, Color>> map2;
+
+    /**
+     * The gameEngine that manages what level the player is on
+     */
     private GameEngine controller;
+
+    /**
+     * Whether the level transition needs to be shown
+     */
     private boolean showTransition;
+
+    /**
+     * The timer for the amount of time in transition
+     */
     private float transitionTime;
+
+    /**
+     * The cat object for the players lives, shields, etc.
+     */
     private Cat c;
+
+    /**
+     * The texture for the background image
+     */
     private Texture background;
+
+    /**
+     * The texture for the ghost image
+     */
     private Texture ghost;
+
+    /**
+     * The sprite for the ghost Texture
+     */
     private Sprite ghost2;
+
+    /**
+     * The Texture for the image of Mr. Fulk
+     */
     private Texture fulkPic;
+
+    /**
+     * The sprite for the Mr. Fulk texture
+     */
     private Sprite fulk;
+
+    /**
+     * The sprite for the fish texture
+     */
     private Sprite fish;
+
+    /**
+     * The texture for the fish image
+     */
     private Texture fishpic;
+
+    /**
+     * The texture for the cat image
+     */
     private Texture cat;
+
+    /**
+     * The sprite foe the cat texture
+     */
     private Sprite cat2;
+
+    /**
+     * The texture for the heart image
+     */
     private Texture heart;
+
+    /**
+     * The texture for the shield image
+     */
     private Texture shield;
+
+    /**
+     * The Texture for the outline of the heart image
+     */
     private Texture heartOutline;
+
+    /**
+     * The font, used to draw text
+     */
     private BitmapFont font;
-    TextButton button;
+
+    /**
+     * The Arraylist used to draw the line on the screen
+     */
     private ArrayList<Vector2> points = new ArrayList<Vector2>();
+
+    /**
+     * Stores the points that are recognized as a shape
+     */
     private Vector<Point> pts = new Vector<Point>();
+
+    /**
+     * Whether the player is drawing
+     */
     private boolean isDrawing = true;
+
+
     private ShapeRenderer shapeRenderer;
     private Recognizer recognizer;
     private Color colorDrawing;
