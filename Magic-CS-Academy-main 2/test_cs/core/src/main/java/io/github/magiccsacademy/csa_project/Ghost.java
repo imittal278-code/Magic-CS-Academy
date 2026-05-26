@@ -5,7 +5,7 @@ import java.lang.*;
 
 public class Ghost {
     ArrayList<Integer> shapes;
-    public int strlen;
+    private int strlen;
     private boolean isFulk;
     private boolean isFish;
    // public int totaltypeshapes; // Number of types of shapes (e.g. o, -, |, etc.)
@@ -88,6 +88,10 @@ public class Ghost {
         }
     }
 
+    public int getStrLen(){
+        return strlen;
+    }
+    
     public boolean isAlive(){ return alive && shapes.size()>0; }
 
         public String toString() {
