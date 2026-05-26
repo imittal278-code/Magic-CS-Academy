@@ -12,7 +12,7 @@ public class GameEngine {
     /**
      * An arraylist of Levels in the game
      */
-    public ArrayList<Level> levels;
+    private ArrayList<Level> levels;
 
     /**
      * The constant number of levels in the game

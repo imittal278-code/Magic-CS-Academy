@@ -66,6 +66,16 @@ public class Ghost {
     public void hurt(){
 
     }
+
+
+    public void makeFulk(){
+        isFulk = true;
+    }
+
+    public void makeFish(){
+        isFish = true;
+    }
+    
     public void remove(){
         alive = false;
     }
@@ -85,6 +95,8 @@ public class Ghost {
         }
     }
 
+    
+    
     public boolean isAlive(){ return alive && shapes.size()>0; }
 
         public String toString() {
