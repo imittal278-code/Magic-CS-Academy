@@ -24,11 +24,11 @@ public class Ghostturn {
     /** Array of the ghosts in this wave*/
     public ArrayList<Ghost> ghostspresent;
 
-    int circles = 0;
-    int horizontalLines = 0;
-    int verticalLines = 0;
-    int upsideDownVs = 0;
-    int normalVs = 0;
+    private int circles = 0;
+    private int horizontalLines = 0;
+    private int verticalLines = 0;
+    private int upsideDownVs = 0;
+    private int normalVs = 0;
 
     /** Array of the x positions of the ghosts in this wave*/
     public ArrayList<Float> ghostx;
