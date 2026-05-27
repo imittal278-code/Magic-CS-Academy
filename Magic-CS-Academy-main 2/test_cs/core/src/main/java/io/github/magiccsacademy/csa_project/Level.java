@@ -178,7 +178,7 @@ public class Level {
         }
 
         Ghostturn curr = turns.get(currentTurnIndex);
-        curr.shapeDrawn(shapeIndex, c);
+        if(curr.shapeDrawn(shapeIndex, c)) game.ghostdeath.play(1.0f);
         updateCounts();
         if (!curr.isAlive()) {
             nextTurn();

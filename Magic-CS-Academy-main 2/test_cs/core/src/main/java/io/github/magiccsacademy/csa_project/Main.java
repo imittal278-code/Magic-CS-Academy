@@ -43,7 +43,7 @@ public class Main extends Game {
     /**
      * The sound made when the ghost dies
      */
-    public Music ghostdeath;
+    public Sound ghostdeath;
 
     /**
      * The sounds played for each stroke shape
@@ -144,7 +144,7 @@ public class Main extends Game {
         forest = new Texture("forest.jpg");
         circuit = new Texture("circuitBackground.jpg");
         csclass = new Texture("csclassroom.jpg");
-        ghostdeath = Gdx.audio.newMusic(Gdx.files.internal("ghostdeath.mp3"));
+        ghostdeath = Gdx.audio.newSound(Gdx.files.internal("ghostdeath.mp3"));
         transitionBackground = new ArrayList<Texture>(5);
         transitionBackground.add(new Texture("level1.png"));
         transitionBackground.add(new Texture("level2.png"));

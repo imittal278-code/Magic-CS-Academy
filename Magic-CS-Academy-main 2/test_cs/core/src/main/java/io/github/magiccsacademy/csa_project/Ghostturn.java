@@ -208,12 +208,13 @@ public class Ghostturn {
      * Adds a shield to the cat if needed
      * Removes ghosts if needed
      * Also updates the five shape fields based on the shape removed
+     * Returns true if at least one ghost died.
      *
      * @param shapeIndex the Index of the shape drawn
      * @param c the Cat object in the game (contains lives)
      */
-    public void shapeDrawn(int shapeIndex, Cat c){
-        
+    public boolean shapeDrawn(int shapeIndex, Cat c){
+        boolean ans = false;
         for(int i=0;i<ghostspresent.size();i++){
             if(ghostspresent.get(i).lastShapeEquals(shapeIndex)){
 
@@ -251,11 +252,11 @@ public class Ghostturn {
                         float deathX = ghostx.get(i);
                         float deathY = ghosty.get(i);
                         ghostspresent.get(i).deathAnimation(deathX, deathY);
+                        ans = true;
                         ghostspresent.get(i).remove();
                         numAlive--;
                     }
                     else{
-                        // ghostspresent.get(i).hurt();       HURT METHOD MAYBE??
                         if(ghostspresent.get(i).lastShapeEquals(0)){
                horizontalLines++;
            }
@@ -285,6 +286,7 @@ public class Ghostturn {
                 }
             }
         }
+        return ans;
     }
 
     /**
