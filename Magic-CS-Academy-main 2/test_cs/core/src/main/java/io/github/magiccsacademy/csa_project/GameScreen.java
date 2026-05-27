@@ -154,12 +154,12 @@ public class GameScreen extends InputAdapter implements Screen {
     /**
      * The Arraylist used to draw the line on the screen
      */
-    private ArrayList<Vector2> points = new ArrayList<Vector2>();
+    private ArrayList<Vector2> points;
 
     /**
      * Stores the points that are recognized as a shape
      */
-    private Vector<Point> pts = new Vector<Point>();
+    private Vector<Point> pts;
 
     /**
      * Whether the player is drawing
@@ -176,42 +176,77 @@ public class GameScreen extends InputAdapter implements Screen {
      */
     private float animationTimer = 0f;
 
+    /**
+     * The constant used for the duration of the animation
+     */
     private final float ANIMATION_DURATION = 1.0f;
 
-
-
-
+    /**
+     * The renderer that draws the players line on the screen
+     */
     private ShapeRenderer shapeRenderer;
-    private Recognizer recognizer;
-    private Color colorDrawing;
-    private boolean paused;
-    private Texture pauseTexture;
-    private Texture playTexture;
-    private Level level1;
-    private Level level2;
-    private Level level3;
-    private Level level4;
-    private Level level5;
 
+    /**
+     * The recognizer that recognizes the player shape drawn
+     */
+    private Recognizer recognizer;
+
+    /**
+     * The color of the stroke the player makes (changes based on recognition)
+     */
+    private Color colorDrawing;
+
+    /**
+     * whether the game is currently paused
+     */
+    private boolean paused;
+
+    /**
+     * The texture for the pause image
+     */
+    private Texture pauseTexture;
+
+    /**
+     * The texture for the play image
+     */
+    private Texture playTexture;
+
+    /**
+     * The level objects for each level
+     */
+    private Level level1,level2,level3,level4,level5;;
+
+
+    /**
+     * Constructs a GameScreen object, initializing static fields
+     * @param game the Main class used for textures and shifting screens.
+     */
     public GameScreen(Main game) {
         this.game = game;
-
-    }
-
-
-    @Override
-    public void show() {
         uiViewport = new FitViewport(1600, 800);
         colorDrawing = Color.WHITE;
         paused = false;
         controller = new GameEngine(numLevels);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
+        shapeRenderer = new ShapeRenderer();
+        map1 = new HashMap<>();
+        map2 = new HashMap<>();
+        points = new ArrayList<Vector2>();
+        pts = new Vector<Point>();
+    }
+
+
+    /**
+     * Initializes textures, fonts and fills up the fields initialized in the constructor
+     */
+    @Override
+    public void show() {
+
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
         shield = new Texture("Shield.png");
         Gdx.input.setInputProcessor(this);
-        shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         shieldGhostPic = new Texture("ShieldSprite.png");
@@ -229,8 +264,6 @@ public class GameScreen extends InputAdapter implements Screen {
         font.setColor(Color.ORANGE);
         background = game.background;
 
-        map1 = new HashMap<Integer,Texture>();
-        map2 = new HashMap<String, Pair<Integer, Color>>();
         map1.put(0,game.horizontalLine);
         map1.put(1,game.verticalLine);
         map1.put(2,game.normalV);
@@ -260,7 +293,7 @@ public class GameScreen extends InputAdapter implements Screen {
         pauseTexture = new Texture("pause.png");
         playTexture = new Texture("play.png");
 
-        //font setup stuff dont worry about the red errors, they dont matter
+
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("comicsansmf.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 80;
@@ -272,7 +305,11 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
 
-    //helper method that draws a ghost
+    /**
+     * Draws all the ghosts (and shapes) in the current ghostTurn. the current ghostTurn is accessed through the level.
+     *
+     * @param level the level to draw ghosts from
+     */
     private void drawGhosts(Level level) {
         if (level.isCompleted()) {
             return;
@@ -347,6 +384,11 @@ public class GameScreen extends InputAdapter implements Screen {
 
     }
 
+    /**
+     * Returns the recognizer that should be used right now (for example if there are no circles left, it shouldnt recognize circles)
+     *
+     * @return the recognizes that should be used at that current moment
+     */
     private Recognizer createCurrentRecognizer() {
         Level current = controller.getCurrentLevel();
         boolean circle = current.getCircles();
@@ -362,6 +404,11 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
 
+    /**
+     * Renders the image on the screen, using helper methods as necessary
+     *
+     * @param delta The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         //keep this code at the top
@@ -499,10 +546,17 @@ public class GameScreen extends InputAdapter implements Screen {
 
     }
 
+    /**
+     * Draws the shield at the cat's current position
+     */
     private void drawShield() {
         game.batch.draw(shield, c.getX()-0.3f, c.getY()-0.3f, 1.2f, 1.2f);
     }
 
+    /**
+     * Draws the hearts in the corner of the screen based on the lives the cat has left
+     * @param c the cat object for this game (contains info on lives)
+     */
     private void drawHearts(Cat c) {
         int count = c.getLives();
         float adder = 0.2f;
@@ -514,6 +568,10 @@ public class GameScreen extends InputAdapter implements Screen {
         }
     }
 
+
+    /**
+     * Draws the score in the corner of the screen, utilizing a different viewport and a FreeTypeFont
+     */
     private void drawScore(){
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
@@ -525,6 +583,9 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
     }
 
+    /**
+     * Draws the play and pause buttons based on if the game is cirrently running, or if it is paused
+     */
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
         if(paused){
@@ -536,6 +597,9 @@ public class GameScreen extends InputAdapter implements Screen {
         }
     }
 
+    /**
+     * Draws the image the player sees when the game is currently paused (with the text in the middle)
+     */
     private void drawPauseOverlay(){
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -573,29 +637,58 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.end();
     }
 
+
+    /**
+     * Resizes the screen based on the parameters
+     *
+     * @param width the width of the screen to resize to
+     * @param height the height of the screen to resize to
+     */
     @Override
     public void resize(int width, int height) {
         game.stage.getViewport().update(width, height, true);
         uiViewport.update(width, height, true);
     }
 
+
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void pause() {
     }
 
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void resume() {
     }
 
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void hide() {
     }
 
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void dispose() {
 
     }
 
+    /**
+     * Inherited methods from the InputAdapter class that deals with if the mouse is down (starts drawing points)
+     *
+     * @param screenX The x coordinate, origin is in the upper left corner
+     * @param screenY The y coordinate, origin is in the upper left corner
+     * @param pointer the pointer for the event.
+     * @param button the button
+     * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
+     */
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) { //Called when the screen was touched or a mouse button was pressed.
         points.clear();
@@ -616,6 +709,14 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
 
+    /**
+     * Called when the mouse is dragged on the screen. In this method we apply the recognizer live and change the color based on the current recognized stroke
+     *
+     * @param screenX the x location on the screen
+     * @param screenY the y location on the screen
+     * @param pointer the pointer for the event.
+     * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
+     */
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {//Called when a finger or the mouse was dragged.
         Vector3 temp = new Vector3(screenX, screenY, 0);
@@ -670,6 +771,16 @@ public class GameScreen extends InputAdapter implements Screen {
         return true;
     }
 
+
+    /**
+     * When a drag or touch is removed of the screen this is called. Calls the shapeDrawn level method based on the shape drawn, and also updates the cat's costume
+     *
+     * @param screenX the x position of the screen
+     * @param screenY the y position of the screen
+     * @param pointer the pointer for the event.
+     * @param button the button
+     * @return false if the level is completed, otherwise true
+     */
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
         if(controller.getCurrentLevel().isCompleted()) return false;

@@ -118,7 +118,7 @@ public class Level {
     /**
      * Adds a GhostTurn to the level
      *
-     * @param turn the ghostturn to add
+     * @param turn the ghostTurn to add
      */
     public void addTurn(Ghostturn turn) {
         turns.add(turn);
@@ -143,6 +143,12 @@ public class Level {
         upsideDownVs = current.getUpsideDownVs()>0;
     }
 
+
+    /**
+     * Returns the current Ghostturn that is happening
+     *
+     * @return the ghostTurn object that is happening right now
+     */
     public Ghostturn getCurrentTurn() {
         return turns.get(currentTurnIndex);
     }
