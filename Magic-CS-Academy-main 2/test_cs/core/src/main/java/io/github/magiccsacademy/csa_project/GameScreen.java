@@ -246,7 +246,7 @@ public class GameScreen extends InputAdapter implements Screen {
         else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
         else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
         else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
-        //else c.setPosition();
+        else c.setPosition(2.6f, 1.5f);
         cat2.setPosition(c.getX(), c.getY());
         cat2.setSize(0.6f, 0.6f);
         cat2.draw(game.batch);
