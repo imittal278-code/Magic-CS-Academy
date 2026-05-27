@@ -15,8 +15,12 @@ desertBackground.jpg
 drop.mp3
 drop.png
 fish.png
+fish_death1.png
+fish_death2.png
 forest.jpg
 ghost2.png
+ghost_death1.png
+ghost_death2.png
 ghostdeath.mp3
 heart.png
 heart_outline.png

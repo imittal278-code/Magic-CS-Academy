@@ -167,26 +167,6 @@ public class GameScreen extends InputAdapter implements Screen {
     private boolean isDrawing = true;
 
     /**
-     * The texture for cat drawing horiziontal line
-     */
-    private Texture catHorizontal;
-
-    /**
-     * The texture for cat drawing vertical line
-     */
-    private Texture catVertical;
-
-    /**
-     * The texture for cat drawing normal V
-     */
-    private Texture catNormalV;
-
-    /**
-     * The texture for cat drawing upside down V
-     */
-    private Texture catUpsideDownV;
-
-    /**
      * The texture for cat drawing circle
      */
     private Texture catCircle;
@@ -198,25 +178,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
     private final float ANIMATION_DURATION = 1.0f;
 
-    /**
-     * The first death frame for ghost
-     */
-    private Texture ghostDeathFrame1;
 
-    /**
-     * The second death frame for ghost
-     */
-    private Texture ghostDeathFrame2;
-
-    /**
-     * The first death frame for fish
-     */
-    private Texture fishDeathFrame1;
-
-    /**
-     * The second death frame for fish
-     */
-    private Texture fishDeathFrame2;
 
 
     private ShapeRenderer shapeRenderer;
@@ -259,15 +221,7 @@ public class GameScreen extends InputAdapter implements Screen {
         fishpic = new Texture("fish.png");
         fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
-        catHorizontal = new Texture("horiz_cat.png");
-        catVertical = new Texture("vert_cat.png");
-        catNormalV = new Texture("v_cat.png");
-        catUpsideDownV = new Texture("caret_cat.png");
         //catCircle = new Texture("Momo_Circle.png");
-        ghostDeathFrame1 = new Texture("ghost_death1.png");
-        ghostDeathFrame2 = new Texture("ghost_death2.png");
-        fishDeathFrame1 = new Texture("fish_death1.png");
-        fishDeathFrame2 = new Texture("fish_death2.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
         font.getData().setScale(0.02f);
@@ -336,14 +290,14 @@ public class GameScreen extends InputAdapter implements Screen {
                 Texture deathFrame;
                 if (g.isFulk) continue;
                 else if (g.isFish) {
-                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? fishDeathFrame2 : fishDeathFrame1;
+                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? game.fishDeathFrame2 : game.fishDeathFrame1;
                     float deathScale = 0.7f;
                     float xCent = g.deathX - 0.02f;
                     float yCent = g.deathY - 0.10f;
                     game.batch.draw(deathFrame, xCent, yCent,deathScale,deathScale);
                 }
                 else {
-                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? ghostDeathFrame2 : ghostDeathFrame1;
+                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? game.ghostDeathFrame2 : game.ghostDeathFrame1;
                     game.batch.draw(deathFrame, g.deathX, g.deathY, 0.6f, 0.666f);
                 }
                 continue;
@@ -373,6 +327,9 @@ public class GameScreen extends InputAdapter implements Screen {
                     shieldGhostSprite.setPosition(x, y);
                     shieldGhostSprite.setSize(0.46f, 0.5106f);
                     shieldGhostSprite.draw(game.batch);
+                    int shapesLeft = g.shapes.size();
+                    game.batch.draw(game.circle,x+0.13f,y+0.5f,0.2f,0.2f);
+                    continue;
                 }
                 else{
                     ghost2.setPosition(x, y);
@@ -451,28 +408,28 @@ public class GameScreen extends InputAdapter implements Screen {
         float finalHeight = 0.6f;
         switch(c.getState()) {
             case HORIZONTAL:
-                activeCatTexture = catHorizontal;
+                activeCatTexture = game.catHorizontal;
                 finalWidth = 1.35f;
                 finalHeight = 0.90f; 
                 catX -= 0.375f;
                 catY -= 0.165f;
                 break;
             case VERTICAL:
-                activeCatTexture = catVertical;
+                activeCatTexture = game.catVertical;
                 finalWidth = 0.6f;
                 finalHeight = 0.9f;
                 catX += 0.0f;
                 catY += -0.15f;
                 break;
             case NORMAL_V:
-                activeCatTexture = catNormalV;
+                activeCatTexture = game.catNormalV;
                 finalWidth = 1.2f;
                 finalHeight = 0.80f;
                 catX -= 0.30f;
                 catY -= 0.115f;
                 break;
             case UPSIDE_DOWN_V:
-                activeCatTexture = catUpsideDownV;
+                activeCatTexture = game.catUpsideDownV;
                 finalWidth = 0.70f;
                 finalHeight = 0.96f;
                 catX -= 0.035f;

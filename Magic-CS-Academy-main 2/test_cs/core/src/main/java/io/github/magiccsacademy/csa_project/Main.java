@@ -42,7 +42,44 @@ public class Main extends Game {
     public Texture circle;
     public Texture shieldGhost;
     public ArrayList<Texture> transitionBackground;
+    /**
+     * The texture for cat drawing horiziontal line
+     */
+    public Texture catHorizontal;
 
+    /**
+     * The texture for cat drawing vertical line
+     */
+    public Texture catVertical;
+
+    /**
+     * The texture for cat drawing normal V
+     */
+    public Texture catNormalV;
+
+    /**
+     * The texture for cat drawing upside down V
+     */
+    public Texture catUpsideDownV;
+    /**
+     * The first death frame for ghost
+     */
+    public Texture ghostDeathFrame1;
+
+    /**
+     * The second death frame for ghost
+     */
+    public Texture ghostDeathFrame2;
+
+    /**
+     * The first death frame for fish
+     */
+    public Texture fishDeathFrame1;
+
+    /**
+     * The second death frame for fish
+     */
+    public Texture fishDeathFrame2;
 
     public void create(){
         batch = new SpriteBatch();
@@ -52,6 +89,14 @@ public class Main extends Game {
         sound3 =  Gdx.audio.newSound(Gdx.files.internal("sound3.mp3"));
         sound4 =  Gdx.audio.newSound(Gdx.files.internal("sound4.mp3"));
         sound5 =  Gdx.audio.newSound(Gdx.files.internal("sound5.mp3"));
+        catHorizontal = new Texture("horiz_cat.png");
+        catVertical = new Texture("vert_cat.png");
+        catNormalV = new Texture("v_cat.png");
+        catUpsideDownV = new Texture("caret_cat.png");
+        ghostDeathFrame1 = new Texture("ghost_death1.png");
+        ghostDeathFrame2 = new Texture("ghost_death2.png");
+        fishDeathFrame1 = new Texture("fish_death1.png");
+        fishDeathFrame2 = new Texture("fish_death2.png");
         normalV = new Texture("normalV.png");
         upsideDownV = new Texture("upsideDownV.png");
         verticalLine = new Texture("verticalLine.png");
