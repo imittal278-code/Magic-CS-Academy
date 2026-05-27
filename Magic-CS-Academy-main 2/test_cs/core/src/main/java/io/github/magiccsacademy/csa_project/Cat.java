@@ -88,7 +88,7 @@ public class Cat {
      *
      * @return the players score
      */
-    int getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -97,7 +97,7 @@ public class Cat {
      *
      * @return whether the cat has its shield
      */
-    boolean hasShield(){
+    public boolean hasShield(){
         return hasShield;
     }
 
