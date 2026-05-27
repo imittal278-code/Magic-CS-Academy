@@ -77,7 +77,7 @@ public class LevelSetup {
         l1.addTurn(new Ghostturn(4,4,1,false,true,false));//SHIELD remove comment when shield works
         l1.addTurn(new Ghostturn(8,1,1,false,false,false));//SPIRAL make it true when spiral works
         l1.addTurn(new Ghostturn(1, 6, 1, false, false, false));//when ready make the very last number(add it) the spiral number
-        l1.addTurn(new Ghostturn(new Ghost("212121",true)));//when ready make the very last number(add it) the spiral number
+        l1.addTurn(new Ghostturn(new Ghost("212121")));//when ready make the very last number(add it) the spiral number
         l1.addTurn(new Ghostturn(1, 5, 1, false, false, false));//when ready make the very last number(add it) the spiral number*/
 
 
@@ -89,17 +89,17 @@ public class LevelSetup {
         l2.addTurn(new Ghostturn(1,5,1,true,false,false));//add lightning if we get there*/
 
         l5.addTurn(new Ghostturn(8,2,1,false,false,false));
-        l5.addTurn(new Ghostturn(new Ghost("101303101")));//floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("101303101",true)));//floor boss, also need lighting (last shape)
         l5.addTurn(new Ghostturn(12, 1, 1, false, false, false));
-        l5.addTurn(new Ghostturn(new Ghost("221303122"))); //floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("221303122",true))); //floor boss, also need lighting (last shape)
         l5.addTurn(new Ghostturn(7, 4, 1));
-        l5.addTurn(new Ghostturn(new Ghost("3012301203"))); //floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("3012301203",true))); //floor boss, also need lighting (last shape)
 
         //NEW VOLCANO BACKGROUND (LEVEL CHANGE MAYBE???)
 
         int[] arr = {2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5};
         l5.addTurn(new Ghostturn(1, arr));//lightning is here too, most likely want to implement time thing
-        l5.addTurn(new Ghostturn(new Ghost("0102301023010")));// volcano boss, also need lightning (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("0102301023010",true)));// volcano boss, also need lightning (last shape)
 
         
 
