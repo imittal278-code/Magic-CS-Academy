@@ -9,27 +9,27 @@ public class LevelSetup {
     /**
      * Level 3 object
      */
-    private Level l3;
+    private final Level l3;
 
     /**
      * Level 4 object
      */
-    private Level l4;
+    private final Level l4;
 
     /**
      * Level 1 object
      */
-    private Level l1;
+    private final Level l1;
 
     /**
      * Level 2 object
      */
-    private Level l2;
+    private final Level l2;
 
     /**
      * Level 5 object
      */
-    private Level l5;
+    private final Level l5;
 
 
     /**

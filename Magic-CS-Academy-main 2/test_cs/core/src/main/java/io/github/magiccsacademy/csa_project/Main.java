@@ -19,31 +19,63 @@ import java.util.ArrayList;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
-    public SpriteBatch batch;
-    public Stage stage;
-    public FitViewport myViewport;
-    public Music music;
-    public Music ghostdeath;
-    public Sound sound1;
-    public Sound sound2;
-    public Sound sound3;
-    public Sound sound4;
-    public Sound sound5;
-    public Texture background;
-    public Texture ocean;
-    public Texture desert;
-    public Texture forest;
-    public Texture circuit;
-    public Texture csclass;
-    public Texture normalV;
-    public Texture upsideDownV;
-    public Texture verticalLine;
-    public Texture horizontalLine;
-    public Texture circle;
-    public Texture shieldGhost;
-    public ArrayList<Texture> transitionBackground;
+
     /**
-     * The texture for cat drawing horiziontal line
+     * The SpriteBatch for the entire game, (used for drawing objects on the screen)
+     */
+    public SpriteBatch batch;
+
+    /**
+     * The stage for the entire game
+     */
+    public Stage stage;
+
+    /**
+     * The viewport used for the positioning of the entire game
+     */
+    public FitViewport myViewport;
+
+    /**
+     * The background music played during the game
+     */
+    public Music music;
+
+    /**
+     * The sound made when the ghost dies
+     */
+    public Music ghostdeath;
+
+    /**
+     * The sounds played for each stroke shape
+     */
+    public Sound sound1,sound2,sound3,sound4,sound5;
+
+    /**
+     * the background used for a level
+     */
+    public Texture background,ocean,desert,forest,circuit;
+    /**
+     * The CS classroom background
+     */
+    public Texture csclass;
+
+    /**
+     * Textures used for shapes
+     */
+    public Texture normalV,upsideDownV,verticalLine,horizontalLine,circle;
+
+    /**
+     * The texture used for the ghost that has a shield
+     */
+    public Texture shieldGhost;
+
+    /**
+     * An arraylist of the level transition rectangle the flies by for each level
+     */
+    public ArrayList<Texture> transitionBackground;
+
+    /**
+     * The texture for cat drawing horizontal line
      */
     public Texture catHorizontal;
 
@@ -81,6 +113,9 @@ public class Main extends Game {
      */
     public Texture fishDeathFrame2;
 
+    /**
+     * Creates the game, initializes a lot of fields, turns on music, and switches to the homeScreen class
+     */
     public void create(){
         batch = new SpriteBatch();
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));

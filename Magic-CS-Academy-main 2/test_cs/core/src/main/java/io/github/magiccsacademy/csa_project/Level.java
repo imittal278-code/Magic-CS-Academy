@@ -387,9 +387,38 @@ public class Level {
         }
     }
 
+    /**
+     * Whether there are still circles in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a circle right now
+     */
     public boolean getCircles(){return circles;}
+
+    /**
+     * Whether there are still horizontalLines in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a horizontalLine right now
+     */
     public boolean getHorizontalLines(){return horizontalLines;}
+
+    /**
+     * Whether there are still verticalLines in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a verticalLine right now
+     */
     public boolean getVerticalLines(){return verticalLines;}
+
+    /**
+     * Whether there are still normalVs in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a normalV right now
+     */
     public boolean getNormalVs(){return normalVs;}
+
+    /**
+     * Whether there are still upsideDownVs in some ghostTurns
+     *
+     * @return whether the player is allowed to draw an upsideDownV right now
+     */
     public boolean getUpsideDownVs(){return upsideDownVs;}
 }
