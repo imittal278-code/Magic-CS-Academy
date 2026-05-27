@@ -50,6 +50,10 @@ public class Point
 	public Point(double x, double y)
 	{	this.X = x; this.Y = y;	}
 
+	/**
+	* copies a point, setting this point's fields to the other point's fields
+	* @param point the point to copy from
+	*/
 	public void copy(Point point){
 		this.X = point.X;
 		this.Y = point.Y;
