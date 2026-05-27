@@ -118,7 +118,7 @@ public class Level {
     /**
      * Adds a GhostTurn to the level
      *
-     * @param turn the ghostturn to add
+     * @param turn the ghostTurn to add
      */
     public void addTurn(Ghostturn turn) {
         turns.add(turn);
@@ -143,6 +143,12 @@ public class Level {
         upsideDownVs = current.getUpsideDownVs()>0;
     }
 
+
+    /**
+     * Returns the current Ghostturn that is happening
+     *
+     * @return the ghostTurn object that is happening right now
+     */
     public Ghostturn getCurrentTurn() {
         return turns.get(currentTurnIndex);
     }
@@ -198,12 +204,28 @@ public class Level {
         for (int i=0; i<curr.ghostspresent.size(); i++) {
             Ghost ghost = curr.ghostspresent.get(i);
             if (ghost.isAlive()) {
+                if (ghost.isShield) {
+                    ghost.shieldPause(delta);
+                    currentGhostY.set(i, 0.4f); 
+                    if (!ghost.isPausing) {
+                        float currentX = currentGhostX.get(i);
+                        float nextX = currentX + (ghost.horizontalDirection * 0.3f * delta);
+                        currentGhostX.set(i, nextX);
+                    }
+                    if (currentGhostX.get(i) > 6.0f || currentGhostX.get(i) < -1.0f) {
+                        ghost.remove();
+                        curr.numAlive--;
+                        updateCounts();
+                    }
+                    continue;
+                }
                 float dx = c.getX()-currentGhostX.get(i);
                 float dy = c.getY()-currentGhostY.get(i);
                 float distance = (float)Math.sqrt(dx*dx+dy*dy);
                 if (distance>0.30f) {
-                    float moveX = (dx/distance)*ghostSpeed*delta;
-                    float moveY = (dy/distance)*ghostSpeed*delta;
+                    float updateSpeed = ghostSpeed*curr.speedModifier;
+                    float moveX = (dx/distance)*updateSpeed*delta;
+                    float moveY = (dy/distance)*updateSpeed*delta;
                     currentGhostX.set(i, currentGhostX.get(i)+moveX);
                     currentGhostY.set(i, currentGhostY.get(i)+moveY);
                 }
@@ -328,14 +350,26 @@ public class Level {
         if(levelNumber==2){
             float adder = -1f;
             if(turn.ghostspresent.size()==1){
+                if (turn.ghostspresent.get(0).isShield) {
+                    turn.ghostx.add(-0.5f);
+                    turn.ghosty.add(0.2f);
+                    turn.ghostspresent.get(0).horizontalDirection = 1.0f;
+                } else {
                 turn.ghostx.add(6f);
                 turn.ghosty.add(1.5f);
+                }
                 return;
             }
             for (int i=0; i<turn.ghostspresent.size(); i++) {
+                if (turn.ghostspresent.get(i).isShield) {
+                    turn.ghostx.add(-0.5f);
+                    turn.ghosty.add(0.2f);
+                    turn.ghostspresent.get(i).horizontalDirection = 1.0f;
+                } else {
                 if(i%3==0)adder+=0.5f;
                 turn.ghostx.add(6f+adder);
                 turn.ghosty.add(0f+(i%4)+adder);
+                }
             }
             return;
         }
@@ -343,19 +377,54 @@ public class Level {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));//degrees
             float anglerange = 2*angle/(Math.min(8,turn.ghostspresent.size()));
             for (int i=0; i<turn.ghostspresent.size(); i++) {
+                if (turn.ghostspresent.get(i).isShield) {
+                    turn.ghostx.add(-0.5f);
+                    turn.ghosty.add(0.2f);
+                    turn.ghostspresent.get(i).horizontalDirection = 1.0f;
+                } else {
                 //choose a random float in range -angle+(i+1/4)*anglerange to -angle+(i+3/4)*anglerange
                 float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%8)+0.25)*anglerange)));
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, i/8);
                 turn.ghostx.add((float) ghostPos.X);
                 turn.ghosty.add((float) ghostPos.Y);
+                }
 
             }
         }
     }
 
+    /**
+     * Whether there are still circles in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a circle right now
+     */
     public boolean getCircles(){return circles;}
+
+    /**
+     * Whether there are still horizontalLines in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a horizontalLine right now
+     */
     public boolean getHorizontalLines(){return horizontalLines;}
+
+    /**
+     * Whether there are still verticalLines in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a verticalLine right now
+     */
     public boolean getVerticalLines(){return verticalLines;}
+
+    /**
+     * Whether there are still normalVs in some ghostTurns
+     *
+     * @return whether the player is allowed to draw a normalV right now
+     */
     public boolean getNormalVs(){return normalVs;}
+
+    /**
+     * Whether there are still upsideDownVs in some ghostTurns
+     *
+     * @return whether the player is allowed to draw an upsideDownV right now
+     */
     public boolean getUpsideDownVs(){return upsideDownVs;}
 }

@@ -30,18 +30,33 @@
 
 package io.github.magiccsacademy.csa_project;
 
+/**
+ * The point class used for recognizing shapes
+ */
 public class Point
 {
+
+	/**
+	 * the coordinates of this point
+	 */
 	public double X, Y;
-	
+
+	/**
+	 * Constructs a point class, initializing the fields
+	 *
+	 * @param x the x position of the point
+	 * @param y the y positions of the point
+	 */
 	public Point(double x, double y)
 	{	this.X = x; this.Y = y;	}
-	
-	public void copy(Point src)
-	{
-		X = src.X;
-		Y = src.Y;
-	}	
-	
+
+	/**
+	* copies a point, setting this point's fields to the other point's fields
+	* @param point the point to copy from
+	*/
+	public void copy(Point point){
+		this.X = point.X;
+		this.Y = point.Y;
+	}
 
 }

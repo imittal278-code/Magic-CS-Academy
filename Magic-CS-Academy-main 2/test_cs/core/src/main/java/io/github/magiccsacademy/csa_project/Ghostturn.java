@@ -24,11 +24,20 @@ public class Ghostturn {
     /** Array of the ghosts in this wave*/
     public ArrayList<Ghost> ghostspresent;
 
-    int circles = 0;
-    int horizontalLines = 0;
-    int verticalLines = 0;
-    int upsideDownVs = 0;
-    int normalVs = 0;
+    /**The number of circles this ghostTurn has currently (across living ghosts)*/
+    private int circles = 0;
+
+    /**The number of horizontal lines this ghostTurn has currently (across living ghosts)*/
+    private int horizontalLines = 0;
+
+    /**The number of vertical lines this ghostTurn has currently (across living ghosts)*/
+    private int verticalLines = 0;
+
+    /**The number of upside down V's this ghostTurn has currently (across living ghosts)*/
+    private int upsideDownVs = 0;
+
+    /**The number of normal V's this ghostTurn has currently (across living ghosts)*/
+    private int normalVs = 0;
 
     /** Array of the x positions of the ghosts in this wave*/
     public ArrayList<Float> ghostx;
@@ -39,6 +48,9 @@ public class Ghostturn {
     /** Boolean that states whether the characters in this wave are fish*/
     private boolean fish;
 
+    /**Speed modifier for the ghosts */
+    public float speedModifier = 1.0f;
+
     /**
      * Constructs a ghostTurn object
      *
@@ -48,7 +60,6 @@ public class Ghostturn {
      */
     public Ghostturn(int nGhosts, int len, int diff){
         numGhosts = nGhosts;
-    //    strlen = len;
         numAlive = numGhosts;
         difficulty = diff;
         ghostx = new ArrayList<Float>(nGhosts);
@@ -58,6 +69,7 @@ public class Ghostturn {
             ghostspresent.add(new Ghost(len, totshapes));
         }
         fish = false;
+        this.speedModifier();
     }
 
     /**
@@ -79,13 +91,14 @@ public class Ghostturn {
             ghostspresent.add(new Ghost(counts[i], totshapes));
         }
         fish = false;
+        this.speedModifier();
     }
 
     /**
      * constructs a ghostTurn object
      *
      * @param diff the difficulty of this wave of ghosts
-     * @param counts An array of the numberof shapes in each ghost of the wave
+     * @param counts An array of the number of shapes in each ghost of the wave
      * @param fulks An array of booleans that represents the ghosts in the wave that are Mr. Fulk
      */
     public Ghostturn(int diff, int[] counts,boolean[] fulks){
@@ -104,6 +117,7 @@ public class Ghostturn {
             }
         }
         fish = false;
+        this.speedModifier();
     }
 
 
@@ -115,9 +129,9 @@ public class Ghostturn {
      * @param diff the difficulty of this wave
      * @param allFish whether this wave has only fish
      * @param circle whether this wave has a shield
-     * @param allFulk whether this wave has only Mr. Fulks
+     * @param all whether this wave has only Mr. s
      */
-    public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean allFulk){
+    public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean all){
         numGhosts = nGhosts;
         numAlive = numGhosts;
         //strlen = len;
@@ -128,8 +142,8 @@ public class Ghostturn {
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<nGhosts;i++){
             ghostspresent.add(new Ghost(len, totshapes));
-            if(allFulk){
-                ghostspresent.get(i).isFulk=true;
+            if(all){
+                ghostspresent.get(i).isFish=true;
             }
             else if(allFish){
                 ghostspresent.get(i).isFish = true;
@@ -137,11 +151,12 @@ public class Ghostturn {
         }
         if(circle){
             ghostspresent.add(new Ghost("4"));
+            ghostspresent.get(ghostspresent.size()-1).isShield = true;
             numGhosts++;
             numAlive = numGhosts;
         }
 
-
+        this.speedModifier();
     }
 
     /**
@@ -158,55 +173,32 @@ public class Ghostturn {
         ghostspresent.add(g);
         ghostx = new ArrayList<Float>(numGhosts);
         ghosty = new ArrayList<Float>(numGhosts);
+        this.speedModifier();
     }
 
-
+    /**
+     * Initializes the circle, horizontalLines, normalVs, etc.  parameters to their initial values.
+     * Method is used in Level class
+     */
     public void updateCounts(){
         circles = 0;
         horizontalLines = 0;
         verticalLines = 0;
         upsideDownVs = 0;
         normalVs = 0;
-        for(int i=0;i<ghostspresent.size();i++){
-           if(ghostspresent.get(i).lastShapeEquals(0)){
-               horizontalLines++;
-           }
-           else if(ghostspresent.get(i).lastShapeEquals(1)){
+        for (Ghost ghost : ghostspresent) {
+            if (ghost.lastShapeEquals(0)) {
+                horizontalLines++;
+            } else if (ghost.lastShapeEquals(1)) {
                 verticalLines++;
-           }
-           else if(ghostspresent.get(i).lastShapeEquals(2)){
-               normalVs++;
-           }
-           else if(ghostspresent.get(i).lastShapeEquals(3)){
-               upsideDownVs++;
-           }
-           else if(ghostspresent.get(i).lastShapeEquals(4)){
-               circles++;
-           }
-        }
-    }
-    /*private determineSpeed(){
-        //if()
-    }*/
-
- /*   public void add(){
-        ghostspresent.add(new Ghost(strlen, totshapes));
-    }*/
-
-
-    /**
-     * The representation of this turn as a string
-     *
-     * @return a representation of the turn as a string
-     */
-    public String toString(){
-        String s = "";
-        for(int i=0;i<ghostspresent.size();i++){
-            if(ghostspresent.get(i).isAlive()){
-                s = s + ghostspresent.get(i);
+            } else if (ghost.lastShapeEquals(2)) {
+                normalVs++;
+            } else if (ghost.lastShapeEquals(3)) {
+                upsideDownVs++;
+            } else if (ghost.lastShapeEquals(4)) {
+                circles++;
             }
         }
-        return s;
     }
 
 
@@ -215,6 +207,7 @@ public class Ghostturn {
      * Increments the scores if needed
      * Adds a shield to the cat if needed
      * Removes ghosts if needed
+     * Also updates the five shape fields based on the shape removed
      *
      * @param shapeIndex the Index of the shape drawn
      * @param c the Cat object in the game (contains lives)
@@ -255,11 +248,14 @@ public class Ghostturn {
                     else if(difficulty==3) increment = 100;
                     c.addScore(increment);
                     if(!ghostspresent.get(i).isAlive()){
+                        float deathX = ghostx.get(i);
+                        float deathY = ghosty.get(i);
+                        ghostspresent.get(i).deathAnimation(deathX, deathY);
                         ghostspresent.get(i).remove();
                         numAlive--;
                     }
                     else{
-                        ghostspresent.get(i).hurt();
+                        // ghostspresent.get(i).hurt();       HURT METHOD MAYBE??
                         if(ghostspresent.get(i).lastShapeEquals(0)){
                horizontalLines++;
            }
@@ -284,11 +280,31 @@ public class Ghostturn {
                         numAlive--;
                         ghostspresent.get(i).remove();
                         c.shieldOn();
-                      
-                        //Make ghost move toward the cat.  *TODO*
+
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Modifies the speed by a factor based on the number of shapes and number of ghosts
+     */
+    public void speedModifier() {
+        int len = 0;
+        for (Ghost g : ghostspresent) {
+            if (!g.isShield) len += g.strlen;
+        }
+        float avgLength = ghostspresent.isEmpty() ? 1 : (float)len/ghostspresent.size();
+        int count = numGhosts;
+        if (count<= 2 && avgLength <= 2) {
+            speedModifier = 1.4f;
+        } else if (count <= 4 && avgLength<= 3) {
+            speedModifier = 1.2f;
+        } else if (count > 6 || avgLength >= 5) {
+            speedModifier = 0.7f;
+        } else {
+            speedModifier = 1.0f;
         }
     }
 
@@ -298,10 +314,35 @@ public class Ghostturn {
      * @return whether the ghostTurn is completed
      */
     public boolean isAlive(){return numAlive>0;}
+
+    /**
+     * Returns the number of circles that are still available to be drawn
+     * @return the number of circles
+     */
     public int getCircles(){return circles;}
+
+    /**
+     * Returns the number of horizontalLines that are still available to be drawn
+     * @return the number of horizontalLines
+     */
     public int getHorizontalLines(){return horizontalLines;}
+
+    /**
+     * Returns the number of verticalLines that are still available to be drawn
+     * @return the number of verticalLines
+     */
     public int getVerticalLines(){return verticalLines;}
+
+    /**
+     * Returns the number of normalVs that are still available to be drawn
+     * @return the number of normalVs
+     */
     public int getNormalVs(){return normalVs;}
+
+    /**
+     * Returns the number of upsideDownVs that are still available to be drawn
+     * @return the number of upsideDownVs
+     */
     public int getUpsideDownVs(){return upsideDownVs;}
 
 }

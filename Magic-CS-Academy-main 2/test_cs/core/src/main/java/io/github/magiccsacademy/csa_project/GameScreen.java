@@ -27,76 +27,236 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import java.util.*;
 import org.javatuples.Pair;
 
+/**
+ * The class that manages the graphics on the screen during the game
+ */
 public class GameScreen extends InputAdapter implements Screen {
+
+    /**
+     * The constant number of levels in the game
+     */
     private final int numLevels = 5;
+
+    /**
+     * The Main class, used for transitioning screens and accessing some assets
+     */
     private final Main game;
+
+    /**
+     * The uiViewport, used for the location of text
+     */
     private Viewport uiViewport;
 
-    //shape declarations
-
-
-
+    /**
+     * The map used to translate the shape number into an actual texture/image
+     */
     private HashMap<Integer, Texture> map1;
-    private HashMap<String, Pair<Integer, Color>> map2;
-    private GameEngine controller;
-    private boolean showTransition;
-    private float transitionTime;
-    private Cat c;
-    private Texture background;
-    private Texture ghost;
-    private Sprite ghost2;
-    private Texture fulkPic;
-    private Sprite fulk;
-    private Sprite fish;
-    private Texture fishpic;
-    private Texture cat;
-    private Sprite cat2;
-    private Texture heart;
-    private Texture shield;
-    private Texture heartOutline;
-    private BitmapFont font;
-    TextButton button;
-    private ArrayList<Vector2> points = new ArrayList<Vector2>();
-    private Vector<Point> pts = new Vector<Point>();
-    private boolean isDrawing = true;
-    private ShapeRenderer shapeRenderer;
-    private Recognizer recognizer;
-    private Color colorDrawing;
-    private boolean paused;
-    private Texture pauseTexture;
-    private Texture playTexture;
-    private Level level1;
-    private Level level2;
-    private Level level3;
-    private Level level4;
-    private Level level5;
 
+    /**
+     * The map used to convert the name of the shape to its respective number or color
+     */
+    private HashMap<String, Pair<Integer, Color>> map2;
+
+    /**
+     * The gameEngine that manages what level the player is on
+     */
+    private GameEngine controller;
+
+    /**
+     * Whether the level transition needs to be shown
+     */
+    private boolean showTransition;
+
+    /**
+     * The timer for the amount of time in transition
+     */
+    private float transitionTime;
+
+    /**
+     * The cat object for the players lives, shields, etc.
+     */
+    private Cat c;
+
+    /**
+     * The texture for the background image
+     */
+    private Texture background;
+
+    /**
+     * The texture for the ghost image
+     */
+    private Texture ghost;
+
+    /**
+     * The sprite for the ghost Texture
+     */
+    private Sprite ghost2;
+
+    /**
+     * The Texture for the image of Mr. Fulk
+     */
+    private Texture fulkPic;
+
+    /**
+     * The sprite for the Mr. Fulk texture
+     */
+    private Sprite fulk;
+
+    /**
+     * The sprite for the fish texture
+     */
+    private Sprite fish;
+
+    /**
+     * The texture for the fish image
+     */
+    private Texture fishpic;
+
+    /**
+     * The texture for the shield ghost image
+     */
+    private Texture shieldGhostPic;
+    /**
+     * The sprite for the shield ghost texture
+     */
+    private Sprite shieldGhostSprite;
+
+    /**
+     * The texture for the cat image
+     */
+    private Texture cat;
+
+    /**
+     * The sprite foe the cat texture
+     */
+    private Sprite cat2;
+
+    /**
+     * The texture for the heart image
+     */
+    private Texture heart;
+
+    /**
+     * The texture for the shield image
+     */
+    private Texture shield;
+
+    /**
+     * The Texture for the outline of the heart image
+     */
+    private Texture heartOutline;
+
+    /**
+     * The font, used to draw text
+     */
+    private BitmapFont font;
+
+    /**
+     * The Arraylist used to draw the line on the screen
+     */
+    private ArrayList<Vector2> points;
+
+    /**
+     * Stores the points that are recognized as a shape
+     */
+    private Vector<Point> pts;
+
+    /**
+     * Whether the player is drawing
+     */
+    private boolean isDrawing = true;
+
+    /**
+     * The texture for cat drawing circle
+     */
+    private Texture catCircle;
+
+    /**
+     * The timer for how long cat changes
+     */
+    private float animationTimer = 0f;
+
+    /**
+     * The constant used for the duration of the animation
+     */
+    private final float ANIMATION_DURATION = 1.0f;
+
+    /**
+     * The renderer that draws the players line on the screen
+     */
+    private ShapeRenderer shapeRenderer;
+
+    /**
+     * The recognizer that recognizes the player shape drawn
+     */
+    private Recognizer recognizer;
+
+    /**
+     * The color of the stroke the player makes (changes based on recognition)
+     */
+    private Color colorDrawing;
+
+    /**
+     * whether the game is currently paused
+     */
+    private boolean paused;
+
+    /**
+     * The texture for the pause image
+     */
+    private Texture pauseTexture;
+
+    /**
+     * The texture for the play image
+     */
+    private Texture playTexture;
+
+    /**
+     * The level objects for each level
+     */
+    private Level level1,level2,level3,level4,level5;;
+
+
+    /**
+     * Constructs a GameScreen object, initializing static fields
+     * @param game the Main class used for textures and shifting screens.
+     */
     public GameScreen(Main game) {
         this.game = game;
-
-    }
-
-
-    @Override
-    public void show() {
         uiViewport = new FitViewport(1600, 800);
         colorDrawing = Color.WHITE;
         paused = false;
         controller = new GameEngine(numLevels);
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
+        shapeRenderer = new ShapeRenderer();
+        map1 = new HashMap<>();
+        map2 = new HashMap<>();
+        points = new ArrayList<Vector2>();
+        pts = new Vector<Point>();
+    }
+
+
+    /**
+     * Initializes textures, fonts and fills up the fields initialized in the constructor
+     */
+    @Override
+    public void show() {
+
         heart = new Texture("heart.png");
         heartOutline = new Texture("heart_outline.png");
         shield = new Texture("Shield.png");
         Gdx.input.setInputProcessor(this);
-        shapeRenderer = new ShapeRenderer();
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
+        shieldGhostPic = new Texture("ShieldSprite.png");
+        shieldGhostSprite = new Sprite(shieldGhostPic);
         fulkPic = new Texture("Fulk.png");
         fulk = new Sprite(fulkPic);
         fishpic = new Texture("fish.png");
         fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
+        //catCircle = new Texture("Momo_Circle.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
         font.getData().setScale(0.02f);
@@ -104,8 +264,6 @@ public class GameScreen extends InputAdapter implements Screen {
         font.setColor(Color.ORANGE);
         background = game.background;
 
-        map1 = new HashMap<Integer,Texture>();
-        map2 = new HashMap<String, Pair<Integer, Color>>();
         map1.put(0,game.horizontalLine);
         map1.put(1,game.verticalLine);
         map1.put(2,game.normalV);
@@ -117,11 +275,11 @@ public class GameScreen extends InputAdapter implements Screen {
         map2.put("upsideDownV", new Pair<Integer, Color>(3,Color.GREEN));
         map2.put("circle", new Pair<Integer, Color>(4,Color.CYAN));
         LevelSetup g = new LevelSetup(game);
-        level1 = g.l1;
-        level2 = g.l2;
-        level3 = g.l3;
-        level4 = g.l4;
-        level5 = g.l5;
+        level1 = g.getLevel1();
+        level2 = g.getLevel2();
+        level3 = g.getLevel3();
+        level4 = g.getLevel4();
+        level5 = g.getLevel5();
         background = level1.getBackground();
         controller.addLevel(level1);
         controller.addLevel(level2);
@@ -135,7 +293,7 @@ public class GameScreen extends InputAdapter implements Screen {
         pauseTexture = new Texture("pause.png");
         playTexture = new Texture("play.png");
 
-        //font setup stuff dont worry about the red errors, they dont matter
+
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("comicsansmf.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 80;
@@ -147,16 +305,43 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
 
-    //helper method that draws a ghost
+    /**
+     * Draws all the ghosts (and shapes) in the current ghostTurn. the current ghostTurn is accessed through the level.
+     *
+     * @param level the level to draw ghosts from
+     */
     private void drawGhosts(Level level) {
         if (level.isCompleted()) {
             return;
         }
+        float delta = Gdx.graphics.getDeltaTime();
         int numGhosts = level.getCurrentTurn().numGhosts;
         for (int i = 0; i < numGhosts; i++) {
-            if (level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1).isAlive()) {
+            Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+            if (g.isDying) {
+                g.deathTimer += delta;
+                if (g.deathTimer >= g.DEATH_DURATION) {
+                    g.isDying = false;
+                    continue;
+                }
+                Texture deathFrame;
+                if (g.isFulk) continue;
+                else if (g.isFish) {
+                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? game.fishDeathFrame2 : game.fishDeathFrame1;
+                    float deathScale = 0.7f;
+                    float xCent = g.deathX - 0.02f;
+                    float yCent = g.deathY - 0.10f;
+                    game.batch.draw(deathFrame, xCent, yCent,deathScale,deathScale);
+                }
+                else {
+                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? game.ghostDeathFrame2 : game.ghostDeathFrame1;
+                    game.batch.draw(deathFrame, g.deathX, g.deathY, 0.6f, 0.666f);
+                }
+                continue;
+            }
+            if (g.isAlive()) {
 
-                Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+                
                 float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
                 float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
                 if(g.isFulk){
@@ -175,6 +360,14 @@ public class GameScreen extends InputAdapter implements Screen {
                     }
                     continue;
                 }
+                else if (g.isShield) {
+                    shieldGhostSprite.setPosition(x, y);
+                    shieldGhostSprite.setSize(0.46f, 0.5106f);
+                    shieldGhostSprite.draw(game.batch);
+                    int shapesLeft = g.shapes.size();
+                    game.batch.draw(game.circle,x+0.13f,y+0.5f,0.2f,0.2f);
+                    continue;
+                }
                 else{
                     ghost2.setPosition(x, y);
                     ghost2.setSize(0.6f, 0.666f);
@@ -191,6 +384,11 @@ public class GameScreen extends InputAdapter implements Screen {
 
     }
 
+    /**
+     * Returns the recognizer that should be used right now (for example if there are no circles left, it shouldnt recognize circles)
+     *
+     * @return the recognizes that should be used at that current moment
+     */
     private Recognizer createCurrentRecognizer() {
         Level current = controller.getCurrentLevel();
         boolean circle = current.getCircles();
@@ -206,6 +404,11 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
 
+    /**
+     * Renders the image on the screen, using helper methods as necessary
+     *
+     * @param delta The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         //keep this code at the top
@@ -241,14 +444,56 @@ public class GameScreen extends InputAdapter implements Screen {
         drawScore();
 
         //set cat's position and size and draw it
-        cat2 = new Sprite(cat);
+        if (!paused && animationTimer > 0) {
+            animationTimer -= delta;
+            if (animationTimer <= 0) c.setState(Cat.State.NORMAL);
+        }
+        Texture activeCatTexture = cat; 
+        float catX = c.getX();
+        float catY = c.getY();
+        float finalWidth = 0.6f;
+        float finalHeight = 0.6f;
+        switch(c.getState()) {
+            case HORIZONTAL:
+                activeCatTexture = game.catHorizontal;
+                finalWidth = 1.35f;
+                finalHeight = 0.90f; 
+                catX -= 0.375f;
+                catY -= 0.165f;
+                break;
+            case VERTICAL:
+                activeCatTexture = game.catVertical;
+                finalWidth = 0.6f;
+                finalHeight = 0.9f;
+                catX += 0.0f;
+                catY += -0.15f;
+                break;
+            case NORMAL_V:
+                activeCatTexture = game.catNormalV;
+                finalWidth = 1.2f;
+                finalHeight = 0.80f;
+                catX -= 0.30f;
+                catY -= 0.115f;
+                break;
+            case UPSIDE_DOWN_V:
+                activeCatTexture = game.catUpsideDownV;
+                finalWidth = 0.70f;
+                finalHeight = 0.96f;
+                catX -= 0.035f;
+                catY -= 0.15f;
+                break;
+            case CIRCLE:        activeCatTexture = catCircle; break;
+            case NORMAL:        
+            default:            activeCatTexture = cat; break;
+        }
+        cat2 = new Sprite(activeCatTexture);
         if(controller.getCurrentLevel() == level1) c.setPosition(2.6f,1.5f);
         else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
         else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
         else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
-        else c.setPosition(2.6f, 1.5f);
-        cat2.setPosition(c.getX(), c.getY());
-        cat2.setSize(0.6f, 0.6f);
+        //else c.setPosition();
+        cat2.setPosition(catX, catY);
+        cat2.setSize(finalWidth, finalHeight);
         cat2.draw(game.batch);
         if (!paused) {
             controller.getCurrentLevel().update(delta, c);
@@ -301,10 +546,17 @@ public class GameScreen extends InputAdapter implements Screen {
 
     }
 
+    /**
+     * Draws the shield at the cat's current position
+     */
     private void drawShield() {
         game.batch.draw(shield, c.getX()-0.3f, c.getY()-0.3f, 1.2f, 1.2f);
     }
 
+    /**
+     * Draws the hearts in the corner of the screen based on the lives the cat has left
+     * @param c the cat object for this game (contains info on lives)
+     */
     private void drawHearts(Cat c) {
         int count = c.getLives();
         float adder = 0.2f;
@@ -316,6 +568,10 @@ public class GameScreen extends InputAdapter implements Screen {
         }
     }
 
+
+    /**
+     * Draws the score in the corner of the screen, utilizing a different viewport and a FreeTypeFont
+     */
     private void drawScore(){
         uiViewport.apply();
         game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
@@ -327,6 +583,9 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
     }
 
+    /**
+     * Draws the play and pause buttons based on if the game is cirrently running, or if it is paused
+     */
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
         if(paused){
@@ -338,6 +597,9 @@ public class GameScreen extends InputAdapter implements Screen {
         }
     }
 
+    /**
+     * Draws the image the player sees when the game is currently paused (with the text in the middle)
+     */
     private void drawPauseOverlay(){
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -375,29 +637,58 @@ public class GameScreen extends InputAdapter implements Screen {
         game.batch.end();
     }
 
+
+    /**
+     * Resizes the screen based on the parameters
+     *
+     * @param width the width of the screen to resize to
+     * @param height the height of the screen to resize to
+     */
     @Override
     public void resize(int width, int height) {
         game.stage.getViewport().update(width, height, true);
         uiViewport.update(width, height, true);
     }
 
+
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void pause() {
     }
 
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void resume() {
     }
 
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void hide() {
     }
 
+    /**
+     * Inherited method from the screen class that we are not using
+     */
     @Override
     public void dispose() {
 
     }
 
+    /**
+     * Inherited methods from the InputAdapter class that deals with if the mouse is down (starts drawing points)
+     *
+     * @param screenX The x coordinate, origin is in the upper left corner
+     * @param screenY The y coordinate, origin is in the upper left corner
+     * @param pointer the pointer for the event.
+     * @param button the button
+     * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
+     */
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) { //Called when the screen was touched or a mouse button was pressed.
         points.clear();
@@ -418,6 +709,14 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
 
+    /**
+     * Called when the mouse is dragged on the screen. In this method we apply the recognizer live and change the color based on the current recognized stroke
+     *
+     * @param screenX the x location on the screen
+     * @param screenY the y location on the screen
+     * @param pointer the pointer for the event.
+     * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
+     */
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {//Called when a finger or the mouse was dragged.
         Vector3 temp = new Vector3(screenX, screenY, 0);
@@ -472,6 +771,16 @@ public class GameScreen extends InputAdapter implements Screen {
         return true;
     }
 
+
+    /**
+     * When a drag or touch is removed of the screen this is called. Calls the shapeDrawn level method based on the shape drawn, and also updates the cat's costume
+     *
+     * @param screenX the x position of the screen
+     * @param screenY the y position of the screen
+     * @param pointer the pointer for the event.
+     * @param button the button
+     * @return false if the level is completed, otherwise true
+     */
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
         if(controller.getCurrentLevel().isCompleted()) return false;
@@ -485,6 +794,8 @@ public class GameScreen extends InputAdapter implements Screen {
                         //horizontal
                         if(controller.getCurrentLevel().getHorizontalLines()) {
                             controller.getCurrentLevel().shapeDrawn(0, c);
+                            c.setState(Cat.State.HORIZONTAL);
+                            animationTimer = ANIMATION_DURATION;
                         }
 
                     }
@@ -492,14 +803,24 @@ public class GameScreen extends InputAdapter implements Screen {
                         //vertical
                         if(controller.getCurrentLevel().getVerticalLines()) {
                             controller.getCurrentLevel().shapeDrawn(1, c);
+                            c.setState(Cat.State.VERTICAL);
+                            animationTimer = ANIMATION_DURATION;
                         }
 
                     }
                 }
-                else controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
+                else {
+                    controller.getCurrentLevel().shapeDrawn(map2.get(r.Name).getValue0(), c);
+                    int shapeCode = map2.get(r.Name).getValue0();
+                    if(shapeCode == 2) c.setState(Cat.State.NORMAL_V);
+                    if(shapeCode == 3) c.setState(Cat.State.UPSIDE_DOWN_V);
+                    animationTimer = ANIMATION_DURATION;
+                }
             }
             else if(r != null && map2.containsKey(r.Name)&&r.Name.equals("circle")&&r.Score>0.70) {
                  controller.getCurrentLevel().shapeDrawn(4, c);
+                 //c.setState(Cat.State.CIRCLE);
+                 //animationTimer = ANIMATION_DURATION;
             }
 
         }
@@ -508,12 +829,16 @@ public class GameScreen extends InputAdapter implements Screen {
                 //horizontal
                 if(controller.getCurrentLevel().getHorizontalLines()) {
                     controller.getCurrentLevel().shapeDrawn(0, c);
+                    c.setState(Cat.State.HORIZONTAL);
+                    animationTimer = ANIMATION_DURATION;
                 }
             }
             else{
                 //vertical
                 if(controller.getCurrentLevel().getVerticalLines()) {
                     controller.getCurrentLevel().shapeDrawn(1, c);
+                    c.setState(Cat.State.VERTICAL);
+                    animationTimer = ANIMATION_DURATION;
                 }
             }
         }
