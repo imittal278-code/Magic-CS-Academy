@@ -314,10 +314,18 @@ public class GameScreen extends InputAdapter implements Screen {
         if (level.isCompleted()) {
             return;
         }
+        Ghostturn currentTurn = level.getCurrentTurn();
+        if (currentTurn.isCompletelyFinished()) {
+            level.nextTurn();
+            if (level.isCompleted()) {
+                return;
+            }
+            currentTurn = level.getCurrentTurn();
+        }
         float delta = Gdx.graphics.getDeltaTime();
-        int numGhosts = level.getCurrentTurn().numGhosts;
+        int numGhosts = currentTurn.numGhosts;
         for (int i = 0; i < numGhosts; i++) {
-            Ghost g = level.getCurrentTurn().ghostspresent.get(numGhosts - i - 1);
+            Ghost g = currentTurn.ghostspresent.get(numGhosts - i - 1);
             if (g.isDying) {
                 g.deathTimer += delta;
                 if (g.deathTimer >= g.DEATH_DURATION) {
@@ -342,8 +350,8 @@ public class GameScreen extends InputAdapter implements Screen {
             if (g.isAlive()) {
 
                 
-                float x = level.getCurrentTurn().ghostx.get(numGhosts - i - 1);
-                float y = level.getCurrentTurn().ghosty.get(numGhosts - i - 1);
+                float x = currentTurn.ghostx.get(numGhosts - i - 1);
+                float y = currentTurn.ghosty.get(numGhosts - i - 1);
                 if(g.isFulk){
                     fulk.setPosition(x, y);
                     fulk.setSize(0.58f, 0.58f);

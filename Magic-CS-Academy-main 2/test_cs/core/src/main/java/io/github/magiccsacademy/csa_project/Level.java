@@ -180,7 +180,7 @@ public class Level {
         Ghostturn curr = turns.get(currentTurnIndex);
         if(curr.shapeDrawn(shapeIndex, c)) game.ghostdeath.play(1.0f);
         updateCounts();
-        if (!curr.isAlive()) {
+        if (curr.isCompletelyFinished()) {
             nextTurn();
             if (currentTurnFinished()) completed = true;
         }
@@ -242,19 +242,6 @@ public class Level {
                 }
             }
         }
-        if (!curr.isAlive()) {
-            /*try{
-            Thread.sleep(1000);
-            }
-            catch(InterruptedException e){
-
-            }*/
-            nextTurn();
-            if (currentTurnFinished()) {
-                completed = true;
-                currentTurnIndex = 0;
-            }
-        }
     }
 
     /**
@@ -262,6 +249,12 @@ public class Level {
      */
     public void nextTurn() {
         currentTurnIndex++;
+        if (currentTurnIndex >= turns.size()) {
+            completed = true;
+            currentTurnIndex = 0;
+            updateCounts();
+            return;
+        }
         updateCounts();
 
     }

@@ -208,8 +208,8 @@ public class Ghostturn {
      * Adds a shield to the cat if needed
      * Removes ghosts if needed
      * Also updates the five shape fields based on the shape removed
-     * Returns true if at least one ghost died.
      *
+     * @return true if at least one ghost died.
      * @param shapeIndex the Index of the shape drawn
      * @param c the Cat object in the game (contains lives)
      */
@@ -308,6 +308,43 @@ public class Ghostturn {
         } else {
             speedModifier = 1.0f;
         }
+    }
+
+    /**
+     * Checks whether any ghost in this turn is still alive.
+     *
+     * @return true if at least one ghost is alive
+     */
+    public boolean hasAliveGhosts() {
+        for (Ghost ghost:ghostspresent) {
+            if (ghost.isAlive()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks whether any ghost in this turn is still showing its death animation.
+     *
+     * @return true if at least one ghost is still dying
+     */
+    public boolean hasDyingGhosts() {
+        for (Ghost ghost:ghostspresent) {
+            if (ghost.isDying) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks whether this turn is fully finished, including any death animations.
+     *
+     * @return true if no ghosts are alive and no death animations remain
+     */
+    public boolean isCompletelyFinished() {
+        return !hasAliveGhosts() && !hasDyingGhosts();
     }
 
     /**
