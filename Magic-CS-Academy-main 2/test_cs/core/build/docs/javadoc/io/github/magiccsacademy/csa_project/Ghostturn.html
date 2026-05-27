@@ -128,6 +128,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">The number of ghosts in this wave</div>
 </div>
+<div class="col-first odd-row-color"><code>float</code></div>
+<div class="col-second odd-row-color"><code><a href="#speedModifier" class="member-name-link">speedModifier</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Speed modifier for the ghosts</div>
+</div>
 </div>
 </section>
 </li>
@@ -161,7 +166,7 @@ loadScripts(document, 'script');</script>
  int&nbsp;diff,
  boolean&nbsp;allFish,
  boolean&nbsp;circle,
- boolean&nbsp;allFulk)</code></div>
+ boolean&nbsp;all)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">constructs a ghostTurn object</div>
 </div>
@@ -183,31 +188,62 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCircles()" class="member-name-link">getCircles</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the number of circles that are still available to be drawn</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHorizontalLines()" class="member-name-link">getHorizontalLines</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the number of horizontalLines that are still available to be drawn</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNormalVs()" class="member-name-link">getNormalVs</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the number of normalVs that are still available to be drawn</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUpsideDownVs()" class="member-name-link">getUpsideDownVs</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the number of upsideDownVs that are still available to be drawn</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVerticalLines()" class="member-name-link">getVerticalLines</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the number of verticalLines that are still available to be drawn</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">checks if the ghostTurn is alive</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shapeDrawn(int,io.github.magiccsacademy.csa_project.Cat)" class="member-name-link">shapeDrawn</a><wbr>(int&nbsp;shapeIndex,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shapeDrawn(int,io.github.magiccsacademy.csa_project.Cat)" class="member-name-link">shapeDrawn</a><wbr>(int&nbsp;shapeIndex,
  <a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a>&nbsp;c)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes the shape corresponding to shapeIndex from the end of the ghosts
  Increments the scores if needed
  Adds a shield to the cat if needed
- Removes ghosts if needed</div>
+ Removes ghosts if needed
+ Also updates the five shape fields based on the shape removed</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#speedModifier()" class="member-name-link">speedModifier</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Modifies the speed by a factor based on the number of shapes and number of ghosts</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCounts()" class="member-name-link">updateCounts</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">The representation of this turn as a string</div>
+<div class="block">Initializes the circle, horizontalLines, normalVs, etc.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -252,6 +288,13 @@ loadScripts(document, 'script');</script>
 <h3>ghosty</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ghosty</span></div>
 <div class="block">Array of the y positions of the ghosts in this wave</div>
+</section>
+</li>
+<li>
+<section class="detail" id="speedModifier">
+<h3>speedModifier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">speedModifier</span></div>
+<div class="block">Speed modifier for the ghosts</div>
 </section>
 </li>
 </ul>
@@ -300,7 +343,7 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>diff</code> - the difficulty of this wave of ghosts</dd>
-<dd><code>counts</code> - An array of the numberof shapes in each ghost of the wave</dd>
+<dd><code>counts</code> - An array of the number of shapes in each ghost of the wave</dd>
 <dd><code>fulks</code> - An array of booleans that represents the ghosts in the wave that are Mr. Fulk</dd>
 </dl>
 </section>
@@ -313,7 +356,7 @@ loadScripts(document, 'script');</script>
  int&nbsp;diff,
  boolean&nbsp;allFish,
  boolean&nbsp;circle,
- boolean&nbsp;allFulk)</span></div>
+ boolean&nbsp;all)</span></div>
 <div class="block">constructs a ghostTurn object</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -322,7 +365,7 @@ loadScripts(document, 'script');</script>
 <dd><code>diff</code> - the difficulty of this wave</dd>
 <dd><code>allFish</code> - whether this wave has only fish</dd>
 <dd><code>circle</code> - whether this wave has a shield</dd>
-<dd><code>allFulk</code> - whether this wave has only Mr. Fulks</dd>
+<dd><code>all</code> - whether this wave has only Mr. s</dd>
 </dl>
 </section>
 </li>
@@ -346,16 +389,11 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<div class="block">The representation of this turn as a string</div>
-<dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
-<dt>Returns:</dt>
-<dd>a representation of the turn as a string</dd>
-</dl>
+<section class="detail" id="updateCounts()">
+<h3>updateCounts</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateCounts</span>()</div>
+<div class="block">Initializes the circle, horizontalLines, normalVs, etc.  parameters to their initial values.
+ Method is used in Level class</div>
 </section>
 </li>
 <li>
@@ -366,12 +404,20 @@ loadScripts(document, 'script');</script>
 <div class="block">Removes the shape corresponding to shapeIndex from the end of the ghosts
  Increments the scores if needed
  Adds a shield to the cat if needed
- Removes ghosts if needed</div>
+ Removes ghosts if needed
+ Also updates the five shape fields based on the shape removed</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>shapeIndex</code> - the Index of the shape drawn</dd>
 <dd><code>c</code> - the Cat object in the game (contains lives)</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="speedModifier()">
+<h3>speedModifier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">speedModifier</span>()</div>
+<div class="block">Modifies the speed by a factor based on the number of shapes and number of ghosts</div>
 </section>
 </li>
 <li>
@@ -382,6 +428,61 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>whether the ghostTurn is completed</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCircles()">
+<h3>getCircles</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCircles</span>()</div>
+<div class="block">Returns the number of circles that are still available to be drawn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of circles</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHorizontalLines()">
+<h3>getHorizontalLines</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getHorizontalLines</span>()</div>
+<div class="block">Returns the number of horizontalLines that are still available to be drawn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of horizontalLines</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVerticalLines()">
+<h3>getVerticalLines</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getVerticalLines</span>()</div>
+<div class="block">Returns the number of verticalLines that are still available to be drawn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of verticalLines</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getNormalVs()">
+<h3>getNormalVs</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getNormalVs</span>()</div>
+<div class="block">Returns the number of normalVs that are still available to be drawn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of normalVs</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getUpsideDownVs()">
+<h3>getUpsideDownVs</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getUpsideDownVs</span>()</div>
+<div class="block">Returns the number of upsideDownVs that are still available to be drawn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of upsideDownVs</dd>
 </dl>
 </section>
 </li>

@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Ghost</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The ghost class, that manages each individual ghost/moving sprite with shapes in the screen</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,14 +104,70 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>boolean</code></div>
-<div class="col-second even-row-color"><code><a href="#isFish" class="member-name-link">isFish</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-second even-row-color"><code><a href="#alive" class="member-name-link">alive</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">whether the current ghost is alive</div>
+</div>
+<div class="col-first odd-row-color"><code>final float</code></div>
+<div class="col-second odd-row-color"><code><a href="#DEATH_DURATION" class="member-name-link">DEATH_DURATION</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">A constant for the length of the death animation</div>
+</div>
+<div class="col-first even-row-color"><code>float</code></div>
+<div class="col-second even-row-color"><code><a href="#deathTimer" class="member-name-link">deathTimer</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">A timer used to manage death animation</div>
+</div>
+<div class="col-first odd-row-color"><code>float</code></div>
+<div class="col-second odd-row-color"><code><a href="#deathX" class="member-name-link">deathX</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The location of the dead ghost</div>
+</div>
+<div class="col-first even-row-color"><code>float</code></div>
+<div class="col-second even-row-color"><code><a href="#deathY" class="member-name-link">deathY</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The location of the dead ghost</div>
+</div>
+<div class="col-first odd-row-color"><code>float</code></div>
+<div class="col-second odd-row-color"><code><a href="#horizontalDirection" class="member-name-link">horizontalDirection</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The speed of the shield ghost in the horizontal direction</div>
+</div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#isDying" class="member-name-link">isDying</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Whether this ghost is currently dying</div>
+</div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#isFulk" class="member-name-link">isFulk</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-second odd-row-color"><code><a href="#isFish" class="member-name-link">isFish</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Whether this ghost object is a fish</div>
+</div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#isFulk" class="member-name-link">isFulk</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">whether this ghost object is Mr.</div>
+</div>
+<div class="col-first odd-row-color"><code>boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#isPausing" class="member-name-link">isPausing</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Whether the ghost is still (only for shields)</div>
+</div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#isShield" class="member-name-link">isShield</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">whether this ghost object is a ghost with a shield (circle)</div>
+</div>
+<div class="col-first odd-row-color"><code>float</code></div>
+<div class="col-second odd-row-color"><code><a href="#stateTimer" class="member-name-link">stateTimer</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">A timer used to manage the positioning of a ghost with a shield</div>
+</div>
 <div class="col-first even-row-color"><code>int</code></div>
 <div class="col-second even-row-color"><code><a href="#strlen" class="member-name-link">strlen</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The number of shapes to eliminate from the ghost</div>
+</div>
 </div>
 </section>
 </li>
@@ -124,12 +181,18 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int)" class="member-name-link">Ghost</a><wbr>(int&nbsp;len,
  int&nbsp;totshapes)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a ghost object with a defined number of random shapes.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Ghost</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Constructs a ghost object based on the shapes in it.</div>
+</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,boolean)" class="member-name-link">Ghost</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s,
  boolean&nbsp;fulk)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a ghost object based on the shapes in it and whether it is Mr.</div>
+</div>
 </div>
 </section>
 </li>
@@ -145,32 +208,42 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hurt()" class="member-name-link">hurt</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#deathAnimation(float,float)" class="member-name-link">deathAnimation</a><wbr>(float&nbsp;x,
+ float&nbsp;y)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets up this ghost's parameters during death (prior to the death animation)</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if this ghost is alive</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#lastShapeEquals(int)" class="member-name-link">lastShapeEquals</a><wbr>(int&nbsp;target)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the last shape in the arraylist is the target shape</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#remove()" class="member-name-link">remove</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Removes this ghost, setting alive to false</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeLast()" class="member-name-link">removeLast</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shapeAt(int)" class="member-name-link">shapeAt</a><wbr>(int&nbsp;index)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Removes the last element of the shapes array.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shieldPause(float)" class="member-name-link">shieldPause</a><wbr>(float&nbsp;delta)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Changes isPausing for this ghost based on time (only for shields)</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -186,18 +259,99 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="strlen">
 <h3>strlen</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">strlen</span></div>
+<div class="block">The number of shapes to eliminate from the ghost</div>
 </section>
 </li>
 <li>
 <section class="detail" id="isFulk">
 <h3>isFulk</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isFulk</span></div>
+<div class="block">whether this ghost object is Mr. Fulk</div>
 </section>
 </li>
 <li>
 <section class="detail" id="isFish">
 <h3>isFish</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isFish</span></div>
+<div class="block">Whether this ghost object is a fish</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isShield">
+<h3>isShield</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isShield</span></div>
+<div class="block">whether this ghost object is a ghost with a shield (circle)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="stateTimer">
+<h3>stateTimer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">stateTimer</span></div>
+<div class="block">A timer used to manage the positioning of a ghost with a shield</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isPausing">
+<h3>isPausing</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPausing</span></div>
+<div class="block">Whether the ghost is still (only for shields)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="horizontalDirection">
+<h3>horizontalDirection</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">horizontalDirection</span></div>
+<div class="block">The speed of the shield ghost in the horizontal direction</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isDying">
+<h3>isDying</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDying</span></div>
+<div class="block">Whether this ghost is currently dying</div>
+</section>
+</li>
+<li>
+<section class="detail" id="deathTimer">
+<h3>deathTimer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">deathTimer</span></div>
+<div class="block">A timer used to manage death animation</div>
+</section>
+</li>
+<li>
+<section class="detail" id="DEATH_DURATION">
+<h3>DEATH_DURATION</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">DEATH_DURATION</span></div>
+<div class="block">A constant for the length of the death animation</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#io.github.magiccsacademy.csa_project.Ghost.DEATH_DURATION">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="deathX">
+<h3>deathX</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">deathX</span></div>
+<div class="block">The location of the dead ghost</div>
+</section>
+</li>
+<li>
+<section class="detail" id="deathY">
+<h3>deathY</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">deathY</span></div>
+<div class="block">The location of the dead ghost</div>
+</section>
+</li>
+<li>
+<section class="detail" id="alive">
+<h3>alive</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">alive</span></div>
+<div class="block">whether the current ghost is alive</div>
 </section>
 </li>
 </ul>
@@ -213,12 +367,26 @@ loadScripts(document, 'script');</script>
 <h3>Ghost</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Ghost</span><wbr><span class="parameters">(int&nbsp;len,
  int&nbsp;totshapes)</span></div>
+<div class="block">Constructs a ghost object with a defined number of random shapes.
+ isFulk, isFish, and isShield default to false</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>len</code> - the number of shapes</dd>
+<dd><code>totshapes</code> - the total number of shape indexes possible</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Ghost</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Ghost</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s)</span></div>
+<div class="block">Constructs a ghost object based on the shapes in it.
+ Determines length using this string parameter
+ Defaults the booleans to false.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>s</code> - the shapes in this ghost</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -226,6 +394,13 @@ loadScripts(document, 'script');</script>
 <h3>Ghost</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Ghost</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;s,
  boolean&nbsp;fulk)</span></div>
+<div class="block">Constructs a ghost object based on the shapes in it and whether it is Mr. Fulk.
+ Sets the length based on the string parameter</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>s</code> - the shapes in this ghost</dd>
+<dd><code>fulk</code> - whether this ghost is Mr. Fulk</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -237,48 +412,64 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="hurt()">
-<h3>hurt</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">hurt</span>()</div>
-</section>
-</li>
-<li>
 <section class="detail" id="remove()">
 <h3>remove</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">remove</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="shapeAt(int)">
-<h3>shapeAt</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">shapeAt</span><wbr><span class="parameters">(int&nbsp;index)</span></div>
+<div class="block">Removes this ghost, setting alive to false</div>
 </section>
 </li>
 <li>
 <section class="detail" id="lastShapeEquals(int)">
 <h3>lastShapeEquals</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">lastShapeEquals</span><wbr><span class="parameters">(int&nbsp;target)</span></div>
+<div class="block">Checks if the last shape in the arraylist is the target shape</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>target</code> - the shape index to look for</dd>
+<dt>Returns:</dt>
+<dd>whether the given shape index is the last shape</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="removeLast()">
 <h3>removeLast</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeLast</span>()</div>
+<div class="block">Removes the last element of the shapes array. If the array is already empty, it doesn't do anything</div>
 </section>
 </li>
 <li>
 <section class="detail" id="isAlive()">
 <h3>isAlive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAlive</span>()</div>
+<div class="block">Checks if this ghost is alive</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether the ghost is alive</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="toString()">
-<h3>toString</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<section class="detail" id="shieldPause(float)">
+<h3>shieldPause</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shieldPause</span><wbr><span class="parameters">(float&nbsp;delta)</span></div>
+<div class="block">Changes isPausing for this ghost based on time (only for shields)</div>
 <dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>delta</code> - the delta time in between frames</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="deathAnimation(float,float)">
+<h3>deathAnimation</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">deathAnimation</span><wbr><span class="parameters">(float&nbsp;x,
+ float&nbsp;y)</span></div>
+<div class="block">Sets up this ghost's parameters during death (prior to the death animation)</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - the x position of this players death</dd>
+<dd><code>y</code> - the y position of this players death</dd>
 </dl>
 </section>
 </li>
