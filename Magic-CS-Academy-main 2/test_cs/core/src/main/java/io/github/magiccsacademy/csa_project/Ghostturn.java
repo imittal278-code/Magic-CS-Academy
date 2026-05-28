@@ -11,6 +11,7 @@ public class Ghostturn {
 
     /**The number of ghosts in this wave*/
     private int numGhosts;
+    private int numGhosts;
 
     /**The difficulty of this wave (determines score additions)*/
     private int difficulty;
@@ -22,6 +23,7 @@ public class Ghostturn {
     private final int totshapes = 4;
 
     /** Array of the ghosts in this wave*/
+    private ArrayList<Ghost> ghostspresent;
     private ArrayList<Ghost> ghostspresent;
 
     /**The number of circles this ghostTurn has currently (across living ghosts)*/
@@ -41,14 +43,17 @@ public class Ghostturn {
 
     /** Array of the x positions of the ghosts in this wave*/
     private ArrayList<Float> ghostx;
+    private ArrayList<Float> ghostx;
 
     /** Array of the y positions of the ghosts in this wave*/
+    private ArrayList<Float> ghosty;
     private ArrayList<Float> ghosty;
 
     /** Boolean that states whether the characters in this wave are fish*/
     private boolean fish;
 
     /**Speed modifier for the ghosts */
+    private float speedModifier = 1.0f;
     private float speedModifier = 1.0f;
 
     /**
@@ -109,7 +114,7 @@ public class Ghostturn {
         for(int i=0;i<numGhosts;i++){
             ghostspresent.add(new Ghost(counts[i]));
             if(fulks[i]){
-                ghostspresent.get(i).isFulk=true;
+                ghostspresent.get(i).setFulk(true);
             }
         }
         fish = false;
@@ -138,15 +143,15 @@ public class Ghostturn {
         for(int i=0;i<nGhosts;i++){
             ghostspresent.add(new Ghost(len));
             if(all){
-                ghostspresent.get(i).isFish=true;
+                ghostspresent.get(i).setFish(true);
             }
             else if(allFish){
-                ghostspresent.get(i).isFish = true;
+                ghostspresent.get(i).setFish(true);
             }
         }
         if(circle){
             ghostspresent.add(new Ghost("4"));
-            ghostspresent.get(ghostspresent.size()-1).isShield = true;
+            ghostspresent.get(ghostspresent.size()-1).setShield(true);
             numGhosts++;
             numAlive = numGhosts;
         }
@@ -288,7 +293,7 @@ public class Ghostturn {
     public void speedModifier() {
         int len = 0;
         for (Ghost g : ghostspresent) {
-            if (!g.isShield) len += g.strlen;
+            if (!g.isShield()) len += g.getStrlen();
         }
         float avgLength = ghostspresent.isEmpty() ? 1 : (float)len/ghostspresent.size();
         int count = numGhosts;
@@ -324,7 +329,7 @@ public class Ghostturn {
      */
     public boolean hasDyingGhosts() {
         for (Ghost ghost:ghostspresent) {
-            if (ghost.isDying) {
+            if (ghost.isDying()) {
                 return true;
             }
         }
@@ -376,6 +381,48 @@ public class Ghostturn {
      * @return the number of upsideDownVs
      */
     public int getUpsideDownVs(){return upsideDownVs;}
+
+    /**
+     * Returns the number of ghosts in this turn
+     *
+     * @return the number of ghosts in this turn
+     */
+    public int getNumGhosts(){
+        return numGhosts;
+    }
+
+    /**
+     * Returns an array of the ghosts present in this ghostTurn
+     * @return an array of the ghosts in this ghostTurn
+     */
+    public ArrayList<Ghost> getGhostspresent(){
+        return ghostspresent;
+    }
+
+    /**
+     * Returns an arrayList of the x positions of the ghosts present in this ghostTurn
+     * @return an arrayList of the x positions of the ghosts in this ghostTurn
+     */
+    public ArrayList<Float> getGhostX(){
+        return ghostx;
+    }
+
+    /**
+     * Returns the speed modifier
+     *
+     * @return this ghost object's speed modifier
+     */
+    public float getSpeedModifier(){
+        return speedModifier;
+    }
+
+    /**
+     * Returns an arrayList of the y positions of the ghosts present in this ghostTurn
+     * @return an arrayList of the y positions of the ghosts in this ghostTurn
+     */
+    public ArrayList<Float> getGhostY(){
+        return ghosty;
+    }
 
     /**
      * Returns the total number of ghosts originally in this wave.
