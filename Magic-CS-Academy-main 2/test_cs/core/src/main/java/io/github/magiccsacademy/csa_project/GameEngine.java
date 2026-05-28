@@ -15,11 +15,6 @@ public class GameEngine {
     private ArrayList<Level> levels;
 
     /**
-     * The constant number of levels in the game
-     */
-    private final int numLevels;
-
-    /**
      * The current level index that the player is on (0-indexed)
      */
     private int curLevel;
@@ -34,13 +29,11 @@ public class GameEngine {
      * Constructs a GameEngine object, initializing fields
      * @param numLevels the number of levels in the game
      */
-    public GameEngine(int numLevels){
-        this.numLevels = numLevels;
+    public GameEngine(){
         this.curLevel = 0;
         completed = false;
         levels = new ArrayList<Level>(numLevels);
         //note that curLevel is zero indexed when stored in this class
-
     }
 
     /**
@@ -85,7 +78,7 @@ public class GameEngine {
      * Increments the current level index, progressing to the next level.
      */
     public void nextLevel(){
-        if(curLevel>=numLevels-1){
+        if(curLevel>=levels.size()-1){
             completed = true;
         }
         else{
