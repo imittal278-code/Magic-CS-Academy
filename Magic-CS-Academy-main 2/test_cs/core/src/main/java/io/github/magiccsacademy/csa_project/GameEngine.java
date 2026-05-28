@@ -27,12 +27,11 @@ public class GameEngine {
 
     /**
      * Constructs a GameEngine object, initializing fields
-     * @param numLevels the number of levels in the game
      */
     public GameEngine(){
         this.curLevel = 0;
         completed = false;
-        levels = new ArrayList<Level>(numLevels);
+        levels = new ArrayList<Level>(5);
         //note that curLevel is zero indexed when stored in this class
     }
 
