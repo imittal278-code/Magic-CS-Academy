@@ -65,7 +65,7 @@ public class Cat {
     }
 
     /**
-     * Decrements the cats lives by 1
+     * Decrements the cat's lives by 1
      */
     public void loseLife() {
         lives--;
@@ -93,7 +93,7 @@ public class Cat {
     }
 
     /**
-     * Returns whether the car has its shield
+     * Returns whether the cat has its shield
      *
      * @return whether the cat has its shield
      */
@@ -134,7 +134,7 @@ public class Cat {
     }
 
     /**
-     * Returns the y position of the car
+     * Returns the y position of the cat
      *
      * @return the y position of the cat
      */
@@ -145,7 +145,7 @@ public class Cat {
     /**
      * Returns the number of lives the player has remaining
      *
-     * @return the number of live the player has remaining
+     * @return the number of lives the player has remaining
      */
     public int getLives() {
         return lives;
