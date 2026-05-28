@@ -502,7 +502,7 @@ public class GameScreen extends InputAdapter implements Screen {
         if (!paused) {
             controller.getCurrentLevel().update(delta, c);
         }
-        if (c.hasShield) {
+        if (c.hasShield()) {
             drawShield();
         }
          drawGhosts(controller.getCurrentLevel());
