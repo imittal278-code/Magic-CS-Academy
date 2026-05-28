@@ -103,35 +103,75 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#ghostspresent" class="member-name-link">ghostspresent</a></code></div>
+<div class="col-first even-row-color"><code>private int</code></div>
+<div class="col-second even-row-color"><code><a href="#circles" class="member-name-link">circles</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">The number of circles this ghostTurn has currently (across living ghosts)</div>
+</div>
+<div class="col-first odd-row-color"><code>private int</code></div>
+<div class="col-second odd-row-color"><code><a href="#difficulty" class="member-name-link">difficulty</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The difficulty of this wave (determines score additions)</div>
+</div>
+<div class="col-first even-row-color"><code>private boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#fish" class="member-name-link">fish</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Boolean that states whether the characters in this wave are fish</div>
+</div>
+<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#ghostspresent" class="member-name-link">ghostspresent</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Array of the ghosts in this wave</div>
 </div>
-<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#ghostx" class="member-name-link">ghostx</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#ghostx" class="member-name-link">ghostx</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Array of the x positions of the ghosts in this wave</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#ghosty" class="member-name-link">ghosty</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#ghosty" class="member-name-link">ghosty</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Array of the y positions of the ghosts in this wave</div>
 </div>
-<div class="col-first odd-row-color"><code>int</code></div>
-<div class="col-second odd-row-color"><code><a href="#numAlive" class="member-name-link">numAlive</a></code></div>
+<div class="col-first even-row-color"><code>private int</code></div>
+<div class="col-second even-row-color"><code><a href="#horizontalLines" class="member-name-link">horizontalLines</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The number of horizontal lines this ghostTurn has currently (across living ghosts)</div>
+</div>
+<div class="col-first odd-row-color"><code>private int</code></div>
+<div class="col-second odd-row-color"><code><a href="#normalVs" class="member-name-link">normalVs</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">The number of normal V's this ghostTurn has currently (across living ghosts)</div>
+</div>
+<div class="col-first even-row-color"><code>private int</code></div>
+<div class="col-second even-row-color"><code><a href="#numAlive" class="member-name-link">numAlive</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The number of ghosts that haven't been killed in this wave</div>
 </div>
-<div class="col-first even-row-color"><code>int</code></div>
-<div class="col-second even-row-color"><code><a href="#numGhosts" class="member-name-link">numGhosts</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>private int</code></div>
+<div class="col-second odd-row-color"><code><a href="#numGhosts" class="member-name-link">numGhosts</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The number of ghosts in this wave</div>
 </div>
-<div class="col-first odd-row-color"><code>float</code></div>
-<div class="col-second odd-row-color"><code><a href="#speedModifier" class="member-name-link">speedModifier</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>private float</code></div>
+<div class="col-second even-row-color"><code><a href="#speedModifier" class="member-name-link">speedModifier</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Speed modifier for the ghosts</div>
+</div>
+<div class="col-first odd-row-color"><code>private final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#totshapes" class="member-name-link">totshapes</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Constant value of the number of possible shapes</div>
+</div>
+<div class="col-first even-row-color"><code>private int</code></div>
+<div class="col-second even-row-color"><code><a href="#upsideDownVs" class="member-name-link">upsideDownVs</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The number of upside down V's this ghostTurn has currently (across living ghosts)</div>
+</div>
+<div class="col-first odd-row-color"><code>private int</code></div>
+<div class="col-second odd-row-color"><code><a href="#verticalLines" class="member-name-link">verticalLines</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The number of vertical lines this ghostTurn has currently (across living ghosts)</div>
 </div>
 </div>
 </section>
@@ -183,15 +223,35 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCircles()" class="member-name-link">getCircles</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#decrementNumAlive()" class="member-name-link">decrementNumAlive</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Decrements the count of living ghosts in this wave by one.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCircles()" class="member-name-link">getCircles</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the number of circles that are still available to be drawn</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostspresent()" class="member-name-link">getGhostspresent</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the list of ghosts currently present in this wave.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostx()" class="member-name-link">getGhostx</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the list of x positions for the ghosts in this wave.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhosty()" class="member-name-link">getGhosty</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the list of y positions for the ghosts in this wave.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHorizontalLines()" class="member-name-link">getHorizontalLines</a>()</code></div>
@@ -204,21 +264,51 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns the number of normalVs that are still available to be drawn</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUpsideDownVs()" class="member-name-link">getUpsideDownVs</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumAlive()" class="member-name-link">getNumAlive</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the number of upsideDownVs that are still available to be drawn</div>
+<div class="block">Returns the number of ghosts that are still alive in this wave.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVerticalLines()" class="member-name-link">getVerticalLines</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumGhosts()" class="member-name-link">getNumGhosts</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the total number of ghosts originally in this wave.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>float</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpeedModifier()" class="member-name-link">getSpeedModifier</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the speed modifier for the ghosts in this wave.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUpsideDownVs()" class="member-name-link">getUpsideDownVs</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the number of upsideDownVs that are still available to be drawn</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVerticalLines()" class="member-name-link">getVerticalLines</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the number of verticalLines that are still available to be drawn</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasAliveGhosts()" class="member-name-link">hasAliveGhosts</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether any ghost in this turn is still alive.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasDyingGhosts()" class="member-name-link">hasDyingGhosts</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether any ghost in this turn is still showing its death animation.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">checks if the ghostTurn is alive</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCompletelyFinished()" class="member-name-link">isCompletelyFinished</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether this turn is fully finished, including any death animations.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shapeDrawn(int,io.github.magiccsacademy.csa_project.Cat)" class="member-name-link">shapeDrawn</a><wbr>(int&nbsp;shapeIndex,
  <a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a>&nbsp;c)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -258,42 +348,106 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="numGhosts">
 <h3>numGhosts</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">numGhosts</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">numGhosts</span></div>
 <div class="block">The number of ghosts in this wave</div>
+</section>
+</li>
+<li>
+<section class="detail" id="difficulty">
+<h3>difficulty</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">difficulty</span></div>
+<div class="block">The difficulty of this wave (determines score additions)</div>
 </section>
 </li>
 <li>
 <section class="detail" id="numAlive">
 <h3>numAlive</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">numAlive</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">numAlive</span></div>
 <div class="block">The number of ghosts that haven't been killed in this wave</div>
+</section>
+</li>
+<li>
+<section class="detail" id="totshapes">
+<h3>totshapes</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">totshapes</span></div>
+<div class="block">Constant value of the number of possible shapes</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#io.github.magiccsacademy.csa_project.Ghostturn.totshapes">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="ghostspresent">
 <h3>ghostspresent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</span>&nbsp;<span class="element-name">ghostspresent</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</span>&nbsp;<span class="element-name">ghostspresent</span></div>
 <div class="block">Array of the ghosts in this wave</div>
+</section>
+</li>
+<li>
+<section class="detail" id="circles">
+<h3>circles</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">circles</span></div>
+<div class="block">The number of circles this ghostTurn has currently (across living ghosts)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="horizontalLines">
+<h3>horizontalLines</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">horizontalLines</span></div>
+<div class="block">The number of horizontal lines this ghostTurn has currently (across living ghosts)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="verticalLines">
+<h3>verticalLines</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">verticalLines</span></div>
+<div class="block">The number of vertical lines this ghostTurn has currently (across living ghosts)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="upsideDownVs">
+<h3>upsideDownVs</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">upsideDownVs</span></div>
+<div class="block">The number of upside down V's this ghostTurn has currently (across living ghosts)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="normalVs">
+<h3>normalVs</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">normalVs</span></div>
+<div class="block">The number of normal V's this ghostTurn has currently (across living ghosts)</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ghostx">
 <h3>ghostx</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ghostx</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ghostx</span></div>
 <div class="block">Array of the x positions of the ghosts in this wave</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ghosty">
 <h3>ghosty</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ghosty</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">ghosty</span></div>
 <div class="block">Array of the y positions of the ghosts in this wave</div>
+</section>
+</li>
+<li>
+<section class="detail" id="fish">
+<h3>fish</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">fish</span></div>
+<div class="block">Boolean that states whether the characters in this wave are fish</div>
 </section>
 </li>
 <li>
 <section class="detail" id="speedModifier">
 <h3>speedModifier</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">speedModifier</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">speedModifier</span></div>
 <div class="block">Speed modifier for the ghosts</div>
 </section>
 </li>
@@ -399,7 +553,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="shapeDrawn(int,io.github.magiccsacademy.csa_project.Cat)">
 <h3>shapeDrawn</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shapeDrawn</span><wbr><span class="parameters">(int&nbsp;shapeIndex,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">shapeDrawn</span><wbr><span class="parameters">(int&nbsp;shapeIndex,
  <a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a>&nbsp;c)</span></div>
 <div class="block">Removes the shape corresponding to shapeIndex from the end of the ghosts
  Increments the scores if needed
@@ -410,6 +564,8 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>shapeIndex</code> - the Index of the shape drawn</dd>
 <dd><code>c</code> - the Cat object in the game (contains lives)</dd>
+<dt>Returns:</dt>
+<dd>true if at least one ghost died.</dd>
 </dl>
 </section>
 </li>
@@ -418,6 +574,39 @@ loadScripts(document, 'script');</script>
 <h3>speedModifier</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">speedModifier</span>()</div>
 <div class="block">Modifies the speed by a factor based on the number of shapes and number of ghosts</div>
+</section>
+</li>
+<li>
+<section class="detail" id="hasAliveGhosts()">
+<h3>hasAliveGhosts</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasAliveGhosts</span>()</div>
+<div class="block">Checks whether any ghost in this turn is still alive.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if at least one ghost is alive</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hasDyingGhosts()">
+<h3>hasDyingGhosts</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasDyingGhosts</span>()</div>
+<div class="block">Checks whether any ghost in this turn is still showing its death animation.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if at least one ghost is still dying</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isCompletelyFinished()">
+<h3>isCompletelyFinished</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCompletelyFinished</span>()</div>
+<div class="block">Checks whether this turn is fully finished, including any death animations.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if no ghosts are alive and no death animations remain</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -483,6 +672,80 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the number of upsideDownVs</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getNumGhosts()">
+<h3>getNumGhosts</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getNumGhosts</span>()</div>
+<div class="block">Returns the total number of ghosts originally in this wave.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of ghosts</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getNumAlive()">
+<h3>getNumAlive</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getNumAlive</span>()</div>
+<div class="block">Returns the number of ghosts that are still alive in this wave.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of living ghosts</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="decrementNumAlive()">
+<h3>decrementNumAlive</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">decrementNumAlive</span>()</div>
+<div class="block">Decrements the count of living ghosts in this wave by one.
+ This can be used when a ghost is explicitly defeated or removed.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostspresent()">
+<h3>getGhostspresent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</span>&nbsp;<span class="element-name">getGhostspresent</span>()</div>
+<div class="block">Returns the list of ghosts currently present in this wave.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the array list of ghost objects</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostx()">
+<h3>getGhostx</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">getGhostx</span>()</div>
+<div class="block">Returns the list of x positions for the ghosts in this wave.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the array list of x positions</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhosty()">
+<h3>getGhosty</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">getGhosty</span>()</div>
+<div class="block">Returns the list of y positions for the ghosts in this wave.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the array list of y positions</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSpeedModifier()">
+<h3>getSpeedModifier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getSpeedModifier</span>()</div>
+<div class="block">Returns the speed modifier for the ghosts in this wave.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the speed modifier factor</dd>
 </dl>
 </section>
 </li>
