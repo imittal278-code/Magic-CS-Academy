@@ -244,7 +244,7 @@ public class Level {
                     currentGhostY.set(i, currentGhostY.get(i)+moveY);
                 }
                 else{
-                    if(c.hasShield){
+                    if(c.hasShield()){
                         c.shieldOff();
                     }
                     else{
