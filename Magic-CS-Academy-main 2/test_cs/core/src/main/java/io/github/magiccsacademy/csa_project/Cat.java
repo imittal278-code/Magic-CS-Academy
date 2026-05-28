@@ -24,22 +24,22 @@ public class Cat {
     /**
      * The x and y positions of the cat
      */
-    float catx, caty;
+    private float catx, caty;
 
     /**
      * The number of lives the player has
      */
-    int lives;
+    private int lives;
 
     /**
      * whether the player is alive
      */
-    boolean alive;
+    private boolean alive;
 
     /**
      * whether the cat has its shield
      */
-    boolean hasShield;
+    private boolean hasShield;
 
     /**
      * The score the player currently has

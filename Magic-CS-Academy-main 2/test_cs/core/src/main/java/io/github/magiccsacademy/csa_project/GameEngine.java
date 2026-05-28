@@ -32,7 +32,6 @@ public class GameEngine {
         this.curLevel = 0;
         completed = false;
         levels = new ArrayList<Level>(5);
-        //note that curLevel is zero indexed when stored in this class
     }
 
     /**

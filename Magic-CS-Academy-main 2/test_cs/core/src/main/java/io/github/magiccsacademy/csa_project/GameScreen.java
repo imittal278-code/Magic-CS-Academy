@@ -252,19 +252,18 @@ public class GameScreen extends InputAdapter implements Screen {
         fishpic = new Texture("fish.png");
         fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
-        //catCircle = new Texture("Momo_Circle.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
         font.getData().setScale(0.02f);
         font.setUseIntegerPositions(false);
         font.setColor(Color.ORANGE);
-        background = game.background;
+        background = game.getBackground();
 
-        map1.put(0,game.horizontalLine);
-        map1.put(1,game.verticalLine);
-        map1.put(2,game.normalV);
-        map1.put(3,game.upsideDownV);
-        map1.put(4,game.circle);
+        map1.put(0,game.getHorizontalLine());
+        map1.put(1,game.getVerticalLine());
+        map1.put(2,game.getNormalV());
+        map1.put(3,game.getUpsideDownV());
+        map1.put(4,game.getCircle());
         map2.put("horizontalLine", new Pair<Integer, Color>(0,Color.RED));
         map2.put("verticalLine", new Pair<Integer, Color>(1,Color.BLUE));
         map2.put("normalV", new Pair<Integer, Color>(2,Color.YELLOW));
@@ -320,8 +319,9 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         float delta = Gdx.graphics.getDeltaTime();
         int numGhosts = currentTurn.getNumGhosts();
+        int numGhosts = currentTurn.getNumGhosts();
         for (int i = 0; i < numGhosts; i++) {
-            Ghost g = currentTurn.getGhostspresent().get(numGhosts - i - 1);
+            Ghost g = currentTurn.getGetGhostspresent()().get(numGhosts - i - 1);
             if (g.isDying()) {
                 g.setDeathTimer(g.getDeathTimer()+delta);
                 if (g.getDeathTimer() >= g.getDEATH_DURATION()) {
@@ -331,57 +331,57 @@ public class GameScreen extends InputAdapter implements Screen {
                 Texture deathFrame;
                 if (g.isFulk()) continue;
                 else if (g.isFish()) {
-                    deathFrame = (g.getDeathTimer() > g.getDEATH_DURATION() / 2f) ? game.fishDeathFrame2 : game.fishDeathFrame1;
+                    deathFrame = (g.getDeathTimer() > g.getDEATH_DURATION() / 2f) ? game.getFishDeathFrame2() : game.getFishDeathFrame1();
                     float deathScale = 0.7f;
                     float xCent = g.getDeathX() - 0.02f;
                     float yCent = g.getDeathY() - 0.10f;
-                    game.batch.draw(deathFrame, xCent, yCent,deathScale,deathScale);
+                    game.getBatch().draw(deathFrame, xCent, yCent,deathScale,deathScale);
                 }
                 else {
-                    deathFrame = (g.getDeathTimer() > g.getDEATH_DURATION() / 2f) ? game.ghostDeathFrame2 : game.ghostDeathFrame1;
-                    game.batch.draw(deathFrame, g.getDeathX(), g.getDeathY(), 0.6f, 0.666f);
+                    deathFrame = (g.getDeathTimer() > g.getDEATH_DURATION() / 2f) ? game.getGhostDeathFrame2() : game.getGhostDeathFrame1();
+                    game.getBatch().draw(deathFrame, g.getDeathX(), g.getDeathY(), 0.6f, 0.666f);
                 }
                 continue;
             }
             if (g.isAlive()) {
 
                 
-                float x = currentTurn.getGhostX().get(numGhosts - i - 1);
-                float y = currentTurn.getGhostY().get(numGhosts - i - 1);
-                if(g.isFulk()){
+                float x = currentTurn.getGhostx().get(numGhosts - i - 1);
+                float y = currentTurn.getGhostx().get(numGhosts - i - 1);
+                if(g.isFulk){
                     fulk.setPosition(x, y);
                     fulk.setSize(0.58f, 0.58f);
-                    fulk.draw(game.batch);
+                    fulk.draw(game.getBatch());
                 }
                 else if(g.isFish()){
                     fish.setPosition(x, y);
                     fish.setSize(0.7f, 0.25f);
-                    fish.draw(game.batch);
+                    fish.draw(game.getBatch());
                     int shapesLeft = g.shapes.size();
                     float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                     for(int k = 0;k<shapesLeft;k++){
-                        game.batch.draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
+                        game.getBatch().draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
                     }
                     continue;
                 }
                 else if (g.isShield()) {
                     shieldGhostSprite.setPosition(x, y);
                     shieldGhostSprite.setSize(0.46f, 0.5106f);
-                    shieldGhostSprite.draw(game.batch);
+                    shieldGhostSprite.draw(game.getBatch());
                     int shapesLeft = g.shapes.size();
-                    game.batch.draw(game.circle,x+0.13f,y+0.5f,0.2f,0.2f);
+                    game.getBatch().draw(game.getCircle(),x+0.13f,y+0.5f,0.2f,0.2f);
                     continue;
                 }
                 else{
                     ghost2.setPosition(x, y);
                     ghost2.setSize(0.6f, 0.666f);
-                    ghost2.draw(game.batch);
+                    ghost2.draw(game.getBatch());
                 }
 
                 int shapesLeft = g.shapes.size();
                 float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                 for(int k = 0;k<shapesLeft;k++){
-                    game.batch.draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    game.getBatch().draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
                 }
             }
         }
@@ -415,39 +415,34 @@ public class GameScreen extends InputAdapter implements Screen {
      */
     @Override
     public void render(float delta) {
-        //keep this code at the top
         background = controller.getCurrentLevel().getBackground();
          if(showTransition){
              transitionTime-=delta;
              ScreenUtils.clear(0,0,1,1);
-             game.myViewport.apply();
-             game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-             game.batch.begin();
+             game.getMyViewport().apply();
+             game.getBatch().setProjectionMatrix(game.getMyViewport().getCamera().combined);
+             game.getBatch().begin();
 
-             game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
+             game.getBatch().draw(background, 0, 0,game.getMyViewport().getWorldWidth(),game.getMyViewport().getWorldHeight());
 
-             game.batch.draw(game.transitionBackground.get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,0f,6f,3.37f);
-             game.batch.end();
+             game.getBatch().draw(game.getTransitionBackground().get(controller.getCurrentLevelNum()-1),-6f*transitionTime+6f,0f,6f,3.37f);
+             game.getBatch().end();
             if(transitionTime<=0)showTransition = false;
             return;
          }
 
-        //set background based on current Level
 
         ScreenUtils.clear(0, 0, 0, 1);
-        game.myViewport.apply();
+        game.getMyViewport().apply();
         
-        //Gdx.app.log("VIEWPORT", "worldW=" + game.myViewport.getWorldWidth() + ", worldH=" + game.myViewport.getWorldHeight()); //REMOVE
-        //Gdx.app.log("", "piSCREENxelsW=" + Gdx.graphics.getWidth() + ", pixelsH=" + Gdx.graphics.getHeight()); //REMOVE
-        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
 
-        game.batch.begin();
+        game.getBatch().setProjectionMatrix(game.getMyViewport().getCamera().combined);
 
-        //draw the background first
-        game.batch.draw(background, 0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
+        game.getBatch().begin();
+
+        game.getBatch().draw(background, 0, 0, game.getMyViewport().getWorldWidth(), game.getMyViewport().getWorldHeight());
         drawScore();
 
-        //set cat's position and size and draw it
         if (!paused && animationTimer > 0) {
             animationTimer -= delta;
             if (animationTimer <= 0) c.setState(Cat.State.NORMAL);
@@ -459,28 +454,28 @@ public class GameScreen extends InputAdapter implements Screen {
         float finalHeight = 0.6f;
         switch(c.getState()) {
             case HORIZONTAL:
-                activeCatTexture = game.catHorizontal;
+                activeCatTexture = game.getCatHorizontal();
                 finalWidth = 1.35f;
                 finalHeight = 0.90f; 
                 catX -= 0.375f;
                 catY -= 0.165f;
                 break;
             case VERTICAL:
-                activeCatTexture = game.catVertical;
+                activeCatTexture = game.getCatVertical();
                 finalWidth = 0.6f;
                 finalHeight = 0.9f;
                 catX += 0.0f;
                 catY += -0.15f;
                 break;
             case NORMAL_V:
-                activeCatTexture = game.catNormalV;
+                activeCatTexture = game.getCatNormalV();
                 finalWidth = 1.2f;
                 finalHeight = 0.80f;
                 catX -= 0.30f;
                 catY -= 0.115f;
                 break;
             case UPSIDE_DOWN_V:
-                activeCatTexture = game.catUpsideDownV;
+                activeCatTexture = game.getCatUpsideDownV();
                 finalWidth = 0.70f;
                 finalHeight = 0.96f;
                 catX -= 0.035f;
@@ -495,10 +490,10 @@ public class GameScreen extends InputAdapter implements Screen {
         else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
         else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
         else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
-        //else c.setPosition();
+        else c.setPosition(2.6f, 1.5f);
         cat2.setPosition(catX, catY);
         cat2.setSize(finalWidth, finalHeight);
-        cat2.draw(game.batch);
+        cat2.draw(game.getBatch());
         if (!paused) {
             controller.getCurrentLevel().update(delta, c);
         }
@@ -510,8 +505,8 @@ public class GameScreen extends InputAdapter implements Screen {
          drawPlayPause();
 
 
-        game.batch.end();
-        shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
+        game.getBatch().end();
+        shapeRenderer.setProjectionMatrix(game.getMyViewport().getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(colorDrawing);
         for (int i = 0; i < points.size() - 1; i++) {
@@ -525,15 +520,14 @@ public class GameScreen extends InputAdapter implements Screen {
 
         if (paused)drawPauseOverlay();
 
-        //You lost
         if (!c.isAlive()) {
             this.dispose();
-            game.setScreen(new endScreen(game, c));
+            game.setScreen(new EndScreen(game, c));
         }
         if (controller.getCurrentLevel().isCompleted()) {
             if (controller.doneWithLevels() && c.isAlive()) {
                 this.dispose();
-                game.setScreen(new endScreen(game,c));
+                game.setScreen(new EndScreen(game,c));
             }
             else if(!showTransition){
                 showTransition = true;
@@ -542,7 +536,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 controller.nextLevel();
                 if (controller.doneWithLevels() && c.isAlive()) {
                     this.dispose();
-                    game.setScreen(new endScreen(game, c));
+                    game.setScreen(new EndScreen(game, c));
                 }
             }
         }
@@ -554,7 +548,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * Draws the shield at the cat's current position
      */
     private void drawShield() {
-        game.batch.draw(shield, c.getX()-0.3f, c.getY()-0.3f, 1.2f, 1.2f);
+        game.getBatch().draw(shield, c.getX()-0.3f, c.getY()-0.3f, 1.2f, 1.2f);
     }
 
     /**
@@ -565,8 +559,8 @@ public class GameScreen extends InputAdapter implements Screen {
         int count = c.getLives();
         float adder = 0.2f;
         for(int i = 0;i<5;i++){
-            if(count>0)game.batch.draw(heart,0f+adder,2.5f,0.3f,0.3f);
-            else game.batch.draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
+            if(count>0)game.getBatch().draw(heart,0f+adder,2.5f,0.3f,0.3f);
+            else game.getBatch().draw(heartOutline,0f+adder,2.5f,0.3f,0.3f);
             adder+=0.3f;
             count--;
         }
@@ -578,13 +572,13 @@ public class GameScreen extends InputAdapter implements Screen {
      */
     private void drawScore(){
         uiViewport.apply();
-        game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
+        game.getBatch().setProjectionMatrix(uiViewport.getCamera().combined);
 
         font.setColor(Color.ORANGE);
         font.getData().setScale(1f);
-        font.draw(game.batch, "" + c.getScore(), 1400, 750);
-        game.myViewport.apply();
-        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
+        font.draw(game.getBatch(), "" + c.getScore(), 1400, 750);
+        game.getMyViewport().apply();
+        game.getBatch().setProjectionMatrix(game.getMyViewport().getCamera().combined);
     }
 
     /**
@@ -593,11 +587,11 @@ public class GameScreen extends InputAdapter implements Screen {
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
         if(paused){
-            game.batch.draw(icon, game.myViewport.getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
+            game.getBatch().draw(icon, game.getMyViewport().getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
         }
         else{
 
-            game.batch.draw(icon, game.myViewport.getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
+            game.getBatch().draw(icon, game.getMyViewport().getWorldWidth()-0.7f, 0.1f, 0.6f, 0.6f);
         }
     }
 
@@ -607,38 +601,38 @@ public class GameScreen extends InputAdapter implements Screen {
     private void drawPauseOverlay(){
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        shapeRenderer.setProjectionMatrix(game.myViewport.getCamera().combined);
+        shapeRenderer.setProjectionMatrix(game.getMyViewport().getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(0f, 0f, 0f, 0.3f);
-        shapeRenderer.rect(0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
+        shapeRenderer.rect(0, 0, game.getMyViewport().getWorldWidth(), game.getMyViewport().getWorldHeight());
         shapeRenderer.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
         uiViewport.apply();
-        game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
-        game.batch.begin();
+        game.getBatch().setProjectionMatrix(uiViewport.getCamera().combined);
+        game.getBatch().begin();
         font.getData().setScale(0.8f);
         GlyphLayout pausedLayout = new GlyphLayout(font, "Paused");
         float pausedX=(1600-pausedLayout.width)/2;
         float pausedY=470;
         font.setColor(Color.ORANGE);
-        font.draw(game.batch, "Paused", pausedX, pausedY);
+        font.draw(game.getBatch(), "Paused", pausedX, pausedY);
 
         font.getData().setScale(1.2f);
         GlyphLayout resumeLayout = new GlyphLayout(font, "Resume");
         float resumeX=(1600-resumeLayout.width)/2;
         float resumeY=400;
         font.setColor(Color.WHITE);
-        font.draw(game.batch, "Resume", resumeX, resumeY);
+        font.draw(game.getBatch(), "Resume", resumeX, resumeY);
 
         font.setColor(Color.ORANGE);
         font.getData().setScale(1f);
-        game.batch.end();
-        game.myViewport.apply();
-        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-        game.batch.begin();
+        game.getBatch().end();
+        game.getMyViewport().apply();
+        game.getBatch().setProjectionMatrix(game.getMyViewport().getCamera().combined);
+        game.getBatch().begin();
         Texture icon=playTexture;
-        game.batch.draw(icon, game.myViewport.getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
-        game.batch.end();
+        game.getBatch().draw(icon, game.getMyViewport().getWorldWidth()-0.5f, 0.22f, 0.269f, 0.330f);
+        game.getBatch().end();
     }
 
 
@@ -650,7 +644,7 @@ public class GameScreen extends InputAdapter implements Screen {
      */
     @Override
     public void resize(int width, int height) {
-        game.stage.getViewport().update(width, height, true);
+        game.getStage().getViewport().update(width, height, true);
         uiViewport.update(width, height, true);
     }
 
@@ -694,12 +688,12 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
      */
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) { //Called when the screen was touched, or a mouse button was pressed.
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         points.clear();
         pts.clear();
         Vector3 temp = new Vector3(screenX, screenY, 0);
-        game.myViewport.unproject(temp);
-        if (temp.x >= game.myViewport.getWorldWidth()-0.7f && temp.x <= game.myViewport.getWorldWidth() -0.1f && temp.y >= 0.1f && temp.y <=  0.7f) {
+        game.getMyViewport().unproject(temp);
+        if (temp.x >= game.getMyViewport().getWorldWidth()-0.7f && temp.x <= game.getMyViewport().getWorldWidth() -0.1f && temp.y >= 0.1f && temp.y <=  0.7f) {
             paused = !paused;
             return true;
         }
@@ -722,9 +716,9 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
      */
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {//Called when a finger or the mouse was dragged.
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
         Vector3 temp = new Vector3(screenX, screenY, 0);
-        game.myViewport.unproject(temp);
+        game.getMyViewport().unproject(temp);
         if (isDrawing) {
             points.add(new Vector2(temp.x, temp.y));
             pts.add(new Point(temp.x, temp.y));
@@ -736,14 +730,12 @@ public class GameScreen extends InputAdapter implements Screen {
             if (r != null && map2.containsKey(r.Name)&&r.Score>0.77) {
                 if(r.Score>0.90 && (r.Name.equals("horizontalLine")||r.Name.equals("verticalLine"))){
                     if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                        //horizontal
                         if(controller.getCurrentLevel().getHorizontalLines()) {
                             colorDrawing = Color.RED;
                         }
                         else colorDrawing = Color.WHITE;
                     }
                     else{
-                        //vertical
                         if(controller.getCurrentLevel().getVerticalLines()) {
                             colorDrawing = Color.BLUE;
                         }
@@ -760,13 +752,11 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         else if(points.size()>1){
             if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                //horizontal
                 if(controller.getCurrentLevel().getHorizontalLines()) {
                     colorDrawing = Color.RED;
                 }
             }
             else{
-                //vertical
                 if(controller.getCurrentLevel().getVerticalLines()) {
                     colorDrawing = Color.BLUE;
                 }
@@ -786,7 +776,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return false if the level is completed, otherwise true
      */
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted, or a mouse button was released.
+    public boolean touchUp(int screenX, int screenY, int pointer, int button){
         if(controller.getCurrentLevel().isCompleted()) return false;
         isDrawing = false;
         if(points.size()>10){
@@ -795,7 +785,6 @@ public class GameScreen extends InputAdapter implements Screen {
             if (r != null && map2.containsKey(r.Name)&&r.Score>0.77) {
                 if(r.Score>0.90 && (r.Name.equals("horizontalLine")||r.Name.equals("verticalLine"))){
                     if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                        //horizontal
                         if(controller.getCurrentLevel().getHorizontalLines()) {
                             controller.getCurrentLevel().shapeDrawn(0, c);
                             c.setState(Cat.State.HORIZONTAL);
@@ -804,7 +793,6 @@ public class GameScreen extends InputAdapter implements Screen {
 
                     }
                     else{
-                        //vertical
                         if(controller.getCurrentLevel().getVerticalLines()) {
                             controller.getCurrentLevel().shapeDrawn(1, c);
                             c.setState(Cat.State.VERTICAL);
@@ -823,14 +811,11 @@ public class GameScreen extends InputAdapter implements Screen {
             }
             else if(r != null && map2.containsKey(r.Name)&&r.Name.equals("circle")&&r.Score>0.70) {
                  controller.getCurrentLevel().shapeDrawn(4, c);
-                 //c.setState(Cat.State.CIRCLE);
-                 //animationTimer = ANIMATION_DURATION;
             }
 
         }
         else if(points.size()>1){
             if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                //horizontal
                 if(controller.getCurrentLevel().getHorizontalLines()) {
                     controller.getCurrentLevel().shapeDrawn(0, c);
                     c.setState(Cat.State.HORIZONTAL);
@@ -838,7 +823,6 @@ public class GameScreen extends InputAdapter implements Screen {
                 }
             }
             else{
-                //vertical
                 if(controller.getCurrentLevel().getVerticalLines()) {
                     controller.getCurrentLevel().shapeDrawn(1, c);
                     c.setState(Cat.State.VERTICAL);

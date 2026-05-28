@@ -32,6 +32,14 @@ package io.github.magiccsacademy.csa_project;
 
 import java.util.*;
 
+
+/**
+ * Recognizes drawn gestures by comparing the player's stroke to a set of shape templates.
+ *
+ * This class is based on an existing gesture-recognition implementation from GitHub.
+ * I modified it for this project by limiting/enabling specific shapes and connecting the
+ * recognizer to the game's shape system, as well as optimizing some parts.
+ */
 public class Recognizer
 {
 	//
@@ -60,6 +68,16 @@ public class Recognizer
 		this(GESTURES_SIMPLE);
 	}
 
+
+	/**
+	 * Constructs a recognizer with only the currently needed shape templates enabled.
+	 *
+	 * @param circle whether circle gestures should be recognized
+	 * @param upsideDownV whether upside-down V gestures should be recognized
+	 * @param normalV whether normal V gestures should be recognized
+	 * @param horizontalLine whether horizontal line gestures should be recognized
+	 * @param verticalLine whether vertical line gestures should be recognized
+	 */
 	public Recognizer(boolean circle, boolean upsideDownV, boolean normalV, boolean horizontalLine, boolean verticalLine)
 	{
 		if (circle) loadTemplatesCircles();
@@ -149,7 +167,13 @@ public class Recognizer
 	
 		return v;
 	}
-	
+
+	/**
+	 * Attempts to recognize the given stroke as one of the enabled shapes.
+	 *
+	 * @param points the points drawn by the player
+	 * @return the recognition result, or null if no shape is confidently recognized
+	 */
 	public Result Recognize(Vector points)
 	{
 		if(Templates.size() == 0) return new Result("No templates loaded", 0, -1, 0);

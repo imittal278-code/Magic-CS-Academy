@@ -20,12 +20,12 @@ import java.util.*;
 /**
  * Displays the screen that a player sees first with the big center play button
  */
-public class homeScreen implements Screen{
+public class HomeScreen implements Screen{
 
     /**
      * The shared game class (used for shifting screens or accessing some assets)
      */
-    private final Main game; // no ghost or something should be present here, like it
+    private final Main game;
 
     /**
      * The background of the home screen
@@ -99,18 +99,19 @@ public class homeScreen implements Screen{
 
 
     /**
-     * Constructs the homeScreen, initializing the constant fields
-     * @param game
+     * Constructs the home screen and initializes its main assets.
+     *
+     * @param game the shared Main object used for assets, drawing, and screen switching
      */
-    public homeScreen(Main game){
+    public HomeScreen(Main game){
         this.game = game;
         map = new HashMap<Integer,Texture>();
-        map.put(0,game.horizontalLine);
-        map.put(1,game.verticalLine);
-        map.put(2,game.normalV);
-        map.put(3,game.upsideDownV);
-        map.put(4,game.circle);
-        background = game.csclass;
+        map.put(0,game.getHorizontalLine());
+        map.put(1,game.getVerticalLine());
+        map.put(2,game.getNormalV());
+        map.put(3,game.getUpsideDownV());
+        map.put(4,game.getCircle());
+        background = game.getCsclass();
         ghost = new Texture("ghost2.png");
         ghost2 = new Sprite(ghost);
         cat = new Texture("Momo2023.png");
@@ -143,15 +144,15 @@ public class homeScreen implements Screen{
     public void render(float delta) {
         timesum2+=delta;
         ScreenUtils.clear(0, 0, 0, 1);
-        game.myViewport.apply();
-        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
-        game.batch.begin();
+        game.getMyViewport().apply();
+        game.getBatch().setProjectionMatrix(game.getMyViewport().getCamera().combined);
+        game.getBatch().begin();
         cat2.setPosition(4f, 0.75f);
         cat2.setSize(0.75f, 0.8325f);
-        game.batch.setColor(0.4f, 0.4f, 0.4f, 1f);
-        game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
-        game.batch.setColor(1f, 1f, 1f, 1f);
-        game.batch.draw(title,1f,2f,4.29f,1f);
+        game.getBatch().setColor(0.4f, 0.4f, 0.4f, 1f);
+        game.getBatch().draw(background, 0, 0,game.getMyViewport().getWorldWidth(),game.getMyViewport().getWorldHeight());
+        game.getBatch().setColor(1f, 1f, 1f, 1f);
+        game.getBatch().draw(title,1f,2f,4.29f,1f);
         drawGhost(ghostleft,0.1f,0.75f);
         drawGhost(ghostright,1f,0.75f);
         timesum+=delta;
@@ -170,26 +171,26 @@ public class homeScreen implements Screen{
             }
         }
 
-        cat2.draw(game.batch);
+        cat2.draw(game.getBatch());
          Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-         game.myViewport.getCamera().unproject(mousePos);
+         game.getMyViewport().getCamera().unproject(mousePos);
          float scale = 1f + 0.1f * (float)Math.sin(timesum2 * 3f);
          float width = 0.8f * scale;
          float height = 0.976f * scale;
-         float x = game.myViewport.getWorldWidth() / 2f - width / 2f+0.1f;
-         float y = game.myViewport.getWorldHeight() / 2f - height / 2f-0.4f;
+         float x = game.getMyViewport().getWorldWidth() / 2f - width / 2f+0.1f;
+         float y = game.getMyViewport().getWorldHeight() / 2f - height / 2f-0.4f;
          play.setSize(width,height);
          play.setPosition(x,y);
-         play.draw(game.batch);
+         play.draw(game.getBatch());
          if (Gdx.input.justTouched()) {
              Vector3 touchPoint = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-             game.myViewport.getCamera().unproject(touchPoint);
+             game.getMyViewport().getCamera().unproject(touchPoint);
              if (play.getBoundingRectangle().contains(touchPoint.x, touchPoint.y)) {
                  this.dispose();
                  game.setScreen(new GameScreen(game));
              }
          }
-         game.batch.end();
+         game.getBatch().end();
     }
 
     /**
@@ -201,18 +202,18 @@ public class homeScreen implements Screen{
     private void drawGhost(Ghost g,float x,float y){
         ghost2.setPosition(x,y);
         ghost2.setSize(0.8f,0.8f);
-        ghost2.draw(game.batch);
+        ghost2.draw(game.getBatch());
         int shapesLeft = g.shapes.size();
         if(shapesLeft%2==0){
             float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.45f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.getBatch().draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
         else{
             float intitialpos = x-((float)shapesLeft/2)*0.15f+0.45f;
             for(int k = 0;k<shapesLeft;k++){
-                game.batch.draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.getBatch().draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
     }
@@ -224,7 +225,7 @@ public class homeScreen implements Screen{
      * @param height the height of the screen to resize to
      */
     @Override public void resize(int width, int height) {
-        game.stage.getViewport().update(width, height,true);
+        game.getStage().getViewport().update(width, height,true);
     }
 
     /**
