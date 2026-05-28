@@ -131,8 +131,8 @@ public class HomeScreen implements Screen{
         timesum = 0f;
         lasttime = 0f;
         timesum2 = 0f;
-        ghostleft = new Ghost(4, 5);
-        ghostright = new Ghost(4, 5);
+        ghostleft = new Ghost(4);
+        ghostright = new Ghost(4);
     }
 
 
@@ -160,8 +160,8 @@ public class HomeScreen implements Screen{
         if(ghostleft.shapes.size()==0){
             timesum = 0f;
             lasttime = 0f;
-            ghostleft = new Ghost(4,5);
-            ghostright = new Ghost(4,5);
+            ghostleft = new Ghost(4);
+            ghostright = new Ghost(4);
         }
         else{
             if(timesum-lasttime>=0.5f){

@@ -158,7 +158,7 @@ public class EndScreen implements Screen{
             home.setColor(0.5f, 0.5f, 0.5f, 1f);
             replay.setColor(Color.WHITE);
             if (Gdx.input.justTouched()) {
-                game.setScreen(new homeScreen(game));
+                game.setScreen(new HomeScreen(game));
             }
         }
         else if (replay.getBoundingRectangle().contains(mousePos.x, mousePos.y)) {
