@@ -17,7 +17,7 @@ import com.badlogic.gdx.Input;
 import java.util.*;
 
 /**
- * Manages location of the cat on the screen, its lives, score, and whether it has its shield
+ * Manages the location of the cat on the screen, its lives, score, and whether it has its shield
  */
 public class Cat {
 
@@ -46,6 +46,9 @@ public class Cat {
      */
     private int score;
 
+    /**
+     * Represents the cat's current visual/action state.
+     */
     public enum State { NORMAL, HORIZONTAL, VERTICAL, NORMAL_V, UPSIDE_DOWN_V, CIRCLE }
     private State currentState = State.NORMAL;
 
