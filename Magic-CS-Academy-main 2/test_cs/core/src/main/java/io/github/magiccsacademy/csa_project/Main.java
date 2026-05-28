@@ -17,7 +17,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import java.util.ArrayList;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+/**
+ * Main game class that loads shared assets, creates the viewport and stage,
+ * starts the background music, and opens the home screen.
+ */
 public class Main extends Game {
 
     /**
@@ -51,7 +54,7 @@ public class Main extends Game {
     public Sound sound1,sound2,sound3,sound4,sound5;
 
     /**
-     * the background used for a level
+     * The background textures used for the different levels.
      */
     public Texture background,ocean,desert,forest,circuit;
     /**
@@ -114,9 +117,11 @@ public class Main extends Game {
     public Texture fishDeathFrame2;
 
     /**
-     * Creates the game, initializes a lot of fields, turns on music, and switches to the homeScreen class
+     * Creates the game by loading shared assets, starting the background music,
+     * setting up the viewport and stage, and switching to the home screen.
      */
-    public void create(){
+    @Override
+    public void create() {
         batch = new SpriteBatch();
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
         sound1 =  Gdx.audio.newSound(Gdx.files.internal("sound1.mp3"));
