@@ -245,7 +245,7 @@ public class Level {
     }
 
     /**
-     * changes the current turn index to the next one
+     * Changes the current turn index to the next one
      */
     public void nextTurn() {
         currentTurnIndex++;
@@ -260,7 +260,8 @@ public class Level {
     }
 
     /**
-     * checks if the current turn is done
+     * Checks if the current turn is done
+     * 
      * @return a boolean that checks if the current turn is done
      */
     public boolean currentTurnFinished() {
@@ -268,7 +269,8 @@ public class Level {
     }
 
     /**
-     * checks if the level is completed
+     * Checks if the level is completed
+     * 
      * @return a boolean that checks if the level is completed
      */
     public boolean isCompleted() {
@@ -276,7 +278,8 @@ public class Level {
     }
 
     /**
-     * checks if you lost
+     * Checks if you lost the game
+     * 
      * @return a boolean that checks if you are not alive
      */
     public boolean isGameOver(Cat c) {
@@ -310,7 +313,14 @@ public class Level {
         return background;
     }
 
-    // **** NEED TO DETERMINE POSITIOSN OF TEH GHOSTS IN EACH TURN AND WAVE *****
+    /**
+     * Calculates where a ghost's spawn ray from the screen center hits a boundary edge.
+     * @param angle
+     * @param width
+     * @param height
+     * @param wave
+     * @return the intersection point of the ray and the background edge
+     */
     private Point intersectRay(float angle, float width, float height, double wave){
         double atan = Math.atan(width/height);
         wave = wave/2;
