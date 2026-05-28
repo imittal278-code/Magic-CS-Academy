@@ -53,7 +53,7 @@ public class Ghost {
     public boolean isDying = false;
 
     /**
-     * A timer used to manage death animation
+     * A timer used to manage the death animation
      */
     public float deathTimer = 0f;
 
@@ -77,15 +77,13 @@ public class Ghost {
      * isFulk, isFish, and isShield default to false
      *
      * @param len the number of shapes
-     * @param totshapes the total number of shape indexes possible
      */
-    public Ghost(int len, int totshapes){
+    public Ghost(int len){
         isFulk = false;
         isFish = false;
         isShield = false;
         alive = true;
         strlen = len;
-       // totaltypeshapes = totshapes;
         shapes = new ArrayList<Integer>();
         for(int i=0;i<strlen;i++){
             shapes.add((int) (4*Math.random()));
@@ -104,7 +102,6 @@ public class Ghost {
         isFish = false;
         isShield = false;
         shapes = strtointarray(s.split(""));
-     //   totaltypeshapes = 4;
         strlen = shapes.size();
         alive = true; 
     }
@@ -121,7 +118,6 @@ public class Ghost {
         isFish = false;
         isShield = false;
         shapes = strtointarray(s.split(""));
-        //   totaltypeshapes = 4;
         strlen = shapes.size();
         alive = true;
     }
