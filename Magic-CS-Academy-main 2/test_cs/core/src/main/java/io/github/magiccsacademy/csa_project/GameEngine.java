@@ -5,12 +5,12 @@ import java.time.*;
 import java.io.*;
 
 /**
- * Used to manage which level the player is on, and switch levels
+ * Manages the player's current level and handles level progression
  */
 public class GameEngine {
 
     /**
-     * An arraylist of Levels in the game
+     * The levels in the game
      */
     private ArrayList<Level> levels;
 
@@ -63,8 +63,9 @@ public class GameEngine {
     }
 
     /**
-     * Returns the current level number
-     * @return the current level # (1-5)
+     * Returns the current level number, using 1-indexing.
+     *
+     * @return the current level number
      */
     public int getCurrentLevelNum(){
         return curLevel+1;
