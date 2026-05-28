@@ -214,7 +214,7 @@ public class Level {
         if (currentTurnIndex>=turns.size() || currentTurnFinished()) return;
         Ghostturn curr = turns.get(currentTurnIndex);
         ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).getGhostx();
-        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).getGhostx();
+        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).getGhosty();
         for (int i=0; i<curr.getGhostspresent().size(); i++) {
             Ghost ghost = curr.getGhostspresent().get(i);
             if (ghost.isAlive()) {
