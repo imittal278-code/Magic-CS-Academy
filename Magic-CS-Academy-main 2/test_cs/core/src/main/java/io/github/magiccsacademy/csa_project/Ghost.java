@@ -15,62 +15,62 @@ public class Ghost {
     /**
      * The number of shapes to eliminate from the ghost
      */
-    public int strlen;
+    private int strlen;
 
     /**
      * whether this ghost object is Mr. Fulk
      */
-    public boolean isFulk;
+    private boolean isFulk;
 
     /**
      * Whether this ghost object is a fish
      */
-    public boolean isFish;
+    private boolean isFish;
 
     /**
      * whether this ghost object is a ghost with a shield (circle)
      */
-    public boolean isShield;
+    private boolean isShield;
 
     /**
      * A timer used to manage the positioning of a ghost with a shield
      */
-    public float stateTimer = 0;
+    private float stateTimer = 0;
 
     /**
      * Whether the ghost is still (only for shields)
      */
-    public boolean isPausing = false;
+    private boolean isPausing = false;
 
     /**
      * The speed of the shield ghost in the horizontal direction
      */
-    public float horizontalDirection = 1.0f;
+    private float horizontalDirection = 1.0f;
 
     /**
      * Whether this ghost is currently dying
      */
-    public boolean isDying = false;
+    private boolean isDying = false;
 
     /**
      * A timer used to manage the death animation
      */
-    public float deathTimer = 0f;
+    private float deathTimer = 0f;
 
     /**
      * A constant for the length of the death animation
      */
-    public final float DEATH_DURATION = 0.4f;
+    private final float DEATH_DURATION = 0.4f;
 
     /**
      * The location of the dead ghost
      */
-    public float deathX, deathY;
+    private float deathX, deathY;
 
     /**
      * whether the current ghost is alive
      */
-    public boolean alive;
+    private boolean alive;
 
     /**
      * Constructs a ghost object with a defined number of random shapes.
@@ -190,6 +190,160 @@ public class Ghost {
             }
         }
     }
+
+    /**
+     * Changes the field isFulk based on the parameter
+     *
+     * @param fulk whether it is Fulk
+     */
+    public void setFulk(boolean fulk){
+        isFulk = fulk;
+    }
+
+    /**
+     * Returns whether this ghost is a fish
+     *
+     * @return whether this ghost is a fish
+     */
+    public boolean isFish(){
+        return isFish;
+    }
+
+    /**
+     * Changes the field isFish based on the parameter
+     *
+     * @param fish whether it is a fish
+     */
+    public void setFish(boolean fish){
+        isFish = fish;
+    }
+
+    /**
+     * Returns whether this ghost is Mr. Fulk
+     *
+     * @return whether this ghost is Mr. Fulk
+     */
+    public boolean isFulk(){
+        return isFulk;
+    }
+
+    /**
+     * returns the x position of the ghost's death
+     *
+     * @return the x position of death
+     */
+    public float getDeathX(){
+        return  deathX;
+    }
+
+    /**
+     * returns the x position of the ghost's death
+     *
+     * @return the x position of death
+     */
+    public float getDeathY(){
+        return deathY;
+    }
+
+    /**
+     * Returns the number of shapes in the ghost
+     *
+     * @return the number of shapes in this ghost
+     */
+    public int getStrlen(){
+        return strlen;
+    }
+
+    /**
+     * Returns the value of the field horizontal direction
+     *
+     * @return the value of horizontal direction
+     */
+    public float getHorizontalDirection(){
+        return horizontalDirection;
+    }
+
+    /**
+     * Returns whether this ghost is a shield ghost
+     *
+     * @return whether this ghost is a shield ghost
+     */
+    public boolean isShield(){
+        return isShield;
+    }
+
+    /**
+     * Changes this ghost to make it either a shielded or non-shielded ghost
+     *
+     * @param shield whether this ghost will become a shield ghost
+     */
+    public void setShield(boolean shield){
+        isShield = shield;
+    }
+
+    /**
+     * Returns the duration of a death
+     *
+     * @return the duration of a death (in seconds)
+     */
+    public float getDEATH_DURATION(){
+        return DEATH_DURATION;
+    }
+
+    /**
+     * Returns whether this ghost is paused
+     *
+     * @return whether this ghost is paused (used for shields)
+     */
+    public boolean isPausing(){
+        return isPausing;
+    }
+
+    /**
+     * Sets the field horizontal direction to the parameter given
+     *
+     * @param dir the direction to set to
+     */
+    public void setHorizontalDirection(float dir){
+        horizontalDirection = dir;
+    }
+
+    /**
+     * Returns whether this ghost is dying
+     *
+     * @return whether this ghost is currently dying
+     */
+    public boolean isDying(){
+        return isDying;
+    }
+
+    /**
+     * sets the ghost to dying or not dying
+     *
+     * @param dying whether the ghost is dying
+     */
+    public void setDying(boolean dying){
+        isDying = dying;
+    }
+
+    /**
+     * Returns the value of the death timer
+     *
+     * @return the value of the death timer
+     */
+    public float getDeathTimer(){
+        return deathTimer;
+    }
+
+    /**
+     * Setes the death timer to a specified value
+     *
+     * @param time the value of the death timer to set to
+     */
+    public void setDeathTimer(float time){
+        deathTimer = time;
+    }
+
 
     /**
      * Sets up this ghost's parameters during death (prior to the death animation)
