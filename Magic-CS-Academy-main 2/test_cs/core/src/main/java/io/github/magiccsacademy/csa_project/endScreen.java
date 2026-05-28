@@ -43,7 +43,7 @@ public class endScreen implements Screen{
     private boolean win;
 
     /**
-     * The score th player ended with
+     * The score the player ended with
      */
     private String score;
 
