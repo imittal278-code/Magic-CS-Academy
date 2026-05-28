@@ -69,7 +69,7 @@ public class GameScreen extends InputAdapter implements Screen {
     private float transitionTime;
 
     /**
-     * The cat object for the players lives, shields, etc.
+     * The cat object for the player's lives, shields, etc.
      */
     private Cat c;
 
@@ -123,7 +123,7 @@ public class GameScreen extends InputAdapter implements Screen {
     private Texture cat;
 
     /**
-     * The sprite foe the cat texture
+     * The sprite for the cat texture
      */
     private Sprite cat2;
 
@@ -143,12 +143,12 @@ public class GameScreen extends InputAdapter implements Screen {
     private Texture heartOutline;
 
     /**
-     * The font, used to draw text
+     * The font used to draw text
      */
     private BitmapFont font;
 
     /**
-     * The Arraylist used to draw the line on the screen
+     * The ArrayList used to draw the line on the screen
      */
     private ArrayList<Vector2> points;
 
@@ -178,7 +178,7 @@ public class GameScreen extends InputAdapter implements Screen {
     private final float ANIMATION_DURATION = 1.0f;
 
     /**
-     * The renderer that draws the players line on the screen
+     * The renderer that draws the player's line on the screen
      */
     private ShapeRenderer shapeRenderer;
 
@@ -588,7 +588,7 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     /**
-     * Draws the play and pause buttons based on if the game is cirrently running, or if it is paused
+     * Draws the play and pause buttons based on whether the game is currently running or paused
      */
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
