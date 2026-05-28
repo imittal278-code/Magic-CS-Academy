@@ -226,7 +226,7 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport = new FitViewport(1600, 800);
         colorDrawing = Color.WHITE;
         paused = false;
-        controller = new GameEngine(numLevels);
+        controller = new GameEngine();
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
         shapeRenderer = new ShapeRenderer();
