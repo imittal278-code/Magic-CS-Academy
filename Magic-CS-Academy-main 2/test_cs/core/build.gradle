@@ -13,3 +13,7 @@ dependencies {
 jar {
   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
+
+javadoc {
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+}

@@ -96,7 +96,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Main</span>
 <span class="extends-implements">extends com.badlogic.gdx.Game</span></div>
-<div class="block"><code>ApplicationListener</code> implementation shared by all platforms.</div>
+<div class="block">Main game class that loads shared assets, creates the viewport and stage,
+ starts the background music, and opens the home screen.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,157 +110,157 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#background" class="member-name-link">background</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">the background used for a level</div>
+<div class="block">The background textures used for the different levels.</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.g2d.SpriteBatch</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.g2d.SpriteBatch</code></div>
 <div class="col-second odd-row-color"><code><a href="#batch" class="member-name-link">batch</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The SpriteBatch for the entire game, (used for drawing objects on the screen)</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#catHorizontal" class="member-name-link">catHorizontal</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The texture for cat drawing horizontal line</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#catNormalV" class="member-name-link">catNormalV</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The texture for cat drawing normal V</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#catUpsideDownV" class="member-name-link">catUpsideDownV</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The texture for cat drawing upside down V</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#catVertical" class="member-name-link">catVertical</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The texture for cat drawing vertical line</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#circle" class="member-name-link">circle</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Textures used for shapes</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#circuit" class="member-name-link">circuit</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">the background used for a level</div>
+<div class="block">The background textures used for the different levels.</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#csclass" class="member-name-link">csclass</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The CS classroom background</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#desert" class="member-name-link">desert</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">the background used for a level</div>
+<div class="block">The background textures used for the different levels.</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#fishDeathFrame1" class="member-name-link">fishDeathFrame1</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The first death frame for fish</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#fishDeathFrame2" class="member-name-link">fishDeathFrame2</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The second death frame for fish</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#forest" class="member-name-link">forest</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">the background used for a level</div>
+<div class="block">The background textures used for the different levels.</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.audio.Music</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.audio.Sound</code></div>
 <div class="col-second odd-row-color"><code><a href="#ghostdeath" class="member-name-link">ghostdeath</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The sound made when the ghost dies</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#ghostDeathFrame1" class="member-name-link">ghostDeathFrame1</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The first death frame for ghost</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#ghostDeathFrame2" class="member-name-link">ghostDeathFrame2</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The second death frame for ghost</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#horizontalLine" class="member-name-link">horizontalLine</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Textures used for shapes</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.audio.Music</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.audio.Music</code></div>
 <div class="col-second odd-row-color"><code><a href="#music" class="member-name-link">music</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The background music played during the game</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.utils.viewport.FitViewport</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.utils.viewport.FitViewport</code></div>
 <div class="col-second even-row-color"><code><a href="#myViewport" class="member-name-link">myViewport</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The viewport used for the positioning of the entire game</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#normalV" class="member-name-link">normalV</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Textures used for shapes</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#ocean" class="member-name-link">ocean</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">the background used for a level</div>
+<div class="block">The background textures used for the different levels.</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#shieldGhost" class="member-name-link">shieldGhost</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The texture used for the ghost that has a shield</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.audio.Sound</code></div>
 <div class="col-second even-row-color"><code><a href="#sound1" class="member-name-link">sound1</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The sounds played for each stroke shape</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.audio.Sound</code></div>
 <div class="col-second odd-row-color"><code><a href="#sound2" class="member-name-link">sound2</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The sounds played for each stroke shape</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.audio.Sound</code></div>
 <div class="col-second even-row-color"><code><a href="#sound3" class="member-name-link">sound3</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The sounds played for each stroke shape</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.audio.Sound</code></div>
 <div class="col-second odd-row-color"><code><a href="#sound4" class="member-name-link">sound4</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The sounds played for each stroke shape</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.audio.Sound</code></div>
 <div class="col-second even-row-color"><code><a href="#sound5" class="member-name-link">sound5</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The sounds played for each stroke shape</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.scenes.scene2d.Stage</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.scenes.scene2d.Stage</code></div>
 <div class="col-second odd-row-color"><code><a href="#stage" class="member-name-link">stage</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The stage for the entire game</div>
 </div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;com.badlogic.gdx.graphics.Texture&gt;</code></div>
+<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;com.badlogic.gdx.graphics.Texture&gt;</code></div>
 <div class="col-second even-row-color"><code><a href="#transitionBackground" class="member-name-link">transitionBackground</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">An arraylist of the level transition rectangle the flies by for each level</div>
 </div>
-<div class="col-first odd-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second odd-row-color"><code><a href="#upsideDownV" class="member-name-link">upsideDownV</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Textures used for shapes</div>
 </div>
-<div class="col-first even-row-color"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
 <div class="col-second even-row-color"><code><a href="#verticalLine" class="member-name-link">verticalLine</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">Textures used for shapes</div>
@@ -289,15 +290,171 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#create()" class="member-name-link">create</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Creates the game, initializes a lot of fields, turns on music, and switches to the homeScreen class</div>
+<div class="block">Creates the game by loading shared assets, starting the background music,
+ setting up the viewport and stage, and switching to the home screen.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBackground()" class="member-name-link">getBackground</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The default background texture used for levels.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.g2d.SpriteBatch</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBatch()" class="member-name-link">getBatch</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The SpriteBatch for the entire game, (used for drawing objects on the screen)</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCatHorizontal()" class="member-name-link">getCatHorizontal</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The texture for cat drawing horizontal line</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCatNormalV()" class="member-name-link">getCatNormalV</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The texture for cat drawing normal V</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCatUpsideDownV()" class="member-name-link">getCatUpsideDownV</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The texture for cat drawing upside down V</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCatVertical()" class="member-name-link">getCatVertical</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The texture for cat drawing vertical line</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCircle()" class="member-name-link">getCircle</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Texture used for the circle shape</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCircuit()" class="member-name-link">getCircuit</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The circuit background texture used for levels.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCsclass()" class="member-name-link">getCsclass</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The CS classroom background</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDesert()" class="member-name-link">getDesert</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The desert background texture used for levels.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFishDeathFrame1()" class="member-name-link">getFishDeathFrame1</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The first death frame for fish</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFishDeathFrame2()" class="member-name-link">getFishDeathFrame2</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The second death frame for fish</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getForest()" class="member-name-link">getForest</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The forest background texture used for levels.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostdeath()" class="member-name-link">getGhostdeath</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The sound made when the ghost dies</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostDeathFrame1()" class="member-name-link">getGhostDeathFrame1</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The first death frame for ghost</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostDeathFrame2()" class="member-name-link">getGhostDeathFrame2</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The second death frame for ghost</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHorizontalLine()" class="member-name-link">getHorizontalLine</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Texture used for the horizontal line shape</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Music</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMusic()" class="member-name-link">getMusic</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The background music played during the game</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.utils.viewport.FitViewport</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMyViewport()" class="member-name-link">getMyViewport</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The viewport used for the positioning of the entire game</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNormalV()" class="member-name-link">getNormalV</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Texture used for the normal V shape</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOcean()" class="member-name-link">getOcean</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The ocean background texture used for levels.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getShieldGhost()" class="member-name-link">getShieldGhost</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The texture used for the ghost that has a shield</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSound1()" class="member-name-link">getSound1</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The sound played for the first stroke shape</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSound2()" class="member-name-link">getSound2</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The sound played for the second stroke shape</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSound3()" class="member-name-link">getSound3</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The sound played for the third stroke shape</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSound4()" class="member-name-link">getSound4</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The sound played for the fourth stroke shape</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.audio.Sound</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSound5()" class="member-name-link">getSound5</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The sound played for the fifth stroke shape</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.scenes.scene2d.Stage</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStage()" class="member-name-link">getStage</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">The stage for the entire game</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;com.badlogic.gdx.graphics.Texture&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTransitionBackground()" class="member-name-link">getTransitionBackground</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">An arraylist of the level transition rectangle the flies by for each level</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUpsideDownV()" class="member-name-link">getUpsideDownV</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Texture used for the upside down V shape</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVerticalLine()" class="member-name-link">getVerticalLine</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Texture used for the vertical line shape</div>
 </div>
 </div>
 </div>
@@ -322,217 +479,217 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="batch">
 <h3>batch</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.SpriteBatch</span>&nbsp;<span class="element-name">batch</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.SpriteBatch</span>&nbsp;<span class="element-name">batch</span></div>
 <div class="block">The SpriteBatch for the entire game, (used for drawing objects on the screen)</div>
 </section>
 </li>
 <li>
 <section class="detail" id="stage">
 <h3>stage</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.scenes.scene2d.Stage</span>&nbsp;<span class="element-name">stage</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.scenes.scene2d.Stage</span>&nbsp;<span class="element-name">stage</span></div>
 <div class="block">The stage for the entire game</div>
 </section>
 </li>
 <li>
 <section class="detail" id="myViewport">
 <h3>myViewport</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.utils.viewport.FitViewport</span>&nbsp;<span class="element-name">myViewport</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.utils.viewport.FitViewport</span>&nbsp;<span class="element-name">myViewport</span></div>
 <div class="block">The viewport used for the positioning of the entire game</div>
 </section>
 </li>
 <li>
 <section class="detail" id="music">
 <h3>music</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Music</span>&nbsp;<span class="element-name">music</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Music</span>&nbsp;<span class="element-name">music</span></div>
 <div class="block">The background music played during the game</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ghostdeath">
 <h3>ghostdeath</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Music</span>&nbsp;<span class="element-name">ghostdeath</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">ghostdeath</span></div>
 <div class="block">The sound made when the ghost dies</div>
 </section>
 </li>
 <li>
 <section class="detail" id="sound1">
 <h3>sound1</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound1</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound1</span></div>
 <div class="block">The sounds played for each stroke shape</div>
 </section>
 </li>
 <li>
 <section class="detail" id="sound2">
 <h3>sound2</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound2</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound2</span></div>
 <div class="block">The sounds played for each stroke shape</div>
 </section>
 </li>
 <li>
 <section class="detail" id="sound3">
 <h3>sound3</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound3</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound3</span></div>
 <div class="block">The sounds played for each stroke shape</div>
 </section>
 </li>
 <li>
 <section class="detail" id="sound4">
 <h3>sound4</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound4</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound4</span></div>
 <div class="block">The sounds played for each stroke shape</div>
 </section>
 </li>
 <li>
 <section class="detail" id="sound5">
 <h3>sound5</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound5</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">sound5</span></div>
 <div class="block">The sounds played for each stroke shape</div>
 </section>
 </li>
 <li>
 <section class="detail" id="background">
 <h3>background</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">background</span></div>
-<div class="block">the background used for a level</div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">background</span></div>
+<div class="block">The background textures used for the different levels.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ocean">
 <h3>ocean</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ocean</span></div>
-<div class="block">the background used for a level</div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ocean</span></div>
+<div class="block">The background textures used for the different levels.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="desert">
 <h3>desert</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">desert</span></div>
-<div class="block">the background used for a level</div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">desert</span></div>
+<div class="block">The background textures used for the different levels.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="forest">
 <h3>forest</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">forest</span></div>
-<div class="block">the background used for a level</div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">forest</span></div>
+<div class="block">The background textures used for the different levels.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="circuit">
 <h3>circuit</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">circuit</span></div>
-<div class="block">the background used for a level</div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">circuit</span></div>
+<div class="block">The background textures used for the different levels.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="csclass">
 <h3>csclass</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">csclass</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">csclass</span></div>
 <div class="block">The CS classroom background</div>
 </section>
 </li>
 <li>
 <section class="detail" id="normalV">
 <h3>normalV</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">normalV</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">normalV</span></div>
 <div class="block">Textures used for shapes</div>
 </section>
 </li>
 <li>
 <section class="detail" id="upsideDownV">
 <h3>upsideDownV</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">upsideDownV</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">upsideDownV</span></div>
 <div class="block">Textures used for shapes</div>
 </section>
 </li>
 <li>
 <section class="detail" id="verticalLine">
 <h3>verticalLine</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">verticalLine</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">verticalLine</span></div>
 <div class="block">Textures used for shapes</div>
 </section>
 </li>
 <li>
 <section class="detail" id="horizontalLine">
 <h3>horizontalLine</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">horizontalLine</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">horizontalLine</span></div>
 <div class="block">Textures used for shapes</div>
 </section>
 </li>
 <li>
 <section class="detail" id="circle">
 <h3>circle</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">circle</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">circle</span></div>
 <div class="block">Textures used for shapes</div>
 </section>
 </li>
 <li>
 <section class="detail" id="shieldGhost">
 <h3>shieldGhost</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">shieldGhost</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">shieldGhost</span></div>
 <div class="block">The texture used for the ghost that has a shield</div>
 </section>
 </li>
 <li>
 <section class="detail" id="transitionBackground">
 <h3>transitionBackground</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;com.badlogic.gdx.graphics.Texture&gt;</span>&nbsp;<span class="element-name">transitionBackground</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;com.badlogic.gdx.graphics.Texture&gt;</span>&nbsp;<span class="element-name">transitionBackground</span></div>
 <div class="block">An arraylist of the level transition rectangle the flies by for each level</div>
 </section>
 </li>
 <li>
 <section class="detail" id="catHorizontal">
 <h3>catHorizontal</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catHorizontal</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catHorizontal</span></div>
 <div class="block">The texture for cat drawing horizontal line</div>
 </section>
 </li>
 <li>
 <section class="detail" id="catVertical">
 <h3>catVertical</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catVertical</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catVertical</span></div>
 <div class="block">The texture for cat drawing vertical line</div>
 </section>
 </li>
 <li>
 <section class="detail" id="catNormalV">
 <h3>catNormalV</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catNormalV</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catNormalV</span></div>
 <div class="block">The texture for cat drawing normal V</div>
 </section>
 </li>
 <li>
 <section class="detail" id="catUpsideDownV">
 <h3>catUpsideDownV</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catUpsideDownV</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catUpsideDownV</span></div>
 <div class="block">The texture for cat drawing upside down V</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ghostDeathFrame1">
 <h3>ghostDeathFrame1</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ghostDeathFrame1</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ghostDeathFrame1</span></div>
 <div class="block">The first death frame for ghost</div>
 </section>
 </li>
 <li>
 <section class="detail" id="ghostDeathFrame2">
 <h3>ghostDeathFrame2</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ghostDeathFrame2</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ghostDeathFrame2</span></div>
 <div class="block">The second death frame for ghost</div>
 </section>
 </li>
 <li>
 <section class="detail" id="fishDeathFrame1">
 <h3>fishDeathFrame1</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">fishDeathFrame1</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">fishDeathFrame1</span></div>
 <div class="block">The first death frame for fish</div>
 </section>
 </li>
 <li>
 <section class="detail" id="fishDeathFrame2">
 <h3>fishDeathFrame2</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">fishDeathFrame2</span></div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">fishDeathFrame2</span></div>
 <div class="block">The second death frame for fish</div>
 </section>
 </li>
@@ -562,7 +719,349 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="create()">
 <h3>create</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">create</span>()</div>
-<div class="block">Creates the game, initializes a lot of fields, turns on music, and switches to the homeScreen class</div>
+<div class="block">Creates the game by loading shared assets, starting the background music,
+ setting up the viewport and stage, and switching to the home screen.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getBatch()">
+<h3>getBatch</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.SpriteBatch</span>&nbsp;<span class="element-name">getBatch</span>()</div>
+<div class="block">The SpriteBatch for the entire game, (used for drawing objects on the screen)</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the game's SpriteBatch</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getStage()">
+<h3>getStage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.scenes.scene2d.Stage</span>&nbsp;<span class="element-name">getStage</span>()</div>
+<div class="block">The stage for the entire game</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the game's Stage</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMyViewport()">
+<h3>getMyViewport</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.utils.viewport.FitViewport</span>&nbsp;<span class="element-name">getMyViewport</span>()</div>
+<div class="block">The viewport used for the positioning of the entire game</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the game's FitViewport</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMusic()">
+<h3>getMusic</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Music</span>&nbsp;<span class="element-name">getMusic</span>()</div>
+<div class="block">The background music played during the game</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the background Music object</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostdeath()">
+<h3>getGhostdeath</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">getGhostdeath</span>()</div>
+<div class="block">The sound made when the ghost dies</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the ghost death Sound object</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSound1()">
+<h3>getSound1</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">getSound1</span>()</div>
+<div class="block">The sound played for the first stroke shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the Sound object for sound1</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSound2()">
+<h3>getSound2</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">getSound2</span>()</div>
+<div class="block">The sound played for the second stroke shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the Sound object for sound2</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSound3()">
+<h3>getSound3</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">getSound3</span>()</div>
+<div class="block">The sound played for the third stroke shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the Sound object for sound3</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSound4()">
+<h3>getSound4</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">getSound4</span>()</div>
+<div class="block">The sound played for the fourth stroke shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the Sound object for sound4</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSound5()">
+<h3>getSound5</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.audio.Sound</span>&nbsp;<span class="element-name">getSound5</span>()</div>
+<div class="block">The sound played for the fifth stroke shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the Sound object for sound5</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getBackground()">
+<h3>getBackground</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getBackground</span>()</div>
+<div class="block">The default background texture used for levels.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the background Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getOcean()">
+<h3>getOcean</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getOcean</span>()</div>
+<div class="block">The ocean background texture used for levels.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the ocean background Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDesert()">
+<h3>getDesert</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getDesert</span>()</div>
+<div class="block">The desert background texture used for levels.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the desert background Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getForest()">
+<h3>getForest</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getForest</span>()</div>
+<div class="block">The forest background texture used for levels.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the forest background Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCircuit()">
+<h3>getCircuit</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCircuit</span>()</div>
+<div class="block">The circuit background texture used for levels.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the circuit background Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCsclass()">
+<h3>getCsclass</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCsclass</span>()</div>
+<div class="block">The CS classroom background</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the CS classroom background Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getNormalV()">
+<h3>getNormalV</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getNormalV</span>()</div>
+<div class="block">Texture used for the normal V shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the normal V shape Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getUpsideDownV()">
+<h3>getUpsideDownV</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getUpsideDownV</span>()</div>
+<div class="block">Texture used for the upside down V shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the upside down V shape Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVerticalLine()">
+<h3>getVerticalLine</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getVerticalLine</span>()</div>
+<div class="block">Texture used for the vertical line shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the vertical line shape Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHorizontalLine()">
+<h3>getHorizontalLine</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getHorizontalLine</span>()</div>
+<div class="block">Texture used for the horizontal line shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the horizontal line shape Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCircle()">
+<h3>getCircle</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCircle</span>()</div>
+<div class="block">Texture used for the circle shape</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the circle shape Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getShieldGhost()">
+<h3>getShieldGhost</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getShieldGhost</span>()</div>
+<div class="block">The texture used for the ghost that has a shield</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the shield ghost Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getTransitionBackground()">
+<h3>getTransitionBackground</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;com.badlogic.gdx.graphics.Texture&gt;</span>&nbsp;<span class="element-name">getTransitionBackground</span>()</div>
+<div class="block">An arraylist of the level transition rectangle the flies by for each level</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the list of transition background Textures</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCatHorizontal()">
+<h3>getCatHorizontal</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCatHorizontal</span>()</div>
+<div class="block">The texture for cat drawing horizontal line</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the cat horizontal drawing Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCatVertical()">
+<h3>getCatVertical</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCatVertical</span>()</div>
+<div class="block">The texture for cat drawing vertical line</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the cat vertical drawing Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCatNormalV()">
+<h3>getCatNormalV</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCatNormalV</span>()</div>
+<div class="block">The texture for cat drawing normal V</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the cat normal V drawing Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCatUpsideDownV()">
+<h3>getCatUpsideDownV</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getCatUpsideDownV</span>()</div>
+<div class="block">The texture for cat drawing upside down V</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the cat upside down V drawing Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostDeathFrame1()">
+<h3>getGhostDeathFrame1</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getGhostDeathFrame1</span>()</div>
+<div class="block">The first death frame for ghost</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the first ghost death frame Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostDeathFrame2()">
+<h3>getGhostDeathFrame2</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getGhostDeathFrame2</span>()</div>
+<div class="block">The second death frame for ghost</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the second ghost death frame Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getFishDeathFrame1()">
+<h3>getFishDeathFrame1</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getFishDeathFrame1</span>()</div>
+<div class="block">The first death frame for fish</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the first fish death frame Texture</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getFishDeathFrame2()">
+<h3>getFishDeathFrame2</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">getFishDeathFrame2</span>()</div>
+<div class="block">The second death frame for fish</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the second fish death frame Texture</dd>
+</dl>
 </section>
 </li>
 </ul>

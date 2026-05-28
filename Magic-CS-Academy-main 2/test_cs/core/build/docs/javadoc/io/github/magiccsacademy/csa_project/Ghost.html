@@ -116,7 +116,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>float</code></div>
 <div class="col-second even-row-color"><code><a href="#deathTimer" class="member-name-link">deathTimer</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">A timer used to manage death animation</div>
+<div class="block">A timer used to manage the death animation</div>
 </div>
 <div class="col-first odd-row-color"><code>float</code></div>
 <div class="col-second odd-row-color"><code><a href="#deathX" class="member-name-link">deathX</a></code></div>
@@ -158,14 +158,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">whether this ghost object is a ghost with a shield (circle)</div>
 </div>
-<div class="col-first odd-row-color"><code>float</code></div>
-<div class="col-second odd-row-color"><code><a href="#stateTimer" class="member-name-link">stateTimer</a></code></div>
+<div class="col-first odd-row-color"><code>(package private) <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#shapes" class="member-name-link">shapes</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">An arraylist of the shapes on top of the ghost (represented by a shape index 0-3)</div>
+</div>
+<div class="col-first even-row-color"><code>float</code></div>
+<div class="col-second even-row-color"><code><a href="#stateTimer" class="member-name-link">stateTimer</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">A timer used to manage the positioning of a ghost with a shield</div>
 </div>
-<div class="col-first even-row-color"><code>int</code></div>
-<div class="col-second even-row-color"><code><a href="#strlen" class="member-name-link">strlen</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>int</code></div>
+<div class="col-second odd-row-color"><code><a href="#strlen" class="member-name-link">strlen</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The number of shapes to eliminate from the ghost</div>
 </div>
 </div>
@@ -179,8 +184,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int)" class="member-name-link">Ghost</a><wbr>(int&nbsp;len,
- int&nbsp;totshapes)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Ghost</a><wbr>(int&nbsp;len)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructs a ghost object with a defined number of random shapes.</div>
 </div>
@@ -202,8 +206,8 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
@@ -238,6 +242,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Changes isPausing for this ghost based on time (only for shields)</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#strtointarray(java.lang.String%5B%5D)" class="member-name-link">strtointarray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;a)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Helper method that converts an array of strings into an array of integers (the strings in this method are guaranteed to be integers)</div>
+</div>
 </div>
 </div>
 </div>
@@ -255,6 +264,13 @@ loadScripts(document, 'script');</script>
 <section class="field-details" id="field-detail">
 <h2>Field Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="shapes">
+<h3>shapes</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">shapes</span></div>
+<div class="block">An arraylist of the shapes on top of the ghost (represented by a shape index 0-3)</div>
+</section>
+</li>
 <li>
 <section class="detail" id="strlen">
 <h3>strlen</h3>
@@ -315,7 +331,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="deathTimer">
 <h3>deathTimer</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">deathTimer</span></div>
-<div class="block">A timer used to manage death animation</div>
+<div class="block">A timer used to manage the death animation</div>
 </section>
 </li>
 <li>
@@ -363,16 +379,14 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,int)">
+<section class="detail" id="&lt;init&gt;(int)">
 <h3>Ghost</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Ghost</span><wbr><span class="parameters">(int&nbsp;len,
- int&nbsp;totshapes)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Ghost</span><wbr><span class="parameters">(int&nbsp;len)</span></div>
 <div class="block">Constructs a ghost object with a defined number of random shapes.
  isFulk, isFish, and isShield default to false</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>len</code> - the number of shapes</dd>
-<dd><code>totshapes</code> - the total number of shape indexes possible</dd>
 </dl>
 </section>
 </li>
@@ -411,6 +425,19 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="strtointarray(java.lang.String[])">
+<h3>strtointarray</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">strtointarray</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;a)</span></div>
+<div class="block">Helper method that converts an array of strings into an array of integers (the strings in this method are guaranteed to be integers)</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - The string arraylist to convert</dd>
+<dt>Returns:</dt>
+<dd>an Integer arraylist of the same numbers given</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="remove()">
 <h3>remove</h3>
