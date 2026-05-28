@@ -32,10 +32,6 @@ import org.javatuples.Pair;
  */
 public class GameScreen extends InputAdapter implements Screen {
 
-    /**
-     * The constant number of levels in the game
-     */
-    private final int numLevels = 5;
 
     /**
      * The Main class, used for transitioning screens and accessing some assets
