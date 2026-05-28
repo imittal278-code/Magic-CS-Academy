@@ -486,7 +486,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 catX -= 0.035f;
                 catY -= 0.15f;
                 break;
-            case CIRCLE:        activeCatTexture = cathe tCircle; break;
+            case CIRCLE:        activeCatTexture = catCircle; break;
             case NORMAL:        
             default:            activeCatTexture = cat; break;
         }
