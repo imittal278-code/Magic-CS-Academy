@@ -297,9 +297,11 @@ public class Level {
         return completed;
     }
 
-    /**
-     * checks if you lost
-     * @return a boolean that checks if you are not alive
+  /**
+     * Checks whether the player has lost.
+     *
+     * @param c the cat/player object
+     * @return true if the cat is no longer alive, false otherwise
      */
     public boolean isGameOver(Cat c) {
         return !c.isAlive();
