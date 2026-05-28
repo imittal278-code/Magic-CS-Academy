@@ -49,10 +49,29 @@ public class Level {
     /** the Main class, which contains some fields like sound and music that are important */
     private Main game;
 
+    /**
+     * Whether the current turn still contains circle shapes.
+     */
     private boolean circles;
+
+    /**
+     * Whether the current turn still contains horizontal line shapes.
+     */
     private boolean horizontalLines;
+
+    /**
+     * Whether the current turn still contains vertical line shapes.
+     */
     private boolean verticalLines;
+
+    /**
+     * Whether the current turn still contains normal V shapes.
+     */
     private boolean normalVs;
+
+    /**
+     * Whether the current turn still contains upside-down V shapes.
+     */
     private boolean upsideDownVs;
 
 
@@ -124,6 +143,9 @@ public class Level {
         turns.add(turn);
     }
 
+    /**
+     * Updates which shape types are still present in the current turn.
+     */
     private void updateCounts() {
 
         if (turns.isEmpty() || currentTurnIndex >= turns.size()) {
@@ -277,10 +299,11 @@ public class Level {
         return completed;
     }
 
-    /**
-     * Checks if you lost the game
-     * 
-     * @return a boolean that checks if you are not alive
+  /**
+     * Checks whether the player has lost.
+     *
+     * @param c the cat/player object
+     * @return true if the cat is no longer alive, false otherwise
      */
     public boolean isGameOver(Cat c) {
         return !c.isAlive();
@@ -314,12 +337,13 @@ public class Level {
     }
 
     /**
-     * Calculates where a ghost's spawn ray from the screen center hits a boundary edge.
-     * @param angle
-     * @param width
-     * @param height
-     * @param wave
-     * @return the intersection point of the ray and the background edge
+     * Finds where a ray at the given angle intersects the edge of the screen.
+     *
+     * @param angle the angle of the ray
+     * @param width the width of the game world
+     * @param height the height of the game world
+     * @param wave how far outside the screen the ghost should spawn
+     * @return the spawn position for the ghost
      */
     private Point intersectRay(float angle, float width, float height, double wave){
         double atan = Math.atan(width/height);

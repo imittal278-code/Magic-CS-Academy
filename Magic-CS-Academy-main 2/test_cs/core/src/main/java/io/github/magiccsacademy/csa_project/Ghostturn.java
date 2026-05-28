@@ -66,7 +66,7 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(nGhosts);
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<nGhosts;i++){
-            ghostspresent.add(new Ghost(len, totshapes));
+            ghostspresent.add(new Ghost(len));
         }
         fish = false;
         this.speedModifier();
@@ -88,7 +88,7 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(numGhosts);
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<numGhosts;i++){
-            ghostspresent.add(new Ghost(counts[i], totshapes));
+            ghostspresent.add(new Ghost(counts[i]));
         }
         fish = false;
         this.speedModifier();
@@ -111,7 +111,7 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(numGhosts);
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<numGhosts;i++){
-            ghostspresent.add(new Ghost(counts[i], totshapes));
+            ghostspresent.add(new Ghost(counts[i]));
             if(fulks[i]){
                 ghostspresent.get(i).isFulk=true;
             }
@@ -141,7 +141,7 @@ public class Ghostturn {
         ghosty = new ArrayList<Float>(nGhosts);
         ghostspresent = new ArrayList<Ghost>();
         for(int i=0;i<nGhosts;i++){
-            ghostspresent.add(new Ghost(len, totshapes));
+            ghostspresent.add(new Ghost(len));
             if(all){
                 ghostspresent.get(i).isFish=true;
             }

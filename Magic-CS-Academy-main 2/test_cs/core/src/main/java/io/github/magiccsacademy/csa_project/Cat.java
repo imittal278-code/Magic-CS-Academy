@@ -17,7 +17,7 @@ import com.badlogic.gdx.Input;
 import java.util.*;
 
 /**
- * Manges location of the cat on the screen, its lives, score, and whether it has its shiel0d
+ * Manages the location of the cat on the screen, its lives, score, and whether it has its shield
  */
 public class Cat {
 
@@ -46,6 +46,9 @@ public class Cat {
      */
     private int score;
 
+    /**
+     * Represents the cat's current visual/action state.
+     */
     public enum State { NORMAL, HORIZONTAL, VERTICAL, NORMAL_V, UPSIDE_DOWN_V, CIRCLE }
     private State currentState = State.NORMAL;
 
@@ -65,7 +68,7 @@ public class Cat {
     }
 
     /**
-     * Decrements the cats lives by 1
+     * Decrements the cat's lives by 1
      */
     public void loseLife() {
         lives--;
@@ -75,7 +78,7 @@ public class Cat {
     }
 
     /**
-     * Increments the players score by the parameter
+     * Increments the player's score by the parameter
      *
      * @param amount the amount to increase the score by
      */
@@ -84,16 +87,16 @@ public class Cat {
     }
 
     /**
-     * Returns the players current score
+     * Returns the player's current score
      *
-     * @return the players score
+     * @return the player's score
      */
     public int getScore() {
         return score;
     }
 
     /**
-     * Returns whether the car has its shield
+     * Returns whether the cat has its shield
      *
      * @return whether the cat has its shield
      */
@@ -134,7 +137,7 @@ public class Cat {
     }
 
     /**
-     * Returns the y position of the car
+     * Returns the y position of the cat
      *
      * @return the y position of the cat
      */
@@ -145,7 +148,7 @@ public class Cat {
     /**
      * Returns the number of lives the player has remaining
      *
-     * @return the number of live the player has remaining
+     * @return the number of lives the player has remaining
      */
     public int getLives() {
         return lives;
@@ -172,7 +175,7 @@ public class Cat {
     }
 
     /**
-     * Returns cat's current texture state
+     * Returns the cat's current texture state
      * 
      * @return the cat's current texture state
      */

@@ -5,19 +5,14 @@ import java.time.*;
 import java.io.*;
 
 /**
- * Used to manage which level the player is on, and switch levels
+ * Manages the player's current level and handles level progression
  */
 public class GameEngine {
 
     /**
-     * An arraylist of Levels in the game
+     * The levels in the game
      */
     private ArrayList<Level> levels;
-
-    /**
-     * The constant number of levels in the game
-     */
-    private final int numLevels;
 
     /**
      * The current level index that the player is on (0-indexed)
@@ -32,15 +27,12 @@ public class GameEngine {
 
     /**
      * Constructs a GameEngine object, initializing fields
-     * @param numLevels the number of levels in the game
      */
-    public GameEngine(int numLevels){
-        this.numLevels = numLevels;
+    public GameEngine(){
         this.curLevel = 0;
         completed = false;
-        levels = new ArrayList<Level>(numLevels);
+        levels = new ArrayList<Level>(5);
         //note that curLevel is zero indexed when stored in this class
-
     }
 
     /**
@@ -63,8 +55,9 @@ public class GameEngine {
     }
 
     /**
-     * Returns the current level number
-     * @return the current level # (1-5)
+     * Returns the current level number, using 1-indexing.
+     *
+     * @return the current level number
      */
     public int getCurrentLevelNum(){
         return curLevel+1;
@@ -84,7 +77,7 @@ public class GameEngine {
      * Increments the current level index, progressing to the next level.
      */
     public void nextLevel(){
-        if(curLevel>=numLevels-1){
+        if(curLevel>=levels.size()-1){
             completed = true;
         }
         else{

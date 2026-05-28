@@ -32,10 +32,6 @@ import org.javatuples.Pair;
  */
 public class GameScreen extends InputAdapter implements Screen {
 
-    /**
-     * The constant number of levels in the game
-     */
-    private final int numLevels = 5;
 
     /**
      * The Main class, used for transitioning screens and accessing some assets
@@ -73,7 +69,7 @@ public class GameScreen extends InputAdapter implements Screen {
     private float transitionTime;
 
     /**
-     * The cat object for the players lives, shields, etc.
+     * The cat object for the player's lives, shields, etc.
      */
     private Cat c;
 
@@ -127,7 +123,7 @@ public class GameScreen extends InputAdapter implements Screen {
     private Texture cat;
 
     /**
-     * The sprite foe the cat texture
+     * The sprite for the cat texture
      */
     private Sprite cat2;
 
@@ -147,12 +143,12 @@ public class GameScreen extends InputAdapter implements Screen {
     private Texture heartOutline;
 
     /**
-     * The font, used to draw text
+     * The font used to display the text
      */
     private BitmapFont font;
 
     /**
-     * The Arraylist used to draw the line on the screen
+     * The ArrayList used to draw the line on the screen
      */
     private ArrayList<Vector2> points;
 
@@ -167,12 +163,12 @@ public class GameScreen extends InputAdapter implements Screen {
     private boolean isDrawing = true;
 
     /**
-     * The texture for cat drawing circle
+     * The texture for the cat drawing circle
      */
     private Texture catCircle;
 
     /**
-     * The timer for how long cat changes
+     * The timer for how long the cat changes
      */
     private float animationTimer = 0f;
 
@@ -182,7 +178,7 @@ public class GameScreen extends InputAdapter implements Screen {
     private final float ANIMATION_DURATION = 1.0f;
 
     /**
-     * The renderer that draws the players line on the screen
+     * The renderer that draws the player's line on the screen
      */
     private ShapeRenderer shapeRenderer;
 
@@ -226,7 +222,7 @@ public class GameScreen extends InputAdapter implements Screen {
         uiViewport = new FitViewport(1600, 800);
         colorDrawing = Color.WHITE;
         paused = false;
-        controller = new GameEngine(numLevels);
+        controller = new GameEngine();
         c = new Cat(2.6f, 1.1f);
         recognizer = new Recognizer();
         shapeRenderer = new ShapeRenderer();
@@ -238,7 +234,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
 
     /**
-     * Initializes textures, fonts and fills up the fields initialized in the constructor
+     * Initializes textures, fonts, and fills up the fields initialized in the constructor
      */
     @Override
     public void show() {
@@ -306,7 +302,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
 
     /**
-     * Draws all the ghosts (and shapes) in the current ghostTurn. the current ghostTurn is accessed through the level.
+     * Draws all the ghosts (and shapes) in the current ghostTurn. The current ghostTurn is accessed through the level.
      *
      * @param level the level to draw ghosts from
      */
@@ -393,9 +389,9 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     /**
-     * Returns the recognizer that should be used right now (for example if there are no circles left, it shouldnt recognize circles)
+     * Returns the recognizer that should be used right now (for example, if there are no circles left, it shouldn't recognize circles)
      *
-     * @return the recognizes that should be used at that current moment
+     * @return the recognition that should be used at that current moment
      */
     private Recognizer createCurrentRecognizer() {
         Level current = controller.getCurrentLevel();
@@ -506,7 +502,7 @@ public class GameScreen extends InputAdapter implements Screen {
         if (!paused) {
             controller.getCurrentLevel().update(delta, c);
         }
-        if (c.hasShield) {
+        if (c.hasShield()) {
             drawShield();
         }
          drawGhosts(controller.getCurrentLevel());
@@ -592,7 +588,7 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     /**
-     * Draws the play and pause buttons based on if the game is cirrently running, or if it is paused
+     * Draws the play and pause buttons based on whether the game is currently running or paused
      */
     private void drawPlayPause(){
         Texture icon = (paused)?playTexture:pauseTexture;
@@ -689,7 +685,7 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     /**
-     * Inherited methods from the InputAdapter class that deals with if the mouse is down (starts drawing points)
+     * Inherited methods from the InputAdapter class that deal with whether the mouse is down (starts drawing points)
      *
      * @param screenX The x coordinate, origin is in the upper left corner
      * @param screenY The y coordinate, origin is in the upper left corner
@@ -698,7 +694,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
      */
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) { //Called when the screen was touched or a mouse button was pressed.
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) { //Called when the screen was touched, or a mouse button was pressed.
         points.clear();
         pts.clear();
         Vector3 temp = new Vector3(screenX, screenY, 0);
@@ -718,7 +714,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
 
     /**
-     * Called when the mouse is dragged on the screen. In this method we apply the recognizer live and change the color based on the current recognized stroke
+     * Called when the mouse is dragged on the screen. In this method, we apply the recognizer live and change the color based on the current recognized stroke
      *
      * @param screenX the x location on the screen
      * @param screenY the y location on the screen
@@ -781,7 +777,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
 
     /**
-     * When a drag or touch is removed of the screen this is called. Calls the shapeDrawn level method based on the shape drawn, and also updates the cat's costume
+     * When a drag or touch is removed from the screen, this is called. Calls the shapeDrawn level method based on the shape drawn, and also updates the cat's costume
      *
      * @param screenX the x position of the screen
      * @param screenY the y position of the screen
@@ -790,7 +786,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return false if the level is completed, otherwise true
      */
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted or a mouse button was released.
+    public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted, or a mouse button was released.
         if(controller.getCurrentLevel().isCompleted()) return false;
         isDrawing = false;
         if(points.size()>10){
