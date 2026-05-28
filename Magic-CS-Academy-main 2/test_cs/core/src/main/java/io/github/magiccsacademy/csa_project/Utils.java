@@ -38,6 +38,15 @@ import io.github.magiccsacademy.csa_project.Trigonometric;
 import java.util.Vector;
 import java.util.Enumeration;
 
+/**
+ * Helper class from the $1 gesture recognizer library.
+ *
+ * This file is copied/adapted from a Java implementation of the
+ * $1 Gesture Recognizer. It is used in this project to recognize player-drawn
+ * shapes.
+ *
+ * <Original source: https://github.com/olwal/dollar
+ */
 public class Utils
 {	 
 	public static double lastTheta;

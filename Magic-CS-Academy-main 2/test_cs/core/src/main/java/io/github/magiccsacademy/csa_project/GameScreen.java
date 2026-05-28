@@ -347,7 +347,7 @@ public class GameScreen extends InputAdapter implements Screen {
 
                 
                 float x = currentTurn.getGhostx().get(numGhosts - i - 1);
-                float y = currentTurn.getGhostx().get(numGhosts - i - 1);
+                float y = currentTurn.getGhosty().get(numGhosts - i - 1);
                 if(g.isFulk){
                     fulk.setPosition(x, y);
                     fulk.setSize(0.58f, 0.58f);
