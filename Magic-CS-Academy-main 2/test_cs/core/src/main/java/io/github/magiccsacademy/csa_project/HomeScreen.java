@@ -157,7 +157,7 @@ public class HomeScreen implements Screen{
         drawGhost(ghostright,1f,0.75f);
         timesum+=delta;
 
-        if(ghostleft.shapes.size()==0){
+        if(ghostleft.getShapes().size()==0){
             timesum = 0f;
             lasttime = 0f;
             ghostleft = new Ghost(4);
@@ -203,17 +203,17 @@ public class HomeScreen implements Screen{
         ghost2.setPosition(x,y);
         ghost2.setSize(0.8f,0.8f);
         ghost2.draw(game.getBatch());
-        int shapesLeft = g.shapes.size();
+        int shapesLeft = g.getShapes().size();
         if(shapesLeft%2==0){
             float intitialpos = x-(float)(shapesLeft/2)*0.15f+0.45f;
             for(int k = 0;k<shapesLeft;k++){
-                game.getBatch().draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.getBatch().draw(map.get(g.getShapes().get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
         else{
             float intitialpos = x-((float)shapesLeft/2)*0.15f+0.45f;
             for(int k = 0;k<shapesLeft;k++){
-                game.getBatch().draw(map.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
+                game.getBatch().draw(map.get(g.getShapes().get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.75f,0.1f,0.1f);
             }
         }
     }

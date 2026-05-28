@@ -241,7 +241,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostspresent()" class="member-name-link">getGhostspresent</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the list of ghosts currently present in this wave.</div>
+<div class="block">Returns an array of the ghosts present in this ghostTurn</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostx()" class="member-name-link">getGhostx</a>()</code></div>
@@ -249,9 +249,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns the list of x positions for the ghosts in this wave.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhosty()" class="member-name-link">getGhosty</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostX()" class="member-name-link">getGhostX</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an arrayList of the x positions of the ghosts present in this ghostTurn</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhosty()" class="member-name-link">getGhosty</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the list of y positions for the ghosts in this wave.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGhostY()" class="member-name-link">getGhostY</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an arrayList of the y positions of the ghosts present in this ghostTurn</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHorizontalLines()" class="member-name-link">getHorizontalLines</a>()</code></div>
@@ -271,12 +281,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNumGhosts()" class="member-name-link">getNumGhosts</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the total number of ghosts originally in this wave.</div>
+<div class="block">Returns the number of ghosts in this turn</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>float</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpeedModifier()" class="member-name-link">getSpeedModifier</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the speed modifier for the ghosts in this wave.</div>
+<div class="block">Returns the speed modifier</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUpsideDownVs()" class="member-name-link">getUpsideDownVs</a>()</code></div>
@@ -679,10 +689,54 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getNumGhosts()">
 <h3>getNumGhosts</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getNumGhosts</span>()</div>
-<div class="block">Returns the total number of ghosts originally in this wave.</div>
+<div class="block">Returns the number of ghosts in this turn</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the number of ghosts</dd>
+<dd>the number of ghosts in this turn</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostspresent()">
+<h3>getGhostspresent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</span>&nbsp;<span class="element-name">getGhostspresent</span>()</div>
+<div class="block">Returns an array of the ghosts present in this ghostTurn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an array of the ghosts in this ghostTurn</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostX()">
+<h3>getGhostX</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">getGhostX</span>()</div>
+<div class="block">Returns an arrayList of the x positions of the ghosts present in this ghostTurn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an arrayList of the x positions of the ghosts in this ghostTurn</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSpeedModifier()">
+<h3>getSpeedModifier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getSpeedModifier</span>()</div>
+<div class="block">Returns the speed modifier</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>this ghost object's speed modifier</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getGhostY()">
+<h3>getGhostY</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">getGhostY</span>()</div>
+<div class="block">Returns an arrayList of the y positions of the ghosts present in this ghostTurn</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an arrayList of the y positions of the ghosts in this ghostTurn</dd>
 </dl>
 </section>
 </li>
@@ -706,17 +760,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getGhostspresent()">
-<h3>getGhostspresent</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="Ghost.html" title="class in io.github.magiccsacademy.csa_project">Ghost</a>&gt;</span>&nbsp;<span class="element-name">getGhostspresent</span>()</div>
-<div class="block">Returns the list of ghosts currently present in this wave.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the array list of ghost objects</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="getGhostx()">
 <h3>getGhostx</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&gt;</span>&nbsp;<span class="element-name">getGhostx</span>()</div>
@@ -735,17 +778,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the array list of y positions</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getSpeedModifier()">
-<h3>getSpeedModifier</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getSpeedModifier</span>()</div>
-<div class="block">Returns the speed modifier for the ghosts in this wave.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the speed modifier factor</dd>
 </dl>
 </section>
 </li>

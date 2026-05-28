@@ -10,7 +10,7 @@ public class Ghost {
     /**
      * An arraylist of the shapes on top of the ghost (represented by a shape index 0-3)
      */
-    ArrayList<Integer> shapes;
+    private ArrayList<Integer> shapes;
 
     /**
      * The number of shapes to eliminate from the ghost
@@ -357,5 +357,14 @@ public class Ghost {
         this.deathTimer = 0f;
         this.deathX = x;
         this.deathY = y;
+    }
+
+    /**
+     * Returns the ArrayList of shapes on top of the ghost.
+     *
+     * @return an ArrayList of integers representing the shape indices
+     */
+    public ArrayList<Integer> getShapes() {
+        return shapes;
     }
 }

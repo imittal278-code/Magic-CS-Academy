@@ -356,10 +356,10 @@ public class GameScreen extends InputAdapter implements Screen {
                     fish.setPosition(x, y);
                     fish.setSize(0.7f, 0.25f);
                     fish.draw(game.getBatch());
-                    int shapesLeft = g.shapes.size();
+                    int shapesLeft = g.getShapes().size();
                     float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                     for(int k = 0;k<shapesLeft;k++){
-                        game.getBatch().draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
+                        game.getBatch().draw(map1.get(g.getShapes().get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.3f,0.1f,0.1f);
                     }
                     continue;
                 }
@@ -367,7 +367,7 @@ public class GameScreen extends InputAdapter implements Screen {
                     shieldGhostSprite.setPosition(x, y);
                     shieldGhostSprite.setSize(0.46f, 0.5106f);
                     shieldGhostSprite.draw(game.getBatch());
-                    int shapesLeft = g.shapes.size();
+                    int shapesLeft = g.getShapes().size();
                     game.getBatch().draw(game.getCircle(),x+0.13f,y+0.5f,0.2f,0.2f);
                     continue;
                 }
@@ -377,10 +377,10 @@ public class GameScreen extends InputAdapter implements Screen {
                     ghost2.draw(game.getBatch());
                 }
 
-                int shapesLeft = g.shapes.size();
+                int shapesLeft = g.getShapes().size();
                 float intitialpos = x-((float)shapesLeft/2)*0.15f+(shapesLeft%2==0?0.33f:0.32f);
                 for(int k = 0;k<shapesLeft;k++){
-                    game.getBatch().draw(map1.get(g.shapes.get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
+                    game.getBatch().draw(map1.get(g.getShapes().get(shapesLeft-k-1)),intitialpos+0.15f*k,y+0.6f,0.1f,0.1f);
                 }
             }
         }

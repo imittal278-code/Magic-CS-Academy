@@ -213,7 +213,7 @@ public class Ghostturn {
             if(ghostspresent.get(i).lastShapeEquals(shapeIndex)){
 
 
-                float xpos = ghostx.get(i)-((float)(ghostspresent.get(i).shapes.size())/2)*0.15f+((ghostspresent.get(i).shapes.size())%2==0?0.33f:0.32f);
+                float xpos = ghostx.get(i)-((float)(ghostspresent.get(i).getShapes().size())/2)*0.15f+((ghostspresent.get(i).getShapes().size())%2==0?0.33f:0.32f);
                 float ypos = 0.6f+ghosty.get(i);
                 if(fish){
                     ypos = 0.3f+ghosty.get(i);
