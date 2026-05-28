@@ -319,26 +319,27 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         float delta = Gdx.graphics.getDeltaTime();
         int numGhosts = currentTurn.getNumGhosts();
+        int numGhosts = currentTurn.getNumGhosts();
         for (int i = 0; i < numGhosts; i++) {
-            Ghost g = currentTurn.getGhostspresent().get(numGhosts - i - 1);
-            if (g.isDying) {
-                g.deathTimer += delta;
-                if (g.deathTimer >= g.DEATH_DURATION) {
-                    g.isDying = false;
+            Ghost g = currentTurn.getGetGhostspresent()().get(numGhosts - i - 1);
+            if (g.isDying()) {
+                g.setDeathTimer(g.getDeathTimer()+delta);
+                if (g.getDeathTimer() >= g.getDEATH_DURATION()) {
+                    g.setDying(false);
                     continue;
                 }
                 Texture deathFrame;
-                if (g.isFulk) continue;
-                else if (g.isFish) {
-                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? game.getFishDeathFrame2() : game.getFishDeathFrame1();
+                if (g.isFulk()) continue;
+                else if (g.isFish()) {
+                    deathFrame = (g.getDeathTimer() > g.getDEATH_DURATION() / 2f) ? game.getFishDeathFrame2() : game.getFishDeathFrame1();
                     float deathScale = 0.7f;
-                    float xCent = g.deathX - 0.02f;
-                    float yCent = g.deathY - 0.10f;
+                    float xCent = g.getDeathX() - 0.02f;
+                    float yCent = g.getDeathY() - 0.10f;
                     game.getBatch().draw(deathFrame, xCent, yCent,deathScale,deathScale);
                 }
                 else {
-                    deathFrame = (g.deathTimer > g.DEATH_DURATION / 2f) ? game.getGhostDeathFrame2() : game.getGhostDeathFrame1();
-                    game.getBatch().draw(deathFrame, g.deathX, g.deathY, 0.6f, 0.666f);
+                    deathFrame = (g.getDeathTimer() > g.getDEATH_DURATION() / 2f) ? game.getGhostDeathFrame2() : game.getGhostDeathFrame1();
+                    game.getBatch().draw(deathFrame, g.getDeathX(), g.getDeathY(), 0.6f, 0.666f);
                 }
                 continue;
             }
@@ -346,13 +347,13 @@ public class GameScreen extends InputAdapter implements Screen {
 
                 
                 float x = currentTurn.getGhostx().get(numGhosts - i - 1);
-                float y = currentTurn.getGhostx().get(numGhosts - i - 1);
+                float y = currentTurn.getGhosty().get(numGhosts - i - 1);
                 if(g.isFulk){
                     fulk.setPosition(x, y);
                     fulk.setSize(0.58f, 0.58f);
                     fulk.draw(game.getBatch());
                 }
-                else if(g.isFish){
+                else if(g.isFish()){
                     fish.setPosition(x, y);
                     fish.setSize(0.7f, 0.25f);
                     fish.draw(game.getBatch());
@@ -363,7 +364,7 @@ public class GameScreen extends InputAdapter implements Screen {
                     }
                     continue;
                 }
-                else if (g.isShield) {
+                else if (g.isShield()) {
                     shieldGhostSprite.setPosition(x, y);
                     shieldGhostSprite.setSize(0.46f, 0.5106f);
                     shieldGhostSprite.draw(game.getBatch());

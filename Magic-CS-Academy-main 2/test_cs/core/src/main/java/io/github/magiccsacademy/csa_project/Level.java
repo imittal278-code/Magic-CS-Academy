@@ -213,17 +213,17 @@ public class Level {
     public void update(float delta, Cat c) {
         if (currentTurnIndex>=turns.size() || currentTurnFinished()) return;
         Ghostturn curr = turns.get(currentTurnIndex);
-        ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).getGhostx();
-        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).getGhostx();
-        for (int i=0; i<curr.getGhostspresent().size(); i++) {
-            Ghost ghost = curr.getGhostspresent().get(i);
+        ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).ghostx;
+        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).ghosty;
+        for (int i=0; i<curr.ghostspresent.size(); i++) {
+            Ghost ghost = curr.ghostspresent.get(i);
             if (ghost.isAlive()) {
-                if (ghost.isShield) {
+                if (ghost.isShield()) {
                     ghost.shieldPause(delta);
-                    currentGhostY.set(i, 0.4f); 
-                    if (!ghost.isPausing) {
+                    currentGhostY.set(i, 0.4f);
+                    if (!ghost.isPausing()) {
                         float currentX = currentGhostX.get(i);
-                        float nextX = currentX + (ghost.horizontalDirection * 0.3f * delta);
+                        float nextX = currentX + (ghost.getHorizontalDirection() * 0.3f * delta);
                         currentGhostX.set(i, nextX);
                     }
                     if (currentGhostX.get(i) > 6.0f || currentGhostX.get(i) < -1.0f) {
@@ -275,7 +275,7 @@ public class Level {
 
     /**
      * Checks if the current turn is done
-     * 
+     *
      * @return a boolean that checks if the current turn is done
      */
     public boolean currentTurnFinished() {
@@ -284,7 +284,7 @@ public class Level {
 
     /**
      * Checks if the level is completed
-     * 
+     *
      * @return a boolean that checks if the level is completed
      */
     public boolean isCompleted() {
@@ -361,47 +361,47 @@ public class Level {
     public void ghostPos(int turnInd) {
 
         Ghostturn turn = turns.get(turnInd);
-        turn.getGhostx().clear();
-        turn.getGhosty().clear();
+        turn.getGetGhostX()().clear();
+        turn.getGetGhostY()().clear();
         if(levelNumber==2){
             float adder = -1f;
-            if(turn.getGhostspresent().size()==1){
-                if (turn.getGhostspresent().get(0).isShield) {
-                    turn.getGhostx().add(-0.5f);
-                    turn.getGhosty().add(0.2f);
-                    turn.getGhostspresent().get(0).horizontalDirection = 1.0f;
+            if(turn.getGetGhostspresent()().size()==1){
+                if (turn.getGetGhostspresent()().get(0).isShield()) {
+                    turn.getGetGhostY()().add(-0.5f);
+                    turn.getGetGhostY()().add(0.2f);
+                    turn.getGetGhostspresent()().get(0).setHorizontalDirection(1.0f);
                 } else {
-                turn.getGhostx().add(6f);
-                turn.getGhosty().add(1.5f);
+                turn.getGetGhostX()().add(6f);
+                turn.getGetGhostY()().add(1.5f);
                 }
                 return;
             }
-            for (int i=0; i<turn.getGhostspresent().size(); i++) {
-                if (turn.getGhostspresent().get(i).isShield) {
-                    turn.getGhostx().add(-0.5f);
-                    turn.getGhosty().add(0.2f);
-                    turn.getGhostspresent().get(i).horizontalDirection = 1.0f;
+            for (int i=0; i<turn.getGetGhostspresent()().size(); i++) {
+                if (turn.getGetGhostspresent()().get(i).isShield()) {
+                    turn.getGetGhostX()().add(-0.5f);
+                    turn.getGetGhostY()().add(0.2f);
+                    turn.getGetGhostspresent()().get(i).setHorizontalDirection(1.0f);
                 } else {
                 if(i%3==0)adder+=0.5f;
-                turn.getGhostx().add(6f+adder);
-                turn.getGhosty().add(0f+(i%4)+adder);
+                turn.getGetGhostX()().add(6f+adder);
+                turn.getGetGhostY()().add(0f+(i%4)+adder);
                 }
             }
             return;
         }
         else {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));
-            float anglerange = 2*angle/(Math.min(9,turn.getGhostspresent().size()));
-            for (int i=0; i<turn.getGhostspresent().size(); i++) {
-                if (turn.getGhostspresent().get(i).isShield) {
-                    turn.getGhostx().add(-0.5f);
-                    turn.getGhosty().add(0.2f);
-                    turn.getGhostspresent().get(i).horizontalDirection = 1.0f;
+            float anglerange = 2*angle/(Math.min(9,turn.getGetGhostspresent()().size()));
+            for (int i=0; i<turn.getGetGhostspresent()().size(); i++) {
+                if (turn.getGetGhostspresent()().get(i).isShield()) {
+                    turn.getGetGhostX()().add(-0.5f);
+                    turn.getGetGhostY()().add(0.2f);
+                    turn.getGetGhostspresent()().get(i).setHorizontalDirection(1.0f);
                 } else {
                 float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%9)+0.25)*anglerange)));
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, (int)(i/8)*3.0);
-                turn.getGhostx().add((float) ghostPos.X);
-                turn.getGhosty().add((float) ghostPos.Y);
+                turn.getGetGhostX()().add((float) ghostPos.X);
+                turn.getGetGhostY()().add((float) ghostPos.Y);
                 }
 
             }

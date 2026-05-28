@@ -30,6 +30,15 @@
 
 package io.github.magiccsacademy.csa_project;
 
+/**
+ * Helper class from the $1 gesture recognizer library.
+ *
+ * This file is copied/adapted from a Java implementation of the
+ * $1 Gesture Recognizer. It is used in this project to recognize player-drawn
+ * shapes.
+ *
+ * <Original source: https://github.com/olwal/dollar
+ */
 public interface DollarListener
 {
 	public void dollarDetected(Dollar dollar);
