@@ -20,7 +20,7 @@ import java.util.*;
 /**
  * Displays the screen that a player sees first with the big center play button
  */
-public class homeScreen implements Screen{
+public class HomeScreen implements Screen{
 
     /**
      * The shared game class (used for shifting screens or accessing some assets)
@@ -103,7 +103,7 @@ public class homeScreen implements Screen{
      *
      * @param game the shared Main object used for assets, drawing, and screen switching
      */
-    public homeScreen(Main game){
+    public HomeScreen(Main game){
         this.game = game;
         map = new HashMap<Integer,Texture>();
         map.put(0,game.horizontalLine);
