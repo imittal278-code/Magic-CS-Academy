@@ -79,9 +79,7 @@ public class Ghostturn {
      * @param counts An array of the number of shapes in each ghost of the wave
      */
     public Ghostturn(int diff, int[] counts){
-        //counts.length = nGhosts
         numGhosts = counts.length;
-        //strlen = 0;
         numAlive = numGhosts;
         difficulty = diff;
         ghostx = new ArrayList<Float>(numGhosts);
@@ -102,9 +100,7 @@ public class Ghostturn {
      * @param fulks An array of booleans that represents the ghosts in the wave that are Mr. Fulk
      */
     public Ghostturn(int diff, int[] counts,boolean[] fulks){
-        //counts.length = nGhosts
         numGhosts = counts.length;
-        //strlen = 0;
         numAlive = numGhosts;
         difficulty = diff;
         ghostx = new ArrayList<Float>(numGhosts);
@@ -134,7 +130,6 @@ public class Ghostturn {
     public Ghostturn(int nGhosts, int len, int diff, boolean allFish, boolean circle, boolean all){
         numGhosts = nGhosts;
         numAlive = numGhosts;
-        //strlen = len;
         fish = allFish;
         difficulty = diff;
         ghostx = new ArrayList<Float>(nGhosts);
@@ -166,7 +161,6 @@ public class Ghostturn {
      */
     public Ghostturn (Ghost g){
         numGhosts = 1;
-        //strlen = g.strlen;
         difficulty = 1;
         numAlive = 1;
         ghostspresent = new ArrayList<Ghost>();
@@ -276,7 +270,6 @@ public class Ghostturn {
                 }
                 else{
                     if(shapeIndex == 4){
-                        //Shield
                         ghostspresent.get(i).removeLast();
                         numAlive--;
                         ghostspresent.get(i).remove();

@@ -252,7 +252,6 @@ public class GameScreen extends InputAdapter implements Screen {
         fishpic = new Texture("fish.png");
         fish = new Sprite(fishpic);
         cat = new Texture("Momo2023.png");
-        //catCircle = new Texture("Momo_Circle.png");
         cat2 = new Sprite(cat);
         font = new BitmapFont();
         font.getData().setScale(0.02f);
@@ -415,7 +414,6 @@ public class GameScreen extends InputAdapter implements Screen {
      */
     @Override
     public void render(float delta) {
-        //keep this code at the top
         background = controller.getCurrentLevel().getBackground();
          if(showTransition){
              transitionTime-=delta;
@@ -432,22 +430,18 @@ public class GameScreen extends InputAdapter implements Screen {
             return;
          }
 
-        //set background based on current Level
 
         ScreenUtils.clear(0, 0, 0, 1);
         game.myViewport.apply();
         
-        //Gdx.app.log("VIEWPORT", "worldW=" + game.myViewport.getWorldWidth() + ", worldH=" + game.myViewport.getWorldHeight()); //REMOVE
-        //Gdx.app.log("", "piSCREENxelsW=" + Gdx.graphics.getWidth() + ", pixelsH=" + Gdx.graphics.getHeight()); //REMOVE
+
         game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
 
         game.batch.begin();
 
-        //draw the background first
         game.batch.draw(background, 0, 0, game.myViewport.getWorldWidth(), game.myViewport.getWorldHeight());
         drawScore();
 
-        //set cat's position and size and draw it
         if (!paused && animationTimer > 0) {
             animationTimer -= delta;
             if (animationTimer <= 0) c.setState(Cat.State.NORMAL);

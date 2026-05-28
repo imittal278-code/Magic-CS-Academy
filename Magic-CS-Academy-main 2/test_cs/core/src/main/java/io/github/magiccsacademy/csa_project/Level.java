@@ -87,18 +87,10 @@ public class Level {
         this.difficulty = difficulty;
         this.currentTurnIndex = 0;
         this.completed = false;
-        this.ghostSpeed = 0.2f+(difficulty*0.05f); //FIX THIS !!!!!!!!!
+        this.ghostSpeed = 0.2f+(difficulty*0.05f);
         this.turns = new ArrayList<>();
         this.game = game;
 
-
-
-
-
-
-
-
-        // SET NUM BACkGROUNDS AND BACKGROUND IMAGE FOR EACH LEEVL
         if (levelNumber==1) {
             background = game.background;
         }
@@ -349,15 +341,12 @@ public class Level {
         double atan = Math.atan(width/height);
         wave = wave/2;
         if(angle > atan){
-            //intersect with right edge
             return new Point(width+wave, (float)(height/2.0f - (width/2.0f)/Math.tan(angle)));
         }
         else if (angle < -atan){
-            //intersect with left edge
             return new Point(-wave, (float)(height/2.0f + (width/2.0f)/Math.tan(angle)));
         }
         else{
-            //intersect with bottom edge
             return new Point((float)(width/2.0f + (height/2.0f)*Math.tan(angle)), -wave);
         }
     }
@@ -401,7 +390,7 @@ public class Level {
             return;
         }
         else {
-            float angle =(float)( Math.PI-Math.atan(5.2/2.2));//degrees
+            float angle =(float)( Math.PI-Math.atan(5.2/2.2));
             float anglerange = 2*angle/(Math.min(9,turn.ghostspresent.size()));
             for (int i=0; i<turn.ghostspresent.size(); i++) {
                 if (turn.ghostspresent.get(i).isShield) {
@@ -409,7 +398,6 @@ public class Level {
                     turn.ghosty.add(0.2f);
                     turn.ghostspresent.get(i).horizontalDirection = 1.0f;
                 } else {
-                //choose a random float in range -angle+(i+1/4)*anglerange to -angle+(i+3/4)*anglerange
                 float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%9)+0.25)*anglerange)));
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, (int)(i/8)*3.0);
                 turn.ghostx.add((float) ghostPos.X);

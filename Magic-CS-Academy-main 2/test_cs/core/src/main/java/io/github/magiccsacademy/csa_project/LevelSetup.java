@@ -56,50 +56,48 @@ public class LevelSetup {
         l3.addTurn(new Ghostturn(new Ghost("0000000000",true)));
 
 
-        // ONE TURN USING NEW CONSTRUCTOR NEEDS TO BE WRITTEN
         l4.addTurn(new Ghostturn(6, 3, 1, false,false,false));
         l4.addTurn(new Ghostturn(1, 5, 1, false,false,false));
         int[] arr2 = {1,1,1,2,2,2,3,3,3,4};
         l4.addTurn(new Ghostturn(1, arr2));
-        l4.addTurn(new Ghostturn(20, 1, 1, false,false,false));// lightning
-        l4.addTurn(new Ghostturn(new Ghost("121212"))); // Lightbulb
-        l4.addTurn(new Ghostturn(new Ghost("13131313")));// anglerfish boss
+        l4.addTurn(new Ghostturn(20, 1, 1, false,false,false));
+        l4.addTurn(new Ghostturn(new Ghost("121212")));
+        l4.addTurn(new Ghostturn(new Ghost("13131313")));
         l4.addTurn(new Ghostturn(1,5,1,false,false,false));
         l4.addTurn(new Ghostturn(1, 10, 1, false, false, false));
-        l4.addTurn(new Ghostturn(1, 5, 1, false,false,false));// lightbulb
-        l4.addTurn(new Ghostturn(new Ghost("213020132")));// anglerfish boss last
+        l4.addTurn(new Ghostturn(1, 5, 1, false,false,false));
+        l4.addTurn(new Ghostturn(new Ghost("213020132")));
 
 
 
         l1.addTurn(new Ghostturn(3,1,1,false,false,false));
         l1.addTurn(new Ghostturn(2,2,1,false,false,false));
-        l1.addTurn(new Ghostturn(3,2,1,false,false,false));//SPIRAL make it true when spiral works
-        l1.addTurn(new Ghostturn(4,4,1,false,true,false));//SHIELD remove comment when shield works
-        l1.addTurn(new Ghostturn(8,1,1,false,false,false));//SPIRAL make it true when spiral works
-        l1.addTurn(new Ghostturn(1, 6, 1, false, false, false));//when ready make the very last number(add it) the spiral number
-        l1.addTurn(new Ghostturn(new Ghost("212121")));//when ready make the very last number(add it) the spiral number
-        l1.addTurn(new Ghostturn(1, 5, 1, false, false, false));//when ready make the very last number(add it) the spiral number*/
+        l1.addTurn(new Ghostturn(3,2,1,false,false,false));
+        l1.addTurn(new Ghostturn(4,4,1,false,true,false));
+        l1.addTurn(new Ghostturn(8,1,1,false,false,false));
+        l1.addTurn(new Ghostturn(1, 6, 1, false, false, false));
+        l1.addTurn(new Ghostturn(new Ghost("212121")));
+        l1.addTurn(new Ghostturn(1, 5, 1, false, false, false));
 
 
-        l2.addTurn(new Ghostturn(9,3,1,true,false,false));//Note this level is really hard, in the actual game fish come from the right and the cat is on the left
+        l2.addTurn(new Ghostturn(9,3,1,true,false,false));
         l2.addTurn(new Ghostturn(1,7,1,true,false,false));
-        l2.addTurn(new Ghostturn(7,3,1,true,true,false)); //SHIELD remove comment when shield worksNote this level is really hard, in the actual game fish come from the right and the cat is on the left
+        l2.addTurn(new Ghostturn(7,3,1,true,true,false));
         l2.addTurn(new Ghostturn(1,8,1,true,false,false));
         l2.addTurn(new Ghostturn(4,3,1,true,false,false));
-        l2.addTurn(new Ghostturn(1,5,1,true,false,false));//add lightning if we get there*/
+        l2.addTurn(new Ghostturn(1,5,1,true,false,false));
 
         l5.addTurn(new Ghostturn(8,2,1,false,false,false));
-        l5.addTurn(new Ghostturn(new Ghost("101303101",true)));//floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("101303101",true)));
         l5.addTurn(new Ghostturn(12, 1, 1, false, false, false));
-        l5.addTurn(new Ghostturn(new Ghost("221303122",true))); //floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("221303122",true)));
         l5.addTurn(new Ghostturn(7, 4, 1));
-        l5.addTurn(new Ghostturn(new Ghost("3012301203",true))); //floor boss, also need lighting (last shape)
+        l5.addTurn(new Ghostturn(new Ghost("3012301203",true)));
 
-        //NEW VOLCANO BACKGROUND (LEVEL CHANGE MAYBE???)
 
         int[] arr = {2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5};
-        l5.addTurn(new Ghostturn(1, arr));//lightning is here too, most likely want to implement time thing
-        l5.addTurn(new Ghostturn(new Ghost("0102301023010",true)));// volcano boss, also need lightning (last shape)
+        l5.addTurn(new Ghostturn(1, arr));
+        l5.addTurn(new Ghostturn(new Ghost("0102301023010",true)));
 
         
 

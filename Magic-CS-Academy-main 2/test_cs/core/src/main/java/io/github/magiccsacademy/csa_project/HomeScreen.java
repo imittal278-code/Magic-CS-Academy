@@ -25,7 +25,7 @@ public class HomeScreen implements Screen{
     /**
      * The shared game class (used for shifting screens or accessing some assets)
      */
-    private final Main game; // no ghost or something should be present here, like it
+    private final Main game;
 
     /**
      * The background of the home screen
