@@ -45,7 +45,7 @@ import java.util.Enumeration;
  * $1 Gesture Recognizer. It is used in this project to recognize player-drawn
  * shapes.
  *
- * <Original source: https://github.com/olwal/dollar
+ * Original source: https://github.com/olwal/dollar
  */
 public class Utils
 {	 
