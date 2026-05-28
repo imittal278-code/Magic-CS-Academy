@@ -130,14 +130,14 @@ public class EndScreen implements Screen{
     @Override
     public void render(float delta){
         ScreenUtils.clear(0, 0, 0, 1);
-        game.myViewport.apply();
-        game.batch.setProjectionMatrix(game.myViewport.getCamera().combined);
+        game.getMyViewport().apply();
+        game.getBatch().setProjectionMatrix(game.getMyViewport().getCamera().combined);
 
 
-        game.batch.begin();
+        game.getBatch().begin();
 
 
-        game.batch.draw(background, 0, 0,game.myViewport.getWorldWidth(),game.myViewport.getWorldHeight());
+        game.getBatch().draw(background, 0, 0,game.getMyViewport().getWorldWidth(),game.getMyViewport().getWorldHeight());
 
 
         home.setSize(0.8f,0.8f);
@@ -147,7 +147,7 @@ public class EndScreen implements Screen{
 
 
         Vector3 mousePos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-        game.myViewport.getCamera().unproject(mousePos);
+        game.getMyViewport().getCamera().unproject(mousePos);
 
 
 
@@ -172,8 +172,8 @@ public class EndScreen implements Screen{
             home.setColor(Color.WHITE);
             replay.setColor(Color.WHITE);
         }
-        home.draw(game.batch);
-        replay.draw(game.batch);
+        home.draw(game.getBatch());
+        replay.draw(game.getBatch());
 
 
 
@@ -184,7 +184,7 @@ public class EndScreen implements Screen{
 
 
 
-        game.batch.end();
+        game.getBatch().end();
         drawScore();
     }
 
@@ -194,15 +194,15 @@ public class EndScreen implements Screen{
      */
     private void drawScore(){
         uiViewport.apply();
-        game.batch.setProjectionMatrix(uiViewport.getCamera().combined);
+        game.getBatch().setProjectionMatrix(uiViewport.getCamera().combined);
         GlyphLayout layout = new GlyphLayout();
         String text = ""+score;
         layout.setText(font, text);
 
         float targetX = 880;
-        game.batch.begin();
-        font.draw(game.batch, layout, targetX - (layout.width / 2), 400);
-        game.batch.end();
+        game.getBatch().begin();
+        font.draw(game.getBatch(), layout, targetX - (layout.width / 2), 400);
+        game.getBatch().end();
     }
 
 
@@ -213,7 +213,7 @@ public class EndScreen implements Screen{
      */
     @Override
     public void resize(int x, int y){
-        game.stage.getViewport().update(x, y, true);
+        game.getStage().getViewport().update(x, y, true);
         uiViewport.update(x, y, true);
     }
 

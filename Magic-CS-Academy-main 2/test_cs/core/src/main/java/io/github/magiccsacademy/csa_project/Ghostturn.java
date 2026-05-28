@@ -10,19 +10,19 @@ import java.lang.*;
 public class Ghostturn {
 
     /**The number of ghosts in this wave*/
-    public int numGhosts;
+    private int numGhosts;
 
     /**The difficulty of this wave (determines score additions)*/
     private int difficulty;
 
     /**The number of ghosts that haven't been killed in this wave*/
-    public int numAlive;
+    private int numAlive;
 
     /**Constant value of the number of possible shapes*/
     private final int totshapes = 4;
 
     /** Array of the ghosts in this wave*/
-    public ArrayList<Ghost> ghostspresent;
+    private ArrayList<Ghost> ghostspresent;
 
     /**The number of circles this ghostTurn has currently (across living ghosts)*/
     private int circles = 0;
@@ -40,16 +40,16 @@ public class Ghostturn {
     private int normalVs = 0;
 
     /** Array of the x positions of the ghosts in this wave*/
-    public ArrayList<Float> ghostx;
+    private ArrayList<Float> ghostx;
 
     /** Array of the y positions of the ghosts in this wave*/
-    public ArrayList<Float> ghosty;
+    private ArrayList<Float> ghosty;
 
     /** Boolean that states whether the characters in this wave are fish*/
     private boolean fish;
 
     /**Speed modifier for the ghosts */
-    public float speedModifier = 1.0f;
+    private float speedModifier = 1.0f;
 
     /**
      * Constructs a ghostTurn object
@@ -376,5 +376,73 @@ public class Ghostturn {
      * @return the number of upsideDownVs
      */
     public int getUpsideDownVs(){return upsideDownVs;}
+
+    /**
+     * Returns the total number of ghosts originally in this wave.
+     *
+     * @return the number of ghosts
+     */
+    public int getNumGhosts() {
+        return numGhosts;
+    }
+
+    /**
+     * Returns the number of ghosts that are still alive in this wave.
+     *
+     * @return the number of living ghosts
+     */
+    public int getNumAlive() {
+        return numAlive;
+    }
+
+    /**
+     * Decrements the count of living ghosts in this wave by one.
+     * This can be used when a ghost is explicitly defeated or removed.
+     */
+    public void decrementNumAlive() {
+        this.numAlive--;
+    }
+
+    /**
+     * Returns the list of ghosts currently present in this wave.
+     *
+     * @return the array list of ghost objects
+     */
+    public ArrayList<Ghost> getGhostspresent() {
+        return ghostspresent;
+    }
+
+
+    /**
+     * Returns the list of x positions for the ghosts in this wave.
+     *
+     * @return the array list of x positions
+     */
+    public ArrayList<Float> getGhostx() {
+        return ghostx;
+    }
+
+
+    /**
+     * Returns the list of y positions for the ghosts in this wave.
+     *
+     * @return the array list of y positions
+     */
+    public ArrayList<Float> getGhosty() {
+        return ghosty;
+    }
+
+
+    /**
+     * Returns the speed modifier for the ghosts in this wave.
+     *
+     * @return the speed modifier factor
+     */
+    public float getSpeedModifier() {
+        return speedModifier;
+    }
+
+
+
 
 }

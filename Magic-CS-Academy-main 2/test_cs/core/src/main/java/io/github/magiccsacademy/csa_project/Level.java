@@ -92,19 +92,19 @@ public class Level {
         this.game = game;
 
         if (levelNumber==1) {
-            background = game.background;
+            background = game.getBackground();
         }
         else if (levelNumber==2) {
-            background = game.ocean;
+            background = game.getOcean();
         }
         else if (levelNumber==3) {
-            background = game.desert;
+            background = game.getDesert();
         }
         else if (levelNumber==4) {
-            background = game.forest;
+            background = game.getForest();
         }
         else if (levelNumber==5) {
-            background = game.circuit;
+            background = game.getCircuit();
         }
 
         circles = false;
@@ -176,23 +176,23 @@ public class Level {
      */
     public void shapeDrawn(int shapeIndex, Cat c) {
         if(shapeIndex==0){
-            game.sound1.play(1.0f);
+            game.getSound1().play(1.0f);
         }
         else if(shapeIndex==1){
-            game.sound2.play(1.0f);
+            game.getSound2().play(1.0f);
         }
         else if(shapeIndex==2){
-            game.sound3.play(1.0f);
+            game.getSound3().play(1.0f);
         }
         else if(shapeIndex==3){
-            game.sound5.play(1.0f);
+            game.getSound5().play(1.0f);
         }
         else if(shapeIndex==4){
-            game.sound4.play(1.0f);
+            game.getSound4().play(1.0f);
         }
 
         Ghostturn curr = turns.get(currentTurnIndex);
-        if(curr.shapeDrawn(shapeIndex, c)) game.ghostdeath.play(1.0f);
+        if(curr.shapeDrawn(shapeIndex, c)) game.getGhostdeath().play(1.0f);
         updateCounts();
         if (curr.isCompletelyFinished()) {
             nextTurn();
@@ -213,10 +213,10 @@ public class Level {
     public void update(float delta, Cat c) {
         if (currentTurnIndex>=turns.size() || currentTurnFinished()) return;
         Ghostturn curr = turns.get(currentTurnIndex);
-        ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).ghostx;
-        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).ghosty;
-        for (int i=0; i<curr.ghostspresent.size(); i++) {
-            Ghost ghost = curr.ghostspresent.get(i);
+        ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).getGhostx();
+        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).getGhostx();
+        for (int i=0; i<curr.getGhostspresent().size(); i++) {
+            Ghost ghost = curr.getGhostspresent().get(i);
             if (ghost.isAlive()) {
                 if (ghost.isShield) {
                     ghost.shieldPause(delta);
@@ -228,7 +228,7 @@ public class Level {
                     }
                     if (currentGhostX.get(i) > 6.0f || currentGhostX.get(i) < -1.0f) {
                         ghost.remove();
-                        curr.numAlive--;
+                        curr.decrementNumAlive();
                         updateCounts();
                     }
                     continue;
@@ -237,7 +237,7 @@ public class Level {
                 float dy = c.getY()-currentGhostY.get(i);
                 float distance = (float)Math.sqrt(dx*dx+dy*dy);
                 if (distance>0.30f) {
-                    float updateSpeed = ghostSpeed*curr.speedModifier;
+                    float updateSpeed = ghostSpeed*curr.getSpeedModifier();
                     float moveX = (dx/distance)*updateSpeed*delta;
                     float moveY = (dy/distance)*updateSpeed*delta;
                     currentGhostX.set(i, currentGhostX.get(i)+moveX);
@@ -250,9 +250,9 @@ public class Level {
                     else{
                         c.loseLife();
                     }
-                    game.ghostdeath.play();
+                    game.getGhostdeath().play();
                     ghost.remove();
-                    curr.numAlive--;
+                    curr.decrementNumAlive();
                 }
             }
         }
@@ -361,47 +361,47 @@ public class Level {
     public void ghostPos(int turnInd) {
 
         Ghostturn turn = turns.get(turnInd);
-        turn.ghostx.clear();
-        turn.ghosty.clear();
+        turn.getGhostx().clear();
+        turn.getGhosty().clear();
         if(levelNumber==2){
             float adder = -1f;
-            if(turn.ghostspresent.size()==1){
-                if (turn.ghostspresent.get(0).isShield) {
-                    turn.ghostx.add(-0.5f);
-                    turn.ghosty.add(0.2f);
-                    turn.ghostspresent.get(0).horizontalDirection = 1.0f;
+            if(turn.getGhostspresent().size()==1){
+                if (turn.getGhostspresent().get(0).isShield) {
+                    turn.getGhostx().add(-0.5f);
+                    turn.getGhosty().add(0.2f);
+                    turn.getGhostspresent().get(0).horizontalDirection = 1.0f;
                 } else {
-                turn.ghostx.add(6f);
-                turn.ghosty.add(1.5f);
+                turn.getGhostx().add(6f);
+                turn.getGhosty().add(1.5f);
                 }
                 return;
             }
-            for (int i=0; i<turn.ghostspresent.size(); i++) {
-                if (turn.ghostspresent.get(i).isShield) {
-                    turn.ghostx.add(-0.5f);
-                    turn.ghosty.add(0.2f);
-                    turn.ghostspresent.get(i).horizontalDirection = 1.0f;
+            for (int i=0; i<turn.getGhostspresent().size(); i++) {
+                if (turn.getGhostspresent().get(i).isShield) {
+                    turn.getGhostx().add(-0.5f);
+                    turn.getGhosty().add(0.2f);
+                    turn.getGhostspresent().get(i).horizontalDirection = 1.0f;
                 } else {
                 if(i%3==0)adder+=0.5f;
-                turn.ghostx.add(6f+adder);
-                turn.ghosty.add(0f+(i%4)+adder);
+                turn.getGhostx().add(6f+adder);
+                turn.getGhosty().add(0f+(i%4)+adder);
                 }
             }
             return;
         }
         else {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));
-            float anglerange = 2*angle/(Math.min(9,turn.ghostspresent.size()));
-            for (int i=0; i<turn.ghostspresent.size(); i++) {
-                if (turn.ghostspresent.get(i).isShield) {
-                    turn.ghostx.add(-0.5f);
-                    turn.ghosty.add(0.2f);
-                    turn.ghostspresent.get(i).horizontalDirection = 1.0f;
+            float anglerange = 2*angle/(Math.min(9,turn.getGhostspresent().size()));
+            for (int i=0; i<turn.getGhostspresent().size(); i++) {
+                if (turn.getGhostspresent().get(i).isShield) {
+                    turn.getGhostx().add(-0.5f);
+                    turn.getGhosty().add(0.2f);
+                    turn.getGhostspresent().get(i).horizontalDirection = 1.0f;
                 } else {
                 float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%9)+0.25)*anglerange)));
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, (int)(i/8)*3.0);
-                turn.ghostx.add((float) ghostPos.X);
-                turn.ghosty.add((float) ghostPos.Y);
+                turn.getGhostx().add((float) ghostPos.X);
+                turn.getGhosty().add((float) ghostPos.Y);
                 }
 
             }
