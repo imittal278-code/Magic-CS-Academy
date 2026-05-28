@@ -685,7 +685,7 @@ public class GameScreen extends InputAdapter implements Screen {
     }
 
     /**
-     * Inherited methods from the InputAdapter class that deal with iwhetherthe mouse is down (starts drawing points)
+     * Inherited methods from the InputAdapter class that deal with whether the mouse is down (starts drawing points)
      *
      * @param screenX The x coordinate, origin is in the upper left corner
      * @param screenY The y coordinate, origin is in the upper left corner
