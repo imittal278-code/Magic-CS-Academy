@@ -99,8 +99,9 @@ public class homeScreen implements Screen{
 
 
     /**
-     * Constructs the homeScreen, initializing the constant fields
-     * @param game
+     * Constructs the home screen and initializes its main assets.
+     *
+     * @param game the shared Main object used for assets, drawing, and screen switching
      */
     public homeScreen(Main game){
         this.game = game;
