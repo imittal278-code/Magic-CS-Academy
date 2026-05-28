@@ -37,7 +37,7 @@ loadScripts(document, 'script');</script>
 <p>Summary:</p>
 <ul>
 <li>Nested</li>
-<li>Field</li>
+<li><a href="#field-summary">Field</a></li>
 <li><a href="#constructor-summary">Constr</a></li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
@@ -45,7 +45,7 @@ loadScripts(document, 'script');</script>
 <li>
 <p>Detail:</p>
 <ul>
-<li>Field</li>
+<li><a href="#field-detail">Field</a></li>
 <li><a href="#constructor-detail">Constr</a></li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -57,13 +57,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -101,6 +101,218 @@ implements com.badlogic.gdx.Screen</span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>private final float</code></div>
+<div class="col-second even-row-color"><code><a href="#ANIMATION_DURATION" class="member-name-link">ANIMATION_DURATION</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The constant used for the duration of the animation</div>
+</div>
+<div class="col-first odd-row-color"><code>private float</code></div>
+<div class="col-second odd-row-color"><code><a href="#animationTimer" class="member-name-link">animationTimer</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The timer for how long the cat changes</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#background" class="member-name-link">background</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The texture for the background image</div>
+</div>
+<div class="col-first odd-row-color"><code>private <a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#c" class="member-name-link">c</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The cat object for the player's lives, shields, etc.</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#cat" class="member-name-link">cat</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The texture for the cat image</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.g2d.Sprite</code></div>
+<div class="col-second odd-row-color"><code><a href="#cat2" class="member-name-link">cat2</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The sprite for the cat texture</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#catCircle" class="member-name-link">catCircle</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The texture for the cat drawing circle</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Color</code></div>
+<div class="col-second odd-row-color"><code><a href="#colorDrawing" class="member-name-link">colorDrawing</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The color of the stroke the player makes (changes based on recognition)</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="GameEngine.html" title="class in io.github.magiccsacademy.csa_project">GameEngine</a></code></div>
+<div class="col-second even-row-color"><code><a href="#controller" class="member-name-link">controller</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The gameEngine that manages what level the player is on</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.g2d.Sprite</code></div>
+<div class="col-second odd-row-color"><code><a href="#fish" class="member-name-link">fish</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The sprite for the fish texture</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#fishpic" class="member-name-link">fishpic</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The texture for the fish image</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.g2d.BitmapFont</code></div>
+<div class="col-second odd-row-color"><code><a href="#font" class="member-name-link">font</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The font used to display the text</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.g2d.Sprite</code></div>
+<div class="col-second even-row-color"><code><a href="#fulk" class="member-name-link">fulk</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The sprite for the Mr.</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color"><code><a href="#fulkPic" class="member-name-link">fulkPic</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The Texture for the image of Mr.</div>
+</div>
+<div class="col-first even-row-color"><code>private final <a href="Main.html" title="class in io.github.magiccsacademy.csa_project">Main</a></code></div>
+<div class="col-second even-row-color"><code><a href="#game" class="member-name-link">game</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The Main class, used for transitioning screens and accessing some assets</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color"><code><a href="#ghost" class="member-name-link">ghost</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The texture for the ghost image</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.g2d.Sprite</code></div>
+<div class="col-second even-row-color"><code><a href="#ghost2" class="member-name-link">ghost2</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The sprite for the ghost Texture</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color"><code><a href="#heart" class="member-name-link">heart</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The texture for the heart image</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#heartOutline" class="member-name-link">heartOutline</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The Texture for the outline of the heart image</div>
+</div>
+<div class="col-first odd-row-color"><code>private boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#isDrawing" class="member-name-link">isDrawing</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Whether the player is drawing</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></code></div>
+<div class="col-second even-row-color"><code><a href="#level1" class="member-name-link">level1</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The level objects for each level</div>
+</div>
+<div class="col-first odd-row-color"><code>private <a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#level2" class="member-name-link">level2</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The level objects for each level</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></code></div>
+<div class="col-second even-row-color"><code><a href="#level3" class="member-name-link">level3</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The level objects for each level</div>
+</div>
+<div class="col-first odd-row-color"><code>private <a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#level4" class="member-name-link">level4</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The level objects for each level</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></code></div>
+<div class="col-second even-row-color"><code><a href="#level5" class="member-name-link">level5</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The level objects for each level</div>
+</div>
+<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html" title="class or interface in java.util" class="external-link">HashMap</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr>com.badlogic.gdx.graphics.Texture&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#map1" class="member-name-link">map1</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The map used to translate the shape number into an actual texture/image</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html" title="class or interface in java.util" class="external-link">HashMap</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>org.javatuples.Pair&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr>com.badlogic.gdx.graphics.Color&gt;&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#map2" class="member-name-link">map2</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The map used to convert the name of the shape to its respective number or color</div>
+</div>
+<div class="col-first odd-row-color"><code>private boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#paused" class="member-name-link">paused</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">whether the game is currently paused</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#pauseTexture" class="member-name-link">pauseTexture</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The texture for the pause image</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color"><code><a href="#playTexture" class="member-name-link">playTexture</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The texture for the play image</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a><wbr>&lt;com.badlogic.gdx.math.Vector2&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#points" class="member-name-link">points</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The ArrayList used to draw the line on the screen</div>
+</div>
+<div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a><wbr>&lt;<a href="Point.html" title="class in io.github.magiccsacademy.csa_project">Point</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#pts" class="member-name-link">pts</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Stores the points that are recognized as a shape</div>
+</div>
+<div class="col-first even-row-color"><code>private <a href="Recognizer.html" title="class in io.github.magiccsacademy.csa_project">Recognizer</a></code></div>
+<div class="col-second even-row-color"><code><a href="#recognizer" class="member-name-link">recognizer</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The recognizer that recognizes the player shape drawn</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.glutils.ShapeRenderer</code></div>
+<div class="col-second odd-row-color"><code><a href="#shapeRenderer" class="member-name-link">shapeRenderer</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The renderer that draws the player's line on the screen</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second even-row-color"><code><a href="#shield" class="member-name-link">shield</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The texture for the shield image</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.graphics.Texture</code></div>
+<div class="col-second odd-row-color"><code><a href="#shieldGhostPic" class="member-name-link">shieldGhostPic</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The texture for the shield ghost image</div>
+</div>
+<div class="col-first even-row-color"><code>private com.badlogic.gdx.graphics.g2d.Sprite</code></div>
+<div class="col-second even-row-color"><code><a href="#shieldGhostSprite" class="member-name-link">shieldGhostSprite</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The sprite for the shield ghost texture</div>
+</div>
+<div class="col-first odd-row-color"><code>private boolean</code></div>
+<div class="col-second odd-row-color"><code><a href="#showTransition" class="member-name-link">showTransition</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Whether the level transition needs to be shown</div>
+</div>
+<div class="col-first even-row-color"><code>private float</code></div>
+<div class="col-second even-row-color"><code><a href="#transitionTime" class="member-name-link">transitionTime</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The timer for the amount of time in transition</div>
+</div>
+<div class="col-first odd-row-color"><code>private com.badlogic.gdx.utils.viewport.Viewport</code></div>
+<div class="col-second odd-row-color"><code><a href="#uiViewport" class="member-name-link">uiViewport</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The uiViewport, used for the location of text</div>
+</div>
+</div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -110,7 +322,9 @@ implements com.badlogic.gdx.Screen</span></div>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(io.github.magiccsacademy.csa_project.Main)" class="member-name-link">GameScreen</a><wbr>(<a href="Main.html" title="class in io.github.magiccsacademy.csa_project">Main</a>&nbsp;game)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a GameScreen object, initializing static fields</div>
+</div>
 </div>
 </section>
 </li>
@@ -120,50 +334,105 @@ implements com.badlogic.gdx.Screen</span></div>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dispose()" class="member-name-link">dispose</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private <a href="Recognizer.html" title="class in io.github.magiccsacademy.csa_project">Recognizer</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createCurrentRecognizer()" class="member-name-link">createCurrentRecognizer</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the recognizer that should be used right now (for example, if there are no circles left, it shouldn't recognize circles)</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hide()" class="member-name-link">hide</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dispose()" class="member-name-link">dispose</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Inherited method from the screen class that we are not using</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawGhosts(io.github.magiccsacademy.csa_project.Level)" class="member-name-link">drawGhosts</a><wbr>(<a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a>&nbsp;level)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Draws all the ghosts (and shapes) in the current ghostTurn.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawHearts(io.github.magiccsacademy.csa_project.Cat)" class="member-name-link">drawHearts</a><wbr>(<a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a>&nbsp;c)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Draws the hearts in the corner of the screen based on the lives the cat has left</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawPauseOverlay()" class="member-name-link">drawPauseOverlay</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Draws the image the player sees when the game is currently paused (with the text in the middle)</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawPlayPause()" class="member-name-link">drawPlayPause</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Draws the play and pause buttons based on whether the game is currently running or paused</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawScore()" class="member-name-link">drawScore</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Draws the score in the corner of the screen, utilizing a different viewport and a FreeTypeFont</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawShield()" class="member-name-link">drawShield</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Draws the shield at the cat's current position</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hide()" class="member-name-link">hide</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Inherited method from the screen class that we are not using</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render(float)" class="member-name-link">render</a><wbr>(float&nbsp;delta)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Inherited method from the screen class that we are not using</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resize(int,int)" class="member-name-link">resize</a><wbr>(int&nbsp;width,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render(float)" class="member-name-link">render</a><wbr>(float&nbsp;delta)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Renders the image on the screen, using helper methods as necessary</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resize(int,int)" class="member-name-link">resize</a><wbr>(int&nbsp;width,
  int&nbsp;height)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resume()" class="member-name-link">resume</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resizes the screen based on the parameters</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#show()" class="member-name-link">show</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#touchDown(int,int,int,int)" class="member-name-link">touchDown</a><wbr>(int&nbsp;screenX,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resume()" class="member-name-link">resume</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Inherited method from the screen class that we are not using</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#show()" class="member-name-link">show</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initializes textures, fonts, and fills up the fields initialized in the constructor</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#touchDown(int,int,int,int)" class="member-name-link">touchDown</a><wbr>(int&nbsp;screenX,
  int&nbsp;screenY,
  int&nbsp;pointer,
  int&nbsp;button)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#touchDragged(int,int,int)" class="member-name-link">touchDragged</a><wbr>(int&nbsp;screenX,
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Inherited methods from the InputAdapter class that deal with whether the mouse is down (starts drawing points)</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#touchDragged(int,int,int)" class="member-name-link">touchDragged</a><wbr>(int&nbsp;screenX,
  int&nbsp;screenY,
  int&nbsp;pointer)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#touchUp(int,int,int,int)" class="member-name-link">touchUp</a><wbr>(int&nbsp;screenX,
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Called when the mouse is dragged on the screen.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#touchUp(int,int,int,int)" class="member-name-link">touchUp</a><wbr>(int&nbsp;screenX,
  int&nbsp;screenY,
  int&nbsp;pointer,
  int&nbsp;button)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">When a drag or touch is removed from the screen, this is called.</div>
+</div>
 </div>
 </div>
 </div>
@@ -179,6 +448,302 @@ implements com.badlogic.gdx.Screen</span></div>
 </section>
 <section class="details">
 <ul class="details-list">
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="game">
+<h3>game</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="Main.html" title="class in io.github.magiccsacademy.csa_project">Main</a></span>&nbsp;<span class="element-name">game</span></div>
+<div class="block">The Main class, used for transitioning screens and accessing some assets</div>
+</section>
+</li>
+<li>
+<section class="detail" id="uiViewport">
+<h3>uiViewport</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.utils.viewport.Viewport</span>&nbsp;<span class="element-name">uiViewport</span></div>
+<div class="block">The uiViewport, used for the location of text</div>
+</section>
+</li>
+<li>
+<section class="detail" id="map1">
+<h3>map1</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html" title="class or interface in java.util" class="external-link">HashMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr>com.badlogic.gdx.graphics.Texture&gt;</span>&nbsp;<span class="element-name">map1</span></div>
+<div class="block">The map used to translate the shape number into an actual texture/image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="map2">
+<h3>map2</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html" title="class or interface in java.util" class="external-link">HashMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr>org.javatuples.Pair&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr>com.badlogic.gdx.graphics.Color&gt;&gt;</span>&nbsp;<span class="element-name">map2</span></div>
+<div class="block">The map used to convert the name of the shape to its respective number or color</div>
+</section>
+</li>
+<li>
+<section class="detail" id="controller">
+<h3>controller</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="GameEngine.html" title="class in io.github.magiccsacademy.csa_project">GameEngine</a></span>&nbsp;<span class="element-name">controller</span></div>
+<div class="block">The gameEngine that manages what level the player is on</div>
+</section>
+</li>
+<li>
+<section class="detail" id="showTransition">
+<h3>showTransition</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">showTransition</span></div>
+<div class="block">Whether the level transition needs to be shown</div>
+</section>
+</li>
+<li>
+<section class="detail" id="transitionTime">
+<h3>transitionTime</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">transitionTime</span></div>
+<div class="block">The timer for the amount of time in transition</div>
+</section>
+</li>
+<li>
+<section class="detail" id="c">
+<h3>c</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a></span>&nbsp;<span class="element-name">c</span></div>
+<div class="block">The cat object for the player's lives, shields, etc.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="background">
+<h3>background</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">background</span></div>
+<div class="block">The texture for the background image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ghost">
+<h3>ghost</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">ghost</span></div>
+<div class="block">The texture for the ghost image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ghost2">
+<h3>ghost2</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.Sprite</span>&nbsp;<span class="element-name">ghost2</span></div>
+<div class="block">The sprite for the ghost Texture</div>
+</section>
+</li>
+<li>
+<section class="detail" id="fulkPic">
+<h3>fulkPic</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">fulkPic</span></div>
+<div class="block">The Texture for the image of Mr. Fulk</div>
+</section>
+</li>
+<li>
+<section class="detail" id="fulk">
+<h3>fulk</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.Sprite</span>&nbsp;<span class="element-name">fulk</span></div>
+<div class="block">The sprite for the Mr. Fulk texture</div>
+</section>
+</li>
+<li>
+<section class="detail" id="fish">
+<h3>fish</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.Sprite</span>&nbsp;<span class="element-name">fish</span></div>
+<div class="block">The sprite for the fish texture</div>
+</section>
+</li>
+<li>
+<section class="detail" id="fishpic">
+<h3>fishpic</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">fishpic</span></div>
+<div class="block">The texture for the fish image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="shieldGhostPic">
+<h3>shieldGhostPic</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">shieldGhostPic</span></div>
+<div class="block">The texture for the shield ghost image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="shieldGhostSprite">
+<h3>shieldGhostSprite</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.Sprite</span>&nbsp;<span class="element-name">shieldGhostSprite</span></div>
+<div class="block">The sprite for the shield ghost texture</div>
+</section>
+</li>
+<li>
+<section class="detail" id="cat">
+<h3>cat</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">cat</span></div>
+<div class="block">The texture for the cat image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="cat2">
+<h3>cat2</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.Sprite</span>&nbsp;<span class="element-name">cat2</span></div>
+<div class="block">The sprite for the cat texture</div>
+</section>
+</li>
+<li>
+<section class="detail" id="heart">
+<h3>heart</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">heart</span></div>
+<div class="block">The texture for the heart image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="shield">
+<h3>shield</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">shield</span></div>
+<div class="block">The texture for the shield image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="heartOutline">
+<h3>heartOutline</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">heartOutline</span></div>
+<div class="block">The Texture for the outline of the heart image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="font">
+<h3>font</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.g2d.BitmapFont</span>&nbsp;<span class="element-name">font</span></div>
+<div class="block">The font used to display the text</div>
+</section>
+</li>
+<li>
+<section class="detail" id="points">
+<h3>points</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;com.badlogic.gdx.math.Vector2&gt;</span>&nbsp;<span class="element-name">points</span></div>
+<div class="block">The ArrayList used to draw the line on the screen</div>
+</section>
+</li>
+<li>
+<section class="detail" id="pts">
+<h3>pts</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a>&lt;<a href="Point.html" title="class in io.github.magiccsacademy.csa_project">Point</a>&gt;</span>&nbsp;<span class="element-name">pts</span></div>
+<div class="block">Stores the points that are recognized as a shape</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isDrawing">
+<h3>isDrawing</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDrawing</span></div>
+<div class="block">Whether the player is drawing</div>
+</section>
+</li>
+<li>
+<section class="detail" id="catCircle">
+<h3>catCircle</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">catCircle</span></div>
+<div class="block">The texture for the cat drawing circle</div>
+</section>
+</li>
+<li>
+<section class="detail" id="animationTimer">
+<h3>animationTimer</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">animationTimer</span></div>
+<div class="block">The timer for how long the cat changes</div>
+</section>
+</li>
+<li>
+<section class="detail" id="ANIMATION_DURATION">
+<h3>ANIMATION_DURATION</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">ANIMATION_DURATION</span></div>
+<div class="block">The constant used for the duration of the animation</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#io.github.magiccsacademy.csa_project.GameScreen.ANIMATION_DURATION">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="shapeRenderer">
+<h3>shapeRenderer</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.glutils.ShapeRenderer</span>&nbsp;<span class="element-name">shapeRenderer</span></div>
+<div class="block">The renderer that draws the player's line on the screen</div>
+</section>
+</li>
+<li>
+<section class="detail" id="recognizer">
+<h3>recognizer</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Recognizer.html" title="class in io.github.magiccsacademy.csa_project">Recognizer</a></span>&nbsp;<span class="element-name">recognizer</span></div>
+<div class="block">The recognizer that recognizes the player shape drawn</div>
+</section>
+</li>
+<li>
+<section class="detail" id="colorDrawing">
+<h3>colorDrawing</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Color</span>&nbsp;<span class="element-name">colorDrawing</span></div>
+<div class="block">The color of the stroke the player makes (changes based on recognition)</div>
+</section>
+</li>
+<li>
+<section class="detail" id="paused">
+<h3>paused</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">paused</span></div>
+<div class="block">whether the game is currently paused</div>
+</section>
+</li>
+<li>
+<section class="detail" id="pauseTexture">
+<h3>pauseTexture</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">pauseTexture</span></div>
+<div class="block">The texture for the pause image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="playTexture">
+<h3>playTexture</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">com.badlogic.gdx.graphics.Texture</span>&nbsp;<span class="element-name">playTexture</span></div>
+<div class="block">The texture for the play image</div>
+</section>
+</li>
+<li>
+<section class="detail" id="level1">
+<h3>level1</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></span>&nbsp;<span class="element-name">level1</span></div>
+<div class="block">The level objects for each level</div>
+</section>
+</li>
+<li>
+<section class="detail" id="level2">
+<h3>level2</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></span>&nbsp;<span class="element-name">level2</span></div>
+<div class="block">The level objects for each level</div>
+</section>
+</li>
+<li>
+<section class="detail" id="level3">
+<h3>level3</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></span>&nbsp;<span class="element-name">level3</span></div>
+<div class="block">The level objects for each level</div>
+</section>
+</li>
+<li>
+<section class="detail" id="level4">
+<h3>level4</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></span>&nbsp;<span class="element-name">level4</span></div>
+<div class="block">The level objects for each level</div>
+</section>
+</li>
+<li>
+<section class="detail" id="level5">
+<h3>level5</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a></span>&nbsp;<span class="element-name">level5</span></div>
+<div class="block">The level objects for each level</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -188,6 +753,11 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="detail" id="&lt;init&gt;(io.github.magiccsacademy.csa_project.Main)">
 <h3>GameScreen</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameScreen</span><wbr><span class="parameters">(<a href="Main.html" title="class in io.github.magiccsacademy.csa_project">Main</a>&nbsp;game)</span></div>
+<div class="block">Constructs a GameScreen object, initializing static fields</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>game</code> - the Main class used for textures and shifting screens.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -202,6 +772,7 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="detail" id="show()">
 <h3>show</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">show</span>()</div>
+<div class="block">Initializes textures, fonts, and fills up the fields initialized in the constructor</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>show</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
@@ -209,13 +780,77 @@ implements com.badlogic.gdx.Screen</span></div>
 </section>
 </li>
 <li>
+<section class="detail" id="drawGhosts(io.github.magiccsacademy.csa_project.Level)">
+<h3>drawGhosts</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drawGhosts</span><wbr><span class="parameters">(<a href="Level.html" title="class in io.github.magiccsacademy.csa_project">Level</a>&nbsp;level)</span></div>
+<div class="block">Draws all the ghosts (and shapes) in the current ghostTurn. The current ghostTurn is accessed through the level.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>level</code> - the level to draw ghosts from</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="createCurrentRecognizer()">
+<h3>createCurrentRecognizer</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="Recognizer.html" title="class in io.github.magiccsacademy.csa_project">Recognizer</a></span>&nbsp;<span class="element-name">createCurrentRecognizer</span>()</div>
+<div class="block">Returns the recognizer that should be used right now (for example, if there are no circles left, it shouldn't recognize circles)</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the recognition that should be used at that current moment</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="render(float)">
 <h3>render</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">render</span><wbr><span class="parameters">(float&nbsp;delta)</span></div>
+<div class="block">Renders the image on the screen, using helper methods as necessary</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>render</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
+<dt>Parameters:</dt>
+<dd><code>delta</code> - The time in seconds since the last render.</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="drawShield()">
+<h3>drawShield</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drawShield</span>()</div>
+<div class="block">Draws the shield at the cat's current position</div>
+</section>
+</li>
+<li>
+<section class="detail" id="drawHearts(io.github.magiccsacademy.csa_project.Cat)">
+<h3>drawHearts</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drawHearts</span><wbr><span class="parameters">(<a href="Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a>&nbsp;c)</span></div>
+<div class="block">Draws the hearts in the corner of the screen based on the lives the cat has left</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>c</code> - the cat object for this game (contains info on lives)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="drawScore()">
+<h3>drawScore</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drawScore</span>()</div>
+<div class="block">Draws the score in the corner of the screen, utilizing a different viewport and a FreeTypeFont</div>
+</section>
+</li>
+<li>
+<section class="detail" id="drawPlayPause()">
+<h3>drawPlayPause</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drawPlayPause</span>()</div>
+<div class="block">Draws the play and pause buttons based on whether the game is currently running or paused</div>
+</section>
+</li>
+<li>
+<section class="detail" id="drawPauseOverlay()">
+<h3>drawPauseOverlay</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">drawPauseOverlay</span>()</div>
+<div class="block">Draws the image the player sees when the game is currently paused (with the text in the middle)</div>
 </section>
 </li>
 <li>
@@ -223,9 +858,13 @@ implements com.badlogic.gdx.Screen</span></div>
 <h3>resize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resize</span><wbr><span class="parameters">(int&nbsp;width,
  int&nbsp;height)</span></div>
+<div class="block">Resizes the screen based on the parameters</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>resize</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
+<dt>Parameters:</dt>
+<dd><code>width</code> - the width of the screen to resize to</dd>
+<dd><code>height</code> - the height of the screen to resize to</dd>
 </dl>
 </section>
 </li>
@@ -233,6 +872,7 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="detail" id="pause()">
 <h3>pause</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">pause</span>()</div>
+<div class="block">Inherited method from the screen class that we are not using</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>pause</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
@@ -243,6 +883,7 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="detail" id="resume()">
 <h3>resume</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resume</span>()</div>
+<div class="block">Inherited method from the screen class that we are not using</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>resume</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
@@ -253,6 +894,7 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="detail" id="hide()">
 <h3>hide</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">hide</span>()</div>
+<div class="block">Inherited method from the screen class that we are not using</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>hide</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
@@ -263,6 +905,7 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="detail" id="dispose()">
 <h3>dispose</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dispose</span>()</div>
+<div class="block">Inherited method from the screen class that we are not using</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>dispose</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.utils.Disposable</code></dd>
@@ -278,11 +921,19 @@ implements com.badlogic.gdx.Screen</span></div>
  int&nbsp;screenY,
  int&nbsp;pointer,
  int&nbsp;button)</span></div>
+<div class="block">Inherited methods from the InputAdapter class that deal with whether the mouse is down (starts drawing points)</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>touchDown</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.InputProcessor</code></dd>
 <dt>Overrides:</dt>
 <dd><code>touchDown</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.InputAdapter</code></dd>
+<dt>Parameters:</dt>
+<dd><code>screenX</code> - The x coordinate, origin is in the upper left corner</dd>
+<dd><code>screenY</code> - The y coordinate, origin is in the upper left corner</dd>
+<dd><code>pointer</code> - the pointer for the event.</dd>
+<dd><code>button</code> - the button</dd>
+<dt>Returns:</dt>
+<dd>always true in our case ( we need a boolean return to inherit from the libGDX class)</dd>
 </dl>
 </section>
 </li>
@@ -292,11 +943,18 @@ implements com.badlogic.gdx.Screen</span></div>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">touchDragged</span><wbr><span class="parameters">(int&nbsp;screenX,
  int&nbsp;screenY,
  int&nbsp;pointer)</span></div>
+<div class="block">Called when the mouse is dragged on the screen. In this method, we apply the recognizer live and change the color based on the current recognized stroke</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>touchDragged</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.InputProcessor</code></dd>
 <dt>Overrides:</dt>
 <dd><code>touchDragged</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.InputAdapter</code></dd>
+<dt>Parameters:</dt>
+<dd><code>screenX</code> - the x location on the screen</dd>
+<dd><code>screenY</code> - the y location on the screen</dd>
+<dd><code>pointer</code> - the pointer for the event.</dd>
+<dt>Returns:</dt>
+<dd>always true in our case ( we need a boolean return to inherit from the libGDX class)</dd>
 </dl>
 </section>
 </li>
@@ -307,11 +965,19 @@ implements com.badlogic.gdx.Screen</span></div>
  int&nbsp;screenY,
  int&nbsp;pointer,
  int&nbsp;button)</span></div>
+<div class="block">When a drag or touch is removed from the screen, this is called. Calls the shapeDrawn level method based on the shape drawn, and also updates the cat's costume</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>touchUp</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.InputProcessor</code></dd>
 <dt>Overrides:</dt>
 <dd><code>touchUp</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.InputAdapter</code></dd>
+<dt>Parameters:</dt>
+<dd><code>screenX</code> - the x position of the screen</dd>
+<dd><code>screenY</code> - the y position of the screen</dd>
+<dd><code>pointer</code> - the pointer for the event.</dd>
+<dd><code>button</code> - the button</dd>
+<dt>Returns:</dt>
+<dd>false if the level is completed, otherwise true</dd>
 </dl>
 </section>
 </li>

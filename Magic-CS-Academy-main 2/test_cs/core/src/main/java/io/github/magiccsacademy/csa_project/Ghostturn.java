@@ -11,7 +11,6 @@ public class Ghostturn {
 
     /**The number of ghosts in this wave*/
     private int numGhosts;
-    private int numGhosts;
 
     /**The difficulty of this wave (determines score additions)*/
     private int difficulty;
@@ -23,7 +22,6 @@ public class Ghostturn {
     private final int totshapes = 4;
 
     /** Array of the ghosts in this wave*/
-    private ArrayList<Ghost> ghostspresent;
     private ArrayList<Ghost> ghostspresent;
 
     /**The number of circles this ghostTurn has currently (across living ghosts)*/
@@ -43,17 +41,14 @@ public class Ghostturn {
 
     /** Array of the x positions of the ghosts in this wave*/
     private ArrayList<Float> ghostx;
-    private ArrayList<Float> ghostx;
 
     /** Array of the y positions of the ghosts in this wave*/
-    private ArrayList<Float> ghosty;
     private ArrayList<Float> ghosty;
 
     /** Boolean that states whether the characters in this wave are fish*/
     private boolean fish;
 
     /**Speed modifier for the ghosts */
-    private float speedModifier = 1.0f;
     private float speedModifier = 1.0f;
 
     /**
@@ -424,14 +419,7 @@ public class Ghostturn {
         return ghosty;
     }
 
-    /**
-     * Returns the total number of ghosts originally in this wave.
-     *
-     * @return the number of ghosts
-     */
-    public int getNumGhosts() {
-        return numGhosts;
-    }
+
 
     /**
      * Returns the number of ghosts that are still alive in this wave.
@@ -450,14 +438,7 @@ public class Ghostturn {
         this.numAlive--;
     }
 
-    /**
-     * Returns the list of ghosts currently present in this wave.
-     *
-     * @return the array list of ghost objects
-     */
-    public ArrayList<Ghost> getGhostspresent() {
-        return ghostspresent;
-    }
+
 
 
     /**
@@ -480,14 +461,7 @@ public class Ghostturn {
     }
 
 
-    /**
-     * Returns the speed modifier for the ghosts in this wave.
-     *
-     * @return the speed modifier factor
-     */
-    public float getSpeedModifier() {
-        return speedModifier;
-    }
+
 
 
 

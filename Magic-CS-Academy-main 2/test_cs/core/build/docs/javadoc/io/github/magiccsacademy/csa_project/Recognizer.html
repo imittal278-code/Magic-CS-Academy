@@ -90,6 +90,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Recognizer</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Recognizes drawn gestures by comparing the player's stroke to a set of shape templates.
+
+ This class is based on an existing gesture-recognition implementation from GitHub.
+ I modified it for this project by limiting/enabling specific shapes and connecting the
+ recognizer to the game's shape system, as well as optimizing some parts.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -102,29 +107,47 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>(package private) double</code></div>
+<div class="col-second even-row-color"><code><a href="#AnglePrecision" class="member-name-link">AnglePrecision</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>(package private) double</code></div>
+<div class="col-second odd-row-color"><code><a href="#AngleRange" class="member-name-link">AngleRange</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code><a href="Rectangle.html" title="class in io.github.magiccsacademy.csa_project">Rectangle</a></code></div>
 <div class="col-second even-row-color"><code><a href="#boundingBox" class="member-name-link">boundingBox</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code><a href="Point.html" title="class in io.github.magiccsacademy.csa_project">Point</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#centroid" class="member-name-link">centroid</a></code></div>
+<div class="col-first odd-row-color"><code>(package private) int[]</code></div>
+<div class="col-second odd-row-color"><code><a href="#bounds" class="member-name-link">bounds</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#GESTURES_CIRCLES" class="member-name-link">GESTURES_CIRCLES</a></code></div>
+<div class="col-first even-row-color"><code><a href="Point.html" title="class in io.github.magiccsacademy.csa_project">Point</a></code></div>
+<div class="col-second even-row-color"><code><a href="#centroid" class="member-name-link">centroid</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static final int</code></div>
-<div class="col-second odd-row-color"><code><a href="#GESTURES_DEFAULT" class="member-name-link">GESTURES_DEFAULT</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#GESTURES_CIRCLES" class="member-name-link">GESTURES_CIRCLES</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#GESTURES_SIMPLE" class="member-name-link">GESTURES_SIMPLE</a></code></div>
+<div class="col-second even-row-color"><code><a href="#GESTURES_DEFAULT" class="member-name-link">GESTURES_DEFAULT</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#GESTURES_SIMPLE" class="member-name-link">GESTURES_SIMPLE</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>(package private) double</code></div>
+<div class="col-second even-row-color"><code><a href="#HalfDiagonal" class="member-name-link">HalfDiagonal</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static int</code></div>
 <div class="col-second odd-row-color"><code><a href="#NumPoints" class="member-name-link">NumPoints</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static double</code></div>
-<div class="col-second even-row-color"><code><a href="#Phi" class="member-name-link">Phi</a></code></div>
+<div class="col-first even-row-color"><code>(package private) int</code></div>
+<div class="col-second even-row-color"><code><a href="#NumTemplates" class="member-name-link">NumTemplates</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>static double</code></div>
-<div class="col-second odd-row-color"><code><a href="#SquareSize" class="member-name-link">SquareSize</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#Phi" class="member-name-link">Phi</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static double</code></div>
+<div class="col-second even-row-color"><code><a href="#SquareSize" class="member-name-link">SquareSize</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>(package private) <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#Templates" class="member-name-link">Templates</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
@@ -144,7 +167,9 @@ loadScripts(document, 'script');</script>
  boolean&nbsp;normalV,
  boolean&nbsp;horizontalLine,
  boolean&nbsp;verticalLine)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Constructs a recognizer with only the currently needed shape templates enabled.</div>
+</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Recognizer</a><wbr>(int&nbsp;gestureSet)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
@@ -156,14 +181,42 @@ loadScripts(document, 'script');</script>
 <h2>Method Summary</h2>
 <div id="method-summary-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
-<div id="method-summary-table.tabpanel" role="tabpanel">
-<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#AddTemplate(java.lang.String,java.util.Vector)" class="member-name-link">AddTemplate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a>&nbsp;points)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#DeleteUserTemplates()" class="member-name-link">DeleteUserTemplates</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadArray(int%5B%5D)" class="member-name-link">loadArray</a><wbr>(int[]&nbsp;array)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) <a href="Template.html" title="class in io.github.magiccsacademy.csa_project">Template</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadTemplate(java.lang.String,int%5B%5D)" class="member-name-link">loadTemplate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ int[]&nbsp;array)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadTemplatesCircles()" class="member-name-link">loadTemplatesCircles</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadTemplatesDefault()" class="member-name-link">loadTemplatesDefault</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadTemplatesPhoto()" class="member-name-link">loadTemplatesPhoto</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>(package private) void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#loadTemplatesSimple()" class="member-name-link">loadTemplatesSimple</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Result.html" title="class in io.github.magiccsacademy.csa_project">Result</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#Recognize(java.util.Vector)" class="member-name-link">Recognize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a>&nbsp;points)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Attempts to recognize the given stroke as one of the enabled shapes.</div>
+</div>
 </div>
 </div>
 </div>
@@ -182,6 +235,12 @@ loadScripts(document, 'script');</script>
 <h2>Field Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="NumTemplates">
+<h3>NumTemplates</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">NumTemplates</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="NumPoints">
 <h3>NumPoints</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">NumPoints</span></div>
@@ -191,6 +250,24 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="SquareSize">
 <h3>SquareSize</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">SquareSize</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="HalfDiagonal">
+<h3>HalfDiagonal</h3>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">HalfDiagonal</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="AngleRange">
+<h3>AngleRange</h3>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">AngleRange</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="AnglePrecision">
+<h3>AnglePrecision</h3>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">AnglePrecision</span></div>
 </section>
 </li>
 <li>
@@ -209,6 +286,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="boundingBox">
 <h3>boundingBox</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Rectangle.html" title="class in io.github.magiccsacademy.csa_project">Rectangle</a></span>&nbsp;<span class="element-name">boundingBox</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="bounds">
+<h3>bounds</h3>
+<div class="member-signature"><span class="return-type">int[]</span>&nbsp;<span class="element-name">bounds</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="Templates">
+<h3>Templates</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a></span>&nbsp;<span class="element-name">Templates</span></div>
 </section>
 </li>
 <li>
@@ -275,6 +364,15 @@ loadScripts(document, 'script');</script>
  boolean&nbsp;normalV,
  boolean&nbsp;horizontalLine,
  boolean&nbsp;verticalLine)</span></div>
+<div class="block">Constructs a recognizer with only the currently needed shape templates enabled.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>circle</code> - whether circle gestures should be recognized</dd>
+<dd><code>upsideDownV</code> - whether upside-down V gestures should be recognized</dd>
+<dd><code>normalV</code> - whether normal V gestures should be recognized</dd>
+<dd><code>horizontalLine</code> - whether horizontal line gestures should be recognized</dd>
+<dd><code>verticalLine</code> - whether vertical line gestures should be recognized</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -292,9 +390,66 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="loadTemplatesDefault()">
+<h3>loadTemplatesDefault</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">loadTemplatesDefault</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="loadTemplatesSimple()">
+<h3>loadTemplatesSimple</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">loadTemplatesSimple</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="loadTemplatesCircles()">
+<h3>loadTemplatesCircles</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">loadTemplatesCircles</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="loadTemplatesPhoto()">
+<h3>loadTemplatesPhoto</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">loadTemplatesPhoto</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="loadTemplate(java.lang.String,int[])">
+<h3>loadTemplate</h3>
+<div class="member-signature"><span class="return-type"><a href="Template.html" title="class in io.github.magiccsacademy.csa_project">Template</a></span>&nbsp;<span class="element-name">loadTemplate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ int[]&nbsp;array)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="loadArray(int[])">
+<h3>loadArray</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a></span>&nbsp;<span class="element-name">loadArray</span><wbr><span class="parameters">(int[]&nbsp;array)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="Recognize(java.util.Vector)">
 <h3>Recognize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Result.html" title="class in io.github.magiccsacademy.csa_project">Result</a></span>&nbsp;<span class="element-name">Recognize</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a>&nbsp;points)</span></div>
+<div class="block">Attempts to recognize the given stroke as one of the enabled shapes.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>points</code> - the points drawn by the player</dd>
+<dt>Returns:</dt>
+<dd>the recognition result, or null if no shape is confidently recognized</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="AddTemplate(java.lang.String,java.util.Vector)">
+<h3>AddTemplate</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">AddTemplate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Vector.html" title="class or interface in java.util" class="external-link">Vector</a>&nbsp;points)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="DeleteUserTemplates()">
+<h3>DeleteUserTemplates</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">DeleteUserTemplates</span>()</div>
 </section>
 </li>
 </ul>

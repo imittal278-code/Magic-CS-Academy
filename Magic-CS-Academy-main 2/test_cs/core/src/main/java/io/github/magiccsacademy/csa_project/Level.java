@@ -213,8 +213,8 @@ public class Level {
     public void update(float delta, Cat c) {
         if (currentTurnIndex>=turns.size() || currentTurnFinished()) return;
         Ghostturn curr = turns.get(currentTurnIndex);
-        ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).getGhostx();
-        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).getGhosty();
+        ArrayList<Float> currentGhostX = turns.get(currentTurnIndex).getGhostX();
+        ArrayList<Float> currentGhostY = turns.get(currentTurnIndex).getGhostY();
         for (int i=0; i<curr.getGhostspresent().size(); i++) {
             Ghost ghost = curr.getGhostspresent().get(i);
             if (ghost.isAlive()) {
@@ -361,47 +361,47 @@ public class Level {
     public void ghostPos(int turnInd) {
 
         Ghostturn turn = turns.get(turnInd);
-        turn.getGetGhostX()().clear();
-        turn.getGetGhostY()().clear();
+        turn.getGhostX().clear();
+        turn.getGhostY().clear();
         if(levelNumber==2){
             float adder = -1f;
-            if(turn.getGetGhostspresent()().size()==1){
-                if (turn.getGetGhostspresent()().get(0).isShield()) {
-                    turn.getGetGhostY()().add(-0.5f);
-                    turn.getGetGhostY()().add(0.2f);
-                    turn.getGetGhostspresent()().get(0).setHorizontalDirection(1.0f);
+            if(turn.getGhostspresent().size()==1){
+                if (turn.getGhostspresent().get(0).isShield()) {
+                    turn.getGhostY().add(-0.5f);
+                    turn.getGhostY().add(0.2f);
+                    turn.getGhostspresent().get(0).setHorizontalDirection(1.0f);
                 } else {
-                turn.getGetGhostX()().add(6f);
-                turn.getGetGhostY()().add(1.5f);
+                turn.getGhostX().add(6f);
+                turn.getGhostY().add(1.5f);
                 }
                 return;
             }
-            for (int i=0; i<turn.getGetGhostspresent()().size(); i++) {
-                if (turn.getGetGhostspresent()().get(i).isShield()) {
-                    turn.getGetGhostX()().add(-0.5f);
-                    turn.getGetGhostY()().add(0.2f);
-                    turn.getGetGhostspresent()().get(i).setHorizontalDirection(1.0f);
+            for (int i=0; i<turn.getGhostspresent().size(); i++) {
+                if (turn.getGhostspresent().get(i).isShield()) {
+                    turn.getGhostX().add(-0.5f);
+                    turn.getGhostY().add(0.2f);
+                    turn.getGhostspresent().get(i).setHorizontalDirection(1.0f);
                 } else {
                 if(i%3==0)adder+=0.5f;
-                turn.getGetGhostX()().add(6f+adder);
-                turn.getGetGhostY()().add(0f+(i%4)+adder);
+                turn.getGhostX().add(6f+adder);
+                turn.getGhostY().add(0f+(i%4)+adder);
                 }
             }
             return;
         }
         else {
             float angle =(float)( Math.PI-Math.atan(5.2/2.2));
-            float anglerange = 2*angle/(Math.min(9,turn.getGetGhostspresent()().size()));
-            for (int i=0; i<turn.getGetGhostspresent()().size(); i++) {
-                if (turn.getGetGhostspresent()().get(i).isShield()) {
-                    turn.getGetGhostX()().add(-0.5f);
-                    turn.getGetGhostY()().add(0.2f);
-                    turn.getGetGhostspresent()().get(i).setHorizontalDirection(1.0f);
+            float anglerange = 2*angle/(Math.min(9,turn.getGhostspresent().size()));
+            for (int i=0; i<turn.getGhostspresent().size(); i++) {
+                if (turn.getGhostspresent().get(i).isShield()) {
+                    turn.getGhostX().add(-0.5f);
+                    turn.getGhostY().add(0.2f);
+                    turn.getGhostspresent().get(i).setHorizontalDirection(1.0f);
                 } else {
                 float ghostAngle = (float)(Math.random()*0.5*(anglerange)+(-angle+(((i%9)+0.25)*anglerange)));
                 Point ghostPos = intersectRay(ghostAngle, 5.2f, 2.2f, (int)(i/8)*3.0);
-                turn.getGetGhostX()().add((float) ghostPos.X);
-                turn.getGetGhostY()().add((float) ghostPos.Y);
+                turn.getGhostX().add((float) ghostPos.X);
+                turn.getGhostY().add((float) ghostPos.Y);
                 }
 
             }

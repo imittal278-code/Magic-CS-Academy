@@ -50,27 +50,29 @@ loadScripts(document, 'script');</script>
 </div>
 <div id="all-classes-table">
 <div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab1" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab1', 2)" class="table-tab">Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button><button id="all-classes-table-tab3" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab3', 2)" class="table-tab">Enum Classes</button></div>
-<div id="all-classes-table.tabpanel" role="tabpanel">
-<div class="summary-table two-column-summary" aria-labelledby="all-classes-table-tab0">
+<div id="all-classes-table.tabpanel" role="tabpanel" aria-labelledby="all-classes-table-tab0">
+<div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Cat.html" title="class in io.github.magiccsacademy.csa_project">Cat</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Manges location of the cat on the screen, its lives, score, and whether it has its shiel0d</div>
+<div class="block">Manages the location of the cat on the screen, its lives, score, and whether it has its shield</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="io/github/magiccsacademy/csa_project/Cat.State.html" title="enum class in io.github.magiccsacademy.csa_project">Cat.State</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">Represents the cat's current visual/action state.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Dollar.html" title="class in io.github.magiccsacademy.csa_project">Dollar</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="io/github/magiccsacademy/csa_project/DollarListener.html" title="interface in io.github.magiccsacademy.csa_project">DollarListener</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/endScreen.html" title="class in io.github.magiccsacademy.csa_project">endScreen</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/EndScreen.html" title="class in io.github.magiccsacademy.csa_project">EndScreen</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">The screen that a player sees after they either win or lose the game</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/GameEngine.html" title="class in io.github.magiccsacademy.csa_project">GameEngine</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Used to manage which level the player is on, and switch levels</div>
+<div class="block">Manages the player's current level and handles level progression</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/GameScreen.html" title="class in io.github.magiccsacademy.csa_project">GameScreen</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
@@ -84,7 +86,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Represents a wave of ghosts during a level</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/homeScreen.html" title="class in io.github.magiccsacademy.csa_project">homeScreen</a></div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/HomeScreen.html" title="class in io.github.magiccsacademy.csa_project">HomeScreen</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Displays the screen that a player sees first with the big center play button</div>
 </div>
@@ -98,14 +100,17 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Main.html" title="class in io.github.magiccsacademy.csa_project">Main</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block"><code>ApplicationListener</code> implementation shared by all platforms.</div>
+<div class="block">Main game class that loads shared assets, creates the viewport and stage,
+ starts the background music, and opens the home screen.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Point.html" title="class in io.github.magiccsacademy.csa_project">Point</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">The point class used for recognizing shapes</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Recognizer.html" title="class in io.github.magiccsacademy.csa_project">Recognizer</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Recognizes drawn gestures by comparing the player's stroke to a set of shape templates.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Rectangle.html" title="class in io.github.magiccsacademy.csa_project">Rectangle</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="io/github/magiccsacademy/csa_project/Result.html" title="class in io.github.magiccsacademy.csa_project">Result</a></div>
