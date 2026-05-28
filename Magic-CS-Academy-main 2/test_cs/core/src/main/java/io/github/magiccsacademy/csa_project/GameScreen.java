@@ -319,9 +319,8 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         float delta = Gdx.graphics.getDeltaTime();
         int numGhosts = currentTurn.getNumGhosts();
-        int numGhosts = currentTurn.getNumGhosts();
         for (int i = 0; i < numGhosts; i++) {
-            Ghost g = currentTurn.getGetGhostspresent()().get(numGhosts - i - 1);
+            Ghost g = currentTurn.getGhostspresent().get(numGhosts - i - 1);
             if (g.isDying()) {
                 g.setDeathTimer(g.getDeathTimer()+delta);
                 if (g.getDeathTimer() >= g.getDEATH_DURATION()) {
@@ -348,7 +347,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 
                 float x = currentTurn.getGhostx().get(numGhosts - i - 1);
                 float y = currentTurn.getGhosty().get(numGhosts - i - 1);
-                if(g.isFulk){
+                if(g.isFulk()){
                     fulk.setPosition(x, y);
                     fulk.setSize(0.58f, 0.58f);
                     fulk.draw(game.getBatch());
