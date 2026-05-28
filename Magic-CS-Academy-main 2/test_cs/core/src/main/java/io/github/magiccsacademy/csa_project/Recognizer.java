@@ -39,6 +39,8 @@ import java.util.*;
  * This class is based on an existing gesture-recognition implementation from GitHub.
  * I modified it for this project by limiting/enabling specific shapes and connecting the
  * recognizer to the game's shape system, as well as optimizing some parts.
+ *
+ * Original source: https://github.com/olwal/dollar
  */
 public class Recognizer
 {
