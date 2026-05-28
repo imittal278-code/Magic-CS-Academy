@@ -528,12 +528,12 @@ public class GameScreen extends InputAdapter implements Screen {
         //You lost
         if (!c.isAlive()) {
             this.dispose();
-            game.setScreen(new endScreen(game, c));
+            game.setScreen(new EndScreen(game, c));
         }
         if (controller.getCurrentLevel().isCompleted()) {
             if (controller.doneWithLevels() && c.isAlive()) {
                 this.dispose();
-                game.setScreen(new endScreen(game,c));
+                game.setScreen(new EndScreen(game,c));
             }
             else if(!showTransition){
                 showTransition = true;
@@ -542,7 +542,7 @@ public class GameScreen extends InputAdapter implements Screen {
                 controller.nextLevel();
                 if (controller.doneWithLevels() && c.isAlive()) {
                     this.dispose();
-                    game.setScreen(new endScreen(game, c));
+                    game.setScreen(new EndScreen(game, c));
                 }
             }
         }
