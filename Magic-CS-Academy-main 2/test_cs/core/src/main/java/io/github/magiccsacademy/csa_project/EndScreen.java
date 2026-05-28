@@ -30,7 +30,7 @@ import java.util.*;
 /**
  * The screen that a player sees after they either win or lose the game
  */
-public class endScreen implements Screen{
+public class EndScreen implements Screen{
 
     /**
      * The shared Main class used for assets and switching screens
@@ -83,11 +83,11 @@ public class endScreen implements Screen{
     private Viewport uiViewport;
 
     /**
-     * Constructs the endScreen, initializing non-static fields and setting up the font
+     * Constructs the EndScreen, initializing non-static fields and setting up the font
      * @param game the shared Main class
      * @param c the Cat from GameScreen
      */
-    public endScreen(Main game, Cat c){
+    public EndScreen(Main game, Cat c){
         uiViewport = new FitViewport(1200,600);
 
         this.game = game;
