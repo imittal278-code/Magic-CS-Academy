@@ -303,10 +303,10 @@ public class Ghostturn {
             speedModifier = 1.4f;
         } else if (count <= 4 && avgLength<= 3) {
             speedModifier = 1.2f;
-        } else if (count > 6 || avgLength >= 5) {
-            speedModifier = 0.7f;
-        } else {
+        } else if (count == 1) {
             speedModifier = 1.0f;
+        } else {
+            speedModifier = 1.5f;
         }
     }
 
