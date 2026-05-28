@@ -495,7 +495,7 @@ public class GameScreen extends InputAdapter implements Screen {
         else if(controller.getCurrentLevel() == level2) c.setPosition(0.2f, 1.1f);
         else if(controller.getCurrentLevel() == level3) c.setPosition(2.6f, 1.1f);
         else if(controller.getCurrentLevel() == level4) c.setPosition(2.6f, 1.5f);
-        //else c.setPosition();
+        else c.setPosition(2.6f, 1.5f);
         cat2.setPosition(catX, catY);
         cat2.setSize(finalWidth, finalHeight);
         cat2.draw(game.batch);
@@ -525,7 +525,6 @@ public class GameScreen extends InputAdapter implements Screen {
 
         if (paused)drawPauseOverlay();
 
-        //You lost
         if (!c.isAlive()) {
             this.dispose();
             game.setScreen(new EndScreen(game, c));
@@ -694,7 +693,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
      */
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) { //Called when the screen was touched, or a mouse button was pressed.
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         points.clear();
         pts.clear();
         Vector3 temp = new Vector3(screenX, screenY, 0);
@@ -722,7 +721,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return always true in our case ( we need a boolean return to inherit from the libGDX class)
      */
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {//Called when a finger or the mouse was dragged.
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
         Vector3 temp = new Vector3(screenX, screenY, 0);
         game.myViewport.unproject(temp);
         if (isDrawing) {
@@ -736,14 +735,12 @@ public class GameScreen extends InputAdapter implements Screen {
             if (r != null && map2.containsKey(r.Name)&&r.Score>0.77) {
                 if(r.Score>0.90 && (r.Name.equals("horizontalLine")||r.Name.equals("verticalLine"))){
                     if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                        //horizontal
                         if(controller.getCurrentLevel().getHorizontalLines()) {
                             colorDrawing = Color.RED;
                         }
                         else colorDrawing = Color.WHITE;
                     }
                     else{
-                        //vertical
                         if(controller.getCurrentLevel().getVerticalLines()) {
                             colorDrawing = Color.BLUE;
                         }
@@ -760,13 +757,11 @@ public class GameScreen extends InputAdapter implements Screen {
         }
         else if(points.size()>1){
             if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                //horizontal
                 if(controller.getCurrentLevel().getHorizontalLines()) {
                     colorDrawing = Color.RED;
                 }
             }
             else{
-                //vertical
                 if(controller.getCurrentLevel().getVerticalLines()) {
                     colorDrawing = Color.BLUE;
                 }
@@ -786,7 +781,7 @@ public class GameScreen extends InputAdapter implements Screen {
      * @return false if the level is completed, otherwise true
      */
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button){//Called when a finger was lifted, or a mouse button was released.
+    public boolean touchUp(int screenX, int screenY, int pointer, int button){
         if(controller.getCurrentLevel().isCompleted()) return false;
         isDrawing = false;
         if(points.size()>10){
@@ -795,7 +790,6 @@ public class GameScreen extends InputAdapter implements Screen {
             if (r != null && map2.containsKey(r.Name)&&r.Score>0.77) {
                 if(r.Score>0.90 && (r.Name.equals("horizontalLine")||r.Name.equals("verticalLine"))){
                     if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                        //horizontal
                         if(controller.getCurrentLevel().getHorizontalLines()) {
                             controller.getCurrentLevel().shapeDrawn(0, c);
                             c.setState(Cat.State.HORIZONTAL);
@@ -804,7 +798,6 @@ public class GameScreen extends InputAdapter implements Screen {
 
                     }
                     else{
-                        //vertical
                         if(controller.getCurrentLevel().getVerticalLines()) {
                             controller.getCurrentLevel().shapeDrawn(1, c);
                             c.setState(Cat.State.VERTICAL);
@@ -823,14 +816,11 @@ public class GameScreen extends InputAdapter implements Screen {
             }
             else if(r != null && map2.containsKey(r.Name)&&r.Name.equals("circle")&&r.Score>0.70) {
                  controller.getCurrentLevel().shapeDrawn(4, c);
-                 //c.setState(Cat.State.CIRCLE);
-                 //animationTimer = ANIMATION_DURATION;
             }
 
         }
         else if(points.size()>1){
             if(Math.abs((points.get(points.size()-1).x-points.get(0).x)) > Math.abs(points.get(points.size()-1).y-points.get(0).y)){
-                //horizontal
                 if(controller.getCurrentLevel().getHorizontalLines()) {
                     controller.getCurrentLevel().shapeDrawn(0, c);
                     c.setState(Cat.State.HORIZONTAL);
@@ -838,7 +828,6 @@ public class GameScreen extends InputAdapter implements Screen {
                 }
             }
             else{
-                //vertical
                 if(controller.getCurrentLevel().getVerticalLines()) {
                     controller.getCurrentLevel().shapeDrawn(1, c);
                     c.setState(Cat.State.VERTICAL);
